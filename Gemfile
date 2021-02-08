@@ -5,24 +5,12 @@ source "https://rubygems.org"
 ruby RUBY_VERSION
 
 gem "decidim", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
-# gem "decidim", path: "../decidim"
-# gem "decidim-map", path: "../decidim-map"
-
 gem "decidim-conferences", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
-# gem "decidim-consultations", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
-# gem "decidim-initiatives", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
 
-# gem "decidim-conferences", path: "../decidim"
-# gem "decidim-consultations", path: "../decidim"
-# gem "decidim-initiatives", path: "../decidim"
-
-# gem "decidim-term_customizer", git: "https://github.com/OpenSourcePolitics/decidim-module-term_customizer.git"
-
+# Modules
 gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git"
-# gem "decidim-homepage_interactive_map", path: "../decidim-module-homepage_interactive_map"
 
 gem "bootsnap", "~> 1.3"
-
 gem "puma", "~> 3.0"
 gem "uglifier", "~> 4.1"
 
@@ -32,17 +20,13 @@ gem "ruby-progressbar"
 gem "sentry-raven"
 
 gem "letter_opener_web", "~> 1.3"
-
 gem "sprockets", "~> 3.7"
-
 gem "omniauth-oauth2", ">= 1.4.0", "< 2.0"
 
 group :development, :test do
   gem "dotenv-rails"
   gem "byebug", "~> 10.0", platform: :mri
-
   gem "decidim-dev", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
-  # gem "decidim-dev", path: "../decidim"
 end
 
 group :development do
@@ -53,7 +37,6 @@ group :development do
 end
 
 group :production do
-  # gem "rubocop-rails"
   gem "passenger"
   gem "fog-aws"
   gem "dalli"
