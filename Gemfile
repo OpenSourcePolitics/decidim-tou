@@ -27,6 +27,9 @@ group :development, :test do
   gem "dotenv-rails"
   gem "byebug", "~> 10.0", platform: :mri
   gem "decidim-dev", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
+
+# Since the v0.21.0, rubocop-rails is loaded in decidim-dev engine. For the v0.18.0, we can load rubocop-rails directly in app.
+  gem "rubocop-rails", require: false
 end
 
 group :development do
