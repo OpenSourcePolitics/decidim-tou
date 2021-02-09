@@ -75,12 +75,12 @@ describe "Authentication", type: :system do
     context "when using facebook" do
       let(:omniauth_hash) do
         OmniAuth::AuthHash.new(
-            provider: "facebook",
-            uid: "123545",
-            info: {
-                email: "user@from-facebook.com",
-                name: "Facebook User"
-            }
+          provider: "facebook",
+          uid: "123545",
+          info: {
+            email: "user@from-facebook.com",
+            name: "Facebook User"
+          }
         )
       end
 
@@ -110,13 +110,13 @@ describe "Authentication", type: :system do
       let(:email) { nil }
       let(:omniauth_hash) do
         OmniAuth::AuthHash.new(
-            provider: "twitter",
-            uid: "123545",
-            info: {
-                name: "Twitter User",
-                nickname: "twitter_user",
-                email: email
-            }
+          provider: "twitter",
+          uid: "123545",
+          info: {
+            name: "Twitter User",
+            nickname: "twitter_user",
+            email: email
+          }
         )
       end
 
@@ -184,12 +184,12 @@ describe "Authentication", type: :system do
     context "when using google" do
       let(:omniauth_hash) do
         OmniAuth::AuthHash.new(
-            provider: "google_oauth2",
-            uid: "123545",
-            info: {
-                name: "Google User",
-                email: "user@from-google.com"
-            }
+          provider: "google_oauth2",
+          uid: "123545",
+          info: {
+            name: "Google User",
+            email: "user@from-google.com"
+          }
         )
       end
 
@@ -355,13 +355,13 @@ describe "Authentication", type: :system do
 
     let(:omniauth_hash) do
       OmniAuth::AuthHash.new(
-          provider: identity.provider,
-          uid: identity.uid,
-          info: {
-              email: user.email,
-              name: "Facebook User",
-              verified: true
-          }
+        provider: identity.provider,
+        uid: identity.uid,
+        info: {
+          email: user.email,
+          name: "Facebook User",
+          verified: true
+        }
       )
     end
 
@@ -461,13 +461,13 @@ describe "Authentication", type: :system do
 
     let(:omniauth_hash) do
       OmniAuth::AuthHash.new(
-          provider: identity.provider,
-          uid: identity.uid,
-          info: {
-              email: user.email,
-              name: "Facebook User",
-              verified: true
-          }
+        provider: identity.provider,
+        uid: identity.uid,
+        info: {
+          email: user.email,
+          name: "Facebook User",
+          verified: true
+        }
       )
     end
 

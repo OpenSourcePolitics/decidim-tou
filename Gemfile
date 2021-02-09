@@ -20,15 +20,15 @@ gem "ruby-progressbar"
 gem "sentry-raven"
 
 gem "letter_opener_web", "~> 1.3"
-gem "sprockets", "~> 3.7"
 gem "omniauth-oauth2", ">= 1.4.0", "< 2.0"
+gem "sprockets", "~> 3.7"
 
 group :development, :test do
-  gem "dotenv-rails"
   gem "byebug", "~> 10.0", platform: :mri
   gem "decidim-dev", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
+  gem "dotenv-rails"
 
-# Since the v0.21.0, rubocop-rails is loaded in decidim-dev engine. For the v0.18.0, we can load rubocop-rails directly in app.
+  # Since the v0.21.0, rubocop-rails is loaded in decidim-dev engine. For the v0.18.0, we can load rubocop-rails directly in app.
   gem "rubocop-rails", require: false
 end
 
@@ -40,12 +40,12 @@ group :development do
 end
 
 group :production do
-  gem "passenger"
-  gem "fog-aws"
   gem "dalli"
-  gem "sendgrid-ruby"
-  gem "newrelic_rpm"
+  gem "fog-aws"
   gem "lograge"
+  gem "newrelic_rpm"
+  gem "passenger"
+  gem "sendgrid-ruby"
   gem "sidekiq"
   gem "sidekiq-scheduler"
 end

@@ -6,18 +6,18 @@ module Decidim
   describe AccountForm do
     subject do
       described_class.new(
-          name: name,
-          email: email,
-          nickname: nickname,
-          password: password,
-          password_confirmation: password_confirmation,
-          avatar: avatar,
-          remove_avatar: remove_avatar,
-          personal_url: personal_url,
-          about: about
+        name: name,
+        email: email,
+        nickname: nickname,
+        password: password,
+        password_confirmation: password_confirmation,
+        avatar: avatar,
+        remove_avatar: remove_avatar,
+        personal_url: personal_url,
+        about: about
       ).with_context(
-          current_organization: organization,
-          current_user: user
+        current_organization: organization,
+        current_user: user
       )
     end
 
