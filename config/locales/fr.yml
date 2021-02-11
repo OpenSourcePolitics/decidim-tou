@@ -1,28 +1,12 @@
 ---
 fr:
-  activemodel:
-    attributes:
-      osp_authorization_handler:
-        birthday: Date de naissance
-        document_number: Numéro unique
-        postal_code: Code postal
-      participatory_process:
-        private_space: Espace privé
   decidim:
-    authorization_handlers:
-      osp_authorization_handler:
-        explanation: Vérifier votre identité en saisissant un numéro unique
-        fields:
-          birthday: Date de naissance
-          document_number: Numéro unique
-          postal_code: Code postal
-        name: Formulaire de vérification d'identité
-      osp_authorization_workflow:
-        name: Procédure d'autorisation
+    admin:
+      participatory_space_private_users:
+        create:
+          error: Error
+          success: Success
     devise:
-      shared:
-        omniauth_buttons:
-          or: Ou
       registrations:
         new:
           already_have_an_account?: Vous avez déjà un compte ?
@@ -60,29 +44,33 @@ fr:
           residential_area: Dans quel quartier habitez-vous ?
           sign_in: S'identifier
           sign_up: S'inscrire
-          sign_up_as:
-            legend: S'inscrire en tant que
           sign_up_subtitle: Inscrivez-vous pour participer aux consultations.
           statutory_representative_email: Email de mon parent ou de mon représentant légal
           terms: les conditions d'utilisation de la plateforme
           tos_agreement: J'accepte %{link}.
           tos_title: Conditions d'utilisation
           underage: J’ai moins de 15 ans, mon parent ou mon représentant légal m’autorise à m’inscrire.
-          year_label: Année
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
           work_area: Dans quel quartier travaillez-vous ?
-    participatory_process:
-      show:
-        related_assemblies: Assemblées liées
-    verifications:
-      authorizations:
-        first_login:
-          actions:
-            osp_authorization_handler: Vérifier avec le formulaire de vérification
-              de l'identité
-            osp_authorization_workflow: Vérifier avec le formulaire de vérification
-              de l'identité
+          year_label: Année
+      shared:
+        omniauth_buttons:
+          or: Ou
   devise:
+    mailer:
+      invitation_instructions:
+        accept: Accepter l'invitation
+        accept_until: Cette invitation expirera le %{due_date}.
+        hello: "%{email},"
+        ignore: |-
+          Si vous ne renouvelez pas votre inscription, votre compte sera automatiquement supprimé à compter du 29 juillet et toutes vos contributions passées deviendront anonymes.
+          <br /><br />
+          Pour toutes questions vous pouvez nous contacter sur <a href="mailto:jeparticipe@mairie-toulouse.fr">jeparticipe@mairie-toulouse.fr</a>.
+          <br />
+        someone_invited_you: |-
+          La plateforme jeparticipe.toulouse.fr évolue !<br />
+          <br />
+          Afin de continuer à donner votre avis et de participer aux décisions qui font Toulouse, nous vous invitons à renouveler votre inscription en validant les nouvelles conditions générales d'utilisation et en complétant votre profil, en cliquant ici !
     registrations:
       new:
         sign_up: S'inscrire
@@ -95,34 +83,8 @@ fr:
         sign_in: S'identifier
         sign_in_with_provider: Se connecter avec %{provider}
         sign_up: S'inscrire
-    mailer:
-      invitation_instructions:
-        accept: Accepter l'invitation
-        accept_until: Cette invitation expirera le %{due_date}.
-        decline: Refuser l'invitation
-        hello: "%{email},"
-        ignore: |-
-          Si vous ne renouvelez pas votre inscription, votre compte sera automatiquement supprimé à compter du 29 juillet et toutes vos contributions passées deviendront anonymes.
-          <br /><br />
-          Pour toutes questions vous pouvez nous contacter sur <a href="mailto:jeparticipe@mairie-toulouse.fr">jeparticipe@mairie-toulouse.fr</a>.
-          <br />
-        invited_you_as_admin: "%{invited_by} vous a invité en tant qu'administrateur
-          de %{application}. Vous pouvez accepter cette invitation grâce au lien ci-dessous."
-        invited_you_as_private_user: "%{invited_by} vous a invité en tant qu'utilisateur
-          privé de %{application}. Vous pouvez l'accepter via le lien ci-dessous."
-        someone_invited_you: |-
-          La plateforme jeparticipe.toulouse.fr évolue !<br />
-          <br />
-          Afin de continuer à donner votre avis et de participer aux décisions qui font Toulouse, nous vous invitons à renouveler votre inscription en validant les nouvelles conditions générales d'utilisation et en complétant votre profil, en cliquant ici !
-        someone_invited_you_as_admin: Vous avez été invité en tant qu'administrateur
-          de %{application}, vous pouvez l'accepter via le lien ci-dessous.
-        someone_invited_you_as_private_user: Vous avez été invité en tant qu'utilisateur
-          privé de %{application}, vous pouvez l'accepter via le lien ci-dessous.
-        subject: Instructions d'invitation
   layouts:
     decidim:
-      cookie_warning:
-        ok: J'accepte
       footer:
         download_open_data: Données ouvertes
         made_with_open_source: Site réalisé grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
@@ -131,4 +93,3 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
-
