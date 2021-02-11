@@ -6,9 +6,9 @@ module Decidim
   describe RegistrationForm do
     subject do
       described_class.from_params(
-          attributes
+        attributes
       ).with_context(
-          context
+        context
       )
     end
 
@@ -29,25 +29,25 @@ module Decidim
 
     let(:attributes) do
       {
-          name: name,
-          nickname: nickname,
-          email: email,
-          password: password,
-          password_confirmation: password_confirmation,
-          tos_agreement: tos_agreement,
-          residential_area: residential_area,
-          work_area: work_area,
-          gender: gender,
-          month: month,
-          year: year,
-          underage: underage,
-          statutory_representative_email: statutory_representative_email
+        name: name,
+        nickname: nickname,
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation,
+        tos_agreement: tos_agreement,
+        residential_area: residential_area,
+        work_area: work_area,
+        gender: gender,
+        month: month,
+        year: year,
+        underage: underage,
+        statutory_representative_email: statutory_representative_email
       }
     end
 
     let(:context) do
       {
-          current_organization: organization
+        current_organization: organization
       }
     end
 
