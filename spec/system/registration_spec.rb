@@ -119,7 +119,7 @@ describe "Registration", type: :system do
       fill_registration_form(step: 2)
       submit_form
 
-      expect(page).to have_css("#sign-up-newsletter-modal", :visible)
+      expect(page).to have_css("#sign-up-newsletter-modal")
       expect(page).to have_current_path decidim.new_user_registration_path
     end
 
