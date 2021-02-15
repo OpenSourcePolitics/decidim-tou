@@ -40,6 +40,23 @@ describe "Authentication", type: :system do
 
         expect(page).to have_content("You have signed up successfully")
       end
+
+      it "shows and hide user_statutory_representative_email" do
+        find(".sign-up-link").click
+
+        within ".new_user" do
+          fill_in :user_email, with: "user@example.org"
+          fill_in :user_password, with: "DfyvHn425mYAy2HL"
+          fill_in :user_password_confirmation, with: "DfyvHn425mYAy2HL"
+          check :user_tos_agreement
+          check :user_newsletter
+          click_button "Continue"
+
+          expect(page).not_to have_css("#user_statutory_representative_email")
+          check :underage_registration
+          expect(page).to have_css("#user_statutory_representative_email")
+        end
+      end
     end
 
     context "when being a robot" do
