@@ -17,7 +17,7 @@ module Decidim
 
       def new
         @form = form(RegistrationForm).from_params(
-            user: { sign_up_as: "user" }
+          user: { sign_up_as: "user" }
         )
       end
 
