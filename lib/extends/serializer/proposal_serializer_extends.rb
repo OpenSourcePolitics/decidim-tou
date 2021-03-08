@@ -26,6 +26,7 @@ module ProposalSerializerExtends
         answer: ensure_translatable(proposal.answer),
         supports: proposal.proposal_votes_count,
         endorsements: proposal.endorsements.count,
+        is_amend: proposal.emendation?,
         comments: proposal.comments.count,
         amendments: proposal.amendments.count,
         attachments_url: attachments_url,
@@ -35,7 +36,11 @@ module ProposalSerializerExtends
         url: url,
         meeting_urls: meetings,
         related_proposals: related_proposals,
-        authors_registration_metadata: authors_registration_metadata
+        authors_registration_metadata: authors_registration_metadata,
+        original_proposal: {
+            title: proposal&.amendable&.title,
+            url: original_proposal_url
+        }
     }
   end
 

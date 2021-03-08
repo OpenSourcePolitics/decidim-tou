@@ -44,14 +44,6 @@ module Decidim
         let(:serialized) { subject.serialize }
 
         context "when serializing registration_metadata" do
-          context "when there is no user" do
-            let(:user) { nil }
-
-            it "doesn't includes user registration metadata" do
-              expect(serialized["Registration metadata"]).to eq("")
-            end
-          end
-
           context "when user has no registration metadata" do
             it "doesn't includes user registration metadata" do
               user.update!(registration_metadata: nil)
@@ -61,7 +53,9 @@ module Decidim
           end
 
           it "includes user registration metadata" do
-            expect(serialized["Registration metadata"]).to eq(user.registration_metadata)
+            user.update!(registration_metadata: { foo: "bar" })
+
+            expect(serialized["Registration metadata"]).to eq("foo" => "bar")
           end
         end
 

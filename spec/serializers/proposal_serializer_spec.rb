@@ -57,11 +57,11 @@ module Decidim
         end
 
         it "serializes the title" do
-          expect(serialized).to include(title: proposal.title)
+          expect(serialized).to include(title: translated(proposal.title))
         end
 
         it "serializes the body" do
-          expect(serialized).to include(body: proposal.body)
+          expect(serialized).to include(body: translated(proposal.body))
         end
 
         it "serializes the amount of supports" do
@@ -69,7 +69,7 @@ module Decidim
         end
 
         it "serializes the amount of comments" do
-          expect(serialized).to include(comments: proposal.comments_count)
+          expect(serialized).to include(comments: proposal.comments.count)
         end
 
         it "serializes the date of creation" do
@@ -110,9 +110,8 @@ module Decidim
           expect(serialized).to include(attachments: proposal.attachments.count)
         end
 
-        it "serializes the endorsements" do
-          expect(serialized[:endorsements]).to include(total_count: proposal.endorsements_count)
-          expect(serialized[:endorsements]).to include(user_endorsements: proposal.endorsements.for_listing.map { |identity| identity.normalized_author&.name })
+        it "serializes the amount of endorsements" do
+          expect(serialized).to include(endorsements: proposal.endorsements.count)
         end
 
         it "serializes related proposals" do
@@ -125,7 +124,7 @@ module Decidim
         end
 
         it "serializes the original proposal" do
-          expect(serialized[:original_proposal]).to include(title: proposal&.amendable&.title)
+          expect(serialized[:original_proposal]).to include(title: translated(proposal&.amendable&.title))
           expect(serialized[:original_proposal][:url]).to be_nil || include("http", proposal.id.to_s)
         end
 

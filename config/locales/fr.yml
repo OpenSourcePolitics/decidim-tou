@@ -1,6 +1,9 @@
 ---
 fr:
   decidim:
+    forms:
+      user_answers_serializer:
+        registration_metadata: Registration metadata
     admin:
       participatory_space_private_users:
         create:
