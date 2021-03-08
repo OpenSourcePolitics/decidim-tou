@@ -2,7 +2,6 @@
 
 require "decidim/dev"
 Decidim::Dev.dummy_app_path = File.expand_path(Rails.root.to_s)
-
 require "decidim/dev/test/base_spec_helper"
 
 RSpec.configure do |config|
@@ -18,5 +17,6 @@ RSpec.configure do |config|
     # Decidim configurations
     Decidim.available_locales = AVAILABLE_LOCALES
     Decidim.default_locale = DEFAULT_LOCALE
+    Decidim.enable_html_header_snippets = false
   end
 end
