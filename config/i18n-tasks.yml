@@ -91,3 +91,4 @@ ignore_missing:
 ignore_unused:
   - decidim.devise.registrations.new.gender.*
   - decidim.devise.registrations.new.month_name.*
+  - layouts.decidim.footer.*

@@ -1,6 +1,8 @@
 ---
 en:
   decidim:
+    accessibility:
+      skip_button: Skip button
     admin:
       participatory_space_private_users:
         create:
@@ -88,3 +90,7 @@ en:
         navigation: Navigation
         sign_in: Sign In
         sign_up: Sign Up
+      user_menu:
+        account: Account
+        conversations: Conversations
+        notifications: Notifications
