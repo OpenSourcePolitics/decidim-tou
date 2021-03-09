@@ -20,8 +20,8 @@ RSpec.configure do |config|
 
     # Initializers configs
     Decidim.enable_html_header_snippets = false
-    SocialShareButton.configure do |config|
-      config.allow_sites = %w(twitter facebook whatsapp_app whatsapp_web telegram)
+    SocialShareButton.configure do |social_share_button|
+      social_share_button.allow_sites = %w(twitter facebook whatsapp_app whatsapp_web telegram)
     end
   end
 end
