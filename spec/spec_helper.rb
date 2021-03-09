@@ -17,6 +17,11 @@ RSpec.configure do |config|
     # Decidim configurations
     Decidim.available_locales = AVAILABLE_LOCALES
     Decidim.default_locale = DEFAULT_LOCALE
+
+    # Initializers configs
     Decidim.enable_html_header_snippets = false
+    SocialShareButton.configure do |config|
+      config.allow_sites = %w(twitter facebook whatsapp_app whatsapp_web telegram)
+    end
   end
 end
