@@ -20,6 +20,8 @@ module Decidim
     attribute :gender, String
     attribute :newsletter, Boolean
     attribute :tos_agreement, Boolean
+    attribute :current_locale, String
+
     jsonb_attribute :birth_date, [
       [:month, String],
       [:year, String]
