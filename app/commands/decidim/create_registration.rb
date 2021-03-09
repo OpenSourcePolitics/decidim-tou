@@ -17,11 +17,13 @@ module Decidim
     #
     # Returns nothing.
     def call
-      return broadcast(:invalid) if form.invalid?
+      if form.invalid?
+        user = User.has_pending_invitations?(form.current_organization.id, form.email)
+        user.invite!(user.invited_by) if user
+        return broadcast(:invalid)
+      end
 
       create_user
-
-      send_email_to_statutory_representative
 
       broadcast(:ok, @user)
     rescue ActiveRecord::RecordInvalid
@@ -44,6 +46,7 @@ module Decidim
         newsletter_notifications_at: form.newsletter_at,
         email_on_notification: true,
         accepted_tos_version: form.current_organization.tos_version,
+        locale: form.current_locale,
         registration_metadata: registration_metadata
       )
     end
@@ -54,18 +57,8 @@ module Decidim
         work_area: form.work_area,
         gender: form.gender,
         birth_date: form.birth_date,
-        statutory_representative_email: statutory_representative_email
+        statutory_representative_email: form.statutory_representative_email
       }
-    end
-
-    def statutory_representative_email
-      form.statutory_representative_email if form.underage.present?
-    end
-
-    def send_email_to_statutory_representative
-      return if registration_metadata[:statutory_representative_email].blank?
-
-      Decidim::StatutoryRepresentativeMailer.inform(@user).deliver_later
     end
   end
 end
