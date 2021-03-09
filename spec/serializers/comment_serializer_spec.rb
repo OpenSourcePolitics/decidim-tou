@@ -23,7 +23,7 @@ module Decidim
 
         it "includes the author" do
           expect(subject.serialize[:author]).to(
-              include(id: comment.author.id, name: comment.author.name)
+            include(id: comment.author.id, name: comment.author.name)
           )
         end
 
