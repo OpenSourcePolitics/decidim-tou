@@ -12,11 +12,11 @@ module Decidim
       let(:residential_area) { create(:scope, organization: comment.organization) }
       let(:registration_metadata) do
         {
-            birth_date: "1981",
-            gender: "Female",
-            work_area: work_area.id,
-            residential_area: residential_area.id,
-            statutory_representative_email: "statutory_representative_email@example.org"
+          birth_date: "1981",
+          gender: "Female",
+          work_area: work_area.id,
+          residential_area: residential_area.id,
+          statutory_representative_email: "statutory_representative_email@example.org"
         }
       end
 
@@ -35,7 +35,7 @@ module Decidim
 
         it "includes the author" do
           expect(subject.serialize["Author"]).to(
-              include("ID" => author.id, "Name" => author.name)
+            include("ID" => author.id, "Name" => author.name)
           )
         end
 

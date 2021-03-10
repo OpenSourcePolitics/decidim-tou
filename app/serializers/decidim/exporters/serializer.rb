@@ -35,6 +35,7 @@ module Decidim
       # Returns a empty hash or Hash with some other fields
       def options_merge(options = {})
         return {} unless options.is_a?(Hash) && @private_scope
+
         options
       end
 

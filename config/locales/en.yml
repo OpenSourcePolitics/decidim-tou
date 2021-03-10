@@ -1,6 +1,25 @@
 ---
 en:
   decidim:
+    meetings:
+      admin:
+        exports:
+          column_name:
+            registrations:
+              code: Code
+              id: ID
+              user:
+                registration_form_answers: Registration form answers
+                user: User
+                birth_date: Birth date
+                email: Email
+                nickname: Nickname
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user_group: User group
+                work_area: Work area
+                gender: Gender
+                name: Name
     comments:
       exports:
         column_name:
