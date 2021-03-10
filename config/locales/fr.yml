@@ -11,10 +11,16 @@ fr:
     devise:
       registrations:
         new:
+          additional_tos: Additional tos
+          already_have_an_account?: Already have an account?
+          birth_date: Birth date
+          gdpr_disclaimer: Gdpr disclaimer
           gender:
             female: Femme
             male: Homme
             other: Autre
+          gender_label: Gender label
+          month_label: Month label
           month_name:
             april: Avril
             august: Août
@@ -28,6 +34,40 @@ fr:
             november: Novembre
             october: Octobre
             september: Septembre
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
+          residential_area: Residential area
+          sign_in: Sign in
+          sign_up: Sign up
+          statutory_representative_email: Statutory representative email
+          subtitle: Subtitle
+          terms: Terms
+          tos_agreement: Tos agreement
+          tos_title: Tos title
+          underage: Underage
+          username_help: Username help
+          work_area: Work area
+          year_label: Year label
+      shared:
+        omniauth_buttons:
+          or: Or
+  devise:
+    failure:
+      invited: Invited
+    registrations:
+      new:
+        sign_up: Sign up
+    shared:
+      links:
+        captcha_protection: Captcha protection
+        didn_t_receive_confirmation_instructions: Didn t receive confirmation instructions
+        didn_t_receive_unlock_instructions: Didn t receive unlock instructions
+        forgot_your_password: Forgot your password
+        sign_in: Sign in
+        sign_in_with_provider: Sign in with provider
+        sign_up: Sign up
   layouts:
     decidim:
       footer:
