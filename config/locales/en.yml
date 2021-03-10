@@ -1,25 +1,11 @@
 ---
 en:
   decidim:
-    meetings:
-      admin:
-        exports:
-          column_name:
-            registrations:
-              code: Code
-              id: ID
-              user:
-                registration_form_answers: Registration form answers
-                user: User
-                birth_date: Birth date
-                email: Email
-                nickname: Nickname
-                residential_area: Residential area
-                statutory_representative_email: Statutory representative email
-                user_group: User group
-                work_area: Work area
-                gender: Gender
-                name: Name
+    admin:
+      participatory_space_private_users:
+        create:
+          error: Error
+          success: Success
     comments:
       exports:
         column_name:
@@ -27,13 +13,13 @@ en:
             alignment: Alignment
             author:
               author: Author
+              birth_date: Birth date
+              gender: Gender
               id: ID
               name: Name
-              gender: Gender
-              birth_date: Birth date
-              work_area: Work area
               residential_area: Residential area
               statutory_representative_email: Statutory representative email
+              work_area: Work area
             body: Content
             commentable_id: Commentable ID
             commentable_type: Commentable type
@@ -45,14 +31,43 @@ en:
               id: ID
               name: Name
               user_group: User group
-    forms:
-      user_answers_serializer:
-        registration_metadata: Registration metadata
-    admin:
-      participatory_space_private_users:
-        create:
-          error: Error
-          success: Success
+    debates:
+      admin:
+        exports:
+          column_name:
+            debates:
+              author_url: Author url
+              category:
+                category: Category
+                id: Id
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              created_at: Creation date
+              description: description
+              end_time: End time
+              id: ID
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              start_time: Start time
+              title: title
+              url: Url
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
     devise:
       registrations:
         new:
@@ -103,6 +118,28 @@ en:
       shared:
         omniauth_buttons:
           or: Or
+    forms:
+      user_answers_serializer:
+        registration_metadata: Registration metadata
+    meetings:
+      admin:
+        exports:
+          column_name:
+            registrations:
+              code: Code
+              id: ID
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
   devise:
     mailer:
       invitation_instructions:

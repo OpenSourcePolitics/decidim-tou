@@ -14,11 +14,11 @@ module Decidim
         let!(:user_group) { create(:user_group, :verified, organization: user.organization, users: [user]) }
         let(:registration_metadata) do
           {
-              birth_date: "1981",
-              gender: "Female",
-              work_area: work_area.id,
-              residential_area: residential_area.id,
-              statutory_representative_email: "statutory_representative_email@example.org"
+            birth_date: "1981",
+            gender: "Female",
+            work_area: work_area.id,
+            residential_area: residential_area.id,
+            statutory_representative_email: "statutory_representative_email@example.org"
           }
         end
 
@@ -86,18 +86,18 @@ module Decidim
 
           it "includes the answer for each question" do
             expect(serialized["Registration form answers"]).to include(
-                                                                   "1. #{translated(questions.first.body, locale: I18n.locale)}" => answers.first.body
-                                                               )
+              "1. #{translated(questions.first.body, locale: I18n.locale)}" => answers.first.body
+            )
             expect(serialized["Registration form answers"]).to include(
-                                                                   "3. #{translated(questions.last.body, locale: I18n.locale)}" => answers.last.body
-                                                               )
+              "3. #{translated(questions.last.body, locale: I18n.locale)}" => answers.last.body
+            )
             expect(serialized["Registration form answers"]).to include(
-                                                                   "4. #{translated(multichoice_question.body, locale: I18n.locale)}" => multichoice_answer_choices.map(&:body)
-                                                               )
+              "4. #{translated(multichoice_question.body, locale: I18n.locale)}" => multichoice_answer_choices.map(&:body)
+            )
 
             expect(serialized["Registration form answers"]).to include(
-                                                                   "5. #{translated(singlechoice_question.body, locale: I18n.locale)}" => [singlechoice_answer_choice.body]
-                                                               )
+              "5. #{translated(singlechoice_question.body, locale: I18n.locale)}" => [singlechoice_answer_choice.body]
+            )
           end
         end
       end
