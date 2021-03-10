@@ -1,6 +1,31 @@
 ---
 fr:
   decidim:
+    comments:
+      exports:
+        column_name:
+          comments:
+            alignment: Alignement
+            author:
+              author: Auteur
+              id: ID
+              name: Nom
+              gender: Genre
+              birth_date: Date de naissance
+              work_area: Lieu de travail
+              residential_area: Lieu de résidence
+              statutory_representative_email: Email representatif
+            body: Contenu
+            commentable_id: Commentable ID
+            commentable_type: Commentable type
+            created_at: Date de création
+            depth: Profondeur
+            id: ID
+            root_commentable_url: URL commentable
+            user_group:
+              id: ID
+              name: Nom
+              user_group: Groupe utilisateur
     forms:
       user_answers_serializer:
         registration_metadata: Registration metadata
