@@ -24,8 +24,8 @@ module Decidim
     attribute :current_locale, String
     attribute :additional_tos, Boolean
     jsonb_attribute :birth_date, [
-        [:month, String],
-        [:year, String]
+      [:month, String],
+      [:year, String]
     ]
     attribute :underage, Boolean
     attribute :statutory_representative_email, String
@@ -90,8 +90,8 @@ module Decidim
     def gender_types_for_select
       GENDER_TYPES.map do |type|
         [
-            I18n.t(type.downcase, scope: "decidim.devise.registrations.new.gender"),
-            type
+          I18n.t(type.downcase, scope: "decidim.devise.registrations.new.gender"),
+          type
         ]
       end
     end
@@ -99,8 +99,8 @@ module Decidim
     def month_names_for_select
       MONTHNAMES.map do |month_name|
         [
-            I18n.t(month_name.downcase, scope: "decidim.devise.registrations.new.month_name"),
-            month_name
+          I18n.t(month_name.downcase, scope: "decidim.devise.registrations.new.month_name"),
+          month_name
         ]
       end
     end
@@ -118,7 +118,6 @@ module Decidim
     def scopes_ids
       current_organization.scopes.collect { |scope| scope.id.to_s }
     end
-
 
     def email_unique_in_organization
       errors.add :email, :taken if User.no_active_invitation.find_by(email: email, organization: current_organization).present?
