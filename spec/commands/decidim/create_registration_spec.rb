@@ -17,56 +17,25 @@ module Decidim
         let(:newsletter) { "1" }
         let(:current_locale) { "es" }
 
-        let(:additional_tos) { "1" }
-        let(:residential_area) { create(:scope, organization: organization).id.to_s }
-        let(:work_area) { create(:scope, organization: organization).id.to_s }
-        let(:gender) { "other" }
-        let(:statutory_representative_email) { "statutory-representative@example.org" }
-
-        let(:birth_date) do
-          {
-            month: "January",
-            year: "1992"
-          }
-        end
-        let(:underage) { "1" }
-
-        let(:registration_metadata) do
-          {
-            residential_area: residential_area,
-            work_area: work_area,
-            gender: gender,
-            birth_date: birth_date,
-            statutory_representative_email: statutory_representative_email
-          }
-        end
-
         let(:form_params) do
           {
-            "user" => {
-              "name" => name,
-              "nickname" => nickname,
-              "email" => email,
-              "password" => password,
-              "password_confirmation" => password_confirmation,
-              "tos_agreement" => tos_agreement,
-              "newsletter_at" => newsletter,
-              "additional_tos" => additional_tos,
-              "residential_area" => residential_area,
-              "work_area" => work_area,
-              "gender" => gender,
-              "birth_date" => birth_date,
-              "underage" => underage,
-              "statutory_representative_email" => statutory_representative_email
-            }
+              "user" => {
+                  "name" => name,
+                  "nickname" => nickname,
+                  "email" => email,
+                  "password" => password,
+                  "password_confirmation" => password_confirmation,
+                  "tos_agreement" => tos_agreement,
+                  "newsletter_at" => newsletter
+              }
           }
         end
         let(:form) do
           RegistrationForm.from_params(
-            form_params,
-            current_locale: current_locale
+              form_params,
+              current_locale: current_locale
           ).with_context(
-            current_organization: organization
+              current_organization: organization
           )
         end
         let(:command) { described_class.new(form) }
@@ -99,8 +68,8 @@ module Decidim
                 command.call
                 user.reload
               end.to change(User, :count).by(0)
-                                         .and broadcast(:invalid)
-                .and change(user.reload, :invitation_token)
+                         .and broadcast(:invalid)
+                                  .and change(user.reload, :invitation_token)
               expect(ActionMailer::DeliveryJob).to have_been_enqueued.on_queue("mailers")
             end
           end
@@ -113,18 +82,17 @@ module Decidim
 
           it "creates a new user" do
             expect(User).to receive(:create!).with(
-              name: form.name,
-              nickname: form.nickname,
-              email: form.email,
-              password: form.password,
-              password_confirmation: form.password_confirmation,
-              tos_agreement: form.tos_agreement,
-              newsletter_notifications_at: form.newsletter_at,
-              email_on_notification: true,
-              organization: organization,
-              accepted_tos_version: organization.tos_version,
-              locale: form.current_locale,
-              registration_metadata: registration_metadata
+                name: form.name,
+                nickname: form.nickname,
+                email: form.email,
+                password: form.password,
+                password_confirmation: form.password_confirmation,
+                tos_agreement: form.tos_agreement,
+                newsletter_notifications_at: form.newsletter_at,
+                email_on_notification: true,
+                organization: organization,
+                accepted_tos_version: organization.tos_version,
+                locale: form.current_locale
             ).and_call_original
 
             expect { command.call }.to change(User, :count).by(1)
