@@ -1,14 +1,5 @@
 name: Tests
-on:
-  push:
-    branches:
-      - develop
-      - master
-      - release/*
-      - "*-stable"
-  pull_request:
-    branches-ignore:
-      - "chore/l10n*"
+on: [ push ]
 
 env:
   CI: "true"
@@ -19,7 +10,6 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    if: "!startsWith(github.head_ref, 'chore/l10n')"
     services:
       postgres:
         image: postgres:11
