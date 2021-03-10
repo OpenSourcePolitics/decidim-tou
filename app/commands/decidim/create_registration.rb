@@ -60,5 +60,15 @@ module Decidim
         statutory_representative_email: form.statutory_representative_email
       }
     end
+
+    def statutory_representative_email
+      form.statutory_representative_email if form.underage.present?
+    end
+
+    def send_email_to_statutory_representative
+      return if registration_metadata[:statutory_representative_email].blank?
+
+      Decidim::StatutoryRepresentativeMailer.inform(@user).deliver_later
+    end
   end
 end

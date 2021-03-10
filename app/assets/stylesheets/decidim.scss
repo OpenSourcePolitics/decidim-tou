@@ -18,6 +18,7 @@
 @import "fontface";
 @import "decidim/modules/shared";
 @import "decidim/modules/signup";
+@import "decidim/modules/horizontal-steps";
 
 $title-bar-background: #4f4f4f;
 $navbar-background: darken($title-bar-background, 10%);

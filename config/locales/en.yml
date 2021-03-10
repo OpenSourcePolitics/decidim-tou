@@ -13,7 +13,11 @@ en:
         new:
           additional_tos: Additional tos
           already_have_an_account?: Already have an account?
+          back: Back
           birth_date: Birth date
+          complete_profile: Complete profile
+          continue: Continue
+          create_account: Create account
           gdpr_disclaimer: Gdpr disclaimer
           gender:
             female: Female
