@@ -1,5 +1,5 @@
 ---
-en:
+es:
   decidim:
     accessibility:
       skip_button: Skip button
@@ -66,13 +66,10 @@ en:
         didn_t_receive_unlock_instructions: Didn t receive unlock instructions
         forgot_your_password: Forgot your password
         sign_in: Sign in
-        sign_in_with_provider: Sign in with %{provider}
+        sign_in_with_provider: Sign in with provider
         sign_up: Sign up
   layouts:
     decidim:
-      footer:
-        download_open_data: Open data
-        made_with_open_source: Website made with <a target="_blank" href="https://github.com/decidim/decidim">free software</a>.
       header:
         close_menu: Close menu
         navigation: Navigation

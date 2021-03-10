@@ -25,14 +25,14 @@ describe "Authentication", type: :system do
           fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :registration_user_tos_agreement
           check :registration_user_newsletter
-          select translated(scopes.first.name), from: :user_residential_area
-          select translated(scopes.first.name), from: :user_work_area
-          select "Other", from: :user_gender
-          select "September", from: :user_month
-          select "1992", from: :user_year
-          check :underage_registration
-          fill_in :user_statutory_representative_email, with: "milutin.tesla@example.org"
-          check :user_additional_tos
+          select translated(scopes.first.name), from: :registration_user_residential_area
+          select translated(scopes.first.name), from: :registration_user_work_area
+          select "Other", from: :registration_user_gender
+          select "September", from: :registration_user_month
+          select "1992", from: :registration_user_year
+          check :registration_underage_registration
+          fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
+          check :registration_user_additional_tos
 
           find("*[type=submit]").click
         end
@@ -59,14 +59,14 @@ describe "Authentication", type: :system do
           fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :registration_user_tos_agreement
           check :registration_user_newsletter
-          select translated(scopes.first.name), from: :user_residential_area
-          select translated(scopes.first.name), from: :user_work_area
-          select "Other", from: :user_gender
-          select "September", from: :user_month
-          select "1992", from: :user_year
-          check :underage_registration
-          fill_in :user_statutory_representative_email, with: "milutin.tesla@example.org"
-          check :user_additional_tos
+          select translated(scopes.first.name), from: :registration_user_residential_area
+          select translated(scopes.first.name), from: :registration_user_work_area
+          select "Other", from: :registration_user_gender
+          select "September", from: :registration_user_month
+          select "1992", from: :registration_user_year
+          check :registration_underage_registration
+          fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
+          check :registration_user_additional_tos
 
           find("*[type=submit]").click
         end
@@ -89,14 +89,14 @@ describe "Authentication", type: :system do
           fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :registration_user_tos_agreement
           check :registration_user_newsletter
-          select translated(scopes.first.name), from: :user_residential_area
-          select translated(scopes.first.name), from: :user_work_area
-          select "Other", from: :user_gender
-          select "September", from: :user_month
-          select "1992", from: :user_year
-          check :underage_registration
-          fill_in :user_statutory_representative_email, with: "milutin.tesla@example.org"
-          check :user_additional_tos
+          select translated(scopes.first.name), from: :registration_user_residential_area
+          select translated(scopes.first.name), from: :registration_user_work_area
+          select "Other", from: :registration_user_gender
+          select "September", from: :registration_user_month
+          select "1992", from: :registration_user_year
+          check :registration_underage_registration
+          fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
+          check :registration_user_additional_tos
 
           find("*[type=submit]").click
         end
@@ -553,6 +553,14 @@ describe "Authentication", type: :system do
             fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
             check :registration_user_tos_agreement
             check :registration_user_newsletter
+            select translated(scopes.first.name), from: :registration_user_residential_area
+            select translated(scopes.first.name), from: :registration_user_work_area
+            select "Other", from: :registration_user_gender
+            select "September", from: :registration_user_month
+            select "1992", from: :registration_user_year
+            check :registration_underage_registration
+            fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
+            check :registration_user_additional_tos
             find("*[type=submit]").click
           end
 
