@@ -2,6 +2,26 @@
 
 require "spec_helper"
 
+def fill_registration_form
+  fill_in :registration_user_email, with: "user@example.org"
+  fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
+  fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
+  check :registration_user_tos_agreement
+  check :registration_user_additional_tos
+  check :registration_user_newsletter
+  click_button "Continue"
+
+  fill_in :registration_user_name, with: "Responsible Citizen"
+  fill_in :registration_user_nickname, with: "responsible"
+  select translated(scopes.first.name), from: :registration_user_residential_area
+  select translated(scopes.first.name), from: :registration_user_work_area
+  select "Other", from: :registration_user_gender
+  select "September", from: :registration_user_month
+  select "1992", from: :registration_user_year
+  check :registration_underage_registration
+  fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
+end
+
 describe "Authentication", type: :system do
   let!(:scopes) { create_list(:scope, 5, organization: organization) }
   let(:organization) { create(:organization) }
@@ -18,21 +38,7 @@ describe "Authentication", type: :system do
         find(".sign-up-link").click
 
         within ".new_user" do
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
-          check :registration_user_tos_agreement
-          check :registration_user_newsletter
-          select translated(scopes.first.name), from: :registration_user_residential_area
-          select translated(scopes.first.name), from: :registration_user_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
-          check :registration_underage_registration
-          fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
-          check :registration_user_additional_tos
+          fill_registration_form
 
           find("*[type=submit]").click
         end
@@ -52,21 +58,7 @@ describe "Authentication", type: :system do
         find(".sign-up-link").click
 
         within ".new_user" do
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
-          check :registration_user_tos_agreement
-          check :registration_user_newsletter
-          select translated(scopes.first.name), from: :registration_user_residential_area
-          select translated(scopes.first.name), from: :registration_user_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
-          check :registration_underage_registration
-          fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
-          check :registration_user_additional_tos
+          fill_registration_form
 
           find("*[type=submit]").click
         end
@@ -82,22 +74,7 @@ describe "Authentication", type: :system do
 
         within ".new_user" do
           page.execute_script("$($('.new_user > div > input')[0]).val('Ima robot :D')")
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
-          check :registration_user_tos_agreement
-          check :registration_user_newsletter
-          select translated(scopes.first.name), from: :registration_user_residential_area
-          select translated(scopes.first.name), from: :registration_user_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
-          check :registration_underage_registration
-          fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
-          check :registration_user_additional_tos
-
+          fill_registration_form
           find("*[type=submit]").click
         end
 
@@ -547,12 +524,15 @@ describe "Authentication", type: :system do
 
           within ".new_user" do
             fill_in :registration_user_email, with: user.email
-            fill_in :registration_user_name, with: "Responsible Citizen"
-            fill_in :registration_user_nickname, with: "responsible"
             fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
             fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
             check :registration_user_tos_agreement
+            check :registration_user_additional_tos
             check :registration_user_newsletter
+            click_button "Continue"
+
+            fill_in :registration_user_name, with: "Responsible Citizen"
+            fill_in :registration_user_nickname, with: "responsible"
             select translated(scopes.first.name), from: :registration_user_residential_area
             select translated(scopes.first.name), from: :registration_user_work_area
             select "Other", from: :registration_user_gender
@@ -560,7 +540,6 @@ describe "Authentication", type: :system do
             select "1992", from: :registration_user_year
             check :registration_underage_registration
             fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
-            check :registration_user_additional_tos
             find("*[type=submit]").click
           end
 
