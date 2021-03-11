@@ -90,5 +90,5 @@ ignore_missing:
 # Consider these keys used:
 ignore_unused:
   - decidim.devise.registrations.new.*
-#  - decidim.devise.mailer*
+  - devise.mailer.invitation_instructions.*
   - layouts.decidim.footer.*
