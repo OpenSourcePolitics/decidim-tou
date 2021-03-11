@@ -89,6 +89,6 @@ ignore_missing:
 
 # Consider these keys used:
 ignore_unused:
-  - decidim.devise.registrations.new.gender.*
-  - decidim.devise.registrations.new.month_name.*
+  - decidim.devise.registrations.new.*
+#  - decidim.devise.mailer*
   - layouts.decidim.footer.*
