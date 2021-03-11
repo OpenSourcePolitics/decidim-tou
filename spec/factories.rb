@@ -5,6 +5,7 @@ require "decidim/proposals/test/factories"
 require "decidim/debates/test/factories"
 require "decidim/meetings/test/factories"
 require "decidim/accountability/test/factories"
+require "decidim/system/test/factories"
 
 FactoryBot.modify do
   factory :debate, class: "Decidim::Debates::Debate" do
@@ -38,7 +39,3 @@ FactoryBot.modify do
     end
   end
 end
-
-# require "decidim/participatory_processes/test/factories"
-# require "decidim/proposals/test/factories"
-# require "decidim/system/test/factories"
