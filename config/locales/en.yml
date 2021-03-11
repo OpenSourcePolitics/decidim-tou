@@ -90,6 +90,89 @@ en:
             november: November
             october: October
             september: September
+    forms:
+      user_answers_serializer:
+        created_at: Answered on
+        id: Answer ID
+        ip_hash: Ip Hash
+        registered: Registered
+        unregistered: Unregistered
+        user_birth_date: Birth date
+        user_email: Email
+        user_gender: Gender
+        user_name: Username
+        user_nickname: Nickname
+        user_residential_area: Residential area
+        user_status: User status
+        user_statutory_representative_email: Statutory representative email
+        user_work_area: Work area
+    meetings:
+      admin:
+        exports:
+          column_name:
+            registrations:
+              code: Code
+              id: ID
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposals:
+              amendments: Amendments
+              answer: Answer
+              attachments: Attachments
+              attachments_url: Attachments url
+              authors:
+                authors: Authors
+                birth_date: Birth date
+                emails: Emails
+                gender: Gender
+                names: Names
+                nicknames: Nicknames
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                work_area: Work area
+              body: Content
+              category:
+                category: Category
+                id: ID
+                name: Name
+              collaborative_draft_origin: Collaborative draft origin
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              endorsements: Endorsements
+              followers: Followers
+              id: ID
+              meeting_urls: Meeting url
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              published_at: Publication date
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: Url
   layouts:
     decidim:
       footer:
