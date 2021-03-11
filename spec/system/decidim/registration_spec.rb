@@ -13,7 +13,6 @@ def fill_registration_form(params = {})
     fill_in :registration_user_password, with: "sekritpass123"
     fill_in :registration_user_password_confirmation, with: "sekritpass123"
     check("registration_user_tos_agreement")
-    check("registration_user_additional_tos")
   else
     within "ol.horizontal__steps" do
       expect(page).not_to have_css("li:first-child", class: "step--active")

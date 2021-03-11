@@ -17,7 +17,6 @@ module Decidim
         let(:newsletter) { "1" }
         let(:current_locale) { "es" }
 
-        let(:additional_tos) { "1" }
         let(:residential_area) { create(:scope, organization: organization).id.to_s }
         let(:work_area) { create(:scope, organization: organization).id.to_s }
         let(:gender) { "other" }
@@ -50,7 +49,6 @@ module Decidim
               "password_confirmation" => password_confirmation,
               "tos_agreement" => tos_agreement,
               "newsletter_at" => newsletter,
-              "additional_tos" => additional_tos,
               "residential_area" => residential_area,
               "work_area" => work_area,
               "gender" => gender,
