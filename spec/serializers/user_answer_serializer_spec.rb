@@ -39,40 +39,35 @@ module Decidim
         answer_option = singlechoice_answer_options.first
         create :answer_choice, answer: singlechoice_answer, answer_option: answer_option, body: answer_option.body[I18n.locale.to_s], custom_body: "Free text"
       end
+      let(:work_area) { create(:scope, organization: questionable.organization) }
+      let(:residential_area) { create(:scope, organization: questionable.organization) }
+      let(:registration_metadata) do
+        {
+            birth_date: "1981",
+            gender: "Female",
+            work_area: work_area.id,
+            residential_area: residential_area.id,
+            statutory_representative_email: "statutory_representative_email@example.org"
+        }
+      end
 
       describe "#serialize" do
         let(:serialized) { subject.serialize }
 
-        context "when serializing registration_metadata" do
-          context "when user has no registration metadata" do
-            it "doesn't includes user registration metadata" do
-              user.update!(registration_metadata: nil)
-
-              expect(serialized["Registration metadata"]).to eq("")
-            end
-          end
-
-          it "includes user registration metadata" do
-            user.update!(registration_metadata: { foo: "bar" })
-
-            expect(serialized["Registration metadata"]).to eq("foo" => "bar")
-          end
-        end
-
         it "includes the answer for each question" do
           questions.each_with_index do |question, idx|
             expect(serialized).to include(
-              "#{idx + 1}. #{translated(question.body, locale: I18n.locale)}" => answers[idx].body
-            )
+                                      "#{idx + 1}. #{translated(question.body, locale: I18n.locale)}" => answers[idx].body
+                                  )
           end
 
           expect(serialized).to include(
-            "4. #{translated(multichoice_question.body, locale: I18n.locale)}" => multichoice_answer_choices.map(&:body)
-          )
+                                    "4. #{translated(multichoice_question.body, locale: I18n.locale)}" => multichoice_answer_choices.map(&:body)
+                                )
 
           expect(serialized).to include(
-            "5. #{translated(singlechoice_question.body, locale: I18n.locale)}" => ["Free text"]
-          )
+                                    "5. #{translated(singlechoice_question.body, locale: I18n.locale)}" => ["Free text"]
+                                )
         end
 
         context "and includes the attributes" do
@@ -86,6 +81,63 @@ module Decidim
           it "the creation of the answer" do
             key = I18n.t(:created_at, scope: "decidim.forms.user_answers_serializer")
             expect(serialized[key]).to eq an_answer.created_at.to_s(:db)
+          end
+        end
+
+        it "doesn't includes user data" do
+          expect(serialized["Username"]).to eq(nil)
+          expect(serialized["Nickname"]).to eq(nil)
+          expect(serialized["Email"]).to eq(nil)
+          expect(serialized["Birth date"]).to eq(nil)
+          expect(serialized["Gender"]).to eq(nil)
+          expect(serialized["Work area"]).to eq(nil)
+          expect(serialized["Residential area"]).to eq(nil)
+          expect(serialized["Statutory representative email"]).to eq(nil)
+        end
+
+        context "when export is made by administrator" do
+          subject do
+            described_class.new(questionnaire.answers, true)
+          end
+
+          let(:serialized) { subject.serialize }
+
+          it "serializes user data" do
+            user.update!(registration_metadata: registration_metadata)
+
+            expect(serialized["Username"]).to eq(user.name)
+            expect(serialized["Nickname"]).to eq(user.nickname)
+            expect(serialized["Email"]).to eq(user.email)
+            expect(serialized["Gender"]).to eq(registration_metadata[:gender])
+            expect(serialized["Work area"]).to eq(translated(work_area.name))
+            expect(serialized["Residential area"]).to eq(translated(residential_area.name))
+            expect(serialized["Statutory representative email"]).to eq(registration_metadata[:statutory_representative_email])
+            expect(serialized["Birth date"]).to eq(registration_metadata[:birth_date])
+          end
+
+          context "when user has no registration metadata" do
+            before do
+              user.update!(registration_metadata: nil)
+            end
+
+            it "doesn't includes user registration metadata" do
+              expect(serialized["Birth date"]).to be_empty
+              expect(serialized["Gender"]).to be_empty
+              expect(serialized["Work area"]).to be_empty
+              expect(serialized["Residential area"]).to be_empty
+              expect(serialized["Statutory representative email"]).to be_empty
+            end
+          end
+
+          it "includes user columns" do
+            expect(serialized["Username"]).not_to eq(nil)
+            expect(serialized["Nickname"]).not_to eq(nil)
+            expect(serialized["Email"]).not_to eq(nil)
+            expect(serialized["Birth date"]).not_to eq(nil)
+            expect(serialized["Gender"]).not_to eq(nil)
+            expect(serialized["Work area"]).not_to eq(nil)
+            expect(serialized["Residential area"]).not_to eq(nil)
+            expect(serialized["Statutory representative email"]).not_to eq(nil)
           end
         end
       end

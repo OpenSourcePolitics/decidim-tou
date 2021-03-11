@@ -1,54 +1,6 @@
 ---
 en:
   decidim:
-    proposals:
-      admin:
-        exports:
-          column_name:
-            proposals:
-              answer: Answer
-              amendments: Amendments
-              attachments: Attachments
-              attachments_url: Attachments url
-              authors:
-                birth_date: Birth date
-                authors: Authors
-                emails: Emails
-                gender: Gender
-                names: Names
-                nicknames: Nicknames
-                residential_area: Residential area
-                statutory_representative_email: Statutory representative email
-                work_area: Work area
-              body: Content
-              category:
-                name: Name
-                category: Category
-                id: ID
-              collaborative_draft_origin: Collaborative draft origin
-              comments: Comments
-              component:
-                component: Component
-                id: ID
-              endorsements: Endorsements
-              followers: Followers
-              id: ID
-              meeting_urls: Meeting url
-              participatory_space:
-                participatory_space: Participatory space
-                id: ID
-                url: URL
-              published_at: Publication date
-              reference: Reference
-              related_proposals: Related proposals
-              scope:
-                scope: Scope
-                name: Name
-                id: ID
-              state: State
-              supports: Supports
-              title: Title
-              url: Url
     admin:
       participatory_space_private_users:
         create:
@@ -168,7 +120,14 @@ en:
           or: Or
     forms:
       user_answers_serializer:
-        registration_metadata: Registration metadata
+        user_birth_date: Birth date
+        user_email: Email
+        user_gender: Gender
+        user_name: Username
+        user_nickname: Nickname
+        user_residential_area: Residential area
+        user_statutory_representative_email: Statutory representative email
+        user_work_area: Work area
     meetings:
       admin:
         exports:
@@ -188,6 +147,54 @@ en:
                 user: User
                 user_group: User group
                 work_area: Work area
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposals:
+              amendments: Amendments
+              answer: Answer
+              attachments: Attachments
+              attachments_url: Attachments url
+              authors:
+                authors: Authors
+                birth_date: Birth date
+                emails: Emails
+                gender: Gender
+                names: Names
+                nicknames: Nicknames
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                work_area: Work area
+              body: Content
+              category:
+                category: Category
+                id: ID
+                name: Name
+              collaborative_draft_origin: Collaborative draft origin
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              endorsements: Endorsements
+              followers: Followers
+              id: ID
+              meeting_urls: Meeting url
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              published_at: Publication date
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: Url
   devise:
     mailer:
       invitation_instructions:
