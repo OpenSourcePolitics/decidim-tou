@@ -141,11 +141,11 @@ module Decidim
             let(:residential_area) { create(:scope, organization: participatory_process.organization) }
             let(:registration_metadata) do
               {
-                  birth_date: "1981",
-                  gender: "Female",
-                  work_area: work_area.id,
-                  residential_area: residential_area.id,
-                  statutory_representative_email: "statutory_representative_email@example.org"
+                birth_date: "1981",
+                gender: "Female",
+                work_area: work_area.id,
+                residential_area: residential_area.id,
+                statutory_representative_email: "statutory_representative_email@example.org"
               }
             end
 
@@ -185,11 +185,11 @@ module Decidim
             let(:residential_area_2) { create(:scope, organization: participatory_process.organization) }
             let(:registration_metadata_2) do
               {
-                  birth_date: "1968",
-                  gender: "Male",
-                  work_area: work_area_2.id,
-                  residential_area: residential_area_2.id,
-                  statutory_representative_email: "statutory_representative_email_2@example.org"
+                birth_date: "1968",
+                gender: "Male",
+                work_area: work_area_2.id,
+                residential_area: residential_area_2.id,
+                statutory_representative_email: "statutory_representative_email_2@example.org"
               }
             end
 

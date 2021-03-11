@@ -43,11 +43,11 @@ module Decidim
       let(:residential_area) { create(:scope, organization: questionable.organization) }
       let(:registration_metadata) do
         {
-            birth_date: "1981",
-            gender: "Female",
-            work_area: work_area.id,
-            residential_area: residential_area.id,
-            statutory_representative_email: "statutory_representative_email@example.org"
+          birth_date: "1981",
+          gender: "Female",
+          work_area: work_area.id,
+          residential_area: residential_area.id,
+          statutory_representative_email: "statutory_representative_email@example.org"
         }
       end
 
@@ -57,17 +57,17 @@ module Decidim
         it "includes the answer for each question" do
           questions.each_with_index do |question, idx|
             expect(serialized).to include(
-                                      "#{idx + 1}. #{translated(question.body, locale: I18n.locale)}" => answers[idx].body
-                                  )
+              "#{idx + 1}. #{translated(question.body, locale: I18n.locale)}" => answers[idx].body
+            )
           end
 
           expect(serialized).to include(
-                                    "4. #{translated(multichoice_question.body, locale: I18n.locale)}" => multichoice_answer_choices.map(&:body)
-                                )
+            "4. #{translated(multichoice_question.body, locale: I18n.locale)}" => multichoice_answer_choices.map(&:body)
+          )
 
           expect(serialized).to include(
-                                    "5. #{translated(singlechoice_question.body, locale: I18n.locale)}" => ["Free text"]
-                                )
+            "5. #{translated(singlechoice_question.body, locale: I18n.locale)}" => ["Free text"]
+          )
         end
 
         context "and includes the attributes" do

@@ -15,37 +15,37 @@ module ProposalSerializerExtends
   # Public: Exports a hash with the serialized data for this proposal.
   def serialize
     {
-        t_column_name(:id) => proposal.id,
-        t_column_name(:category, ".category") => {
-            t_column_name(:id, ".category") => proposal.category.try(:id),
-            t_column_name(:name, ".category") => proposal.category.try(:name) || empty_translatable
-        },
-        t_column_name(:scope, ".scope") => {
-            t_column_name(:id, ".scope") => proposal.scope.try(:id),
-            t_column_name(:name, ".scope") => proposal.scope.try(:name) || empty_translatable
-        },
-        t_column_name(:participatory_space, ".participatory_space") => {
-            t_column_name(:id, ".participatory_space") => proposal.participatory_space.id,
-            t_column_name(:url, ".participatory_space") => Decidim::ResourceLocatorPresenter.new(proposal.participatory_space).url
-        },
-        t_column_name(:collaborative_draft_origin) => proposal.collaborative_draft_origin,
-        t_column_name(:component, ".component") => { t_column_name(:id, ".component") => component.id },
-        t_column_name(:title) => present(proposal).title,
-        t_column_name(:body) => present(proposal).body,
-        t_column_name(:state) => proposal.state.to_s,
-        t_column_name(:reference) => proposal.reference,
-        t_column_name(:answer) => ensure_translatable(proposal.answer),
-        t_column_name(:supports) => proposal.proposal_votes_count,
-        t_column_name(:endorsements) => proposal.endorsements.count,
-        t_column_name(:comments) => proposal.comments.count,
-        t_column_name(:amendments) => proposal.amendments.count,
-        t_column_name(:attachments_url) => attachments_url,
-        t_column_name(:attachments) => proposal.attachments.count,
-        t_column_name(:followers) => proposal.followers.count,
-        t_column_name(:published_at) => proposal.published_at,
-        t_column_name(:url) => url,
-        t_column_name(:meeting_urls) => meetings,
-        t_column_name(:related_proposals) => related_proposals
+      t_column_name(:id) => proposal.id,
+      t_column_name(:category, ".category") => {
+        t_column_name(:id, ".category") => proposal.category.try(:id),
+        t_column_name(:name, ".category") => proposal.category.try(:name) || empty_translatable
+      },
+      t_column_name(:scope, ".scope") => {
+        t_column_name(:id, ".scope") => proposal.scope.try(:id),
+        t_column_name(:name, ".scope") => proposal.scope.try(:name) || empty_translatable
+      },
+      t_column_name(:participatory_space, ".participatory_space") => {
+        t_column_name(:id, ".participatory_space") => proposal.participatory_space.id,
+        t_column_name(:url, ".participatory_space") => Decidim::ResourceLocatorPresenter.new(proposal.participatory_space).url
+      },
+      t_column_name(:collaborative_draft_origin) => proposal.collaborative_draft_origin,
+      t_column_name(:component, ".component") => { t_column_name(:id, ".component") => component.id },
+      t_column_name(:title) => present(proposal).title,
+      t_column_name(:body) => present(proposal).body,
+      t_column_name(:state) => proposal.state.to_s,
+      t_column_name(:reference) => proposal.reference,
+      t_column_name(:answer) => ensure_translatable(proposal.answer),
+      t_column_name(:supports) => proposal.proposal_votes_count,
+      t_column_name(:endorsements) => proposal.endorsements.count,
+      t_column_name(:comments) => proposal.comments.count,
+      t_column_name(:amendments) => proposal.amendments.count,
+      t_column_name(:attachments_url) => attachments_url,
+      t_column_name(:attachments) => proposal.attachments.count,
+      t_column_name(:followers) => proposal.followers.count,
+      t_column_name(:published_at) => proposal.published_at,
+      t_column_name(:url) => url,
+      t_column_name(:meeting_urls) => meetings,
+      t_column_name(:related_proposals) => related_proposals
     }.merge(options_merge(admin_extra_fields))
   end
 
@@ -55,18 +55,18 @@ module ProposalSerializerExtends
 
   def admin_extra_fields
     {
-        t_column_name(:authors, ".authors") => extract_author_data do
-          {
-              t_column_name(:names, ".authors") => proposal.authors.collect(&:name).join(","),
-              t_column_name(:nicknames, ".authors") => proposal.authors.collect(&:nickname).join(","),
-              t_column_name(:emails, ".authors") => proposal.authors.collect(&:email).join(","),
-              t_column_name(:birth_date, ".authors") => collect_registration_metadata(:birth_date).join(","),
-              t_column_name(:gender, ".authors") => collect_registration_metadata(:gender).join(","),
-              t_column_name(:work_area, ".authors") => collect_registration_metadata(:work_area).join(","),
-              t_column_name(:residential_area, ".authors") => collect_registration_metadata(:residential_area).join(","),
-              t_column_name(:statutory_representative_email, ".authors") => collect_registration_metadata(:statutory_representative_email).join(",")
-          }
-        end
+      t_column_name(:authors, ".authors") => extract_author_data do
+        {
+          t_column_name(:names, ".authors") => proposal.authors.collect(&:name).join(","),
+          t_column_name(:nicknames, ".authors") => proposal.authors.collect(&:nickname).join(","),
+          t_column_name(:emails, ".authors") => proposal.authors.collect(&:email).join(","),
+          t_column_name(:birth_date, ".authors") => collect_registration_metadata(:birth_date).join(","),
+          t_column_name(:gender, ".authors") => collect_registration_metadata(:gender).join(","),
+          t_column_name(:work_area, ".authors") => collect_registration_metadata(:work_area).join(","),
+          t_column_name(:residential_area, ".authors") => collect_registration_metadata(:residential_area).join(","),
+          t_column_name(:statutory_representative_email, ".authors") => collect_registration_metadata(:statutory_representative_email).join(",")
+        }
+      end
     }
   end
 
@@ -103,14 +103,14 @@ module ProposalSerializerExtends
   def extract_author_data
     if proposal.creator.decidim_author_type == "Decidim::Organization" && proposal.creator_identity.is_a?(Decidim::Organization) || !block_given?
       {
-          t_column_name(:names, ".authors") => "",
-          t_column_name(:nicknames, ".authors") => "",
-          t_column_name(:emails, ".authors") => "",
-          t_column_name(:birth_date, ".authors") => "",
-          t_column_name(:gender, ".authors") => "",
-          t_column_name(:work_area, ".authors") => "",
-          t_column_name(:residential_area, ".authors") => "",
-          t_column_name(:statutory_representative_email, ".authors") => ""
+        t_column_name(:names, ".authors") => "",
+        t_column_name(:nicknames, ".authors") => "",
+        t_column_name(:emails, ".authors") => "",
+        t_column_name(:birth_date, ".authors") => "",
+        t_column_name(:gender, ".authors") => "",
+        t_column_name(:work_area, ".authors") => "",
+        t_column_name(:residential_area, ".authors") => "",
+        t_column_name(:statutory_representative_email, ".authors") => ""
       }
     else
       yield
