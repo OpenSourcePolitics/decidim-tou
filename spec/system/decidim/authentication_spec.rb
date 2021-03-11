@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-def fill_registration_form
+def fill_registration_fields
   fill_in :registration_user_email, with: "user@example.org"
   fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
   fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
@@ -37,7 +37,7 @@ describe "Authentication", type: :system do
         find(".sign-up-link").click
 
         within ".new_user" do
-          fill_registration_form
+          fill_registration_fields
 
           find("*[type=submit]").click
         end
@@ -57,7 +57,7 @@ describe "Authentication", type: :system do
         find(".sign-up-link").click
 
         within ".new_user" do
-          fill_registration_form
+          fill_registration_fields
 
           find("*[type=submit]").click
         end
@@ -73,7 +73,7 @@ describe "Authentication", type: :system do
 
         within ".new_user" do
           page.execute_script("$($('.new_user > div > input')[0]).val('Ima robot :D')")
-          fill_registration_form
+          fill_registration_fields
           find("*[type=submit]").click
         end
 
