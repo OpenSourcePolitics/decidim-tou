@@ -4,21 +4,11 @@ require "spec_helper"
 
 def fill_registration_form(params = {})
   if params[:step] == 1
-    within "ol.horizontal__steps" do
-      expect(page).to have_css("li:first-child", class: "step--active")
-      expect(page).not_to have_css("li:last-child", class: "step--active")
-    end
-
     fill_in :registration_user_email, with: "nikola.tesla@example.org"
     fill_in :registration_user_password, with: "sekritpass123"
     fill_in :registration_user_password_confirmation, with: "sekritpass123"
     check("registration_user_tos_agreement")
   else
-    within "ol.horizontal__steps" do
-      expect(page).not_to have_css("li:first-child", class: "step--active")
-      expect(page).to have_css("li:last-child", class: "step--active")
-    end
-
     fill_in :registration_user_name, with: "Nikola Tesla"
     fill_in :registration_user_nickname, with: "the-greatest-genius-in-history"
     select translated(scopes.first.name), from: :registration_user_residential_area
