@@ -1,5 +1,9 @@
 ---
 fr:
+  activemodel:
+    attributes:
+      assembly:
+        sort_children: Trier les assemblées enfant
   decidim:
     accessibility:
       skip_button: Skip button
