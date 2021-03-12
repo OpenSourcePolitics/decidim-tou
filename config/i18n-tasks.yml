@@ -94,4 +94,6 @@ ignore_unused:
   - decidim.devise.registrations.new.gender.*
   - decidim.devise.registrations.new.month_name.*
   - activemodel.attributes.assembly.sort_children
+  - decidim.devise.registrations.new.*
+  - devise.mailer.invitation_instructions.*
   - layouts.decidim.footer.*
