@@ -85,9 +85,15 @@ ignore_missing:
  - activemodel.attributes.participatory_process.private_space
  - activemodel.attributes.osp_authorization_handler.*
  - decidim.authorization_handlers.osp_authorization_handler.*
+ - decidim.assemblies.admin.assemblies.form.*
+ - decidim.assemblies.show.*
  - layouts.decidim.footer.*
 
 # Consider these keys used:
 ignore_unused:
   - decidim.devise.registrations.new.gender.*
   - decidim.devise.registrations.new.month_name.*
+  - activemodel.attributes.assembly.sort_children
+  - decidim.devise.registrations.new.*
+  - devise.mailer.invitation_instructions.*
+  - layouts.decidim.footer.*

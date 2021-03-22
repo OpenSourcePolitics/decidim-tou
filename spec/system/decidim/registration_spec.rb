@@ -4,20 +4,30 @@ require "spec_helper"
 
 def fill_registration_form(params = {})
   if params[:step] == 1
-    fill_in :user_email, with: "nikola.tesla@example.org"
-    fill_in :user_password, with: "sekritpass123"
-    fill_in :user_password_confirmation, with: "sekritpass123"
-    check("user_tos_agreement")
+    within "ol.horizontal__steps" do
+      expect(page).to have_css("li:first-child", class: "step--active")
+      expect(page).not_to have_css("li:last-child", class: "step--active")
+    end
+
+    fill_in :registration_user_email, with: "nikola.tesla@example.org"
+    fill_in :registration_user_password, with: "sekritpass123"
+    fill_in :registration_user_password_confirmation, with: "sekritpass123"
+    check("registration_user_tos_agreement")
   else
-    fill_in :user_name, with: "Nikola Tesla"
-    fill_in :user_nickname, with: "the-greatest-genius-in-history"
-    select translated(scopes.first.name), from: :user_residential_area
-    select translated(scopes.first.name), from: :user_work_area
-    select "Other", from: :user_gender
-    select "September", from: :user_month
-    select "1992", from: :user_year
-    check :underage_registration
-    fill_in :user_statutory_representative_email, with: "milutin.tesla@example.org"
+    within "ol.horizontal__steps" do
+      expect(page).not_to have_css("li:first-child", class: "step--active")
+      expect(page).to have_css("li:last-child", class: "step--active")
+    end
+
+    fill_in :registration_user_name, with: "Nikola Tesla"
+    fill_in :registration_user_nickname, with: "the-greatest-genius-in-history"
+    select translated(scopes.first.name), from: :registration_user_residential_area
+    select translated(scopes.first.name), from: :registration_user_work_area
+    select "Other", from: :registration_user_gender
+    select "September", from: :registration_user_month
+    select "1992", from: :registration_user_year
+    check :registration_underage_registration
+    fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
   end
 end
 
@@ -42,10 +52,10 @@ describe "Registration", type: :system do
     describe "on first sight" do
       it "shows fields empty" do
         expect(page).to have_content("Sign up to participate")
-        expect(page).to have_field("user_email", with: "")
-        expect(page).to have_field("user_password", with: "")
-        expect(page).to have_field("user_password_confirmation", with: "")
-        expect(page).to have_field("user_newsletter", checked: false)
+        expect(page).to have_field("registration_user_email", with: "")
+        expect(page).to have_field("registration_user_password", with: "")
+        expect(page).to have_field("registration_user_password_confirmation", with: "")
+        expect(page).to have_field("registration_user_newsletter", checked: false)
       end
     end
 
@@ -53,42 +63,42 @@ describe "Registration", type: :system do
       it "forces user to fill first step attributes" do
         expect(page).to have_button("Continue", disabled: true)
 
-        expect(page).to have_field("user_email", with: "")
-        expect(page).to have_field("user_password", with: "")
-        expect(page).to have_field("user_password_confirmation", with: "")
-        expect(page).not_to have_field("user_name", with: "")
-        expect(page).not_to have_field("user_nickname", with: "")
+        expect(page).to have_field("registration_user_email", with: "")
+        expect(page).to have_field("registration_user_password", with: "")
+        expect(page).to have_field("registration_user_password_confirmation", with: "")
+        expect(page).not_to have_field("registration_user_name", with: "")
+        expect(page).not_to have_field("registration_user_nickname", with: "")
       end
 
       context "when a mandatory field is missing" do
         it "forces user to fill first step attributes" do
           fill_registration_form(step: 1)
-          fill_in :user_email, with: ""
+          fill_in :registration_user_email, with: ""
 
           expect(page).to have_button("Continue", disabled: true)
-          expect(find_field(:user_email)[:class]).to eq("is-invalid-input")
+          expect(find_field(:registration_user_email)[:class]).to eq("is-invalid-input")
         end
       end
 
       context "when multiples mandatory fields are missing" do
         it "forces user to fill first step attributes" do
           fill_registration_form(step: 1)
-          fill_in :user_email, with: ""
-          fill_in :user_password, with: ""
+          fill_in :registration_user_email, with: ""
+          fill_in :registration_user_password, with: ""
 
           expect(page).to have_button("Continue", disabled: true)
-          expect(find_field(:user_email)[:class]).to eq("is-invalid-input")
-          expect(find_field(:user_password)[:class]).to eq("is-invalid-input")
+          expect(find_field(:registration_user_email)[:class]).to eq("is-invalid-input")
+          expect(find_field(:registration_user_password)[:class]).to eq("is-invalid-input")
         end
       end
 
       context "when a password confirmation doesn't match" do
         it "forces user to fill first step attributes" do
           fill_registration_form(step: 1)
-          fill_in :user_password_confirmation, with: "no-match"
+          fill_in :registration_user_password_confirmation, with: "no-match"
 
           expect(page).to have_button("Continue", disabled: true)
-          expect(find_field(:user_password_confirmation)[:class]).to eq("is-invalid-input")
+          expect(find_field(:registration_user_password_confirmation)[:class]).to eq("is-invalid-input")
         end
       end
 
@@ -96,11 +106,11 @@ describe "Registration", type: :system do
         fill_registration_form(step: 1)
         click_button "Continue"
 
-        expect(page).not_to have_field("user_email")
-        expect(page).not_to have_field("user_password")
-        expect(page).not_to have_field("user_password_confirmation")
-        expect(page).to have_field("user_name", with: "")
-        expect(page).to have_field("user_nickname", with: "")
+        expect(page).not_to have_field("registration_user_email")
+        expect(page).not_to have_field("registration_user_password")
+        expect(page).not_to have_field("registration_user_password_confirmation")
+        expect(page).to have_field("registration_user_name", with: "")
+        expect(page).to have_field("registration_user_nickname", with: "")
         expect(page).to have_select("user[residential_area]", selected: "Please select")
         expect(page).to have_select("user[work_area]", selected: "Please select")
         expect(page).to have_select("user[gender]", selected: "Please select")
@@ -134,8 +144,6 @@ describe "Registration", type: :system do
         click_button "Check and continue"
       end.to change(Decidim::User, :count).by(1)
 
-      expect(page).to have_current_path(decidim.user_complete_registration_path)
-
       user = Decidim::User.last
 
       expect(user.newsletter_notifications_at).not_to be_nil
@@ -151,8 +159,6 @@ describe "Registration", type: :system do
         click_button "Keep uncheck"
       end.to change(Decidim::User, :count).by(1)
 
-      expect(page).to have_current_path(decidim.user_complete_registration_path)
-
       expect(Decidim::User.last.newsletter_notifications_at).to be_nil
     end
   end
@@ -160,36 +166,36 @@ describe "Registration", type: :system do
   context "when newsletter checkbox is checked but submit fails" do
     before do
       fill_registration_form(step: 1)
-      page.check("user_newsletter")
+      page.check("registration_user_newsletter")
       click_button "Continue"
 
       fill_registration_form(step: 2)
-      fill_in :user_nickname, with: another_user.nickname
+      fill_in :registration_user_nickname, with: another_user.nickname
       submit_form
     end
 
     it "shows all registration fields" do
       expect(page).to have_content("Sign up to participate")
-      expect(page).to have_field("user_email")
-      expect(page).to have_field("user_password")
-      expect(page).to have_field("user_password_confirmation")
-      expect(page).to have_field("user_name")
-      expect(page).to have_field("user_nickname")
+      expect(page).to have_field("registration_user_email")
+      expect(page).to have_field("registration_user_password")
+      expect(page).to have_field("registration_user_password_confirmation")
+      expect(page).to have_field("registration_user_name")
+      expect(page).to have_field("registration_user_nickname")
 
-      expect(page).to have_field("underage_registration", checked: true)
-      expect(page).to have_field(:user_statutory_representative_email, with: "milutin.tesla@example.org")
+      expect(page).to have_field("registration_underage_registration", checked: true)
+      expect(page).to have_field(:registration_user_statutory_representative_email, with: "milutin.tesla@example.org")
     end
 
     it "keeps the user newsletter checkbox true value" do
       expect(page).to have_current_path decidim.user_registration_path
-      expect(page).to have_field("user_newsletter", checked: true)
+      expect(page).to have_field("registration_user_newsletter", checked: true)
     end
   end
 
   context "when newsletter checkbox is checked and registration is successful" do
     before do
       fill_registration_form(step: 1)
-      page.check("user_newsletter")
+      page.check("registration_user_newsletter")
       click_button "Continue"
       fill_registration_form(step: 2)
     end
@@ -198,8 +204,6 @@ describe "Registration", type: :system do
       expect do
         submit_form
       end.to change(Decidim::User, :count).by(1)
-
-      expect(page).to have_current_path(decidim.user_complete_registration_path)
 
       user = Decidim::User.last
 
@@ -210,7 +214,7 @@ describe "Registration", type: :system do
   context "when registering with additional fields" do
     before do
       fill_registration_form(step: 1)
-      page.check("user_newsletter")
+      page.check("registration_user_newsletter")
       click_button "Continue"
       fill_registration_form(step: 2)
     end

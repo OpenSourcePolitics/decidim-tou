@@ -1,4 +1,3 @@
-
 <%- if controller_name != "sessions" && resource_class != Decidim::UserGroup %>
   <p class="text-center">
     <%= link_to t("devise.shared.links.sign_in"), new_session_path(resource_name) %>
@@ -28,6 +27,7 @@
     <%= link_to t("devise.shared.links.didn_t_receive_unlock_instructions"), new_unlock_path(resource_name) %>
   </p>
 <% end -%>
+
 <p class="captcha_protection">
   <%= t("devise.shared.links.captcha_protection") %>
 </p>

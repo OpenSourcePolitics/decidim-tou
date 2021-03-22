@@ -7,12 +7,12 @@ $(() => {
     const $formStepForwardButton = $(".form-step-forward-button");
     const $formStepBackButton = $(".form-step-back-button");
     const $formFirstStepFields = $("[form-step='1'] input");
-    const $tosAgreement = $("#user_tos_agreement");
-    const $mandatoryFormFirstStepFields = $formFirstStepFields.not("#user_newsletter").not("input[type ='hidden']").add($tosAgreement);
-    const $userPassword = $("#user_password");
-    const $userPasswordConfirmation = $("#user_password_confirmation");
+    const $tosAgreement = $("#registration_user_tos_agreement");
+    const $mandatoryFormFirstStepFields = $formFirstStepFields.not("#registration_user_newsletter").not("input[type ='hidden']").add($tosAgreement);
+    const $userPassword = $("#registration_user_password");
+    const $userPasswordConfirmation = $("#registration_user_password_confirmation");
 
-    const $underageSelector = $("#underage_registration");
+    const $underageSelector = $("#registration_underage_registration");
     const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
 
     const emailSelectorToggle = () => {
@@ -28,6 +28,7 @@ $(() => {
     }
 
     $underageSelector.on("click", () => {
+        console.log($statutoryRepresentativeEmailSelector)
         emailSelectorToggle();
     });
 

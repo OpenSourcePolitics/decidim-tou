@@ -1,0 +1,84 @@
+---
+es:
+  decidim:
+    accessibility:
+      skip_button: Skip button
+    admin:
+      participatory_space_private_users:
+        create:
+          error: Error
+          success: Success
+    devise:
+      registrations:
+        new:
+          already_have_an_account?: Already have an account?
+          back: Back
+          birth_date: Birth date
+          complete_profile: Complete profile
+          continue: Continue
+          create_account: Create account
+          gdpr_disclaimer: Gdpr disclaimer
+          gender:
+            female: Female
+            male: Male
+            other: Other
+          gender_label: Gender label
+          month_label: Month label
+          month_name:
+            april: April
+            august: August
+            december: December
+            february: February
+            january: January
+            july: July
+            june: June
+            march: March
+            may: May
+            november: November
+            october: October
+            september: September
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
+          residential_area: Residential area
+          sign_in: Sign in
+          sign_up: Sign up
+          statutory_representative_email: Statutory representative email
+          subtitle: Sign up to participate in discussions and support proposals.
+          terms: Terms
+          tos_agreement: Tos agreement
+          tos_title: Terms of Service
+          underage: Underage
+          username_help: Username help
+          work_area: Work area
+          year_label: Year label
+      shared:
+        omniauth_buttons:
+          or: Or
+  devise:
+    failure:
+      invited: Invited
+    registrations:
+      new:
+        sign_up: Sign up
+    shared:
+      links:
+        captcha_protection: Captcha protection
+        didn_t_receive_confirmation_instructions: Didn t receive confirmation instructions
+        didn_t_receive_unlock_instructions: Didn t receive unlock instructions
+        forgot_your_password: Forgot your password
+        sign_in: Sign in
+        sign_in_with_provider: Sign in with provider
+        sign_up: Sign up
+  layouts:
+    decidim:
+      header:
+        close_menu: Close menu
+        navigation: Navigation
+        sign_in: Sign In
+        sign_up: Sign Up
+      user_menu:
+        account: Account
+        conversations: Conversations
+        notifications: Notifications

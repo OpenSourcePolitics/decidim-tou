@@ -33,6 +33,8 @@ describe "Account", type: :system do
       it "updates the user's data" do
         within "form.edit_user" do
           fill_in :user_name, with: "Nikola Tesla"
+          fill_in :user_personal_url, with: "https://example.org"
+          fill_in :user_about, with: "A Serbian-American inventor, electrical engineer, mechanical engineer, physicist, and futurist."
           find("*[type=submit]").click
         end
 
@@ -50,7 +52,8 @@ describe "Account", type: :system do
           find("a", text: "public profile").click
         end
 
-        expect(page).to have_content("Nikola Tesla")
+        expect(page).to have_content("example.org")
+        expect(page).to have_content("Serbian-American")
       end
     end
 
@@ -134,7 +137,7 @@ describe "Account", type: :system do
       end
 
       it "the user can delete his account" do
-        fill_in :delete_account_delete_reason, with: "I just want to delete my account"
+        fill_in :delete_user_delete_account_delete_reason, with: "I just want to delete my account"
 
         click_button "Delete my account"
 
@@ -147,8 +150,8 @@ describe "Account", type: :system do
         find(".sign-in-link").click
 
         within ".new_user" do
-          fill_in :user_email, with: user.email
-          fill_in :user_password, with: password
+          fill_in :session_user_email, with: user.email
+          fill_in :session_user_password, with: password
           find("*[type=submit]").click
         end
 
