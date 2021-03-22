@@ -38,6 +38,9 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+      participatory_process_groups:
+        participatory_process_group:
+          processes_count: Processes count
       user_menu:
         account: Account
         conversations: Conversations
