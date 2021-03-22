@@ -2,6 +2,6 @@
 
 module ApplicationHelper
   def linked_assemblies_for(process)
-    process.linked_participatory_space_resources(:assembly, "included_participatory_processes").published
+    process.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
   end
 end
