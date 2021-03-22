@@ -20,9 +20,9 @@
             <%= translated_attribute(current_participatory_space.subtitle) %>
           </h2>
 
-          <% if linked_assemblies.present? %>
+          <% if linked_assemblies_for(current_participatory_space).present? %>
             <div class="linked_assemblies">
-              <% linked_assemblies.each do |assembly| %>
+              <% linked_assemblies_for(current_participatory_space).each do |assembly| %>
                 <%= link_to decidim_assemblies.assembly_path(assembly), class: "linked_assembly" do %>
                   <%= translated_attribute(assembly.title) %>
                 <% end %>
