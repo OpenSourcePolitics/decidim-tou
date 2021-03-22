@@ -105,6 +105,25 @@ fr:
             november: Novembre
             october: Octobre
             september: Septembre
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
+          residential_area: Residential area
+          sign_in: Sign in
+          sign_up: Sign up
+          statutory_representative_email: Statutory representative email
+          subtitle: Sign up to participate in discussions and support proposals.
+          terms: Terms
+          tos_agreement: Tos agreement
+          tos_title: Terms of Service
+          underage: Underage
+          username_help: Username help
+          work_area: Work area
+          year_label: Year label
+      shared:
+        omniauth_buttons:
+          or: Or
     forms:
       user_answers_serializer:
         created_at: Answered on
@@ -207,9 +226,6 @@ fr:
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
           work_area: Dans quel quartier travaillez-vous ?
           year_label: Année
-      shared:
-        omniauth_buttons:
-          or: Ou
   devise:
     failure:
       invited: Invited
