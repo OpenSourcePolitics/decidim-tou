@@ -97,3 +97,11 @@ ignore_unused:
   - decidim.devise.registrations.new.*
   - devise.mailer.invitation_instructions.*
   - layouts.decidim.footer.*
+  - decidim.debates.admin.exports.column_name.debates.*
+  - decidim.meetings.admin.exports.column_name.*
+  - decidim.comments.exports.column_name.registrations.*
+  - decidim.comments.exports.column_name.*
+  - decidim.proposals.admin.exports.column_name.proposals.*
+  - decidim.forms.user_answers_serializer.*
+  - decidim.proposals.admin.exports.*
+

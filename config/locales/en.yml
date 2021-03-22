@@ -12,6 +12,68 @@ en:
         create:
           error: Error
           success: Success
+    comments:
+      exports:
+        column_name:
+          comments:
+            alignment: Alignment
+            author:
+              author: Author
+              birth_date: Birth date
+              gender: Gender
+              id: ID
+              name: Name
+              residential_area: Residential area
+              statutory_representative_email: Statutory representative email
+              work_area: Work area
+            body: Content
+            commentable_id: Commentable ID
+            commentable_type: Commentable type
+            created_at: Creation date
+            depth: Depth
+            id: ID
+            root_commentable_url: Root commentable URL
+            user_group:
+              id: ID
+              name: Name
+              user_group: User group
+    debates:
+      admin:
+        exports:
+          column_name:
+            debates:
+              author_url: Author url
+              category:
+                category: Category
+                id: Id
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              created_at: Creation date
+              description: description
+              end_time: End time
+              id: ID
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              start_time: Start time
+              title: title
+              url: Url
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
     devise:
       registrations:
         new:
@@ -50,9 +112,6 @@ en:
           residential_area: Residential area
           sign_in: Sign in
           sign_up: Sign up
-          sign_up_as:
-            legend: S'inscrire en tant que
-          sign_up_subtitle: Inscrivez-vous pour participer aux consultations.
           statutory_representative_email: Statutory representative email
           subtitle: Sign up to participate in discussions and support proposals.
           terms: Terms
@@ -65,6 +124,108 @@ en:
       shared:
         omniauth_buttons:
           or: Or
+    forms:
+      user_answers_serializer:
+        created_at: Answered on
+        id: Answer ID
+        ip_hash: Ip Hash
+        registered: Registered
+        unregistered: Unregistered
+        user_birth_date: Birth date
+        user_email: Email
+        user_gender: Gender
+        user_name: Username
+        user_nickname: Nickname
+        user_residential_area: Residential area
+        user_status: User status
+        user_statutory_representative_email: Statutory representative email
+        user_work_area: Work area
+    meetings:
+      admin:
+        exports:
+          column_name:
+            registrations:
+              code: Code
+              id: ID
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposals:
+              amendments: Amendments
+              answer: Answer
+              attachments: Attachments
+              attachments_url: Attachments url
+              authors:
+                authors: Authors
+                birth_date: Birth date
+                emails: Emails
+                gender: Gender
+                names: Names
+                nicknames: Nicknames
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                work_area: Work area
+              body: Content
+              category:
+                category: Category
+                id: ID
+                name: Name
+              collaborative_draft_origin: Collaborative draft origin
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              endorsements: Endorsements
+              followers: Followers
+              id: ID
+              meeting_urls: Meeting url
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              published_at: Publication date
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: Url
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
+          residential_area: Residential area
+          sign_in: Sign in
+          sign_up: Sign up
+          sign_up_as:
+            legend: S'inscrire en tant que
+          sign_up_subtitle: Inscrivez-vous pour participer aux consultations.
+          statutory_representative_email: Statutory representative email
+          subtitle: Sign up to participate in discussions and support proposals.
+          terms: Terms
+          tos_agreement: Tos agreement
+          tos_title: Terms of Service
+          underage: Underage
+          username_help: Username help
+          work_area: Work area
+          year_label: Year label
   devise:
     failure:
       invited: You have a pending invitation, accept it to finish creating your account

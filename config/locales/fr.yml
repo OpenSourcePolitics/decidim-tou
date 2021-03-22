@@ -12,6 +12,68 @@ fr:
         create:
           error: Error
           success: Success
+    comments:
+      exports:
+        column_name:
+          comments:
+            alignment: Alignement
+            author:
+              author: Auteur
+              birth_date: Date de naissance
+              gender: Genre
+              id: ID
+              name: Nom
+              residential_area: Lieu de résidence
+              statutory_representative_email: Email representatif
+              work_area: Lieu de travail
+            body: Contenu
+            commentable_id: Commentable ID
+            commentable_type: Commentable type
+            created_at: Date de création
+            depth: Profondeur
+            id: ID
+            root_commentable_url: URL commentable
+            user_group:
+              id: ID
+              name: Nom
+              user_group: Groupe utilisateur
+    debates:
+      admin:
+        exports:
+          column_name:
+            debates:
+              author_url: Author url
+              category:
+                category: Category
+                id: Id
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              created_at: Creation date
+              description: description
+              end_time: End time
+              id: ID
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              start_time: Start time
+              title: title
+              url: Url
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
     devise:
       registrations:
         new:
@@ -43,6 +105,108 @@ fr:
             november: Novembre
             october: Octobre
             september: Septembre
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
+          residential_area: Residential area
+          sign_in: Sign in
+          sign_up: Sign up
+          statutory_representative_email: Statutory representative email
+          subtitle: Sign up to participate in discussions and support proposals.
+          terms: Terms
+          tos_agreement: Tos agreement
+          tos_title: Terms of Service
+          underage: Underage
+          username_help: Username help
+          work_area: Work area
+          year_label: Year label
+      shared:
+        omniauth_buttons:
+          or: Or
+    forms:
+      user_answers_serializer:
+        created_at: Answered on
+        id: Answer ID
+        ip_hash: Ip Hash
+        registered: Registered
+        unregistered: Unregistered
+        user_birth_date: Birth date
+        user_email: Email
+        user_gender: Gender
+        user_name: Username
+        user_nickname: Nickname
+        user_residential_area: Residential area
+        user_status: User status
+        user_statutory_representative_email: Statutory representative email
+        user_work_area: Work area
+    meetings:
+      admin:
+        exports:
+          column_name:
+            registrations:
+              code: Code
+              id: ID
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposals:
+              amendments: Amendments
+              answer: Answer
+              attachments: Attachments
+              attachments_url: Attachments url
+              authors:
+                authors: Authors
+                birth_date: Birth date
+                emails: Emails
+                gender: Gender
+                names: Names
+                nicknames: Nicknames
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                work_area: Work area
+              body: Content
+              category:
+                category: Category
+                id: ID
+                name: Name
+              collaborative_draft_origin: Collaborative draft origin
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              endorsements: Endorsements
+              followers: Followers
+              id: ID
+              meeting_urls: Meeting url
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              published_at: Publication date
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: Url
           newsletter: En cochant cette case, je consens à ce que mes données soient traitées dans le cadre de ma participation au projet pour lequel je contribue en ligne, organisé par la Mairie de Toulouse. Je suis informé.e du retrait possible de mon consentement, à tout moment, en le demandant à jeparticipe@mairie-toulouse.fr.
           newsletter_title: Recevoir les actualités de la plateforme
           nickname_help: Cet identifiant est public et unique sur la plateforme "%{organization}" ; il permet aux autres utilisateurs de vous suivre, de vous contacter ou de vous mentionner dans leurs commentaires. Il s’affichera précédé d’un « @ » ; il ne doit pas contenir d’espace ni de caractère spécial.
@@ -62,9 +226,6 @@ fr:
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
           work_area: Dans quel quartier travaillez-vous ?
           year_label: Année
-      shared:
-        omniauth_buttons:
-          or: Ou
   devise:
     failure:
       invited: Invited
