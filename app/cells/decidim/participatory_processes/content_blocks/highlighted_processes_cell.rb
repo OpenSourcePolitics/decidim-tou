@@ -33,8 +33,7 @@ module Decidim
         end
 
         def linked_assemblies_for(process)
-          process.linked_participatory_space_resources(:assembly, "included_participatory_processes")
-              .published
+          process.linked_participatory_space_resources(:assembly, "included_participatory_processes").published
         end
 
         def i18n_scope
