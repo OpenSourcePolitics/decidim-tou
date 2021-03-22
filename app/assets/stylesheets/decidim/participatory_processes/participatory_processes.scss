@@ -1,0 +1,18 @@
+.linked_assemblies {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 0.8rem;
+
+  .linked_assembly {
+    display: inline-block;
+    font-size: .8rem;
+    color: $secondary;
+  }
+}
+
+.process-header__info {
+  .linked_assemblies {
+    text-align: initial;
+  }
+}
