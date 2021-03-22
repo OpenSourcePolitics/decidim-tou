@@ -6,6 +6,7 @@ require "decidim/debates/test/factories"
 require "decidim/meetings/test/factories"
 require "decidim/accountability/test/factories"
 require "decidim/system/test/factories"
+require "decidim/participatory_processes/test/factories"
 
 FactoryBot.modify do
   factory :debate, class: "Decidim::Debates::Debate" do
@@ -17,7 +18,7 @@ FactoryBot.modify do
     end_time { start_time.advance(hours: 2) }
     component { build(:component, manifest_name: "debates") }
     author { component.try(:organization) }
-
+   
     trait :open_ama do
       start_time { 1.day.ago }
       end_time { 1.day.from_now }
@@ -39,3 +40,4 @@ FactoryBot.modify do
     end
   end
 end
+

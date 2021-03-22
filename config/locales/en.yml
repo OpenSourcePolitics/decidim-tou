@@ -271,6 +271,9 @@ en:
         navigation: Navigation
         sign_in: Sign In
         sign_up: Sign Up
+      participatory_process_groups:
+        participatory_process_group:
+          processes_count: Processes count
       user_menu:
         account: Account
         conversations: Conversations
