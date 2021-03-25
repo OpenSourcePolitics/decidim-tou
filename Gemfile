@@ -8,7 +8,9 @@ gem "decidim", "0.23.2"
 gem "decidim-conferences", "0.23.2"
 
 # Modules
-# gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git"
+gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "release/0.23-stable"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "0.23-stable"
+gem "decidim-navbar_links", git: "https://github.com/OpenSourcePolitics/decidim-module-navbar_links", branch: "0.23-stable"
 
 gem "bootsnap", "~> 1.3"
 gem "puma", ">= 4.3.5"
