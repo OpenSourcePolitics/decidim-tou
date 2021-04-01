@@ -8,7 +8,7 @@ gem "decidim", git: "https://github.com/OpenSourcePolitics/decidim.git", branch:
 gem "decidim-conferences", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
 
 # Modules
-gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git"
+gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "release/0.18-stable"
 
 gem "bootsnap", "~> 1.3"
 gem "puma", "~> 3.0"
