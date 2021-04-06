@@ -237,3 +237,8 @@ h4, .h4, .heading4 {
     font-family: $heading-font !important;
   }
 }
+
+ul,
+ol{
+  list-style-position: inside;
+}

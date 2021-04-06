@@ -278,3 +278,11 @@ fr:
         account: Account
         conversations: Conversations
         notifications: Notifications
+  faker:
+    lorem:
+      punctuation:
+        period: Period
+    name:
+      suffix: Suffix
+    hipster:
+      words: Words

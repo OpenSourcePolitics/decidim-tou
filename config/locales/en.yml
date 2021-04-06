@@ -278,3 +278,7 @@ en:
         account: Account
         conversations: Conversations
         notifications: Notifications
+  faker:
+    lorem:
+      punctuation:
+        period: Period
