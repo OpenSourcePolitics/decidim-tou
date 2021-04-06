@@ -21,7 +21,7 @@ describe Decidim::ContentBlocks::SubHeroCell, type: :cell do
   context "when description is filled" do
     let(:description) do
       {
-          "en" => "<h2><strong>Bold titled text</strong></h2>"
+        "en" => "<h2><strong>Bold titled text</strong></h2>"
       }
     end
 
