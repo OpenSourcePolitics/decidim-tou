@@ -19,13 +19,14 @@
 @import "decidim/modules/shared";
 @import "decidim/modules/signup";
 @import "decidim/modules/horizontal-steps";
-@import "decidim/modules/footer";
 
 $title-bar-background: #4f4f4f;
 $navbar-background: darken($title-bar-background, 10%);
 
 $primary-font: 'Roboto', Roboto, Helvetica, Arial, sans-serif;
 $heading-font: 'Panton', Roboto, Arial, sans-serif;
+
+$mini-footer-bg: $dark-gray;
 
 body {
   font-family: $primary-font;
@@ -137,6 +138,10 @@ h4, .h4, .heading4 {
   padding: .5rem 1rem;
 }
 
+.mini-footer{
+  padding: 1rem 0;
+  background-color: $mini-footer-bg;
+}
 
 .mini-footer .row {
   display: flex;
