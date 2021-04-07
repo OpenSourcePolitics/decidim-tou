@@ -79,7 +79,7 @@ describe "Menu", type: :system do
       visit decidim.root_path
 
       within ".main-nav" do
-        expect(page).to have_selected_option("Inici")
+        expect(page).to have_content("Inici")
       end
     end
   end
