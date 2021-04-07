@@ -5,6 +5,16 @@ fr:
       assembly:
         sort_children: Trier les assemblées enfant
   decidim:
+    user_complete_registration:
+      show:
+        complete_registration: Bienvenue !
+        complete_registration_subtitle: Sélectionnez les thématiques et quartiers qui vous intéressent. Vous recevrez des notifications liées à vos centres d’intérêts. Toutes les activités associées apparaîtront dans l’onglet «  centre d’intérêts » de votre profil que vous pouvez modifier.
+        my_interests: Mes intérêts
+        no_scopes: Cette organisation n'a pas encore de secteurs !
+        save_and_start_explore: Sauvegarder et explorer la plateforme
+        select_your_interests: Cliquez sur les curseurs et recevez des notifications personnalisées
+        skip: Passer cette étape
+        welcome: Bienvenue !
     accessibility:
       skip_button: Skip button
     admin:

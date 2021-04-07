@@ -27,23 +27,14 @@ describe "User complete registration", type: :system do
     describe "updating personal data" do
       it "updates the user's data" do
         within "form.edit_user" do
-          fill_in :user_personal_url, with: "https://example.org"
-          fill_in :user_about, with: "A Serbian-American inventor, electrical engineer, mechanical engineer, physicist, and futurist."
+          expect(page).to have_content("Select your interests")
+          expect(page).to have_content("My interests")
           find("*[type=submit]").click
         end
 
         within_flash_messages do
           expect(page).to have_content("successfully")
         end
-
-        user.reload
-
-        within_user_menu do
-          find("a", text: "public profile").click
-        end
-
-        expect(page).to have_content("example.org")
-        expect(page).to have_content("Serbian-American")
       end
     end
   end
