@@ -12,30 +12,30 @@ module Decidim
     let(:ignored_area) { create :area, organization: organization }
     let(:data) do
       {
-          avatar: nil,
-          remove_avatar: nil,
-          personal_url: "https://example.org",
-          about: "This is a description of me",
-          scopes: {
-              ignored_scope.id.to_s => {
-                  "checked": "0",
-                  "id": ignored_scope.id.to_s
-              },
-              interested_scope.id.to_s => {
-                  "checked": "1",
-                  "id": interested_scope.id.to_s
-              }
+        avatar: nil,
+        remove_avatar: nil,
+        personal_url: "https://example.org",
+        about: "This is a description of me",
+        scopes: {
+          ignored_scope.id.to_s => {
+            "checked": "0",
+            "id": ignored_scope.id.to_s
+          },
+          interested_scope.id.to_s => {
+            "checked": "1",
+            "id": interested_scope.id.to_s
           }
+        }
       }
     end
 
     let(:form) do
       UserCompleteRegistrationForm.from_params(
-          avatar: data[:avatar],
-          remove_avatar: data[:remove_avatar],
-          personal_url: data[:personal_url],
-          about: data[:about],
-          scopes: data[:scopes]
+        avatar: data[:avatar],
+        remove_avatar: data[:remove_avatar],
+        personal_url: data[:personal_url],
+        about: data[:about],
+        scopes: data[:scopes]
       ).with_context(current_organization: organization, current_user: user)
     end
 

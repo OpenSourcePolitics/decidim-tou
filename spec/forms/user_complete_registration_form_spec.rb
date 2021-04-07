@@ -6,14 +6,14 @@ module Decidim
   describe UserCompleteRegistrationForm do
     subject do
       described_class.new(
-          avatar: avatar,
-          remove_avatar: remove_avatar,
-          personal_url: personal_url,
-          about: about,
-          scopes: scopes
+        avatar: avatar,
+        remove_avatar: remove_avatar,
+        personal_url: personal_url,
+        about: about,
+        scopes: scopes
       ).with_context(
-          current_organization: organization,
-          current_user: user
+        current_organization: organization,
+        current_user: user
       )
     end
 
