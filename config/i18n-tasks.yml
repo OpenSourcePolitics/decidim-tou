@@ -88,6 +88,9 @@ ignore_missing:
  - decidim.assemblies.admin.assemblies.form.*
  - decidim.assemblies.show.*
  - layouts.decidim.footer.*
+ - layouts.decidim.participatory_processes.promoted_process.*
+ - decidim.participatory_processes.show.*
+ - decidim.participatory_process.show.*
 
 # Consider these keys used:
 ignore_unused:

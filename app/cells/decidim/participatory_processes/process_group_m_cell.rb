@@ -57,6 +57,7 @@ module Decidim
       def first_participatory_process
         model.participatory_processes.first
       end
+
       def linked_assemblies
         first_participatory_process.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
       end
