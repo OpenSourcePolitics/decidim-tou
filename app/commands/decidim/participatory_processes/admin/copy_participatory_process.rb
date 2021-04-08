@@ -40,29 +40,29 @@ module Decidim
 
         def copy_participatory_process
           @copied_process = ParticipatoryProcess.create!(
-              organization: @participatory_process.organization,
-              title: form.title,
-              subtitle: @participatory_process.subtitle,
-              slug: form.slug,
-              hashtag: @participatory_process.hashtag,
-              description: @participatory_process.description,
-              short_description: @participatory_process.short_description,
-              hero_image: @participatory_process.hero_image,
-              banner_image: @participatory_process.banner_image,
-              promoted: @participatory_process.promoted,
-              display_linked_assemblies: @participatory_process.display_linked_assemblies,
-              scope: @participatory_process.scope,
-              developer_group: @participatory_process.developer_group,
-              local_area: @participatory_process.local_area,
-              area: @participatory_process.area,
-              target: @participatory_process.target,
-              participatory_scope: @participatory_process.participatory_scope,
-              participatory_structure: @participatory_process.participatory_structure,
-              meta_scope: @participatory_process.meta_scope,
-              start_date: @participatory_process.start_date,
-              end_date: @participatory_process.end_date,
-              participatory_process_group: @participatory_process.participatory_process_group,
-              private_space: @participatory_process.private_space
+            organization: @participatory_process.organization,
+            title: form.title,
+            subtitle: @participatory_process.subtitle,
+            slug: form.slug,
+            hashtag: @participatory_process.hashtag,
+            description: @participatory_process.description,
+            short_description: @participatory_process.short_description,
+            hero_image: @participatory_process.hero_image,
+            banner_image: @participatory_process.banner_image,
+            promoted: @participatory_process.promoted,
+            display_linked_assemblies: @participatory_process.display_linked_assemblies,
+            scope: @participatory_process.scope,
+            developer_group: @participatory_process.developer_group,
+            local_area: @participatory_process.local_area,
+            area: @participatory_process.area,
+            target: @participatory_process.target,
+            participatory_scope: @participatory_process.participatory_scope,
+            participatory_structure: @participatory_process.participatory_structure,
+            meta_scope: @participatory_process.meta_scope,
+            start_date: @participatory_process.start_date,
+            end_date: @participatory_process.end_date,
+            participatory_process_group: @participatory_process.participatory_process_group,
+            private_space: @participatory_process.private_space
           )
         end
 
@@ -71,13 +71,13 @@ module Decidim
 
           @participatory_process.steps.each do |step|
             new_step = ParticipatoryProcessStep.create!(
-                title: step.title,
-                description: step.description,
-                start_date: step.start_date,
-                end_date: step.end_date,
-                participatory_process: @copied_process,
-                position: step.position,
-                active: step.active
+              title: step.title,
+              description: step.description,
+              start_date: step.start_date,
+              end_date: step.end_date,
+              participatory_process: @copied_process,
+              position: step.position,
+              active: step.active
             )
             @steps_relationship[step.id.to_s] = new_step.id.to_s
           end
@@ -86,17 +86,17 @@ module Decidim
         def copy_participatory_process_categories
           @participatory_process.categories.first_class.each do |category|
             new_category = Category.create!(
-                name: category.name,
-                description: category.description,
-                participatory_space: @copied_process
+              name: category.name,
+              description: category.description,
+              participatory_space: @copied_process
             )
 
             category.descendants.each do |child|
               Category.create!(
-                  name: child.name,
-                  description: child.description,
-                  participatory_space: @copied_process,
-                  parent: new_category
+                name: child.name,
+                description: child.description,
+                participatory_space: @copied_process,
+                parent: new_category
               )
             end
           end
@@ -106,11 +106,11 @@ module Decidim
           @participatory_process.components.each do |component|
             copied_step_settings = @form.copy_steps? ? map_step_settings(component.step_settings) : {}
             new_component = Component.create!(
-                manifest_name: component.manifest_name,
-                name: component.name,
-                participatory_space: @copied_process,
-                settings: component.settings,
-                step_settings: copied_step_settings
+              manifest_name: component.manifest_name,
+              name: component.name,
+              participatory_space: @copied_process,
+              settings: component.settings,
+              step_settings: copied_step_settings
             )
             component.manifest.run_hooks(:copy, new_component: new_component, old_component: component)
           end
