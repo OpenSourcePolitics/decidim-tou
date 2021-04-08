@@ -7,6 +7,11 @@ en:
   decidim:
     accessibility:
       skip_button: Skip button
+    account:
+      update:
+        error: There was a problem updating your account.
+        success: Your account was successfully updated.
+        success_with_email_confirmation: Your account was successfully updated. You'll receive an email to confirm your new email address.
     admin:
       participatory_space_private_users:
         create:
@@ -226,6 +231,16 @@ en:
           username_help: Username help
           work_area: Work area
           year_label: Year label
+    user_complete_registration:
+      show:
+        complete_registration: Complete registration
+        complete_registration_subtitle: Complete registration subtitle
+        my_interests: My interests
+        no_scopes: No scopes
+        save_and_start_explore: Save and start explore
+        select_your_interests: Select your interests
+        skip: Skip this step
+        welcome: Welcome
   devise:
     failure:
       invited: You have a pending invitation, accept it to finish creating your account

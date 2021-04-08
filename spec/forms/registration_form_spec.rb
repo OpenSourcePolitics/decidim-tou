@@ -187,6 +187,18 @@ module Decidim
       it { is_expected.to be_invalid }
     end
 
+    context "when birth_date year is nil" do
+      let(:year) { nil }
+
+      it { is_expected.to be_invalid }
+    end
+
+    context "when birth_date month is nil" do
+      let(:month) { nil }
+
+      it { is_expected.to be_invalid }
+    end
+
     context "when underage is unchecked" do
       let(:underage) { nil }
 

@@ -36,6 +36,7 @@ module Decidim
     validates :password, password: { name: :name, email: :email, username: :nickname }
     validates :password_confirmation, presence: true
     validates :tos_agreement, allow_nil: false, acceptance: true
+    validates :month, :year, presence: true
 
     validate :email_unique_in_organization
     validate :nickname_unique_in_organization
