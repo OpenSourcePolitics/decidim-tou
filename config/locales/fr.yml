@@ -269,10 +269,10 @@ fr:
         sign_up: S'inscrire
     shared:
       links:
-        captcha_protection: Captcha protection
-        didn_t_receive_confirmation_instructions: Didn t receive confirmation instructions
-        didn_t_receive_unlock_instructions: Didn t receive unlock instructions
-        forgot_your_password: Forgot your password
+        captcha_protection: Ce formulaire d'inscription est protégé par un mécanisme d'Invisible Captcha (ICM)
+        didn_t_receive_confirmation_instructions: Vous n'avez pas reçu d'instructions de confirmation?
+        didn_t_receive_unlock_instructions: Vous n'avez pas reçu d'instructions de déblocage?
+        forgot_your_password: Mot de passe oublié?
         sign_in: Sign in
         sign_in_with_provider: Se connecter avec %{provider}
         sign_up: Sign up
