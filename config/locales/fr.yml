@@ -159,6 +159,23 @@ fr:
                 user: User
                 user_group: User group
                 work_area: Work area
+    participatory_processes:
+      admin:
+        participatory_processes:
+          form:
+            announcement_help: Le texte saisi ici sera affiché juste en dessous des informations de la concertation.
+            duration: Durée
+            filters: Les filtres
+            images: Images
+            metadata: Métadonnées
+            other: Autre
+            related_processes: Concertations liées
+            scope_type_max_depth_help: Restreindre la profondeur du filtre de secteur; Le filtre s'affichera du secteur général au type de secteur sélectionné.
+            select_an_area: Sélectionnez une région
+            select_process_group: Sélectionnez un groupe de processus
+            slug_help: 'Les identifiants d''URL sont utilisés pour générer les URL qui envoient vers cette concertation. Ils n''acceptent que des lettres, des chiffres et des tirets et doivent commencer par une lettre. Exemple : %{url}'
+            title: Informations générales
+            visbility: Visibilité
     proposals:
       admin:
         exports:
