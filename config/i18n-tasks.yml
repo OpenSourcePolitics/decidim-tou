@@ -92,6 +92,7 @@ ignore_missing:
  - decidim.participatory_processes.show.*
  - decidim.participatory_process.show.*
  - decidim.pages.home.sub_hero.*
+ - faker.*
 
 # Consider these keys used:
 ignore_unused:
