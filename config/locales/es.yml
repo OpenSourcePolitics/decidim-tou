@@ -1,13 +1,84 @@
 ---
 es:
+  activemodel:
+    attributes:
+      assembly:
+        sort_children: Sort children
   decidim:
     accessibility:
       skip_button: Skip button
+    account:
+      update:
+        error: There was a problem updating your account.
+        success: Your account was successfully updated.
+        success_with_email_confirmation: Your account was successfully updated. You'll receive an email to confirm your new email address.
     admin:
       participatory_space_private_users:
         create:
           error: Error
           success: Success
+    comments:
+      exports:
+        column_name:
+          comments:
+            alignment: Alignment
+            author:
+              author: Author
+              birth_date: Birth date
+              gender: Gender
+              id: ID
+              name: Name
+              residential_area: Residential area
+              statutory_representative_email: Statutory representative email
+              work_area: Work area
+            body: Content
+            commentable_id: Commentable ID
+            commentable_type: Commentable type
+            created_at: Creation date
+            depth: Depth
+            id: ID
+            root_commentable_url: Root commentable URL
+            user_group:
+              id: ID
+              name: Name
+              user_group: User group
+    debates:
+      admin:
+        exports:
+          column_name:
+            debates:
+              author_url: Author url
+              category:
+                category: Category
+                id: Id
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              created_at: Creation date
+              description: description
+              end_time: End time
+              id: ID
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              start_time: Start time
+              title: title
+              url: Url
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
     devise:
       registrations:
         new:
@@ -15,6 +86,8 @@ es:
           back: Back
           birth_date: Birth date
           complete_profile: Complete profile
+          complete_sign_up: Plus que quelques questions...
+          complete_sign_up_subtitle: Remplissez ces quelques champs pour finaliser la création de votre compte.
           continue: Continue
           create_account: Create account
           gdpr_disclaimer: Gdpr disclaimer
@@ -56,9 +129,141 @@ es:
       shared:
         omniauth_buttons:
           or: Or
+    forms:
+      user_answers_serializer:
+        created_at: Answered on
+        id: Answer ID
+        ip_hash: Ip Hash
+        registered: Registered
+        unregistered: Unregistered
+        user_birth_date: Birth date
+        user_email: Email
+        user_gender: Gender
+        user_name: Username
+        user_nickname: Nickname
+        user_residential_area: Residential area
+        user_status: User status
+        user_statutory_representative_email: Statutory representative email
+        user_work_area: Work area
+    meetings:
+      admin:
+        exports:
+          column_name:
+            registrations:
+              code: Code
+              id: ID
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposals:
+              amendments: Amendments
+              answer: Answer
+              attachments: Attachments
+              attachments_url: Attachments url
+              authors:
+                authors: Authors
+                birth_date: Birth date
+                emails: Emails
+                gender: Gender
+                names: Names
+                nicknames: Nicknames
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                work_area: Work area
+              body: Content
+              category:
+                category: Category
+                id: ID
+                name: Name
+              collaborative_draft_origin: Collaborative draft origin
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              endorsements: Endorsements
+              followers: Followers
+              id: ID
+              meeting_urls: Meeting url
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              published_at: Publication date
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: Url
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
+          residential_area: Residential area
+          sign_in: Sign in
+          sign_up: Sign up
+          sign_up_as:
+            legend: S'inscrire en tant que
+          sign_up_subtitle: Inscrivez-vous pour participer aux consultations.
+          statutory_representative_email: Statutory representative email
+          subtitle: Sign up to participate in discussions and support proposals.
+          terms: Terms
+          tos_agreement: Tos agreement
+          tos_title: Terms of Service
+          underage: Underage
+          username_help: Username help
+          work_area: Work area
+          year_label: Year label
+    user_complete_registration:
+      show:
+        complete_registration: Complete registration
+        complete_registration_subtitle: Complete registration subtitle
+        my_interests: My interests
+        no_scopes: No scopes
+        save_and_start_explore: Save and start explore
+        select_your_interests: Select your interests
+        skip: Skip this step
+        welcome: Welcome
   devise:
     failure:
       invited: Invited
+    mailer:
+      invitation_instructions:
+        accept: Accepter l'invitation
+        accept_until: Cette invitation expirera le %{due_date}.
+        decline: Refuser l'invitation
+        hello: "%{email},"
+        ignore: |-
+          Si vous ne renouvelez pas votre inscription, votre compte sera automatiquement supprimé à compter du 29 juillet et toutes vos contributions passées deviendront anonymes.
+          <br /><br />
+          Pour toutes questions vous pouvez nous contacter sur <a href="mailto:jeparticipe@mairie-toulouse.fr">jeparticipe@mairie-toulouse.fr</a>.
+          <br />
+        invited_you_as_admin: "%{invited_by} vous a invité en tant qu'administrateur de %{application}. Vous pouvez accepter cette invitation grâce au lien ci-dessous."
+        invited_you_as_private_user: "%{invited_by} vous a invité en tant qu'utilisateur privé de %{application}. Vous pouvez l'accepter via le lien ci-dessous."
+        someone_invited_you: |-
+          La plateforme jeparticipe.toulouse.fr évolue !<br />
+          <br />
+          Afin de continuer à donner votre avis et de participer aux décisions qui font Toulouse, nous vous invitons à renouveler votre inscription en validant les nouvelles conditions générales d'utilisation et en complétant votre profil, en cliquant ici !
+        someone_invited_you_as_admin: Vous avez été invité en tant qu'administrateur de %{application}, vous pouvez l'accepter via le lien ci-dessous.
+        someone_invited_you_as_private_user: Vous avez été invité en tant qu'utilisateur privé de %{application}, vous pouvez l'accepter via le lien ci-dessous.
+        subject: Instructions d'invitation
     registrations:
       new:
         sign_up: Sign up
@@ -78,6 +283,9 @@ es:
         navigation: Navigation
         sign_in: Sign In
         sign_up: Sign Up
+      participatory_process_groups:
+        participatory_process_group:
+          processes_count: Processes count
       user_menu:
         account: Account
         conversations: Conversations
