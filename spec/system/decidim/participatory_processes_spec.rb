@@ -8,6 +8,7 @@ describe "Participatory Processes", type: :system do
   let(:show_metrics) { true }
   let(:show_statistics) { true }
   let(:hashtag) { true }
+  let(:display_linked_assemblies) { true }
   let(:base_process) do
     create(
       :participatory_process,
@@ -16,7 +17,8 @@ describe "Participatory Processes", type: :system do
       description: { en: "Description", ca: "Descripció", es: "Descripción" },
       short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
       show_metrics: show_metrics,
-      show_statistics: show_statistics
+      show_statistics: show_statistics,
+      display_linked_assemblies: display_linked_assemblies
     )
   end
 
@@ -401,6 +403,18 @@ describe "Participatory Processes", type: :system do
             expect(page).to have_content(translated(transparent_assembly.title))
             expect(page).to have_no_content(translated(unpublished_assembly.title))
             expect(page).to have_no_content(translated(private_assembly.title))
+          end
+
+          context "when display_linked_assemblies is enabled" do
+            let(:display_linked_assemblies) { false }
+
+            it "doesn't display related assemblies" do
+              expect(page).to have_no_content("RELATED ASSEMBLIES")
+              expect(page).to have_no_content(translated(published_assembly.title))
+              expect(page).to have_no_content(translated(transparent_assembly.title))
+              expect(page).to have_no_content(translated(unpublished_assembly.title))
+              expect(page).to have_no_content(translated(private_assembly.title))
+            end
           end
         end
       end
