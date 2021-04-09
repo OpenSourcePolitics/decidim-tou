@@ -247,6 +247,11 @@ h4, .h4, .heading4 {
   }
 }
 
+ul,
+ol{
+  list-style-position: inside;
+}
+
 .register__separator {
   display: block;
   text-align: center;
