@@ -83,7 +83,7 @@ module Decidim
       end
 
       def linked_assemblies
-        linked_assemblies_for(model)
+        model.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
       end
 
       def decidim_assemblies
