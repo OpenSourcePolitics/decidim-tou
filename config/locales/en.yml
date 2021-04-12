@@ -164,6 +164,23 @@ en:
                 user: User
                 user_group: User group
                 work_area: Work area
+    participatory_processes:
+      admin:
+        participatory_processes:
+          form:
+            announcement_help: The text you enter here will be shown to the user right below the process information.
+            duration: Duration
+            filters: Filters
+            images: Images
+            metadata: Metadata
+            other: Other
+            related_processes: Related processes
+            scope_type_max_depth_help: Restrict the scope filter depth; The filter will show from general to the selected scope type.
+            select_an_area: Select an Area
+            select_process_group: Select a process group
+            slug_help: 'URL slugs are used to generate the URLs that point to this process. Only accepts letters, numbers and dashes, and must start with a letter. Example: %{url}'
+            title: General Information
+            visbility: Visibility
     proposals:
       admin:
         exports:
@@ -276,6 +293,10 @@ en:
         sign_in: Sign in
         sign_in_with_provider: Sign in with %{provider}
         sign_up: Sign up
+  faker:
+    lorem:
+      punctuation:
+        space: Space
   layouts:
     decidim:
       footer:

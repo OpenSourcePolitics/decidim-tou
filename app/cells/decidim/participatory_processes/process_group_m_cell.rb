@@ -54,11 +54,12 @@ module Decidim
         end
       end
 
+      def first_participatory_process
+        model.participatory_processes.first
+      end
+
       def linked_assemblies
-        model.participatory_processes
-             .first
-             .linked_participatory_space_resources(:assembly, "included_participatory_processes")
-             .public_spaces
+        first_participatory_process.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
       end
 
       def decidim_assemblies

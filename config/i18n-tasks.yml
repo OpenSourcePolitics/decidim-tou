@@ -88,6 +88,11 @@ ignore_missing:
  - decidim.assemblies.admin.assemblies.form.*
  - decidim.assemblies.show.*
  - layouts.decidim.footer.*
+ - layouts.decidim.participatory_processes.promoted_process.*
+ - decidim.participatory_processes.show.*
+ - decidim.participatory_process.show.*
+ - decidim.pages.home.sub_hero.*
+ - faker.*
 
 # Consider these keys used:
 ignore_unused:
@@ -104,4 +109,5 @@ ignore_unused:
   - decidim.proposals.admin.exports.column_name.proposals.*
   - decidim.forms.user_answers_serializer.*
   - decidim.proposals.admin.exports.*
+  - faker.*
 
