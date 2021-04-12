@@ -63,8 +63,9 @@ FactoryBot.modify do
     start_date { Date.current }
     end_date { 2.months.from_now }
     area { nil }
+    display_linked_assemblies { false }
 
-    trait :display_linked_assemblies do
+    trait :with_linked_assemblies do
       display_linked_assemblies { true }
     end
 
