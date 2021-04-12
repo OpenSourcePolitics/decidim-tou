@@ -278,6 +278,10 @@ en:
         sign_in: Sign in
         sign_in_with_provider: Sign in with %{provider}
         sign_up: Sign up
+  faker:
+    lorem:
+      punctuation:
+        space: Space
   layouts:
     decidim:
       footer:
