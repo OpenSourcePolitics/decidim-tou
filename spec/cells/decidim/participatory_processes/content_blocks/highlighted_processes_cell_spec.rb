@@ -48,7 +48,7 @@ describe Decidim::ParticipatoryProcesses::ContentBlocks::HighlightedProcessesCel
     end
 
     context "and displaying linked assemblies is disabled" do
-      let(:display_linked_assemblies) { true }
+      let(:display_linked_assemblies) { false }
 
       it "doesn't show linked assemblies" do
         within "#highlighted-processes" do
