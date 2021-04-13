@@ -82,10 +82,6 @@ module Decidim
         model.end_date
       end
 
-      def linked_assemblies
-        linked_assemblies_for(model)
-      end
-
       def decidim_assemblies
         Decidim::Assemblies::Engine.routes.url_helpers
       end

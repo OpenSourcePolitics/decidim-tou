@@ -1,7 +1,7 @@
 <div class="card__header">
-  <% if linked_assemblies.present? && first_participatory_process.display_linked_assemblies %>
+  <% if model.try(:linked_assemblies).present? %>
     <div class="linked_assemblies">
-      <% linked_assemblies.each do |assembly| %>
+      <% model.linked_assemblies.each do |assembly| %>
         <%= link_to decidim_assemblies.assembly_path(assembly), class: "linked_assembly" do %>
           <%= translated_attribute(assembly.title) %>
         <% end %>

@@ -53,9 +53,6 @@ jobs:
       - name:
         run: |
           bundle exec rubocop -P
-      - name:
-        run: |
-          bundle exec i18n-tasks normalize --locales en,fr
       - name: Lint views
         run: |
           ./.github/run_erblint.sh

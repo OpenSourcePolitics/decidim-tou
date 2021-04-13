@@ -12,9 +12,9 @@
                      style="background-image:url(<%= process.hero_image.url %>)"></div>
               <% end %>
               <div class="card__content">
-                <% if linked_assemblies_for(process).present? && process.display_linked_assemblies? %>
+                <% if process.try(:linked_assemblies).present? %>
                   <div class="linked_assemblies column text-center">
-                    <% linked_assemblies_for(process).each do |assembly| %>
+                    <% process.linked_assemblies.each do |assembly| %>
                       <%= link_to decidim_assemblies.assembly_path(assembly), class: "linked_assembly" do %>
                         <%= translated_attribute(assembly.title) %>
                       <% end %>
