@@ -82,10 +82,6 @@ module Decidim
         model.end_date
       end
 
-      def linked_assemblies
-        model.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
-      end
-
       def decidim_assemblies
         Decidim::Assemblies::Engine.routes.url_helpers
       end
