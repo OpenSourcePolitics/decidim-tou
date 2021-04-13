@@ -1,5 +1,5 @@
 <div class="card__header">
-  <% if model.respond_to?(:display_linked_assemblies) && model.linked_assemblies.present? && model.display_linked_assemblies %>
+  <% if model.try(:linked_assemblies).present? %>
     <div class="linked_assemblies">
       <% model.linked_assemblies.each do |assembly| %>
         <%= link_to decidim_assemblies.assembly_path(assembly), class: "linked_assembly" do %>
