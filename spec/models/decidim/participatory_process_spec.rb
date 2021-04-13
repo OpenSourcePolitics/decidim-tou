@@ -119,7 +119,6 @@ module Decidim
               expect(subject.linked_assemblies).not_to include(private_assembly)
             end
           end
-
         end
       end
     end
