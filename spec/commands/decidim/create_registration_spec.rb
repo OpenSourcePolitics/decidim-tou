@@ -16,7 +16,7 @@ module Decidim
         let(:tos_agreement) { "1" }
         let(:newsletter) { "1" }
 
-        let(:additional_tos) { "1" }
+        let(:additional_tos) { true }
         let(:residential_area) { create(:scope, organization: organization).id.to_s }
         let(:work_area) { create(:scope, organization: organization).id.to_s }
         let(:gender) { "other" }
@@ -31,6 +31,7 @@ module Decidim
 
         let(:registration_metadata) do
           {
+            additional_tos: additional_tos,
             residential_area: residential_area,
             work_area: work_area,
             gender: gender,

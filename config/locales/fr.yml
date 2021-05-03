@@ -9,6 +9,8 @@ fr:
     devise:
       registrations:
         new:
+          additional_tos_agreement: J'accepte.
+          additional_tos_title: Traitement de vos données personnelles
           already_have_an_account?: Vous avez déjà un compte ?
           back: Retour
           birth_date: Date de naissance

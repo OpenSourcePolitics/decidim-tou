@@ -9,6 +9,8 @@ en:
     devise:
       registrations:
         new:
+          additional_tos_agreement: I agree.
+          additional_tos_title: Processing of your personal data
           already_have_an_account?: Already have an account?
           back: Back
           birth_date: Birth date

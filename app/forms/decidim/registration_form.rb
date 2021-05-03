@@ -20,6 +20,7 @@ module Decidim
     attribute :gender, String
     attribute :newsletter, Boolean
     attribute :tos_agreement, Boolean
+    attribute :additional_tos, Boolean
     jsonb_attribute :birth_date, [
       [:month, String],
       [:year, String]
@@ -33,6 +34,7 @@ module Decidim
     validates :password, password: { name: :name, email: :email, username: :nickname }, presence: true, confirmation: true
     validates :password_confirmation, presence: true
     validates :tos_agreement, allow_nil: false, acceptance: true
+    validates :additional_tos, allow_nil: false, acceptance: true
 
     validate :email_unique_in_organization
     validate :nickname_unique_in_organization
