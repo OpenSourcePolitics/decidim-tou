@@ -39,13 +39,13 @@ en:
             november: November
             october: October
             september: September
-          newsletter: Receive an occasional newsletter with relevant information
-          newsletter_title: Contact permission
           nickname_help: Your alias (@nickname) in %{organization}
           password_help: "%{minimun_characters} characters minimum, must not be too common (e.g. 123456) and must be different from your nickname and your email."
           residential_area: Residential area
           sign_in: Log in
           sign_up: Sign up to participate
+          sign_up_as:
+            legend: Legend
           sign_up_subtitle: Sign up to participate in discussions and support proposals.
           statutory_representative_email: Statutory representative email
           terms: the terms and conditions of use
@@ -59,6 +59,12 @@ en:
         omniauth_buttons:
           or: Or
   devise:
+    invitations:
+      edit:
+        header: Header
+        nickname_help: Nickname help
+        submit_button: Submit button
+        subtitle: Subtitle
     mailer:
       invitation_instructions:
         accept: Accept invitation

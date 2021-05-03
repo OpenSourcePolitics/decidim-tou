@@ -23,7 +23,6 @@ describe "Authentication", type: :system do
           fill_in :user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :user_tos_agreement
           check :user_additional_tos
-          check :user_newsletter
           click_button "Continue"
 
           fill_in :user_nickname, with: "responsible"
@@ -51,7 +50,6 @@ describe "Authentication", type: :system do
           fill_in :user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :user_tos_agreement
           check :user_additional_tos
-          check :user_newsletter
           click_button "Continue"
 
           expect(page).not_to have_css("#user_statutory_representative_email")
@@ -72,7 +70,6 @@ describe "Authentication", type: :system do
           check :user_additional_tos
           fill_in :user_password, with: "DfyvHn425mYAy2HL"
           fill_in :user_password_confirmation, with: "DfyvHn425mYAy2HL"
-          check :user_newsletter
           click_button "Continue"
 
           fill_in :user_name, with: "Responsible Citizen"
@@ -454,7 +451,6 @@ describe "Authentication", type: :system do
             fill_in :user_password_confirmation, with: "DfyvHn425mYAy2HL"
             check :user_tos_agreement
             check :user_additional_tos
-            check :user_newsletter
             click_button "Continue"
 
             fill_in :user_name, with: "Responsible Citizen"

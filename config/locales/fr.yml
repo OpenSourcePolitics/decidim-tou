@@ -39,13 +39,13 @@ fr:
             november: Novembre
             october: Octobre
             september: Septembre
-          newsletter: En cochant cette case, je consens à ce que mes données soient traitées dans le cadre de ma participation au projet pour lequel je contribue en ligne, organisé par la Mairie de Toulouse. Je suis informé.e du retrait possible de mon consentement, à tout moment, en le demandant à jeparticipe@mairie-toulouse.fr.
-          newsletter_title: Recevoir les actualités de la plateforme
           nickname_help: Cet identifiant est public et unique sur la plateforme "%{organization}" ; il permet aux autres utilisateurs de vous suivre, de vous contacter ou de vous mentionner dans leurs commentaires. Il s’affichera précédé d’un « @ » ; il ne doit pas contenir d’espace ni de caractère spécial.
           password_help: "%{minimun_characters} caractères minimum, ne doit pas être trop commun (ex. 123456) et doit être différent de votre pseudonyme et de votre email."
           residential_area: Dans quel quartier habitez-vous ?
           sign_in: S'identifier
           sign_up: S'inscrire
+          sign_up_as:
+            legend: Legend
           sign_up_subtitle: Inscrivez-vous pour participer aux consultations.
           statutory_representative_email: Email de mon parent ou de mon représentant légal
           terms: les conditions d'utilisation de la plateforme
@@ -59,6 +59,12 @@ fr:
         omniauth_buttons:
           or: Ou
   devise:
+    invitations:
+      edit:
+        header: Header
+        nickname_help: Nickname help
+        submit_button: Submit button
+        subtitle: Subtitle
     mailer:
       invitation_instructions:
         accept: Accepter l'invitation

@@ -14,7 +14,6 @@ module Decidim
         let(:password) { "Y1fERVzL2F" }
         let(:password_confirmation) { password }
         let(:tos_agreement) { "1" }
-        let(:newsletter) { "1" }
 
         let(:additional_tos) { true }
         let(:residential_area) { create(:scope, organization: organization).id.to_s }
@@ -49,7 +48,6 @@ module Decidim
               "password" => password,
               "password_confirmation" => password_confirmation,
               "tos_agreement" => tos_agreement,
-              "newsletter_at" => newsletter,
               "additional_tos" => additional_tos,
               "residential_area" => residential_area,
               "work_area" => work_area,
@@ -98,7 +96,6 @@ module Decidim
               password: form.password,
               password_confirmation: form.password_confirmation,
               tos_agreement: form.tos_agreement,
-              newsletter_notifications_at: form.newsletter_at,
               email_on_notification: true,
               organization: organization,
               accepted_tos_version: organization.tos_version,
@@ -106,17 +103,6 @@ module Decidim
             ).and_call_original
 
             expect { command.call }.to change(User, :count).by(1)
-          end
-
-          describe "when user keep uncheck newsletter" do
-            let(:newsletter) { "0" }
-
-            it "creates a user with no newsletter notifications" do
-              expect do
-                command.call
-                expect(User.last.newsletter_notifications_at).to eq(nil)
-              end.to change(User, :count).by(1)
-            end
           end
         end
       end

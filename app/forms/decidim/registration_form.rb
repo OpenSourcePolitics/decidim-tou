@@ -18,7 +18,6 @@ module Decidim
     attribute :residential_area, String
     attribute :work_area, String
     attribute :gender, String
-    attribute :newsletter, Boolean
     attribute :tos_agreement, Boolean
     attribute :additional_tos, Boolean
     jsonb_attribute :birth_date, [
@@ -67,12 +66,6 @@ module Decidim
     def map_model(model)
       self.month = model.birth_date["month"]
       self.year = model.birth_date["year"]
-    end
-
-    def newsletter_at
-      return nil unless newsletter?
-
-      Time.current
     end
 
     def residential_area_for_select
