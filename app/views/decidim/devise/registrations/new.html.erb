@@ -157,18 +157,6 @@
             </div>
           </div>
 
-          <div class="card" id="card__newsletter" <%= form_step_attributes(step: 1) %>>
-            <div class="card__content">
-              <legend><%= t(".newsletter_title") %></legend>
-
-              <fieldset>
-                <div class="field">
-                  <%= f.check_box :newsletter, label: t(".newsletter"), checked: @form.newsletter %>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-
           <div class="card">
             <div class="card__content">
               <div class="actions">

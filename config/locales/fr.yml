@@ -9,7 +9,7 @@ fr:
     devise:
       registrations:
         new:
-          additional_tos_agreement: J'accepte.
+          additional_tos_agreement: En cochant cette case, je consens à ce que mes données soient traitées dans le cadre de ma participation au projet pour lequel je contribue en ligne, organisé par la Mairie de Toulouse. Je suis informé.e du retrait possible de mon consentement, à tout moment, en le demandant à <a href="jeparticipe@mairie-toulouse.fr">jeparticipe@mairie-toulouse.fr</a>.
           additional_tos_title: Traitement de vos données personnelles
           already_have_an_account?: Vous avez déjà un compte ?
           back: Retour
