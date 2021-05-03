@@ -12,6 +12,9 @@ module Decidim::ParticipatoryProcesses
     let(:area) { create :area, organization: organization }
     let(:current_user) { create :user, :admin, organization: organization }
     let(:errors) { double.as_null_object }
+    let(:address) { "Carrer Pare Llaurador 113, baixos, 08224 Terrassa" }
+    let(:latitude) { 40.1234 }
+    let(:longitude) { 2.1234 }
     let(:related_process_ids) { [] }
     let(:form) do
       instance_double(
@@ -44,10 +47,17 @@ module Decidim::ParticipatoryProcesses
         area: area,
         errors: errors,
         related_process_ids: related_process_ids,
-        participatory_process_group: participatory_process_group
+        participatory_process_group: participatory_process_group,
+        address: address,
+        latitude: latitude,
+        longitude: longitude
       )
     end
     let(:invalid) { false }
+
+    before do
+      stub_geocoding(address, [latitude, longitude])
+    end
 
     context "when the form is not valid" do
       let(:invalid) { true }
