@@ -92,6 +92,7 @@ ignore_missing:
  - decidim.participatory_processes.show.*
  - decidim.participatory_process.show.*
  - decidim.pages.home.sub_hero.*
+ - decidim.participatory_processes.admin.participatory_processes.form.address_help
  - decidim.account.show.{change_password,update_account}
  - layouts.decidim.user_menu.profile
  - faker.*

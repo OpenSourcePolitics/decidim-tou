@@ -65,7 +65,10 @@ module Decidim
             meta_scope: form.meta_scope,
             start_date: form.start_date,
             end_date: form.end_date,
-            participatory_process_group: form.participatory_process_group
+            participatory_process_group: form.participatory_process_group,
+            address: form.address,
+            latitude: form.latitude,
+            longitude: form.longitude
           )
 
           return process unless process.valid?

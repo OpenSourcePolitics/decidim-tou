@@ -39,6 +39,13 @@
       <%= form.translated :editor, :announcement %>
       <p class="help-text"><%== t(".announcement_help") %></p>
     </div>
+
+    <% if Decidim.geocoder.present? %>
+      <div class="row column">
+        <%= form.text_field :address %>
+        <p class="help-text"><%== t(".address_help") %></p>
+      </div>
+    <% end %>
   </div>
 
   <div class="card-divider">
