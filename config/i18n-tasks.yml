@@ -92,6 +92,8 @@ ignore_missing:
  - decidim.participatory_processes.show.*
  - decidim.participatory_process.show.*
  - decidim.pages.home.sub_hero.*
+ - decidim.account.show.{change_password,update_account}
+ - layouts.decidim.user_menu.profile
  - faker.*
 
 # Consider these keys used:
