@@ -1,17 +1,90 @@
 ---
 fr:
+  activemodel:
+    attributes:
+      assembly:
+        sort_children: Trier les assemblées enfant
   decidim:
+    accessibility:
+      skip_button: Skip button
+    account:
+      update:
+        error: Une erreur s'est produite lors de la mise à jour de votre compte.
+        success: Votre compte a été mis à jour avec succès.
+        success_with_email_confirmation: Votre compte a été mis à jour avec succès. Vous recevrez un email pour confirmer votre nouvelle adresse.
     admin:
       participatory_space_private_users:
         create:
           error: Error
           success: Success
+    comments:
+      exports:
+        column_name:
+          comments:
+            alignment: Alignement
+            author:
+              author: Auteur
+              birth_date: Date de naissance
+              gender: Genre
+              id: ID
+              name: Nom
+              residential_area: Lieu de résidence
+              statutory_representative_email: Email representatif
+              work_area: Lieu de travail
+            body: Contenu
+            commentable_id: Commentable ID
+            commentable_type: Commentable type
+            created_at: Date de création
+            depth: Profondeur
+            id: ID
+            root_commentable_url: URL commentable
+            user_group:
+              id: ID
+              name: Nom
+              user_group: Groupe utilisateur
+    debates:
+      admin:
+        exports:
+          column_name:
+            debates:
+              author_url: Author url
+              category:
+                category: Category
+                id: Id
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              created_at: Creation date
+              description: description
+              end_time: End time
+              id: ID
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              start_time: Start time
+              title: title
+              url: Url
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
     devise:
       registrations:
         new:
           additional_tos_agreement: En cochant cette case, je consens à ce que mes données soient traitées dans le cadre de ma participation au projet pour lequel je contribue en ligne, organisé par la Mairie de Toulouse. Je suis informé.e du retrait possible de mon consentement, à tout moment, en le demandant à <a href="jeparticipe@mairie-toulouse.fr">jeparticipe@mairie-toulouse.fr</a>.
           additional_tos_title: Traitement de vos données personnelles
-          already_have_an_account?: Vous avez déjà un compte ?
+          already_have_an_account?: Already have an account?
           back: Retour
           birth_date: Date de naissance
           complete_profile: Compléter mon profil
@@ -39,15 +112,139 @@ fr:
             november: Novembre
             october: Octobre
             september: Septembre
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
+          residential_area: Residential area
+          sign_in: Sign in
+          sign_up: Sign up
+          sign_up_as:
+            legend: Legend
+          statutory_representative_email: Statutory representative email
+          subtitle: Sign up to participate in discussions and support proposals.
+          terms: Terms
+          tos_agreement: Tos agreement
+          tos_title: Terms of Service
+          underage: Underage
+          username_help: Username help
+          work_area: Work area
+          year_label: Year label
+      shared:
+        omniauth_buttons:
+          or: Or
+    forms:
+      user_answers_serializer:
+        created_at: Answered on
+        id: Answer ID
+        ip_hash: Ip Hash
+        registered: Registered
+        unregistered: Unregistered
+        user_birth_date: Birth date
+        user_email: Email
+        user_gender: Gender
+        user_name: Username
+        user_nickname: Nickname
+        user_residential_area: Residential area
+        user_status: User status
+        user_statutory_representative_email: Statutory representative email
+        user_work_area: Work area
+    meetings:
+      admin:
+        exports:
+          column_name:
+            registrations:
+              code: Code
+              id: ID
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
+    participatory_processes:
+      admin:
+        participatory_processes:
+          form:
+            announcement_help: Le texte saisi ici sera affiché juste en dessous des informations de la concertation.
+            duration: Durée
+            filters: Les filtres
+            images: Images
+            metadata: Métadonnées
+            other: Autre
+            related_processes: Concertations liées
+            scope_type_max_depth_help: Restreindre la profondeur du filtre de secteur; Le filtre s'affichera du secteur général au type de secteur sélectionné.
+            select_an_area: Sélectionnez une région
+            select_process_group: Sélectionnez un groupe de processus
+            slug_help: 'Les identifiants d''URL sont utilisés pour générer les URL qui envoient vers cette concertation. Ils n''acceptent que des lettres, des chiffres et des tirets et doivent commencer par une lettre. Exemple : %{url}'
+            title: Informations générales
+            visbility: Visibilité
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposals:
+              amendments: Amendments
+              answer: Answer
+              attachments: Attachments
+              attachments_url: Attachments url
+              authors:
+                authors: Authors
+                birth_date: Birth date
+                emails: Emails
+                gender: Gender
+                names: Names
+                nicknames: Nicknames
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                work_area: Work area
+              body: Content
+              category:
+                category: Category
+                id: ID
+                name: Name
+              collaborative_draft_origin: Collaborative draft origin
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              endorsements: Endorsements
+              followers: Followers
+              id: ID
+              meeting_urls: Meeting url
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              published_at: Publication date
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: Url
+          newsletter: En cochant cette case, je consens à ce que mes données soient traitées dans le cadre de ma participation au projet pour lequel je contribue en ligne, organisé par la Mairie de Toulouse. Je suis informé.e du retrait possible de mon consentement, à tout moment, en le demandant à jeparticipe@mairie-toulouse.fr.
+          newsletter_title: Recevoir les actualités de la plateforme
           nickname_help: Cet identifiant est public et unique sur la plateforme "%{organization}" ; il permet aux autres utilisateurs de vous suivre, de vous contacter ou de vous mentionner dans leurs commentaires. Il s’affichera précédé d’un « @ » ; il ne doit pas contenir d’espace ni de caractère spécial.
           password_help: "%{minimun_characters} caractères minimum, ne doit pas être trop commun (ex. 123456) et doit être différent de votre pseudonyme et de votre email."
           residential_area: Dans quel quartier habitez-vous ?
           sign_in: S'identifier
           sign_up: S'inscrire
           sign_up_as:
-            legend: Legend
+            legend: S'inscrire en tant que
           sign_up_subtitle: Inscrivez-vous pour participer aux consultations.
           statutory_representative_email: Email de mon parent ou de mon représentant légal
+          subtitle: Sign up to participate in discussions and support proposals.
           terms: les conditions d'utilisation de la plateforme
           tos_agreement: J'accepte %{link}.
           tos_title: Conditions d'utilisation
@@ -55,10 +252,19 @@ fr:
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
           work_area: Dans quel quartier travaillez-vous ?
           year_label: Année
-      shared:
-        omniauth_buttons:
-          or: Ou
+    user_complete_registration:
+      show:
+        complete_registration: Bienvenue !
+        complete_registration_subtitle: Sélectionnez les thématiques et quartiers qui vous intéressent. Vous recevrez des notifications liées à vos centres d’intérêts. Toutes les activités associées apparaîtront dans l’onglet «  centre d’intérêts » de votre profil que vous pouvez modifier.
+        my_interests: Mes intérêts
+        no_scopes: Cette organisation n'a pas encore de secteurs !
+        save_and_start_explore: Sauvegarder et explorer la plateforme
+        select_your_interests: Cliquez sur les curseurs et recevez des notifications personnalisées
+        skip: Passer cette étape
+        welcome: Bienvenue !
   devise:
+    failure:
+      invited: Invited
     invitations:
       edit:
         header: Header
@@ -69,16 +275,22 @@ fr:
       invitation_instructions:
         accept: Accepter l'invitation
         accept_until: Cette invitation expirera le %{due_date}.
+        decline: Refuser l'invitation
         hello: "%{email},"
         ignore: |-
           Si vous ne renouvelez pas votre inscription, votre compte sera automatiquement supprimé à compter du 29 juillet et toutes vos contributions passées deviendront anonymes.
           <br /><br />
           Pour toutes questions vous pouvez nous contacter sur <a href="mailto:jeparticipe@mairie-toulouse.fr">jeparticipe@mairie-toulouse.fr</a>.
           <br />
+        invited_you_as_admin: "%{invited_by} vous a invité en tant qu'administrateur de %{application}. Vous pouvez accepter cette invitation grâce au lien ci-dessous."
+        invited_you_as_private_user: "%{invited_by} vous a invité en tant qu'utilisateur privé de %{application}. Vous pouvez l'accepter via le lien ci-dessous."
         someone_invited_you: |-
           La plateforme jeparticipe.toulouse.fr évolue !<br />
           <br />
           Afin de continuer à donner votre avis et de participer aux décisions qui font Toulouse, nous vous invitons à renouveler votre inscription en validant les nouvelles conditions générales d'utilisation et en complétant votre profil, en cliquant ici !
+        someone_invited_you_as_admin: Vous avez été invité en tant qu'administrateur de %{application}, vous pouvez l'accepter via le lien ci-dessous.
+        someone_invited_you_as_private_user: Vous avez été invité en tant qu'utilisateur privé de %{application}, vous pouvez l'accepter via le lien ci-dessous.
+        subject: Instructions d'invitation
     registrations:
       new:
         sign_up: S'inscrire
@@ -86,11 +298,19 @@ fr:
       links:
         captcha_protection: Ce formulaire d'inscription est protégé par un mécanisme d'Invisible Captcha (ICM)
         didn_t_receive_confirmation_instructions: Vous n'avez pas reçu d'instructions de confirmation?
-        didn_t_receive_unlock_instructions: Vous n'avez pas reçu d'instructions de déverrouillage?
+        didn_t_receive_unlock_instructions: Vous n'avez pas reçu d'instructions de déblocage?
         forgot_your_password: Mot de passe oublié?
-        sign_in: S'identifier
+        sign_in: Sign in
         sign_in_with_provider: Se connecter avec %{provider}
-        sign_up: S'inscrire
+        sign_up: Sign up
+  faker:
+    hipster:
+      words: Words
+    lorem:
+      punctuation:
+        period: Period
+    name:
+      suffix: Suffix
   layouts:
     decidim:
       footer:
@@ -101,3 +321,7 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+      user_menu:
+        account: Account
+        conversations: Conversations
+        notifications: Notifications

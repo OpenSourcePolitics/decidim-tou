@@ -4,17 +4,22 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-gem "decidim", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
-gem "decidim-conferences", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
+gem "decidim", "0.23.2"
+gem "decidim-conferences", "0.23.2"
 
 # Modules
-gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git"
+gem "decidim-decidim_awesome", "~> 0.6.6"
+gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "release/0.23-stable"
+gem "decidim-navbar_links", git: "https://github.com/OpenSourcePolitics/decidim-module-navbar_links", branch: "0.23-stable"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "0.23-stable"
 
 gem "bootsnap", "~> 1.3"
-gem "puma", "~> 3.0"
+gem "puma", ">= 4.3.5"
 gem "uglifier", "~> 4.1"
 
-gem "faker", "~> 1.8"
+gem "dotenv-rails"
+
+gem "faker", "~> 1.9"
 
 gem "ruby-progressbar"
 gem "sentry-raven"
@@ -24,9 +29,8 @@ gem "omniauth-oauth2", ">= 1.4.0", "< 2.0"
 gem "sprockets", "~> 3.7"
 
 group :development, :test do
-  gem "byebug", "~> 10.0", platform: :mri
-  gem "decidim-dev", git: "https://github.com/OpenSourcePolitics/decidim.git", branch: "alt/toulouse"
-  gem "dotenv-rails"
+  gem "byebug", "~> 11.0", platform: :mri
+  gem "decidim-dev", "0.23.2"
 
   # Since the v0.21.0, rubocop-rails is loaded in decidim-dev engine. For the v0.18.0, we can load rubocop-rails directly in app.
   gem "rubocop-rails", require: false

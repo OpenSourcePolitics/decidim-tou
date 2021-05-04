@@ -14,3 +14,7 @@ Rails.application.routes.draw do
   # mount Decidim::Map::Engine => '/map'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
+Decidim::Core::Engine.routes.draw do
+  resource :user_complete_registration, only: [:show, :update], controller: "user_complete_registration"
+end
