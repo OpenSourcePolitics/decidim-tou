@@ -113,4 +113,5 @@ ignore_unused:
   - decidim.forms.user_answers_serializer.*
   - decidim.proposals.admin.exports.*
   - faker.*
+  - layouts.decidim.participatory_process_groups.participatory_process_group.processes_count
 

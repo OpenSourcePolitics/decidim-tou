@@ -248,6 +248,10 @@ fr:
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
           work_area: Dans quel quartier travaillez-vous ?
           year_label: Année
+    statutory_representative:
+      inform:
+        body: Body
+        subject: Subject
     user_complete_registration:
       show:
         complete_registration: Bienvenue !
@@ -311,6 +315,9 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+      participatory_process_groups:
+        participatory_process_group:
+          processes_count: Processes count
       user_menu:
         account: Account
         conversations: Conversations
