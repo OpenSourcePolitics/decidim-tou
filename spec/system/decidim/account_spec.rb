@@ -33,8 +33,6 @@ describe "Account", type: :system do
       it "updates the user's data" do
         within "form.edit_user" do
           fill_in :user_name, with: "Nikola Tesla"
-          fill_in :user_personal_url, with: "https://example.org"
-          fill_in :user_about, with: "A Serbian-American inventor, electrical engineer, mechanical engineer, physicist, and futurist."
           find("*[type=submit]").click
         end
 
@@ -45,15 +43,6 @@ describe "Account", type: :system do
         within ".title-bar" do
           expect(page).to have_content("Nikola Tesla")
         end
-
-        user.reload
-
-        within_user_menu do
-          find("a", text: "public profile").click
-        end
-
-        expect(page).to have_content("example.org")
-        expect(page).to have_content("Serbian-American")
       end
     end
 
