@@ -137,6 +137,26 @@ module Decidim
               end.to change(User, :count).by(1)
             end
           end
+
+          describe "statutory_representative_email" do
+            it "doesn't sends and email" do
+              expect do
+                command.call
+                expect(Decidim::StatutoryRepresentativeMailer).not_to receive(:inform).with(Decidim::User.last)
+              end.to change(User, :count).by(1)
+            end
+
+            context "when present" do
+              let(:statutory_representative_email) { "statutory_representative_email@example.org" }
+
+              it "sends an email" do
+                expect do
+                  command.call
+                  expect(Decidim::StatutoryRepresentativeMailer).to receive(:inform).with(Decidim::User.last)
+                end.to change(User, :count).by(1)
+              end
+            end
+          end
         end
       end
     end

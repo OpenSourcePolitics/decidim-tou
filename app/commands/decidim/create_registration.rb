@@ -25,6 +25,8 @@ module Decidim
 
       create_user
 
+      send_email_to_statutory_representative
+
       broadcast(:ok, @user)
     rescue ActiveRecord::RecordInvalid
       broadcast(:invalid)
