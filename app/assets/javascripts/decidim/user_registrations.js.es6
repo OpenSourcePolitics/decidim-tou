@@ -1,158 +1,146 @@
 $(() => {
-    const userRegistrationForm = {
-        $: $("#register-form"),
-        toggleFromSteps: () => {
-            $("[form-step]").toggle();
-            $("[form-active-step]").toggleClass("step--active");
-        },
-        scrollTop: () => {
-            $("html, body").animate({
-                scrollTop: $("main").offset().top
-            }, 200);
-        },
-        errors: {
-            display: ($element) => {
-                $element.addClass("is-invalid-input");
-                $element.parent().addClass("is-invalid-label");
-                $element.next("span").addClass("is-visible");
-            }
-        },
-        buttons: {
-            $forward: $(".form-step-forward-button"),
-            $back: $(".form-step-back-button")
+    const $userRegistrationForm = $("#register-form");
+    const $userGroupFields = $userRegistrationForm.find(".user-group-fields");
+    const inputSelector = "input[name='user[sign_up_as]']";
+    const newsletterSelector = "input[type='checkbox'][name='user[newsletter]']";
+    const $newsletterModal = $("#sign-up-newsletter-modal");
+    const $formStepForwardButton = $(".form-step-forward-button");
+    const $formStepBackButton = $(".form-step-back-button");
+    const $formFirstStepFields = $("[form-step='1'] input");
+    const $tosAgreement = $("#registration_user_tos_agreement");
+    const $mandatoryFormFirstStepFields = $formFirstStepFields.not("#registration_user_newsletter").not("input[type ='hidden']").add($tosAgreement);
+    const $userPassword = $("#registration_user_password");
+    const $userPasswordConfirmation = $("#registration_user_password_confirmation");
+
+    const $underageSelector = $("#registration_underage_registration");
+    const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
+
+    const emailSelectorToggle = () => {
+        if ($underageSelector.is(":checked")) {
+            $statutoryRepresentativeEmailSelector.removeClass("hide");
+        } else {
+            $statutoryRepresentativeEmailSelector.addClass("hide");
         }
     };
 
-    const formStepsFields = {
-        checkMandatoryFields: () => {
-            return $.uniqueSort(formStepsFields.filledMandatoryFields().add(
-                formStepsFields.password.samePassword()
-            ))
-        },
-        filledMandatoryFields: () => {
-            return formStepsFields.first.$mandatoryFields().map((index, element) => {
-                if (formStepsFields.emptyOrFalse(element)) {
-                    return element;
-                }
-                return null
-            })
-        },
-        emptyOrFalse: (element) => {
-            if ($(element)[0].type === "checkbox") {
-                return $(element)[0].checked === false;
-            }
+    if ($underageSelector.is(":checked")) {
+        emailSelectorToggle();
+    }
 
-            return $(element).val().length === 0;
-        },
-        first: {
-            $: $("[form-step='1'] input"),
-            $mandatoryFields: () => {
-                return formStepsFields.first.$.not("#registration_user_newsletter").not("input[type ='hidden']").add(formStepsFields.$tosAgreement)
-            }
-        },
-        $second: $("[form-step='2'] input"),
-        password: {
-            $: $("#registration_user_password"),
-            $confirmation: $("#registration_user_password_confirmation"),
-            samePassword: () => {
-                if (formStepsFields.password.$.val() !== formStepsFields.password.$confirmation.val()) {
-                    return formStepsFields.password.$confirmation;
-                }
-                return null;
-            }
-        },
-        $underage: $("#registration_underage_registration"),
-        statutoryRepresentativeEmail: {
-            $: $("#statutory_representative_email"),
-            toggle: () => {
-                if (formStepsFields.$underage.is(":checked")) {
-                    formStepsFields.statutoryRepresentativeEmail.$.removeClass("hide");
-                    return
-                }
-
-                formStepsFields.statutoryRepresentativeEmail.$.addClass("hide");
-            },
-        },
-        newsletter: {
-            check: (check, $selector, $modal) => {
-                $selector.prop("checked", check);
-                $modal.data("continue", true);
-                $modal.foundation("close");
-                userRegistrationForm.$.submit()
-            },
-            $: $("input[type='checkbox'][name='user[newsletter]']"),
-            selector: "input[type='checkbox'][name='user[newsletter]']",
-            $modal: $("#sign-up-newsletter-modal"),
-        },
-        $userGroup: userRegistrationForm.$.find(".user-group-fields"),
-        $tosAgreement: $("#registration_user_tos_agreement"),
-        input: {
-            selector: "input[name='user[sign_up_as]']",
-        },
-    };
-
-    // Listen on newsletter checkbox
-    formStepsFields.newsletter.$modal.find(".check-newsletter").on("click", (event) => {
-        formStepsFields.newsletter.check(
-            $(event.target).data("check"),
-            formStepsFields.newsletter.$,
-            formStepsFields.newsletter.$modal
-        )
+    $underageSelector.on("click", () => {
+        console.log($statutoryRepresentativeEmailSelector)
+        emailSelectorToggle();
     });
 
-    // Listen on button 'Continue'
-    userRegistrationForm.buttons.$forward.on("click", (event) => {
+    const setGroupFieldsVisibility = (value) => {
+        if (value === "user") {
+            $userGroupFields.hide();
+        } else {
+            $userGroupFields.show();
+        }
+    };
+
+    const toggleFromSteps = () => {
+        $("[form-step]").toggle();
+        $("[form-active-step]").toggleClass("step--active");
+    };
+
+    const scrollToTop = () => {
+        $("html, body").animate({
+            scrollTop: $("main").offset().top
+        }, 200);
+    }
+
+    const checkNewsletter = (check) => {
+        $userRegistrationForm.find(newsletterSelector).prop("checked", check);
+        $newsletterModal.data("continue", true);
+        $newsletterModal.foundation("close");
+        $userRegistrationForm.submit();
+    };
+
+    setGroupFieldsVisibility($userRegistrationForm.find(`${inputSelector}:checked`).val());
+
+    $userRegistrationForm.on("change", inputSelector, (event) => {
+        const value = event.target.value;
+
+        setGroupFieldsVisibility(value);
+    });
+
+    $userRegistrationForm.on("submit", (event) => {
+        const newsletterChecked = $userRegistrationForm.find(newsletterSelector);
+        if (!$newsletterModal.data("continue")) {
+            if (!newsletterChecked.prop("checked")) {
+                event.preventDefault();
+                $newsletterModal.foundation("open");
+            }
+        }
+    });
+
+    $newsletterModal.find(".check-newsletter").on("click", (event) => {
+        checkNewsletter($(event.target).data("check"));
+    });
+
+    $formStepForwardButton.on("click", (event) => {
         event.preventDefault();
 
-        userRegistrationForm.scrollTop();
+        scrollToTop();
 
         // validate only input elements from step 1
-        formStepsFields.first.$.each((index, element) => {
-            userRegistrationForm.$.foundation("validateInput", $(element))
+        $formFirstStepFields.each((index, element) => {
+            $userRegistrationForm.foundation("validateInput", $(element));
         });
 
-        if (!userRegistrationForm.$.find("[data-invalid]:visible").length) {
-            userRegistrationForm.toggleFromSteps()
+        if (!$userRegistrationForm.find("[data-invalid]:visible").length) {
+            toggleFromSteps();
         }
     });
 
-    // Listen on button 'Back'
-    userRegistrationForm.buttons.$back.on("click", (event) => {
+    $formStepBackButton.on("click", (event) => {
         event.preventDefault();
 
-        userRegistrationForm.scrollTop();
-        userRegistrationForm.toggleFromSteps()
-    })
+        scrollToTop();
 
-    formStepsFields.$underage.on("click", () => {
-        formStepsFields.statutoryRepresentativeEmail.toggle()
+        toggleFromSteps();
     });
 
-    formStepsFields.checkMandatoryFields().on("change", (event) => {
-        const disableForwardButton = !(formStepsFields.checkMandatoryFields().length === 0)
-
-        if (formStepsFields.emptyOrFalse($(event.target))) {
-            userRegistrationForm.errors.display($(event.target));
+    let fieldEmptyOrFalse = (element) => {
+        if ($(element)[0].type === "checkbox") {
+            return $(element)[0].checked === false;
         }
+        return $(element).val().length === 0;
+    };
 
-        userRegistrationForm.buttons.$forward.attr("disabled", disableForwardButton);
-    })
-
-    // The rails validations possibly removes the error message of password confirmation field. This solution allows to toggle the span error message of confirmation field when password or confirmation changes
-    formStepsFields.password.$confirmation.add(formStepsFields.password.$).on("focusout", () => {
-        if (formStepsFields.password.$confirmation.val() !== formStepsFields.password.$.val()) {
-            formStepsFields.password.$confirmation.next("span").show()
-        } else {
-            formStepsFields.password.$confirmation.next("span").hide()
-        }
-    })
-
-    userRegistrationForm.$.on("submit", (event) => {
-        if (!formStepsFields.newsletter.$modal.data("continue")) {
-            if (!formStepsFields.newsletter.$.prop("checked")) {
-                event.preventDefault();
-                formStepsFields.newsletter.$modal.foundation("open")
+    let filledMandatoryFormField = () => {
+        return $mandatoryFormFirstStepFields.map((index, element) => {
+            if (fieldEmptyOrFalse(element)) {
+                return element;
             }
+            return null
+        });
+    };
+
+    let samePassword = () => {
+        if ($userPassword.val() !== $userPasswordConfirmation.val()) {
+            return $userPasswordConfirmation;
         }
+        return null;
+    };
+
+    const checkMandatoryFormField = () => {
+        return $.uniqueSort(filledMandatoryFormField().add(samePassword()))
+    };
+
+    const displayError = (element) => {
+        $(element).addClass("is-invalid-input");
+        $(element).parent().addClass("is-invalid-label");
+        $(element).next("span").addClass("is-visible");
+    };
+
+    $userRegistrationForm.on("click load change input", () => {
+        checkMandatoryFormField().each((index, element) => {
+            displayError(element);
+        });
+
+        $formStepForwardButton.attr("disabled", (checkMandatoryFormField().length > 0));
     });
 });
