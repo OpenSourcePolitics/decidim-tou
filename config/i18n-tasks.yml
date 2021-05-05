@@ -96,6 +96,7 @@ ignore_missing:
  - decidim.account.show.{change_password,update_account}
  - layouts.decidim.user_menu.profile
  - faker.*
+ - decidim.statutory_representative.inform.*
 
 # Consider these keys used:
 ignore_unused:
