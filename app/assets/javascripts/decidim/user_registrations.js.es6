@@ -1,161 +1,173 @@
+const scrollToTop = () => {
+    $("body").animate({
+        scrollTop: $("main").offset().top
+    }, 200);
+};
+
+
 $(() => {
-    const $userRegistrationForm = $("#register-form");
-    const $userGroupFields = $userRegistrationForm.find(".user-group-fields");
-    const inputSelector = "input[name='user[sign_up_as]']";
-    const newsletterSelector = "input[type='checkbox'][name='user[newsletter]']";
-    const $newsletterModal = $("#sign-up-newsletter-modal");
-    const $formStepForwardButton = $(".form-step-forward-button");
-    const $formStepBackButton = $(".form-step-back-button");
-    const $formFirstStepFields = $("[form-step='1'] input");
-    const $tosAgreement = $("#registration_user_tos_agreement");
-    const $mandatoryFormFirstStepFields = $formFirstStepFields.not("#registration_user_newsletter").not("input[type ='hidden']").add($tosAgreement);
-    const $userPassword = $("#registration_user_password");
-    const $userPasswordConfirmation = $("#registration_user_password_confirmation");
-
-    const $underageSelector = $("#registration_underage_registration");
-    const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
-
-    const emailSelectorToggle = () => {
-        if ($underageSelector.is(":checked")) {
-            $statutoryRepresentativeEmailSelector.removeClass("hide");
-        } else {
-            $statutoryRepresentativeEmailSelector.addClass("hide");
-        }
-    };
-
-    if ($underageSelector.is(":checked")) {
-        emailSelectorToggle();
-    }
-
-    $underageSelector.on("click", () => {
-        console.log($statutoryRepresentativeEmailSelector)
-        emailSelectorToggle();
-    });
-
-    const setGroupFieldsVisibility = (value) => {
-        if (value === "user") {
-            $userGroupFields.hide();
-        } else {
-            $userGroupFields.show();
-        }
-    };
-
-    const toggleFromSteps = () => {
-        $("[form-step]").toggle();
-        $("[form-active-step]").toggleClass("step--active");
-    };
-
-    const scrollToTop = () => {
-        $("html, body").animate({
-            scrollTop: $("main").offset().top
-        }, 200);
-    }
-
-    const checkNewsletter = (check) => {
-        $userRegistrationForm.find(newsletterSelector).prop("checked", check);
-        $newsletterModal.data("continue", true);
-        $newsletterModal.foundation("close");
-        $userRegistrationForm.submit();
-    };
-
-    setGroupFieldsVisibility($userRegistrationForm.find(`${inputSelector}:checked`).val());
-
-    $userRegistrationForm.on("change", inputSelector, (event) => {
-        const value = event.target.value;
-
-        setGroupFieldsVisibility(value);
-    });
-
-    $userRegistrationForm.on("submit", (event) => {
-        const newsletterChecked = $userRegistrationForm.find(newsletterSelector);
-        if (!$newsletterModal.data("continue")) {
-            if (!newsletterChecked.prop("checked")) {
-                event.preventDefault();
-                $newsletterModal.foundation("open");
+    const userRegistrationForm = {
+        $: $("#register-form"),
+        toggleFromSteps: () => {
+            $("[form-step]").toggle();
+            $("[form-active-step]").toggleClass("step--active");
+        },
+        errors: {
+            display: ($element) => {
+                $element.addClass("is-invalid-input");
+                $element.parent().addClass("is-invalid-label");
+                $element.next("span").addClass("is-visible");
+            },
+            hide: ($element) => {
+                $element.removeClass("is-invalid-input");
+                $element.parent().removeClass("is-invalid-label");
+                $element.next("span").removeClass("is-visible");
             }
-        }
+        },
+        buttons: {
+            $forward: $(".form-step-forward-button"),
+            $back: $(".form-step-back-button")
+        },
+        currentErrors: []
+    };
+
+    const formStepsFields = {
+        checkMandatoryFields: () => {
+            return $.uniqueSort(formStepsFields.filledMandatoryFields().add(
+                formStepsFields.password.samePassword()
+            ))
+        },
+        filledMandatoryFields: () => {
+            return $mandatoryFormFirstStepFields.map((index, element) => {
+                if (formStepsFields.emptyOrFalse(element)) {
+                    return element;
+                }
+                return null
+            })
+        },
+        emptyOrFalse: (element) => {
+            if ($(element)[0].type === "checkbox") {
+                return $(element)[0].checked === false;
+            }
+            return $(element).val().length === 0;
+        },
+        setGroupFieldsVisibility: (value) => {
+            if (value === "user") {
+                formStepsFields.input.selector.hide();
+            } else {
+                formStepsFields.input.selector.show();
+            }
+        },
+        $first: $("[form-step='1'] input"),
+        $second: $("[form-step='2'] input"),
+        password: {
+            $: $("#registration_user_password"),
+            $confirmation: $("#registration_user_password_confirmation"),
+            samePassword: ($selector, $target) => {
+                if (formStepsFields.password.$.val() !== formStepsFields.password.$confirmation.val()) {
+                    return $target;
+                }
+                return null;
+            }
+        },
+        $underage: $("#registration_underage_registration"),
+        statutoryRepresentativeEmail: {
+            $: $("#statutory_representative_email"),
+            toggle: () => {
+                if (formStepsFields.$underage.is(":checked")) {
+                    formStepsFields.statutoryRepresentativeEmail.$.removeClass("hide");
+                    return
+                }
+
+                formStepsFields.statutoryRepresentativeEmail.$.addClass("hide");
+            },
+        },
+        newsletter: {
+            check: (check, $selector, $modal) => {
+                $selector.prop("checked", check);
+                $modal.data("continue", true);
+                $modal.foundation("close");
+                userRegistrationForm.$.submit()
+            },
+            $: $("input[type='checkbox'][name='user[newsletter]']"),
+            selector: "input[type='checkbox'][name='user[newsletter]']",
+            $modal: $("#sign-up-newsletter-modal"),
+        },
+        $userGroup: userRegistrationForm.$.find(".user-group-fields"),
+        $tosAgreement: $("#registration_user_tos_agreement"),
+        input: {
+            selector: "input[name='user[sign_up_as]']",
+        },
+    };
+
+    const $mandatoryFormFirstStepFields = formStepsFields.$first.not("#registration_user_newsletter").not("input[type ='hidden']").add(formStepsFields.$tosAgreement)
+
+
+    formStepsFields.$underage.on("click", () => {
+        formStepsFields.statutoryRepresentativeEmail.toggle()
     });
 
-    $newsletterModal.find(".check-newsletter").on("click", (event) => {
-        checkNewsletter($(event.target).data("check"));
-    });
-
-    $formStepForwardButton.on("click", (event) => {
+    userRegistrationForm.buttons.$forward.on("click", (event) => {
         event.preventDefault();
 
         scrollToTop();
 
         // validate only input elements from step 1
-        $formFirstStepFields.each((index, element) => {
-            $userRegistrationForm.foundation("validateInput", $(element));
+        formStepsFields.$first.each((index, element) => {
+            userRegistrationForm.$.foundation("validateInput", $(element))
         });
 
-        if (!$userRegistrationForm.find("[data-invalid]:visible").length) {
-            toggleFromSteps();
+        if (!userRegistrationForm.$.find("[data-invalid]:visible").length) {
+            userRegistrationForm.toggleFromSteps()
         }
     });
 
-    $formStepBackButton.on("click", (event) => {
+    userRegistrationForm.$.on("submit", (event) => {
+        if (!formStepsFields.newsletter.$modal.data("continue")) {
+            if (!formStepsFields.newsletter.$.prop("checked")) {
+                event.preventDefault();
+                formStepsFields.newsletter.$modal.foundation("open")
+            }
+        }
+    });
+
+    formStepsFields.newsletter.$modal.find(".check-newsletter").on("click", (event) => {
+        formStepsFields.newsletter.check(
+            $(event.target).data("check"),
+            formStepsFields.newsletter.$,
+            formStepsFields.newsletter.$modal
+        )
+    });
+
+    userRegistrationForm.buttons.$back.on("click", (event) => {
         event.preventDefault();
 
         scrollToTop();
 
-        toggleFromSteps();
-    });
+        userRegistrationForm.toggleFromSteps()
+    })
 
-    let fieldEmptyOrFalse = (element) => {
-        if ($(element)[0].type === "checkbox") {
-            return $(element)[0].checked === false;
+
+    formStepsFields.checkMandatoryFields().on("change", (event) => {
+        if (formStepsFields.emptyOrFalse($(event.target))) {
+            userRegistrationForm.errors.display($(event.target));
         }
-        return $(element).val().length === 0;
-    };
-
-
-    let filedMandatoryFormField = () => {
-        return $mandatoryFormFirstStepFields.map((index, element) => {
-            if (fieldEmptyOrFalse(element)) {
-                return element;
-            }
-            return null
-        });
-    };
-
-    let samePassword = () => {
-        if ($userPassword.val() !== $userPasswordConfirmation.val()) {
-            return $userPasswordConfirmation;
-        }
-        return null;
-    };
-
-    const checkMandatoryFormField = () => {
-        return $.uniqueSort(filedMandatoryFormField().add(samePassword()))
-    };
-
-    const displayError = (element) => {
-        $(element).addClass("is-invalid-input");
-        $(element).parent().addClass("is-invalid-label");
-        $(element).next("span").addClass("is-visible");
-    };
-
-    const hideError = (element) => {
-        $(element).removeClass("is-invalid-input");
-        $(element).parent().removeClass("is-invalid-label");
-        $(element).next("span").removeClass("is-visible");
-    };
-
-    $userRegistrationForm.on("click load change input", () => {
-        $mandatoryFormFirstStepFields.each((index, element) => {
-            hideError(element);
-        });
-
-        checkMandatoryFormField().each((index, element) => {
-            displayError(element);
-        });
-
-        if (checkMandatoryFormField().length === 0) {
-            $formStepForwardButton.attr("disabled", false);
+        if (formStepsFields.checkMandatoryFields().length === 0) {
+            userRegistrationForm.buttons.$forward.attr("disabled", false);
         } else {
-            $formStepForwardButton.attr("disabled", true);
+            userRegistrationForm.buttons.$forward.attr("disabled", true);
+        }
+    })
+
+    userRegistrationForm.buttons.$forward.on("click", () => {
+        formStepsFields.checkMandatoryFields().each((index, element) => {
+            userRegistrationForm.errors.display($(element));
+        });
+
+        if (formStepsFields.checkMandatoryFields().length === 0) {
+            userRegistrationForm.buttons.$forward.attr("disabled", false);
+        } else {
+            userRegistrationForm.buttons.$forward.attr("disabled", true);
         }
     });
 });
