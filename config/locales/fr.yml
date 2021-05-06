@@ -303,9 +303,6 @@ fr:
       suffix: Suffix
   layouts:
     decidim:
-      process_header_steps:
-        step: Etapes
-        view_steps: Voir les étapes
       footer:
         download_open_data: Données ouvertes
         made_with_open_source: Site réalisé grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
@@ -314,6 +311,9 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+      process_header_steps:
+        step: Etapes
+        view_steps: Voir les étapes
       user_menu:
         account: Account
         conversations: Conversations

@@ -300,9 +300,6 @@ en:
         space: Space
   layouts:
     decidim:
-      process_header_steps:
-        step: Steps
-        view_steps: See steps
       footer:
         download_open_data: Open data
         made_with_open_source: Website made with <a target="_blank" href="https://github.com/decidim/decidim">free software</a>.
@@ -311,6 +308,9 @@ en:
         navigation: Navigation
         sign_in: Sign In
         sign_up: Sign Up
+      process_header_steps:
+        step: Steps
+        view_steps: See steps
       user_menu:
         account: Account
         conversations: Conversations
