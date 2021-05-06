@@ -185,7 +185,7 @@ module Decidim
             let(:residential_area_2) { create(:scope, organization: participatory_process.organization) }
             let(:registration_metadata_2) do
               {
-                birth_date: {"year": "2016", "month": "May"},
+                birth_date: { "year": "2016", "month": "May" },
                 gender: "Male",
                 work_area: work_area_2.id,
                 residential_area: residential_area_2.id,
@@ -206,7 +206,7 @@ module Decidim
               expect(serialized["Authors"]["Gender"]).to eq("other,#{registration_metadata_2[:gender]}")
               expect(serialized["Authors"]["Work area"]).to eq("-,#{translated(work_area_2.name)}")
               expect(serialized["Authors"]["Residential area"]).to eq("-,#{translated(residential_area_2.name)}")
-              expect(serialized["Authors"]["Statutory representative email"]).to eq(registration_metadatas.map { |rg_metadata| rg_metadata["statutory_representative_email"] }.join(','))
+              expect(serialized["Authors"]["Statutory representative email"]).to eq(registration_metadatas.map { |rg_metadata| rg_metadata["statutory_representative_email"] }.join(","))
               expect(serialized["Authors"]["Birth date"]).not_to be_empty
             end
 
@@ -233,7 +233,7 @@ module Decidim
               expect(serialized["Authors"]["Gender"]).to eq("other,other")
               expect(serialized["Authors"]["Work area"]).to eq("-,-")
               expect(serialized["Authors"]["Residential area"]).to eq("-,-")
-              expect(serialized["Authors"]["Statutory representative email"]).to eq(registration_metadatas.map { |rg_metadata| rg_metadata["statutory_representative_email"] }.join(','))
+              expect(serialized["Authors"]["Statutory representative email"]).to eq(registration_metadatas.map { |rg_metadata| rg_metadata["statutory_representative_email"] }.join(","))
               expect(serialized["Authors"]["Birth date"]).not_to be_empty
             end
           end

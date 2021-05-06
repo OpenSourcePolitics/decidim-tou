@@ -40,11 +40,11 @@ module Decidim
 
         it "turns the object into a hash" do
           expect(subject.serialize).to eq(
-                                           id: resource.id,
-                                           name: resource.name,
-                                           age: admin_extra_fields.age,
-                                           city: admin_extra_fields.city
-                                       )
+            id: resource.id,
+            name: resource.name,
+            age: admin_extra_fields.age,
+            city: admin_extra_fields.city
+          )
         end
       end
     end

@@ -2,7 +2,7 @@
 
 module ResultSerializerExtends
   # Public: Initializes the serializer with a result.
-  def initialize(result, private_scope = false)
+  def initialize(result, _private_scope = false)
     @result = result
   end
 end
