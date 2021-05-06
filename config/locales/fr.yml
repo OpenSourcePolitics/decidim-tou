@@ -311,6 +311,9 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+      process_header_steps:
+        step: Etapes
+        view_steps: Voir les étapes
       user_menu:
         account: Account
         conversations: Conversations
