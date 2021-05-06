@@ -15,7 +15,7 @@ module JsonExtend
       @serializer.new(resource, @private_scope).serialize
     end)
 
-    ExportData.new(data, "json")
+    Decidim::Exporters::ExportData.new(data, "json")
   end
 end
 
