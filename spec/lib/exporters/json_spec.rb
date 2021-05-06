@@ -15,8 +15,8 @@ module Decidim
 
         def serialize
           {
-              id: @resource.id,
-              serialized_name: @resource.name
+            id: @resource.id,
+            serialized_name: @resource.name
           }
         end
       end
