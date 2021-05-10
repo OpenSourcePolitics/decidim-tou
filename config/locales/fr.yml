@@ -82,6 +82,8 @@ fr:
     devise:
       registrations:
         new:
+          additional_tos_agreement: En cochant cette case, je consens à ce que mes données soient traitées dans le cadre de ma participation au projet pour lequel je contribue en ligne, organisé par la Mairie de Toulouse. Je suis informé.e du retrait possible de mon consentement, à tout moment, en le demandant à <a href="jeparticipe@mairie-toulouse.fr">jeparticipe@mairie-toulouse.fr</a>.
+          additional_tos_title: Traitement de vos données personnelles
           already_have_an_account?: Already have an account?
           back: Retour
           birth_date: Date de naissance
@@ -117,6 +119,8 @@ fr:
           residential_area: Residential area
           sign_in: Sign in
           sign_up: Sign up
+          sign_up_as:
+            legend: Legend
           statutory_representative_email: Statutory representative email
           subtitle: Sign up to participate in discussions and support proposals.
           terms: Terms
@@ -261,6 +265,12 @@ fr:
   devise:
     failure:
       invited: Invited
+    invitations:
+      edit:
+        header: Header
+        nickname_help: Nickname help
+        submit_button: Submit button
+        subtitle: Subtitle
     registrations:
       new:
         sign_up: S'inscrire

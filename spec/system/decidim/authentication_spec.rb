@@ -7,7 +7,7 @@ def fill_registration_fields
   fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
   fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
   check :registration_user_tos_agreement
-  check :registration_user_newsletter
+  check :registration_user_additional_tos
   click_button "Continue"
 
   fill_in :registration_user_name, with: "Responsible Citizen"
@@ -526,7 +526,7 @@ describe "Authentication", type: :system do
             fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
             fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
             check :registration_user_tos_agreement
-            check :registration_user_newsletter
+            check :registration_user_additional_tos
             click_button "Continue"
 
             fill_in :registration_user_name, with: "Responsible Citizen"

@@ -133,17 +133,17 @@
             </div>
           </div>
 
-          <div class="card" id="card__newsletter" <%= form_step_attributes(step: 1) %>>
+          <div class="card" id="card__additional_tos" <%= form_step_attributes(step: 1) %>>
             <div class="card__content">
-              <legend><%= t(".newsletter_title") %></legend>
+              <legend><%= t(".additional_tos_title") %></legend>
 
-              <fieldset>
-                <div class="small-10 small-offset-1 tos_checkboxes">
+              <div class="row">
+                <div class="columns small-10 small-offset-1 additional_tos_checkboxes">
                   <div class="field">
-                    <%= f.check_box :newsletter, label: t(".newsletter"), checked: @form.newsletter %>
+                    <%== f.check_box :additional_tos, label: t(".additional_tos_agreement") %>
                   </div>
                 </div>
-              </fieldset>
+              </div>
             </div>
           </div>
 

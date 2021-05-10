@@ -19,8 +19,8 @@ module Decidim
     attribute :residential_area, String
     attribute :work_area, String
     attribute :gender, String
-    attribute :newsletter, Boolean
     attribute :tos_agreement, Boolean
+    attribute :additional_tos, Boolean
     attribute :current_locale, String
     jsonb_attribute :birth_date, [
       [:month, String],
@@ -37,6 +37,7 @@ module Decidim
     validates :password, :password_confirmation, presence: true
     validates :tos_agreement, allow_nil: false, acceptance: true
     validates :month, :year, presence: true
+    validates :additional_tos, allow_nil: false, acceptance: true
 
     validate :email_unique_in_organization
     validate :nickname_unique_in_organization
@@ -70,12 +71,6 @@ module Decidim
     def map_model(model)
       self.month = model.birth_date["month"]
       self.year = model.birth_date["year"]
-    end
-
-    def newsletter_at
-      return nil unless newsletter?
-
-      Time.current
     end
 
     def residential_area_for_select

@@ -14,6 +14,7 @@ module Decidim
         let(:password) { "Y1fERVzL2F" }
         let(:password_confirmation) { password }
         let(:tos_agreement) { "1" }
+        let(:additional_tos) { true }
         let(:newsletter) { "1" }
         let(:current_locale) { "es" }
 
@@ -31,6 +32,7 @@ module Decidim
 
         let(:registration_metadata) do
           {
+            additional_tos: additional_tos,
             residential_area: residential_area,
             work_area: work_area,
             gender: gender,
@@ -48,6 +50,7 @@ module Decidim
               "password" => password,
               "password_confirmation" => password_confirmation,
               "tos_agreement" => tos_agreement,
+              "additional_tos" => additional_tos,
               "newsletter_at" => newsletter,
               "residential_area" => residential_area,
               "work_area" => work_area,
@@ -116,7 +119,6 @@ module Decidim
               password: form.password,
               password_confirmation: form.password_confirmation,
               tos_agreement: form.tos_agreement,
-              newsletter_notifications_at: form.newsletter_at,
               email_on_notification: true,
               organization: organization,
               accepted_tos_version: organization.tos_version,

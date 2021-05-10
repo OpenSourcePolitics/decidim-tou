@@ -82,6 +82,8 @@ en:
     devise:
       registrations:
         new:
+          additional_tos_agreement: I agree.
+          additional_tos_title: Processing of your personal data
           already_have_an_account?: Already have an account?
           back: Back
           birth_date: Birth date
@@ -117,6 +119,8 @@ en:
           residential_area: Residential area
           sign_in: Sign in
           sign_up: Sign up
+          sign_up_as:
+            legend: Legend
           statutory_representative_email: Statutory representative email
           subtitle: Sign up to participate in discussions and support proposals.
           terms: Terms
@@ -261,6 +265,12 @@ en:
   devise:
     failure:
       invited: You have a pending invitation, accept it to finish creating your account
+    invitations:
+      edit:
+        header: Header
+        nickname_help: Nickname help
+        submit_button: Submit button
+        subtitle: Subtitle
     registrations:
       new:
         sign_up: Sign up
