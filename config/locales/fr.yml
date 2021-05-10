@@ -265,6 +265,12 @@ fr:
   devise:
     failure:
       invited: Invited
+    invitations:
+      edit:
+        header: Header
+        nickname_help: Nickname help
+        submit_button: Submit button
+        subtitle: Subtitle
     registrations:
       new:
         sign_up: S'inscrire
