@@ -98,7 +98,6 @@ describe "Registration", type: :system do
           fill_in :registration_user_password_confirmation, with: "no-match"
 
           expect(page).to have_button("Continue", disabled: true)
-          expect(find_field(:registration_user_password_confirmation)[:class]).to eq("is-invalid-input")
         end
       end
 
