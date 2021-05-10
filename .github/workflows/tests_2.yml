@@ -1,4 +1,4 @@
-name: Tests
+name: Tests (#2)
 on:
   push:
     branches:
@@ -60,7 +60,7 @@ jobs:
       - run: |
           count=$(ls spec/**/*_spec.rb | wc -l | tr -d ' ')
           half=$(expr $count / 2)
-          list_of_files=$(ls spec/system/*_spec.rb | sed -n "1,$(echo $half)p" | xargs)
+          list_of_files=$(ls spec/system/*_spec.rb | sed -n "$(expr $half + 1), $(echo $count)p" | xargs)
           bundle exec rspec $list_of_files
         name: RSpec
         working-directory: ${{ env.DECIDIM_MODULE }}

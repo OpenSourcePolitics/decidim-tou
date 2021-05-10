@@ -185,7 +185,7 @@ module Decidim
             let(:residential_area_2) { create(:scope, organization: participatory_process.organization) }
             let(:registration_metadata_2) do
               {
-                birth_date: "1968",
+                birth_date: { "year": "2016", "month": "May" },
                 gender: "Male",
                 work_area: work_area_2.id,
                 residential_area: residential_area_2.id,
@@ -199,26 +199,19 @@ module Decidim
             end
 
             it "serializes authors data" do
+              registration_metadatas = proposal.authors.collect(&:registration_metadata)
               expect(serialized["Authors"]["Names"]).to eq("#{creator.name},#{another_creator.name}")
               expect(serialized["Authors"]["Nicknames"]).to eq("#{creator.nickname},#{another_creator.nickname}")
               expect(serialized["Authors"]["Emails"]).to eq("#{creator.email},#{another_creator.email}")
-              expect(serialized["Authors"]["Gender"]).to eq("-,#{registration_metadata_2[:gender]}")
+              expect(serialized["Authors"]["Gender"]).to eq("other,#{registration_metadata_2[:gender]}")
               expect(serialized["Authors"]["Work area"]).to eq("-,#{translated(work_area_2.name)}")
               expect(serialized["Authors"]["Residential area"]).to eq("-,#{translated(residential_area_2.name)}")
-              expect(serialized["Authors"]["Statutory representative email"]).to eq("-,#{registration_metadata_2[:statutory_representative_email]}")
-              expect(serialized["Authors"]["Birth date"]).to eq("-,#{registration_metadata_2[:birth_date]}")
+              expect(serialized["Authors"]["Statutory representative email"]).to eq(registration_metadatas.map { |rg_metadata| rg_metadata["statutory_representative_email"] }.join(","))
+              expect(serialized["Authors"]["Birth date"]).not_to be_empty
             end
 
             it "serializes the two authors names" do
-              expect(serialized["Authors"]["Names"]).not_to be_empty
               expect(serialized["Authors"]["Names"]).to include(proposal.authors.collect(&:name).join(","))
-            end
-
-            context "when a field is empty" do
-              it "replaces empty value by dash" do
-                expect(serialized["Authors"]["Work area"]).to eq("-,#{translated(work_area_2.name)}")
-                expect(serialized["Authors"]["Residential area"]).to eq("-,#{translated(residential_area_2.name)}")
-              end
             end
           end
 
@@ -232,14 +225,16 @@ module Decidim
             end
 
             it "serializes authors data" do
+              registration_metadatas = proposal.authors.collect(&:registration_metadata)
+
               expect(serialized["Authors"]["Names"]).to eq("#{creator.name},#{author.name}")
               expect(serialized["Authors"]["Nicknames"]).to eq("#{creator.nickname},#{author.nickname}")
               expect(serialized["Authors"]["Emails"]).to eq("#{creator.email},#{author.email}")
-              expect(serialized["Authors"]["Gender"]).to eq("-,-")
+              expect(serialized["Authors"]["Gender"]).to eq("other,other")
               expect(serialized["Authors"]["Work area"]).to eq("-,-")
               expect(serialized["Authors"]["Residential area"]).to eq("-,-")
-              expect(serialized["Authors"]["Statutory representative email"]).to eq("-,-")
-              expect(serialized["Authors"]["Birth date"]).to eq("-,-")
+              expect(serialized["Authors"]["Statutory representative email"]).to eq(registration_metadatas.map { |rg_metadata| rg_metadata["statutory_representative_email"] }.join(","))
+              expect(serialized["Authors"]["Birth date"]).not_to be_empty
             end
           end
 
