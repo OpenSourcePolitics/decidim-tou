@@ -139,21 +139,19 @@ module Decidim
           end
 
           describe "statutory_representative_email" do
-            before do
-              allow(Decidim::StatutoryRepresentativeMailer).to receive(:inform).and_call_original
-            end
-
             it "sends an email" do
-              command.call
-              expect(Decidim::StatutoryRepresentativeMailer).to have_received(:inform).with(Decidim::User.last)
+              expect do
+                perform_enqueued_jobs { command.call }
+              end.to change(emails, :count).from(0).to(2)
             end
 
             context "when not present" do
               let(:statutory_representative_email) { nil }
 
               it "doesn't sends and email" do
-                command.call
-                expect(Decidim::StatutoryRepresentativeMailer).not_to have_received(:inform).with(Decidim::User.last)
+                expect do
+                  perform_enqueued_jobs { command.call }
+                end.not_to change(emails, :count)
               end
             end
           end
