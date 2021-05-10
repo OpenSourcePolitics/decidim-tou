@@ -87,8 +87,7 @@ $(() => {
         return $(element).val().length === 0;
     };
 
-
-    let filedMandatoryFormField = () => {
+    let filledMandatoryFormField = () => {
         return $mandatoryFormFirstStepFields.map((index, element) => {
             if (fieldEmptyOrFalse(element)) {
                 return element;
@@ -105,7 +104,7 @@ $(() => {
     };
 
     const checkMandatoryFormField = () => {
-        return $.uniqueSort(filedMandatoryFormField().add(samePassword()))
+        return $.uniqueSort(filledMandatoryFormField().add(samePassword()))
     };
 
     const displayError = (element) => {
@@ -114,25 +113,11 @@ $(() => {
         $(element).next("span").addClass("is-visible");
     };
 
-    const hideError = (element) => {
-        $(element).removeClass("is-invalid-input");
-        $(element).parent().removeClass("is-invalid-label");
-        $(element).next("span").removeClass("is-visible");
-    };
-
     $userRegistrationForm.on("click load change input", () => {
-        $mandatoryFormFirstStepFields.each((index, element) => {
-            hideError(element);
-        });
-
         checkMandatoryFormField().each((index, element) => {
             displayError(element);
         });
 
-        if (checkMandatoryFormField().length === 0) {
-            $formStepForwardButton.attr("disabled", false);
-        } else {
-            $formStepForwardButton.attr("disabled", true);
-        }
+        $formStepForwardButton.attr("disabled", (checkMandatoryFormField().length > 0));
     });
 });
