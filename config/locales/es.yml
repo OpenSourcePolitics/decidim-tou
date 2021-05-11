@@ -252,6 +252,10 @@ es:
           username_help: Username help
           work_area: Work area
           year_label: Year label
+    statutory_representative:
+      inform:
+        body: Body
+        subject: Subject
     user_complete_registration:
       show:
         complete_registration: Complete registration

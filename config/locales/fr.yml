@@ -252,6 +252,10 @@ fr:
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
           work_area: Dans quel quartier travaillez-vous ?
           year_label: Année
+    statutory_representative:
+      inform:
+        body: Nous vous informons de l'inscription de %{name} sur %{organization}. <br><br>C'est une plateforme de participation citoyenne lancée par la Mairie de Toulouse pour faciliter la participation de tous pour co-construire Toulouse. <br>Comme %{name} a moins de 15 ans, en tant que parent ou représentant légal, nous vous laissons maintenir ou pas cette inscription. <br><br>Pour plus d'informations, contactez-nous à l'adresse <a href=\"mailto:jeparticipe@mairie-toulouse.fr\">jeparticipe@mairie-toulouse.fr</a>.
+        subject: Un nouvel utilisateur mineur a été créé
     user_complete_registration:
       show:
         complete_registration: Bienvenue !
@@ -301,6 +305,9 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+      participatory_process_groups:
+        participatory_process_group:
+          processes_count: Processes count
       process_header_steps:
         step: Etapes
         view_steps: Voir les étapes

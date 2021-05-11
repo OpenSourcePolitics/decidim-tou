@@ -139,6 +139,24 @@ module Decidim
               end.to change(User, :count).by(1)
             end
           end
+
+          describe "statutory_representative_email" do
+            it "sends an email" do
+              expect do
+                perform_enqueued_jobs { command.call }
+              end.to change(emails, :count).from(0).to(2)
+            end
+
+            context "when not present" do
+              let(:statutory_representative_email) { nil }
+
+              it "doesn't sends and email" do
+                expect do
+                  perform_enqueued_jobs { command.call }
+                end.not_to change(emails, :count)
+              end
+            end
+          end
         end
       end
     end

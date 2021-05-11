@@ -96,6 +96,7 @@ ignore_missing:
  - decidim.account.show.{change_password,update_account}
  - layouts.decidim.user_menu.profile
  - faker.*
+ - decidim.statutory_representative.inform.*
 
 # Consider these keys used:
 ignore_unused:
@@ -113,4 +114,5 @@ ignore_unused:
   - decidim.forms.user_answers_serializer.*
   - decidim.proposals.admin.exports.*
   - faker.*
+  - layouts.decidim.participatory_process_groups.participatory_process_group.processes_count
 
