@@ -250,7 +250,7 @@ en:
           year_label: Year label
     statutory_representative:
       inform:
-        body: Bonjour <br> Salut
+        body: Body
         subject: Subject
     user_complete_registration:
       show:
