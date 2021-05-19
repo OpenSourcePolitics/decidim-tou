@@ -2,17 +2,15 @@ $(() => {
     const $userRegistrationForm = $("#register-form");
     const $userGroupFields = $userRegistrationForm.find(".user-group-fields");
     const inputSelector = "input[name='user[sign_up_as]']";
-    const newsletterSelector = "input[type='checkbox'][name='user[newsletter]']";
-    const $newsletterModal = $("#sign-up-newsletter-modal");
     const $formStepForwardButton = $(".form-step-forward-button");
     const $formStepBackButton = $(".form-step-back-button");
     const $formFirstStepFields = $("[form-step='1'] input");
-    const $tosAgreement = $("#user_tos_agreement");
-    const $mandatoryFormFirstStepFields = $formFirstStepFields.not("#user_newsletter").not("input[type ='hidden']").add($tosAgreement);
-    const $userPassword = $("#user_password");
-    const $userPasswordConfirmation = $("#user_password_confirmation");
+    const $tosAgreement = $("#registration_user_tos_agreement");
+    const $mandatoryFormFirstStepFields = $formFirstStepFields.not("#registration_user_newsletter").not("input[type ='hidden']").add($tosAgreement);
+    const $userPassword = $("#registration_user_password");
+    const $userPasswordConfirmation = $("#registration_user_password_confirmation");
 
-    const $underageSelector = $("#underage_registration");
+    const $underageSelector = $("#registration_underage_registration");
     const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
 
     const emailSelectorToggle = () => {
@@ -28,6 +26,7 @@ $(() => {
     }
 
     $underageSelector.on("click", () => {
+        console.log($statutoryRepresentativeEmailSelector)
         emailSelectorToggle();
     });
 
@@ -48,13 +47,6 @@ $(() => {
         $("html, body").animate({
             scrollTop: $("main").offset().top
         }, 200);
-    }
-
-    const checkNewsletter = (check) => {
-        $userRegistrationForm.find(newsletterSelector).prop("checked", check);
-        $newsletterModal.data("continue", true);
-        $newsletterModal.foundation("close");
-        $userRegistrationForm.submit();
     };
 
     setGroupFieldsVisibility($userRegistrationForm.find(`${inputSelector}:checked`).val());
@@ -63,20 +55,6 @@ $(() => {
         const value = event.target.value;
 
         setGroupFieldsVisibility(value);
-    });
-
-    $userRegistrationForm.on("submit", (event) => {
-        const newsletterChecked = $userRegistrationForm.find(newsletterSelector);
-        if (!$newsletterModal.data("continue")) {
-            if (!newsletterChecked.prop("checked")) {
-                event.preventDefault();
-                $newsletterModal.foundation("open");
-            }
-        }
-    });
-
-    $newsletterModal.find(".check-newsletter").on("click", (event) => {
-        checkNewsletter($(event.target).data("check"));
     });
 
     $formStepForwardButton.on("click", (event) => {
@@ -109,8 +87,7 @@ $(() => {
         return $(element).val().length === 0;
     };
 
-
-    let filedMandatoryFormField = () => {
+    let filledMandatoryFormField = () => {
         return $mandatoryFormFirstStepFields.map((index, element) => {
             if (fieldEmptyOrFalse(element)) {
                 return element;
@@ -127,7 +104,7 @@ $(() => {
     };
 
     const checkMandatoryFormField = () => {
-        return $.uniqueSort(filedMandatoryFormField().add(samePassword()))
+        return $.uniqueSort(filledMandatoryFormField().add(samePassword()))
     };
 
     const displayError = (element) => {
@@ -136,25 +113,11 @@ $(() => {
         $(element).next("span").addClass("is-visible");
     };
 
-    const hideError = (element) => {
-        $(element).removeClass("is-invalid-input");
-        $(element).parent().removeClass("is-invalid-label");
-        $(element).next("span").removeClass("is-visible");
-    };
-
     $userRegistrationForm.on("click load change input", () => {
-        $mandatoryFormFirstStepFields.each((index, element) => {
-            hideError(element);
-        });
-
         checkMandatoryFormField().each((index, element) => {
             displayError(element);
         });
 
-        if (checkMandatoryFormField().length === 0) {
-            $formStepForwardButton.attr("disabled", false);
-        } else {
-            $formStepForwardButton.attr("disabled", true);
-        }
+        $formStepForwardButton.attr("disabled", (checkMandatoryFormField().length > 0));
     });
 });

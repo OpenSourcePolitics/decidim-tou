@@ -85,9 +85,34 @@ ignore_missing:
  - activemodel.attributes.participatory_process.private_space
  - activemodel.attributes.osp_authorization_handler.*
  - decidim.authorization_handlers.osp_authorization_handler.*
+ - decidim.assemblies.admin.assemblies.form.*
+ - decidim.assemblies.show.*
  - layouts.decidim.footer.*
+ - layouts.decidim.participatory_processes.promoted_process.*
+ - decidim.participatory_processes.show.*
+ - decidim.participatory_process.show.*
+ - decidim.pages.home.sub_hero.*
+ - decidim.participatory_processes.admin.participatory_processes.form.address_help
+ - decidim.account.show.{change_password,update_account}
+ - layouts.decidim.user_menu.profile
+ - faker.*
+ - decidim.statutory_representative.inform.*
 
 # Consider these keys used:
 ignore_unused:
   - decidim.devise.registrations.new.gender.*
   - decidim.devise.registrations.new.month_name.*
+  - activemodel.attributes.assembly.sort_children
+  - decidim.devise.registrations.new.*
+  - devise.mailer.invitation_instructions.*
+  - layouts.decidim.footer.*
+  - decidim.debates.admin.exports.column_name.debates.*
+  - decidim.meetings.admin.exports.column_name.*
+  - decidim.comments.exports.column_name.registrations.*
+  - decidim.comments.exports.column_name.*
+  - decidim.proposals.admin.exports.column_name.proposals.*
+  - decidim.forms.user_answers_serializer.*
+  - decidim.proposals.admin.exports.*
+  - faker.*
+  - layouts.decidim.participatory_process_groups.participatory_process_group.processes_count
+

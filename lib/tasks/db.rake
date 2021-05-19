@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 namespace :decidim do
-  Rails.logger = Logger.new(STDOUT)
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
-
   namespace :db do
     namespace :notification do
       desc "List notifications related to orphans data"
       task orphans: :environment do
+        log_to_stdout
+
         Decidim::Notification.distinct.pluck(:decidim_resource_type).each do |klass|
           puts klass
           model = klass.constantize
@@ -34,6 +33,8 @@ namespace :decidim do
     namespace :admin_log do
       desc "List admin log related to orphans data"
       task orphans: :environment do
+        log_to_stdout
+
         Decidim::ActionLog.distinct.pluck(:resource_type).each do |klass|
           puts klass
           model = klass.constantize
@@ -60,6 +61,8 @@ namespace :decidim do
     namespace :surveys do
       desc "List surveys related to deleted component"
       task orphans: :environment do
+        log_to_stdout
+
         Decidim::Surveys::Survey
           .where.not(decidim_component_id: [Decidim::Component.ids])
           .pluck(:id, :title, :decidim_component_id).each do |s|
@@ -70,6 +73,8 @@ namespace :decidim do
 
       desc "Delete surveys related to deleted component"
       task clean: :environment do
+        log_to_stdout
+
         Decidim::Surveys::Survey
           .where.not(decidim_component_id: [Decidim::Component.ids])
           .destroy_all
@@ -78,4 +83,9 @@ namespace :decidim do
       end
     end
   end
+end
+
+def log_to_stdout
+  Rails.logger = Logger.new(STDOUT)
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
 end

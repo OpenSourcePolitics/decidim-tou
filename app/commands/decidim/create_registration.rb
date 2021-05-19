@@ -17,7 +17,11 @@ module Decidim
     #
     # Returns nothing.
     def call
-      return broadcast(:invalid) if form.invalid?
+      if form.invalid?
+        user = User.has_pending_invitations?(form.current_organization.id, form.email)
+        user.invite!(user.invited_by) if user
+        return broadcast(:invalid)
+      end
 
       create_user
 
@@ -41,20 +45,21 @@ module Decidim
         password_confirmation: form.password_confirmation,
         organization: form.current_organization,
         tos_agreement: form.tos_agreement,
-        newsletter_notifications_at: form.newsletter_at,
         email_on_notification: true,
         accepted_tos_version: form.current_organization.tos_version,
+        locale: form.current_locale,
         registration_metadata: registration_metadata
       )
     end
 
     def registration_metadata
       {
+        additional_tos: form.additional_tos,
         residential_area: form.residential_area,
         work_area: form.work_area,
         gender: form.gender,
         birth_date: form.birth_date,
-        statutory_representative_email: statutory_representative_email
+        statutory_representative_email: form.statutory_representative_email
       }
     end
 

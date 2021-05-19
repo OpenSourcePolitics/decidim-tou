@@ -57,7 +57,7 @@ def validate_org
     exit 1
   end
 
-  unless current_organization
+  unless task_current_organization
     puts "Organization does not exist"
     exit 1
   end
@@ -69,7 +69,7 @@ def validate_admin
     exit 1
   end
 
-  unless current_user
+  unless task_current_user
     puts "Admin does not exist"
     exit 1
   end
@@ -134,7 +134,7 @@ def import_without_email(id, first_name, last_name)
   new_user = Decidim::User.new(
     managed: true,
     name: set_name(first_name, last_name),
-    organization: current_organization,
+    organization: task_current_organization,
     admin: false,
     roles: [],
     tos_agreement: true
@@ -150,8 +150,8 @@ def import_without_email(id, first_name, last_name)
       document_number: id
     )
   ).with_context(
-    current_organization: current_organization,
-    current_user: current_user
+    current_organization: task_current_organization,
+    current_user: task_current_user
   )
 
   privatable_to = current_process
@@ -184,7 +184,7 @@ def import_with_email(id, first_name, last_name, email)
     },
     privatable_to: current_process
   )
-  Decidim::Admin::CreateParticipatorySpacePrivateUser.call(form, current_user, current_process) do
+  Decidim::Admin::CreateParticipatorySpacePrivateUser.call(form, task_current_user, current_process) do
     on(:ok) do |user|
       Decidim::Authorization.create_or_update_from(
         Decidim::AuthorizationHandler.handler_for(
@@ -210,12 +210,12 @@ def set_name(first_name, last_name)
   first_name + " " + last_name
 end
 
-def current_user
-  @current_user ||= Decidim::User.find(@admin)
+def task_current_user
+  @task_current_user ||= Decidim::User.find(@admin)
 end
 
-def current_organization
-  @current_organization ||= Decidim::Organization.find(@org)
+def task_current_organization
+  @task_current_organization ||= Decidim::Organization.find(@org)
 end
 
 def current_process

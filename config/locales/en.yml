@@ -1,20 +1,95 @@
 ---
 en:
+  activemodel:
+    attributes:
+      assembly:
+        sort_children: Sort children
   decidim:
+    accessibility:
+      skip_button: Skip button
+    account:
+      update:
+        error: There was a problem updating your account.
+        success: Your account was successfully updated.
+        success_with_email_confirmation: Your account was successfully updated. You'll receive an email to confirm your new email address.
     admin:
       participatory_space_private_users:
         create:
           error: Error
           success: Success
+    comments:
+      exports:
+        column_name:
+          comments:
+            alignment: Alignment
+            author:
+              author: Author
+              birth_date: Birth date
+              gender: Gender
+              id: ID
+              name: Name
+              residential_area: Residential area
+              statutory_representative_email: Statutory representative email
+              work_area: Work area
+            body: Content
+            commentable_id: Commentable ID
+            commentable_type: Commentable type
+            created_at: Creation date
+            depth: Depth
+            id: ID
+            root_commentable_url: Root commentable URL
+            user_group:
+              id: ID
+              name: Name
+              user_group: User group
+    debates:
+      admin:
+        exports:
+          column_name:
+            debates:
+              author_url: Author url
+              category:
+                category: Category
+                id: Id
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              created_at: Creation date
+              description: description
+              end_time: End time
+              id: ID
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              start_time: Start time
+              title: title
+              url: Url
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
     devise:
       registrations:
         new:
+          additional_tos_agreement: I agree.
+          additional_tos_title: Processing of your personal data
           already_have_an_account?: Already have an account?
           back: Back
           birth_date: Birth date
           complete_profile: Complete profile
-          complete_sign_up: Complete sign up
-          complete_sign_up_subtitle: Complete sign up subtitle
+          complete_sign_up: Plus que quelques questions...
+          complete_sign_up_subtitle: Remplissez ces quelques champs pour finaliser la création de votre compte.
           continue: Continue
           create_account: Create account
           gdpr_disclaimer: Gdpr disclaimer
@@ -22,8 +97,8 @@ en:
             female: Female
             male: Male
             other: Other
-          gender_label: Gender
-          month_label: Month
+          gender_label: Gender label
+          month_label: Month label
           month_name:
             april: April
             august: August
@@ -37,47 +112,186 @@ en:
             november: November
             october: October
             september: September
-          newsletter: Receive an occasional newsletter with relevant information
-          newsletter_title: Contact permission
-          nickname_help: Your alias (@nickname) in %{organization}
-          password_help: "%{minimun_characters} characters minimum, must not be too common (e.g. 123456) and must be different from your nickname and your email."
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
           residential_area: Residential area
-          sign_in: Log in
-          sign_up: Sign up to participate
-          sign_up_subtitle: Sign up to participate in discussions and support proposals.
+          sign_in: Sign in
+          sign_up: Sign up
+          sign_up_as:
+            legend: Legend
           statutory_representative_email: Statutory representative email
-          terms: the terms and conditions of use
-          tos_agreement: By signing up you agree to %{link}.
+          subtitle: Sign up to participate in discussions and support proposals.
+          terms: Terms
+          tos_agreement: Tos agreement
           tos_title: Terms of Service
           underage: Underage
-          username_help: Public name that appears on your posts. With the aim of guaranteeing the anonymity, can be any name.
+          username_help: Username help
           work_area: Work area
-          year_label: Year
+          year_label: Year label
       shared:
         omniauth_buttons:
           or: Or
+    forms:
+      user_answers_serializer:
+        created_at: Answered on
+        id: Answer ID
+        ip_hash: Ip Hash
+        registered: Registered
+        unregistered: Unregistered
+        user_birth_date: Birth date
+        user_email: Email
+        user_gender: Gender
+        user_name: Username
+        user_nickname: Nickname
+        user_residential_area: Residential area
+        user_status: User status
+        user_statutory_representative_email: Statutory representative email
+        user_work_area: Work area
+    meetings:
+      admin:
+        exports:
+          column_name:
+            registrations:
+              code: Code
+              id: ID
+              user:
+                birth_date: Birth date
+                email: Email
+                gender: Gender
+                name: Name
+                nickname: Nickname
+                registration_form_answers: Registration form answers
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                user: User
+                user_group: User group
+                work_area: Work area
+    participatory_processes:
+      admin:
+        participatory_processes:
+          form:
+            announcement_help: The text you enter here will be shown to the user right below the process information.
+            duration: Duration
+            filters: Filters
+            images: Images
+            metadata: Metadata
+            other: Other
+            related_processes: Related processes
+            scope_type_max_depth_help: Restrict the scope filter depth; The filter will show from general to the selected scope type.
+            select_an_area: Select an Area
+            select_process_group: Select a process group
+            slug_help: 'URL slugs are used to generate the URLs that point to this process. Only accepts letters, numbers and dashes, and must start with a letter. Example: %{url}'
+            title: General Information
+            visbility: Visibility
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposals:
+              amendments: Amendments
+              answer: Answer
+              attachments: Attachments
+              attachments_url: Attachments url
+              authors:
+                authors: Authors
+                birth_date: Birth date
+                emails: Emails
+                gender: Gender
+                names: Names
+                nicknames: Nicknames
+                residential_area: Residential area
+                statutory_representative_email: Statutory representative email
+                work_area: Work area
+              body: Content
+              category:
+                category: Category
+                id: ID
+                name: Name
+              collaborative_draft_origin: Collaborative draft origin
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              endorsements: Endorsements
+              followers: Followers
+              id: ID
+              meeting_urls: Meeting url
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              published_at: Publication date
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: Url
+          newsletter: Newsletter
+          newsletter_title: Newsletter title
+          nickname_help: Nickname help
+          password_help: Password help
+          residential_area: Residential area
+          sign_in: Sign in
+          sign_up: Sign up
+          sign_up_as:
+            legend: S'inscrire en tant que
+          sign_up_subtitle: Inscrivez-vous pour participer aux consultations.
+          statutory_representative_email: Statutory representative email
+          subtitle: Sign up to participate in discussions and support proposals.
+          terms: Terms
+          tos_agreement: Tos agreement
+          tos_title: Terms of Service
+          underage: Underage
+          username_help: Username help
+          work_area: Work area
+          year_label: Year label
+    statutory_representative:
+      inform:
+        body: Body
+        subject: Subject
+    user_complete_registration:
+      show:
+        complete_registration: Complete registration
+        complete_registration_subtitle: Complete registration subtitle
+        my_interests: My interests
+        no_scopes: No scopes
+        save_and_start_explore: Save and start explore
+        select_your_interests: Select your interests
+        skip: Skip this step
+        welcome: Welcome
   devise:
-    mailer:
-      invitation_instructions:
-        accept: Accept invitation
-        accept_until: This invitation will be due in %{due_date}.
-        hello: Hello %{email},
-        ignore: |-
-          If you don't want to accept the invitation, please ignore this email.<br />
-          Your account won't be created until you access the link above and set your nickname and password.
-        someone_invited_you: Someone has invited you to %{application}. You can accept it through the link below.
+    failure:
+      invited: You have a pending invitation, accept it to finish creating your account
+    invitations:
+      edit:
+        header: Header
+        nickname_help: Nickname help
+        submit_button: Submit button
+        subtitle: Subtitle
     registrations:
       new:
-        sign_up: Sign up to participate
+        sign_up: Sign up
     shared:
       links:
         captcha_protection: Captcha protection
-        didn_t_receive_confirmation_instructions: Didn't receive confirmation instructions?
-        didn_t_receive_unlock_instructions: Didn't receive unlock instructions?
-        forgot_your_password: Forgot your password?
-        sign_in: Log in
+        didn_t_receive_confirmation_instructions: Didn t receive confirmation instructions
+        didn_t_receive_unlock_instructions: Didn t receive unlock instructions
+        forgot_your_password: Forgot your password
+        sign_in: Sign in
         sign_in_with_provider: Sign in with %{provider}
-        sign_up: Sign up to participate
+        sign_up: Sign up
+  faker:
+    lorem:
+      punctuation:
+        period: Period
+        space: Space
   layouts:
     decidim:
       footer:
@@ -88,3 +302,13 @@ en:
         navigation: Navigation
         sign_in: Sign In
         sign_up: Sign Up
+      participatory_process_groups:
+        participatory_process_group:
+          processes_count: Processes count
+      process_header_steps:
+        step: Steps
+        view_steps: See steps
+      user_menu:
+        account: Account
+        conversations: Conversations
+        notifications: Notifications
