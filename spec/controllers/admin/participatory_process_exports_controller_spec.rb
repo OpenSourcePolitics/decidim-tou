@@ -14,8 +14,8 @@ module Decidim
 
         let(:params) do
           {
-              id: "participatory_processes",
-              participatory_process_slug: participatory_process.slug
+            id: "participatory_processes",
+            participatory_process_slug: participatory_process.slug
           }
         end
 
@@ -27,7 +27,7 @@ module Decidim
         describe "POST create" do
           it "enqueues a job with the default format" do
             expect(ExportParticipatorySpaceJob).to receive(:perform_later)
-                                                       .with(user, participatory_process, "participatory_processes", "JSON")
+              .with(user, participatory_process, "participatory_processes", "JSON")
 
             post(:create, params: params)
           end
