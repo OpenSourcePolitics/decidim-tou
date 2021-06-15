@@ -685,13 +685,9 @@ ActiveRecord::Schema.define(version: 2021_06_16_121842) do
     t.integer "decidim_question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "session_token", default: "", null: false
-    t.string "ip_hash"
     t.index ["decidim_question_id"], name: "index_decidim_forms_answers_question_id"
     t.index ["decidim_questionnaire_id"], name: "index_decidim_forms_answers_on_decidim_questionnaire_id"
     t.index ["decidim_user_id"], name: "index_decidim_forms_answers_on_decidim_user_id"
-    t.index ["ip_hash"], name: "index_decidim_forms_answers_on_ip_hash"
-    t.index ["session_token"], name: "index_decidim_forms_answers_on_session_token"
   end
 
   create_table "decidim_forms_display_conditions", force: :cascade do |t|
