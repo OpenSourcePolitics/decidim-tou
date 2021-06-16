@@ -4,8 +4,8 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-gem "decidim", "0.23.2"
-gem "decidim-conferences", "0.23.2"
+gem "decidim", "0.23.6"
+gem "decidim-conferences", "0.23.6"
 
 # Modules
 gem "decidim-decidim_awesome", "~> 0.6.6"
@@ -31,7 +31,7 @@ gem "sprockets", "~> 3.7"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
-  gem "decidim-dev", "0.23.2"
+  gem "decidim-dev", "0.23.6"
 
   # Since the v0.21.0, rubocop-rails is loaded in decidim-dev engine. For the v0.18.0, we can load rubocop-rails directly in app.
   gem "rubocop-rails", require: false
