@@ -25,6 +25,8 @@ module Decidim
     translatable_fields :title, :subtitle, :short_description, :description, :developer_group, :meta_scope, :local_area,
                         :target, :participatory_scope, :participatory_structure, :announcement
 
+    enum emitter: [:unspecified, :city, :metropolis, :both]
+
     belongs_to :organization,
                foreign_key: "decidim_organization_id",
                class_name: "Decidim::Organization"
@@ -77,13 +79,13 @@ module Decidim
     scope :active, -> { where(arel_table[:start_date].lteq(Date.current).and(arel_table[:end_date].gt(Date.current).or(arel_table[:end_date].eq(nil)))) }
 
     searchable_fields({
-                        scope_id: :decidim_scope_id,
-                        participatory_space: :itself,
-                        A: :title,
-                        B: :subtitle,
-                        C: :short_description,
-                        D: :description,
-                        datetime: :published_at
+                          scope_id: :decidim_scope_id,
+                          participatory_space: :itself,
+                          A: :title,
+                          B: :subtitle,
+                          C: :short_description,
+                          D: :description,
+                          datetime: :published_at
                       },
                       index_on_create: ->(_process) { false },
                       index_on_update: ->(process) { process.visible? })

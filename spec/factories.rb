@@ -64,6 +64,19 @@ FactoryBot.modify do
     end_date { 2.months.from_now }
     area { nil }
     display_linked_assemblies { false }
+    emitter { :unspecified }
+
+    trait :from_city do
+      emitter { :city }
+    end
+
+    trait :from_metroplis do
+      emitter { :metropolis }
+    end
+
+    trait :from_both_city_and_metropolis do
+      emitter { :both }
+    end
 
     trait :with_linked_assemblies do
       display_linked_assemblies { true }
@@ -136,11 +149,11 @@ FactoryBot.modify do
     email_on_notification { true }
     registration_metadata do
       {
-        residential_area: build(:scope).id.to_s,
-        work_area: build(:scope).id.to_s,
-        gender: "other",
-        birth_date: { month: Faker::Date.birthday.month, year: Faker::Date.birthday.year },
-        statutory_representative_email: generate(:email)
+          residential_area: build(:scope).id.to_s,
+          work_area: build(:scope).id.to_s,
+          gender: "other",
+          birth_date: { month: Faker::Date.birthday.month, year: Faker::Date.birthday.year },
+          statutory_representative_email: generate(:email)
       }
     end
 

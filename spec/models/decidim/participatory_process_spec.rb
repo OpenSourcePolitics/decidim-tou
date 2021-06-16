@@ -19,7 +19,7 @@ module Decidim
 
     it "overwrites the log presenter" do
       expect(described_class.log_presenter_class_for(:foo))
-        .to eq Decidim::ParticipatoryProcesses::AdminLog::ParticipatoryProcessPresenter
+          .to eq Decidim::ParticipatoryProcesses::AdminLog::ParticipatoryProcessPresenter
     end
 
     context "when there's a process with the same slug in the same organization" do
@@ -118,6 +118,40 @@ module Decidim
               expect(subject.linked_assemblies).not_to include(unpublished_assembly)
               expect(subject.linked_assemblies).not_to include(private_assembly)
             end
+          end
+        end
+      end
+
+      describe "#emitter" do
+        it "returns unspecified by default" do
+          expect(subject.emitter).to eq("unspecified")
+        end
+
+        context "when from city emitter" do
+          let(:participatory_process) { build(:participatory_process, :from_city, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+
+          it "allows city emitter" do
+            expect(subject).to be_valid
+            expect(subject.emitter).to eq("city")
+          end
+        end
+
+        context "when from metropolis emitter" do
+          let(:participatory_process) { build(:participatory_process, :from_metroplis, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+
+          it "allows city emitter" do
+            expect(subject).to be_valid
+            expect(subject.emitter).to eq("metropolis")
+          end
+        end
+
+
+        context "when from both city and metropolis emitter" do
+          let(:participatory_process) { build(:participatory_process, :from_both_city_and_metropolis,slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+
+          it "allows city emitter" do
+            expect(subject).to be_valid
+            expect(subject.emitter).to eq("both")
           end
         end
       end
