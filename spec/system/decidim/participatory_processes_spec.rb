@@ -11,14 +11,14 @@ describe "Participatory Processes", type: :system do
   let(:display_linked_assemblies) { true }
   let(:base_process) do
     create(
-      :participatory_process,
-      :active,
-      organization: organization,
-      description: { en: "Description", ca: "Descripció", es: "Descripción" },
-      short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
-      show_metrics: show_metrics,
-      show_statistics: show_statistics,
-      display_linked_assemblies: display_linked_assemblies
+        :participatory_process,
+        :active,
+        organization: organization,
+        description: { en: "Description", ca: "Descripció", es: "Descripción" },
+        short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
+        show_metrics: show_metrics,
+        show_statistics: show_statistics,
+        display_linked_assemblies: display_linked_assemblies
     )
   end
 
@@ -94,6 +94,91 @@ describe "Participatory Processes", type: :system do
         visit decidim_participatory_processes.participatory_processes_path
       end
 
+      context "when emitter is defined", :slow do
+        context "when no emitter" do
+          it "doesn't displays logo or text" do
+            within "#participatory_process_#{promoted_process.id}" do
+              expect(page).not_to have_css(".emitter-header")
+            end
+          end
+        end
+
+        context "when emitter is city" do
+          let(:base_process) do
+            create(
+                :participatory_process,
+                :active,
+                :from_city,
+                organization: organization,
+                description: { en: "Description", ca: "Descripció", es: "Descripción" },
+                short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
+                show_metrics: show_metrics,
+                show_statistics: show_statistics,
+                display_linked_assemblies: display_linked_assemblies
+            )
+          end
+
+          it "displays logo and text" do
+            within "#participatory_process_#{base_process.id}" do
+              within ".emitter-header" do
+                expect(page).to have_css("img", count: 1)
+                expect(page).to have_content("Consultation published by the City of Toulouse")
+              end
+            end
+          end
+        end
+
+        context "when emitter is metropolis" do
+          let(:base_process) do
+            create(
+                :participatory_process,
+                :active,
+                :from_metropolis,
+                organization: organization,
+                description: { en: "Description", ca: "Descripció", es: "Descripción" },
+                short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
+                show_metrics: show_metrics,
+                show_statistics: show_statistics,
+                display_linked_assemblies: display_linked_assemblies
+            )
+          end
+
+          it "displays logo and text" do
+            within "#participatory_process_#{base_process.id}" do
+              within ".emitter-header" do
+                expect(page).to have_css("img", count: 1)
+                expect(page).to have_content("Consultation published by Toulouse Metropolis")
+              end
+            end
+          end
+        end
+
+        context "when emitter is both city and metropolis" do
+          let(:base_process) do
+            create(
+                :participatory_process,
+                :active,
+                :from_both_city_and_metropolis,
+                organization: organization,
+                description: { en: "Description", ca: "Descripció", es: "Descripción" },
+                short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
+                show_metrics: show_metrics,
+                show_statistics: show_statistics,
+                display_linked_assemblies: display_linked_assemblies
+            )
+          end
+
+          it "displays logo and text" do
+            within "#participatory_process_#{base_process.id}" do
+              within ".emitter-header" do
+                expect(page).to have_css("img", count: 2)
+                expect(page).to have_content("Consultation published by the City of Toulouse and Toulouse Metropolis")
+              end
+            end
+          end
+        end
+      end
+
       context "and accessing from the homepage" do
         it "the menu link is not shown" do
           visit decidim.root_path
@@ -112,6 +197,54 @@ describe "Participatory Processes", type: :system do
           promoted_process.title["en"] = "D'Artagnan #{promoted_process.title["en"]}"
           promoted_process.save!
           visit decidim_participatory_processes.participatory_processes_path
+        end
+
+        context "when emitter is defined" do
+          context "when no emitter" do
+            it "doesn't displays logo or text" do
+              expect(page).not_to have_css(".emitter-header")
+            end
+          end
+
+          context "when emitter is city" do
+            let!(:promoted_process) { create(:participatory_process, :promoted, :from_city, organization: organization) }
+
+            it "displays logo and text" do
+              within "#highlighted-processes" do
+                within ".emitter-header" do
+                  expect(page).to have_css("img", count: 1)
+                  expect(page).to have_content("Consultation published by the City of Toulouse")
+                end
+              end
+            end
+          end
+
+          context "when emitter is metropolis" do
+            let!(:promoted_process) { create(:participatory_process, :promoted, :from_metropolis, organization: organization) }
+
+            it "displays logo and text" do
+              within "#highlighted-processes" do
+                within ".emitter-header" do
+                  expect(page).to have_css("img", count: 1)
+                  expect(page).to have_content("Consultation published by Toulouse Metropolis")
+                end
+              end
+            end
+          end
+
+          context "when emitter is both city and metropolis" do
+            let!(:promoted_process) { create(:participatory_process, :promoted, :from_both_city_and_metropolis, organization: organization) }
+
+            it "displays logo and text" do
+              within "#highlighted-processes" do
+                within ".emitter-header" do
+                  expect(page).to have_css("img", count: 2)
+                  expect(page).to have_content("Consultation published by the City of Toulouse and Toulouse Metropolis")
+                end
+              end
+            end
+          end
+
         end
 
         it "lists all the highlighted processes" do
@@ -283,10 +416,10 @@ describe "Participatory Processes", type: :system do
 
           it "only shows the published linked processes" do
             participatory_process
-              .link_participatory_space_resources(
-                [published_process, unpublished_process],
-                "related_processes"
-              )
+                .link_participatory_space_resources(
+                    [published_process, unpublished_process],
+                    "related_processes"
+                )
             visit decidim_participatory_processes.participatory_process_path(participatory_process)
             expect(page).to have_content(translated(published_process.title))
             expect(page).to have_no_content(translated(unpublished_process.title))

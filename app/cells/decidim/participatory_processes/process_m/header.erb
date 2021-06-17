@@ -1,4 +1,14 @@
 <div class="card__header">
+  <% if display_emitter(model) %>
+    <div class="row emitter-header">
+      <div class="large-4 small-12 columns">
+        <%= display_emitter(model).try(:[], :picture) %>
+      </div>
+      <div class="small-12 large-8 columns">
+        <%= display_emitter(model).try(:[], :text) %>
+      </div>
+    </div>
+  <% end %>
   <% if model.try(:linked_assemblies).present? %>
     <div class="linked_assemblies">
       <% model.linked_assemblies.each do |assembly| %>

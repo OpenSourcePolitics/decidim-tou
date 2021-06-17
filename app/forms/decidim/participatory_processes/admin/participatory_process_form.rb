@@ -39,6 +39,7 @@ module Decidim
 
         attribute :private_space, Boolean
         attribute :promoted, Boolean
+        attribute :emitter, String
         attribute :display_linked_assemblies, Boolean
         attribute :scopes_enabled, Boolean
         attribute :show_metrics, Boolean
@@ -56,6 +57,7 @@ module Decidim
         validates :scope, presence: true, if: proc { |object| object.scope_id.present? }
         validates :address, geocoding: true, if: ->(form) { form.address.present? }
         validates :slug, presence: true, format: { with: Decidim::ParticipatoryProcess.slug_format }
+        validates :emitter, presence: true, inclusion: { in: Decidim::ParticipatoryProcess.emitters.keys }
 
         validate :slug_uniqueness
 
@@ -95,19 +97,19 @@ module Decidim
 
         private
 
-        def organization_participatory_processes
-          OrganizationParticipatoryProcesses.new(current_organization).query
-        end
+          def organization_participatory_processes
+            OrganizationParticipatoryProcesses.new(current_organization).query
+          end
 
-        def slug_uniqueness
-          return unless organization_participatory_processes
-                        .where(slug: slug)
-                        .where.not(id: context[:process_id])
-                        .any?
+          def slug_uniqueness
+            return unless organization_participatory_processes
+                              .where(slug: slug)
+                              .where.not(id: context[:process_id])
+                              .any?
 
-          errors.add(:slug, :taken)
+            errors.add(:slug, :taken)
+          end
         end
       end
-    end
   end
 end

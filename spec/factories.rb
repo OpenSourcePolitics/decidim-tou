@@ -70,7 +70,7 @@ FactoryBot.modify do
       emitter { :city }
     end
 
-    trait :from_metroplis do
+    trait :from_metropolis do
       emitter { :metropolis }
     end
 

@@ -54,6 +54,7 @@ module Decidim
             scope: @participatory_process.scope,
             developer_group: @participatory_process.developer_group,
             local_area: @participatory_process.local_area,
+            emitter: form.emitter,
             area: @participatory_process.area,
             target: @participatory_process.target,
             participatory_scope: @participatory_process.participatory_scope,

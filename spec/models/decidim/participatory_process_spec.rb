@@ -137,7 +137,7 @@ module Decidim
         end
 
         context "when from metropolis emitter" do
-          let(:participatory_process) { build(:participatory_process, :from_metroplis, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+          let(:participatory_process) { build(:participatory_process, :from_metropolis, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
 
           it "allows city emitter" do
             expect(subject).to be_valid
