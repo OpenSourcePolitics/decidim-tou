@@ -19,7 +19,7 @@ module Decidim
 
     it "overwrites the log presenter" do
       expect(described_class.log_presenter_class_for(:foo))
-          .to eq Decidim::ParticipatoryProcesses::AdminLog::ParticipatoryProcessPresenter
+        .to eq Decidim::ParticipatoryProcesses::AdminLog::ParticipatoryProcessPresenter
     end
 
     context "when there's a process with the same slug in the same organization" do
@@ -145,9 +145,8 @@ module Decidim
           end
         end
 
-
         context "when from both city and metropolis emitter" do
-          let(:participatory_process) { build(:participatory_process, :from_both_city_and_metropolis,slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+          let(:participatory_process) { build(:participatory_process, :from_both_city_and_metropolis, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
 
           it "allows city emitter" do
             expect(subject).to be_valid

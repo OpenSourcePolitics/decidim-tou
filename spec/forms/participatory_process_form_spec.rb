@@ -11,30 +11,30 @@ module Decidim
         let(:organization) { create :organization }
         let(:title) do
           {
-              en: "Title",
-              es: "Título",
-              ca: "Títol"
+            en: "Title",
+            es: "Título",
+            ca: "Títol"
           }
         end
         let(:subtitle) do
           {
-              en: "Subtitle",
-              es: "Subtítulo",
-              ca: "Subtítol"
+            en: "Subtitle",
+            es: "Subtítulo",
+            ca: "Subtítol"
           }
         end
         let(:description) do
           {
-              en: "Description",
-              es: "Descripción",
-              ca: "Descripció"
+            en: "Description",
+            es: "Descripción",
+            ca: "Descripció"
           }
         end
         let(:short_description) do
           {
-              en: "Short description",
-              es: "Descripción corta",
-              ca: "Descripció curta"
+            en: "Short description",
+            es: "Descripción corta",
+            ca: "Descripció curta"
           }
         end
         let(:emitter) { "unspecified" }
@@ -44,18 +44,18 @@ module Decidim
         let(:show_statistics) { true }
         let(:attributes) do
           {
-              "participatory_process" => {
-                  "title" => title,
-                  "subtitle" => subtitle,
-                  "description" => description,
-                  "short_description" => short_description,
-                  "emitter" => emitter,
-                  "hero_image" => attachment,
-                  "banner_image" => attachment,
-                  "slug" => slug,
-                  "show_metrics" => show_metrics,
-                  "show_statistics" => show_statistics
-              }
+            "participatory_process" => {
+              "title" => title,
+              "subtitle" => subtitle,
+              "description" => description,
+              "short_description" => short_description,
+              "emitter" => emitter,
+              "hero_image" => attachment,
+              "banner_image" => attachment,
+              "slug" => slug,
+              "show_metrics" => show_metrics,
+              "show_statistics" => show_statistics
+            }
           }
         end
 
@@ -94,7 +94,7 @@ module Decidim
         context "when default language in title is missing" do
           let(:title) do
             {
-                ca: "Títol"
+              ca: "Títol"
             }
           end
 
@@ -104,7 +104,7 @@ module Decidim
         context "when default language in subtitle is missing" do
           let(:subtitle) do
             {
-                ca: "Subtítol"
+              ca: "Subtítol"
             }
           end
 
@@ -114,7 +114,7 @@ module Decidim
         context "when default language in description is missing" do
           let(:description) do
             {
-                ca: "Descripció"
+              ca: "Descripció"
             }
           end
 
@@ -124,7 +124,7 @@ module Decidim
         context "when default language in short_description is missing" do
           let(:short_description) do
             {
-                ca: "Descripció curta"
+              ca: "Descripció curta"
             }
           end
 

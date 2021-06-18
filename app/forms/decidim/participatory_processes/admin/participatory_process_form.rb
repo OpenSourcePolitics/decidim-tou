@@ -95,20 +95,20 @@ module Decidim
           @processes ||= Decidim::ParticipatoryProcess.where(organization: current_organization)
         end
 
-        private
+          private
 
-          def organization_participatory_processes
-            OrganizationParticipatoryProcesses.new(current_organization).query
-          end
+        def organization_participatory_processes
+          OrganizationParticipatoryProcesses.new(current_organization).query
+        end
 
-          def slug_uniqueness
-            return unless organization_participatory_processes
-                              .where(slug: slug)
-                              .where.not(id: context[:process_id])
-                              .any?
+        def slug_uniqueness
+          return unless organization_participatory_processes
+                        .where(slug: slug)
+                        .where.not(id: context[:process_id])
+                        .any?
 
-            errors.add(:slug, :taken)
-          end
+          errors.add(:slug, :taken)
+        end
         end
       end
   end

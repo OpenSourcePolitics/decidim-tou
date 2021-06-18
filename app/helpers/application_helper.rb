@@ -9,10 +9,10 @@ module ApplicationHelper
     return if process.emitter == "unspecified"
 
     {
-        picture: render_picture(process.emitter),
-        text: t("emitter_text",
-                emitter: t(process.emitter, scope: "decidim.participatory_processes.emitter.values"),
-                scope: "decidim.participatory_processes.emitter")
+      picture: render_picture(process.emitter),
+      text: t("emitter_text",
+              emitter: t(process.emitter, scope: "decidim.participatory_processes.emitter.values"),
+              scope: "decidim.participatory_processes.emitter")
     }
   end
 

@@ -6,7 +6,7 @@ module Decidim::ParticipatoryProcesses
   describe Admin::UpdateParticipatoryProcess do
     describe "call" do
       let(:my_process) { create :participatory_process }
-      let(:emitter){:unspecified}
+      let(:emitter) { :unspecified }
       let(:params) do
         {
           participatory_process: {
