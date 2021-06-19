@@ -114,7 +114,7 @@ module Decidim
       end
 
       def city_picture
-        image_tag("toulouse/logo-mairie.png")
+        image_tag("toulouse/logo-mairie-noir.png")
       end
     end
   end
