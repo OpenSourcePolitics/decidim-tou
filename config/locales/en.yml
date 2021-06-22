@@ -191,7 +191,7 @@ en:
             unspecified: Not specified
             visbility: Visibility
       emitter:
-        emitter_text: Consultation published by %{emitter}
+        emitter_text: Consultation published by %{developer_group}
         values:
           both: the City of Toulouse and Toulouse Metropolis
           city: the City of Toulouse

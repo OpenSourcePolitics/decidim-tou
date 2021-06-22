@@ -191,7 +191,7 @@ fr:
             unspecified: Non spécifié
             visbility: Visibilité
       emitter:
-        emitter_text: Consultation publiée par %{emitter}
+        emitter_text: Consultation publiée par %{developer_group}
         values:
           both: la Ville de Toulouse et Toulouse Métropole
           city: la Ville de Toulouse
