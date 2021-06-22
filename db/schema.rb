@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_110924) do
+ActiveRecord::Schema.define(version: 2021_06_14_133060) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -931,9 +931,9 @@ ActiveRecord::Schema.define(version: 2021_06_16_110924) do
     t.boolean "private_meeting", default: false
     t.boolean "transparent", default: true
     t.boolean "registration_form_enabled", default: false
+    t.string "salt"
     t.string "decidim_author_type"
     t.integer "decidim_user_group_id"
-    t.string "salt"
     t.integer "comments_count", default: 0, null: false
     t.index ["decidim_author_id", "decidim_author_type"], name: "index_decidim_meetings_meetings_on_author"
     t.index ["decidim_author_id"], name: "index_decidim_meetings_meetings_on_decidim_author_id"
