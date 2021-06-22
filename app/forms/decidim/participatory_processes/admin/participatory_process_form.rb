@@ -95,7 +95,7 @@ module Decidim
           @processes ||= Decidim::ParticipatoryProcess.where(organization: current_organization)
         end
 
-          private
+        private
 
         def organization_participatory_processes
           OrganizationParticipatoryProcesses.new(current_organization).query
@@ -109,7 +109,7 @@ module Decidim
 
           errors.add(:slug, :taken)
         end
-        end
       end
+    end
   end
 end

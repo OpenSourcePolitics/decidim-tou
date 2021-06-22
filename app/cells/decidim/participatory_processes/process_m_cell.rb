@@ -97,8 +97,6 @@ module Decidim
         }
       end
 
-      private
-
       def render_picture(emitter)
         if emitter == "city"
           city_picture
