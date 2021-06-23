@@ -114,7 +114,8 @@ describe "Participatory Processes", type: :system do
               short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
               show_metrics: show_metrics,
               show_statistics: show_statistics,
-              display_linked_assemblies: display_linked_assemblies
+              display_linked_assemblies: display_linked_assemblies,
+              developer_group: { en: "Developer group" }
             )
           end
 
@@ -122,7 +123,7 @@ describe "Participatory Processes", type: :system do
             within "#participatory_process_#{base_process.id}" do
               within ".emitter-header" do
                 expect(page).to have_css("img", count: 1)
-                expect(page).to have_content("Consultation published by the City of Toulouse")
+                expect(page).to have_content("Consultation published by Developer group")
               end
             end
           end
@@ -139,7 +140,8 @@ describe "Participatory Processes", type: :system do
               short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
               show_metrics: show_metrics,
               show_statistics: show_statistics,
-              display_linked_assemblies: display_linked_assemblies
+              display_linked_assemblies: display_linked_assemblies,
+              developer_group: { en: "Developer group" }
             )
           end
 
@@ -147,7 +149,7 @@ describe "Participatory Processes", type: :system do
             within "#participatory_process_#{base_process.id}" do
               within ".emitter-header" do
                 expect(page).to have_css("img", count: 1)
-                expect(page).to have_content("Consultation published by Toulouse Metropolis")
+                expect(page).to have_content("Consultation published by Developer group")
               end
             end
           end
@@ -164,7 +166,8 @@ describe "Participatory Processes", type: :system do
               short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
               show_metrics: show_metrics,
               show_statistics: show_statistics,
-              display_linked_assemblies: display_linked_assemblies
+              display_linked_assemblies: display_linked_assemblies,
+              developer_group: { en: "Developer group" }
             )
           end
 
@@ -172,7 +175,7 @@ describe "Participatory Processes", type: :system do
             within "#participatory_process_#{base_process.id}" do
               within ".emitter-header" do
                 expect(page).to have_css("img", count: 2)
-                expect(page).to have_content("Consultation published by the City of Toulouse and Toulouse Metropolis")
+                expect(page).to have_content("Consultation published by Developer group")
               end
             end
           end
@@ -207,39 +210,39 @@ describe "Participatory Processes", type: :system do
           end
 
           context "when emitter is city" do
-            let!(:promoted_process) { create(:participatory_process, :promoted, :from_city, organization: organization) }
+            let!(:promoted_process) { create(:participatory_process, :promoted, :from_city, organization: organization, developer_group: { en: "Developer group" }) }
 
             it "displays logo and text" do
               within "#highlighted-processes" do
                 within ".emitter-header" do
                   expect(page).to have_css("img", count: 1)
-                  expect(page).to have_content("Consultation published by the City of Toulouse")
+                  expect(page).to have_content("Consultation published by Developer group")
                 end
               end
             end
           end
 
           context "when emitter is metropolis" do
-            let!(:promoted_process) { create(:participatory_process, :promoted, :from_metropolis, organization: organization) }
+            let!(:promoted_process) { create(:participatory_process, :promoted, :from_metropolis, organization: organization, developer_group: { en: "Developer group" }) }
 
             it "displays logo and text" do
               within "#highlighted-processes" do
                 within ".emitter-header" do
                   expect(page).to have_css("img", count: 1)
-                  expect(page).to have_content("Consultation published by Toulouse Metropolis")
+                  expect(page).to have_content("Consultation published by Developer group")
                 end
               end
             end
           end
 
           context "when emitter is both city and metropolis" do
-            let!(:promoted_process) { create(:participatory_process, :promoted, :from_both_city_and_metropolis, organization: organization) }
+            let!(:promoted_process) { create(:participatory_process, :promoted, :from_both_city_and_metropolis, organization: organization, developer_group: { en: "Developer group" }) }
 
             it "displays logo and text" do
               within "#highlighted-processes" do
                 within ".emitter-header" do
                   expect(page).to have_css("img", count: 2)
-                  expect(page).to have_content("Consultation published by the City of Toulouse and Toulouse Metropolis")
+                  expect(page).to have_content("Consultation published by Developer group")
                 end
               end
             end

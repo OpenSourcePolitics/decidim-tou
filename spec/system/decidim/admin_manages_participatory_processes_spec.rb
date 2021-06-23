@@ -67,6 +67,7 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
         fill_in :participatory_process_hashtag, with: "#hashtag"
         attach_file :participatory_process_hero_image, image1_path
         attach_file :participatory_process_banner_image, image2_path
+        select "Not specified", from: :participatory_process_emitter
 
         find("*[type=submit]").click
       end
