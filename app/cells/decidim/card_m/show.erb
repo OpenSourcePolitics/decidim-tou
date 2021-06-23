@@ -3,7 +3,7 @@
     <%= render :label if has_label? %>
     <%= render :top if render_top? %>
     <%= render :image if has_image? %>
-    <%= render :emitter if display_emitter(model) %>
+    <%= render :emitter %>
     <div class="card__content">
       <%= render :header if has_header? %>
 
