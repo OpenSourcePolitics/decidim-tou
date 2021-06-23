@@ -7,11 +7,11 @@ shared_examples "manage processes announcements" do
     click_link translated(participatory_process.title)
 
     fill_in_i18n_editor(
-        :participatory_process_announcement,
-        "#participatory_process-announcement-tabs",
-        en: "An important announcement",
-        es: "Un aviso muy importante",
-        ca: "Un avís molt important"
+      :participatory_process_announcement,
+      "#participatory_process-announcement-tabs",
+      en: "An important announcement",
+      es: "Un aviso muy importante",
+      ca: "Un avís molt important"
     )
 
     within ".edit_participatory_process" do

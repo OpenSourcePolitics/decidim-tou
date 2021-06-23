@@ -11,7 +11,7 @@ module Decidim::ParticipatoryProcesses
         {
           participatory_process: {
             id: my_process.id,
-            title: {en:"Foo title", ca: "Foo title", es:"Foo title"},
+            title: { en: "Foo title", ca: "Foo title", es: "Foo title" },
             subtitle: my_process.subtitle,
             slug: my_process.slug,
             hashtag: my_process.hashtag,
