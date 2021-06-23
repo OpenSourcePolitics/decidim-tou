@@ -6,9 +6,13 @@ Decidim.configure do |config|
   config.mailer_sender = "OSP Agora <ne-pas-repondre@opensourcepolitics.eu>"
 
   # Change these lines to set your preferred locales
-  config.default_locale = :fr
-  config.available_locales = [:fr]
-
+  if Rails.env.test?
+    config.default_locale = :en
+    config.available_locales = [:en]
+  else
+    config.default_locale = :fr
+    config.available_locales = [:fr]
+  end
   config.maximum_attachment_height_or_width = 6000
 
   # Geocoder configuration

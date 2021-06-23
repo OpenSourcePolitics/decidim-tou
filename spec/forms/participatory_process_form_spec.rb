@@ -37,7 +37,7 @@ module Decidim
             ca: "Descripció curta"
           }
         end
-        let(:emitter) { "unspecified" }
+        let(:emitter) { :unspecified }
         let(:slug) { "slug" }
         let(:attachment) { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
         let(:show_metrics) { true }
