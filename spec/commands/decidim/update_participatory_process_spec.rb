@@ -11,12 +11,8 @@ module Decidim::ParticipatoryProcesses
         {
           participatory_process: {
             id: my_process.id,
-            title_en: "Foo title",
-            title_ca: "Foo title",
-            title_es: "Foo title",
-            subtitle_en: my_process.subtitle,
-            subtitle_ca: my_process.subtitle,
-            subtitle_es: my_process.subtitle,
+            title: {en:"Foo title", ca: "Foo title", es:"Foo title"},
+            subtitle: my_process.subtitle,
             slug: my_process.slug,
             hashtag: my_process.hashtag,
             meta_scope: my_process.meta_scope,
