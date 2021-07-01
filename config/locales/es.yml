@@ -298,3 +298,5 @@ es:
         account: Account
         conversations: Conversations
         notifications: Notifications
+  sms_verification_workflow:
+    message: 'Hola, aquí está el código para autenticarse en la plataforma jeparticipe.toulouse.fr: %{code}'

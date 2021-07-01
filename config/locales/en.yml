@@ -312,3 +312,5 @@ en:
         account: Account
         conversations: Conversations
         notifications: Notifications
+  sms_verification_workflow:
+    message: 'Hello, here is the code to authenticate yourself on the jeparticipe.toulouse.fr platform: %{code}'

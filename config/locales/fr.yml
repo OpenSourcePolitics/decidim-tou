@@ -17,6 +17,10 @@ fr:
         create:
           error: Error
           success: Success
+    authorization_handlers:
+      osp_authorization_handler:
+        explanation: Explanation
+        name: OSP authorization handler
     comments:
       exports:
         column_name:
@@ -315,3 +319,5 @@ fr:
         account: Account
         conversations: Conversations
         notifications: Notifications
+  sms_verification_workflow:
+    message: Bonjour, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
