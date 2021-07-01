@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "uri"
 require "net/http"
 
@@ -30,4 +31,3 @@ class SMSGatewayService
     true
   end
 end
-

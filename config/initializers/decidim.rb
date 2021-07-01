@@ -55,7 +55,7 @@ Decidim.configure do |config|
   config.enable_html_header_snippets = true
 
   # SMS gateway configuration
-  config.sms_gateway_service = 'SMSGatewayService'
+  config.sms_gateway_service = "SMSGatewayService"
 
   # Etherpad configuration
   #
