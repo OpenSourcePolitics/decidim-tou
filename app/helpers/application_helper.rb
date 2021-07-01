@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include EmitterHelper
+
   # Public: normalize entire providers names to they can be used for buttons
   # and icons.
   def normalize_full_provider_name(provider)
@@ -24,5 +26,8 @@ module ApplicationHelper
 
       html_element
     end
+
+  def linked_assemblies_for(process)
+    process.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
   end
 end

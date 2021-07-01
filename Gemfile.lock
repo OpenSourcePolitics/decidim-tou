@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler
+  revision: 054f2203c3e17efbe34d5b83dcba916ee6b9da4e
+  branch: bump_0.26
+  specs:
+    decidim-phone_authorization_handler (1.0.0)
+      decidim-core (~> 0.26)
+
+GIT
   remote: https://github.com/decidim/decidim.git
   revision: 8c4b5461f24345ca2ff8927809f2c839059e2421
   branch: release/0.26-stable
@@ -850,6 +858,7 @@ DEPENDENCIES
   decidim-decidim_awesome (~> 0.8.3)
   decidim-dev!
   decidim-faceless!
+  decidim-phone_authorization_handler!
   dotenv-rails
   faker (~> 2.14)
   fog-aws
@@ -858,7 +867,6 @@ DEPENDENCIES
   listen (~> 3.1)
   lograge
   newrelic_rpm
-  omniauth-oauth2 (>= 1.4.0, < 2.0)
   passenger
   puma (>= 5.5.1)
   rubocop-faker
@@ -870,7 +878,6 @@ DEPENDENCIES
   sidekiq-scheduler
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
-  sprockets (~> 3.7)
   sys-filesystem
   web-console (= 4.0.4)
 
@@ -878,4 +885,4 @@ RUBY VERSION
    ruby 2.7.1p83
 
 BUNDLED WITH
-   2.3.13
+   2.3.9
