@@ -165,6 +165,10 @@
       <%= form.check_box :promoted %>
     </div>
     <div class="row column">
+      <%= form.label t(".emitter") %>
+      <%= form.select :emitter, Decidim::ParticipatoryProcess.emitters.keys.map { |key| [t(".#{key}"), key] }, label: false %>
+    </div>
+    <div class="row column">
       <%= form.check_box :display_linked_assemblies %>
     </div>
   </div>
@@ -177,7 +181,7 @@
     <div class="row column">
       <%= form.select(
               :related_process_ids,
-              @form.processes.order(title: :asc).map{|process| [translated_attribute(process.title), process.id]},
+              @form.processes.order(title: :asc).map { |process| [translated_attribute(process.title), process.id] },
               { include_blank: true },
               { multiple: true, class: "chosen-select" }
           ) %>
