@@ -277,3 +277,13 @@ ol{
   background: $light-gray;
   padding: 0 1rem;
 }
+
+
+.emitter-header .card-data__item{
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 0px;
+
+  img {
+    max-width: 60%;
+  }
+}

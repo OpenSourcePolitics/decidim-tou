@@ -15,6 +15,7 @@ module Decidim::ParticipatoryProcesses
     let(:address) { "Carrer Pare Llaurador 113, baixos, 08224 Terrassa" }
     let(:latitude) { 40.1234 }
     let(:longitude) { 2.1234 }
+    let(:emitter) { :unspecified }
     let(:related_process_ids) { [] }
     let(:form) do
       instance_double(
@@ -40,6 +41,7 @@ module Decidim::ParticipatoryProcesses
         short_description: { en: "short_description" },
         current_user: current_user,
         current_organization: organization,
+        emitter: emitter,
         scopes_enabled: true,
         private_space: false,
         scope: scope,

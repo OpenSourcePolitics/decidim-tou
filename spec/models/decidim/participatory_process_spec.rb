@@ -121,6 +121,39 @@ module Decidim
           end
         end
       end
+
+      describe "#emitter" do
+        it "returns unspecified by default" do
+          expect(subject.emitter).to eq("unspecified")
+        end
+
+        context "when from city emitter" do
+          let(:participatory_process) { build(:participatory_process, :from_city, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+
+          it "allows city emitter" do
+            expect(subject).to be_valid
+            expect(subject.emitter).to eq("city")
+          end
+        end
+
+        context "when from metropolis emitter" do
+          let(:participatory_process) { build(:participatory_process, :from_metropolis, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+
+          it "allows city emitter" do
+            expect(subject).to be_valid
+            expect(subject.emitter).to eq("metropolis")
+          end
+        end
+
+        context "when from both city and metropolis emitter" do
+          let(:participatory_process) { build(:participatory_process, :from_both_city_and_metropolis, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+
+          it "allows city emitter" do
+            expect(subject).to be_valid
+            expect(subject.emitter).to eq("both")
+          end
+        end
+      end
     end
   end
 end
