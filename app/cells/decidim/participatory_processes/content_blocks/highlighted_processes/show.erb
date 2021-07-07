@@ -11,6 +11,16 @@
                 <div class="card__image-top"
                      style="background-image:url(<%= process.hero_image.url %>)"></div>
               <% end %>
+              <% if display_emitter(process) %>
+                <div class="card-data emitter-header">
+                  <div class="large-4 small-12 columns card-data__item">
+                    <%= display_emitter(process).try(:[], :picture) %>
+                  </div>
+                  <div class="small-12 large-8 columns card-data__item">
+                    <%= display_emitter(process).try(:[], :text) %>
+                  </div>
+                </div>
+              <% end %>
               <div class="card__content">
                 <% if process.try(:linked_assemblies).present? %>
                   <div class="linked_assemblies column text-center">

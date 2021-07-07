@@ -74,6 +74,7 @@ module Decidim
             meta_scope: form.meta_scope,
             start_date: form.start_date,
             end_date: form.end_date,
+            emitter: form.emitter,
             participatory_process_group: form.participatory_process_group,
             show_metrics: form.show_metrics,
             show_statistics: form.show_statistics,

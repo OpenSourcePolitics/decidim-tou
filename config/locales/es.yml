@@ -173,10 +173,14 @@ es:
         participatory_processes:
           form:
             announcement_help: The text you enter here will be shown to the user right below the process information.
+            both: Consultation of the city of Toulouse and Toulouse metropolis
+            city: Consultation of the city of Toulouse
             duration: Duration
+            emitter: Consultation organizer
             filters: Filters
             images: Images
             metadata: Metadata
+            metropolis: Toulouse metropolis consultation
             other: Other
             related_processes: Related processes
             scope_type_max_depth_help: Restrict the scope filter depth; The filter will show from general to the selected scope type.
@@ -184,7 +188,14 @@ es:
             select_process_group: Select a process group
             slug_help: 'URL slugs are used to generate the URLs that point to this process. Only accepts letters, numbers and dashes, and must start with a letter. Example: %{url}'
             title: General Information
+            unspecified: Not specified
             visbility: Visibility
+      emitter:
+        emitter_text: Consultation published by %{emitter}
+        values:
+          both: the City of Toulouse and Toulouse Metropolis
+          city: the City of Toulouse
+          metropolis: Toulouse Metropolis
     proposals:
       admin:
         exports:

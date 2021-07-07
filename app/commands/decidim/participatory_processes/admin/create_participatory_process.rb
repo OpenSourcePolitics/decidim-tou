@@ -60,6 +60,7 @@ module Decidim
             local_area: form.local_area,
             area: form.area,
             target: form.target,
+            emitter: form.emitter,
             participatory_scope: form.participatory_scope,
             participatory_structure: form.participatory_structure,
             meta_scope: form.meta_scope,

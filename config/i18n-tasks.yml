@@ -116,4 +116,5 @@ ignore_unused:
   - decidim.proposals.admin.exports.*
   - faker.*
   - layouts.decidim.participatory_process_groups.participatory_process_group.processes_count
+  - decidim.participatory_processes.emitter.values.*
 
