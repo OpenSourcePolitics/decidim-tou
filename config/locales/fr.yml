@@ -270,6 +270,14 @@ fr:
         select_your_interests: Cliquez sur les curseurs et recevez des notifications personnalisées
         skip: Passer cette étape
         welcome: Bienvenue !
+    verifications:
+      sms:
+        authorizations:
+          new:
+            instructions: Enter your phone number and the verification code sent by SMS. This method allows us to ensure that you have voted only once.
+            instructions_helper: "<ul><li>Must contain only numbers</li><li>Must start with 0</li><li>Must contain 10 digits</li><li>Must not be used by another account on this platform</li></ul>"
+            send: Send
+            title: Verify your identity with the SMS verification method
   devise:
     failure:
       invited: Invited
