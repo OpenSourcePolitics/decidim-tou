@@ -284,15 +284,15 @@ fr:
     verifications:
       sms:
         authorizations:
+          edit:
+            send: Authentifier mon compte
+            verification_code: Code de vérification
           new:
             instructions: Renseignez votre numéro de téléphone puis le code de vérification transmis par SMS. Cette méthode nous permet de nous assurer que vous avez bien voté une seule fois.
             instructions_helper: "<ul><li>Ne doit contenir que des chiffres</li><li>Doit commencer par 0</li><li>Doit contenir 10 chiffres</li><li>Ne doit pas être utilisé par un autre compte sur cette plateforme</li></ul>"
+            mobile_phone_number: Votre numéro de téléphone mobile
             send: Envoyer un SMS
             title: Vérifier votre identité avec la méthode de vérification par SMS
-            mobile_phone_number: Votre numéro de téléphone mobile
-          edit:
-            verification_code: Code de vérification
-            send: Authentifier mon compte
   devise:
     failure:
       invited: Invited
