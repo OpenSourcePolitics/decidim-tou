@@ -287,8 +287,8 @@ en:
           edit:
             send: Confirm
             verification_code: Verification code
-            title: Title
-            resend: Send again
+            title: Introduce the verification code you received
+            resend: Reset verification code
             destroy: Destroy
             confirm_destroy: Confirm
           new:
