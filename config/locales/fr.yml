@@ -287,6 +287,10 @@ fr:
           edit:
             send: Authentifier mon compte
             verification_code: Code de vérification
+            title: Vérifier votre identité avec la méthode de vérification par SMS
+            resend: Renvoyer un SMS
+            destroy: Détruire
+            confirm_destroy: Confirmer
           new:
             instructions: Renseignez votre numéro de téléphone puis le code de vérification transmis par SMS. Cette méthode nous permet de nous assurer que vous avez bien voté une seule fois.
             instructions_helper: "<ul><li>Ne doit contenir que des chiffres</li><li>Doit commencer par 0</li><li>Doit contenir 10 chiffres</li><li>Ne doit pas être utilisé par un autre compte sur cette plateforme</li></ul>"
