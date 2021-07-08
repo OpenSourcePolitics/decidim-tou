@@ -285,13 +285,13 @@ en:
       sms:
         authorizations:
           edit:
-            send: Authentifier mon compte
+            send: Confirm
             verification_code: Verification code
           new:
             instructions: Enter your phone number and the verification code sent by SMS. This method allows us to ensure that you have voted only once.
             instructions_helper: "<ul><li>Must contain only numbers</li><li>Must start with 0</li><li>Must contain 10 digits</li><li>Must not be used by another account on this platform</li></ul>"
             mobile_phone_number: Mobile phone number
-            send: Send
+            send: Send me an SMS
             title: Verify your identity with the SMS verification method
   devise:
     failure:
