@@ -16,6 +16,7 @@ module Decidim::ParticipatoryProcesses
     let(:latitude) { 40.1234 }
     let(:longitude) { 2.1234 }
     let(:related_process_ids) { [] }
+    let(:emitter) { "metropolis" }
     let(:form) do
       instance_double(
         Admin::ParticipatoryProcessForm,
@@ -42,6 +43,7 @@ module Decidim::ParticipatoryProcesses
         current_organization: organization,
         scopes_enabled: true,
         private_space: false,
+        emitter: emitter,
         scope: scope,
         scope_type_max_depth: nil,
         area: area,
