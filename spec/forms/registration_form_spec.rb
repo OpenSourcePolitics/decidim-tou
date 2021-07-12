@@ -23,6 +23,7 @@ module Decidim
     let(:password_confirmation) { password }
     let(:tos_agreement) { "1" }
     let(:additional_tos) { "1" }
+    let(:living_area) { "city" }
     let(:city_residential_area) { city_residential_scope.id.to_s }
     let(:city_work_area) { city_work_scope.id.to_s }
     let(:gender) { "female" }
@@ -40,6 +41,7 @@ module Decidim
         password_confirmation: password_confirmation,
         tos_agreement: tos_agreement,
         additional_tos: additional_tos,
+        living_area: living_area,
         city_residential_area: city_residential_area,
         city_work_area: city_work_area,
         gender: gender,
@@ -150,30 +152,6 @@ module Decidim
       it { is_expected.to be_invalid }
     end
 
-    context "when city_residential_area is not a scope" do
-      let(:city_residential_area) { "23" }
-
-      it { is_expected.to be_invalid }
-    end
-
-    context "when city_residential_area is nil" do
-      let(:city_residential_area) { nil }
-
-      it { is_expected.to be_invalid }
-    end
-
-    context "when city_work_area is not a scope" do
-      let(:city_work_area) { "abcd" }
-
-      it { is_expected.to be_invalid }
-    end
-
-    context "when city_work_area is nil" do
-      let(:city_work_area) { nil }
-
-      it { is_expected.to be_valid }
-    end
-
     context "when gender is not in list" do
       let(:gender) { "Apache helicopter" }
 
@@ -220,6 +198,44 @@ module Decidim
       let(:statutory_representative_email) { nil }
 
       it { is_expected.to be_invalid }
+    end
+
+    context "when living_area is nil" do
+      let(:living_area) { nil }
+
+      it { is_expected.to be_invalid }
+    end
+
+    context "when living_area is not in list" do
+      let(:living_area) { "Outer space" }
+
+      it { is_expected.to be_invalid }
+    end
+
+    context "when living_area is city" do
+      context "when city_residential_area is not a scope" do
+        let(:city_residential_area) { "23" }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context "when city_residential_area is nil" do
+        let(:city_residential_area) { nil }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context "when city_work_area is not a scope" do
+        let(:city_work_area) { "abcd" }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context "when city_work_area is nil" do
+        let(:city_work_area) { nil }
+
+        it { is_expected.to be_valid }
+      end
     end
 
     describe "#city_scopes" do

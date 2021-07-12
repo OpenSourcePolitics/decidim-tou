@@ -8,6 +8,7 @@ module Decidim
     include JsonbAttributes
 
     GENDER_TYPES = %w(male female other).freeze
+    LIVING_AREA = ["city"].freeze
 
     MONTHNAMES = (1..12).map { |m| Date::MONTHNAMES[m] }.freeze
 
@@ -16,6 +17,7 @@ module Decidim
     attribute :email, String
     attribute :password, String
     attribute :password_confirmation, String
+    attribute :living_area, String
     attribute :city_residential_area, String
     attribute :city_work_area, String
     attribute :gender, String
@@ -46,6 +48,10 @@ module Decidim
     validates :gender,
               inclusion: { in: GENDER_TYPES },
               if: ->(form) { form.gender.present? }
+
+    validates :living_area,
+              inclusion: { in: LIVING_AREA },
+              presence: true
 
     validates :city_residential_area,
               inclusion: { in: :city_scopes_ids },
