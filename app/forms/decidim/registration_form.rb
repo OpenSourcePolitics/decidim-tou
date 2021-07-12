@@ -58,7 +58,7 @@ module Decidim
     validates :city_residential_area,
               inclusion: { in: :city_scopes_ids },
               presence: true,
-              if: -> { city_living_area? }
+              if: :city_living_area?
 
     validates :city_work_area,
               inclusion: { in: :city_scopes_ids },
@@ -67,7 +67,7 @@ module Decidim
     validates :metropolis_residential_area,
               inclusion: { in: :metropolis_scopes_ids },
               presence: true,
-              if: -> { metropolis_living_area? }
+              if: :metropolis_living_area?
 
     validates :metropolis_work_area,
               inclusion: { in: :metropolis_scopes_ids },
