@@ -27,9 +27,9 @@ fr:
           comments:
             alignment: Alignement
             author:
+              age_scope: Tranche d'âge
               author: Auteur
               birth_date: Date de naissance
-              age_scope: Tranche d'âge
               gender: Genre
               id: ID
               name: Nom
@@ -328,6 +328,11 @@ fr:
         period: Period
     name:
       suffix: Suffix
+  global:
+    age:
+      between: De %{from} à %{to} ans
+      greather_than: Plus de %{age} ans
+      lower_than: Moins de %{age} ans
   layouts:
     decidim:
       footer:
@@ -350,8 +355,3 @@ fr:
         notifications: Notifications
   sms_verification_workflow:
     message: Bonjour, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
-  global:
-    age:
-      between: De %{from} à %{to} ans
-      greather_than: Plus de %{age} ans
-      lower_than: Moins de %{age} ans
