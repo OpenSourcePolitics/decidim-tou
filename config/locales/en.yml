@@ -286,7 +286,6 @@ en:
         authorizations:
           edit:
             confirm_destroy: Confirm
-            destroy: Destroy
             resend: Reset verification code
             send: Confirm
             title: Introduce the verification code you received

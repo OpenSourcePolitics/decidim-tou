@@ -286,7 +286,6 @@ fr:
         authorizations:
           edit:
             confirm_destroy: Confirmer
-            destroy: Détruire
             resend: Renvoyer un SMS
             send: Authentifier mon compte
             title: Vérifier votre identité avec la méthode de vérification par SMS
