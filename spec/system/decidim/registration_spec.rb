@@ -23,12 +23,11 @@ def fill_registration_form(params = {})
     fill_in :registration_user_name, with: "Nikola Tesla"
     fill_in :registration_user_nickname, with: "the-greatest-genius-in-history"
 
+    expect(page).not_to have_select("user[metropolis_residential_area]")
+    expect(page).not_to have_select("user[metropolis_work_area]")
+    expect(page).not_to have_select("user[city_residential_area]")
+    expect(page).not_to have_select("user[city_work_area]")
     if params[:living_area] == :metropolis
-      expect(page).not_to have_select("user[metropolis_residential_area]")
-      expect(page).not_to have_select("user[metropolis_work_area]")
-      expect(page).not_to have_select("user[city_residential_area]")
-      expect(page).not_to have_select("user[city_work_area]")
-
       select("Metropolis", from: :registration_user_living_area)
       select translated(metropolis_residential_scope.name), from: :registration_user_metropolis_residential_area
       select translated(metropolis_work_scope.name), from: :registration_user_metropolis_work_area
@@ -38,11 +37,6 @@ def fill_registration_form(params = {})
       expect(page).not_to have_select("user[city_residential_area]")
       expect(page).not_to have_select("user[city_work_area]")
     elsif params[:living_area] == :other
-      expect(page).not_to have_select("user[metropolis_residential_area]")
-      expect(page).not_to have_select("user[metropolis_work_area]")
-      expect(page).not_to have_select("user[city_residential_area]")
-      expect(page).not_to have_select("user[city_work_area]")
-
       select("Other", from: :registration_user_living_area)
 
       expect(page).not_to have_select("user[city_residential_area]")
@@ -50,11 +44,6 @@ def fill_registration_form(params = {})
       expect(page).not_to have_select("user[metropolis_residential_area]")
       expect(page).not_to have_select("user[metropolis_work_area]")
     else
-      expect(page).not_to have_select("user[metropolis_residential_area]")
-      expect(page).not_to have_select("user[metropolis_work_area]")
-      expect(page).not_to have_select("user[city_residential_area]")
-      expect(page).not_to have_select("user[city_work_area]")
-
       select("City", from: :registration_user_living_area)
       select translated(city_residential_scope.name), from: :registration_user_city_residential_area
       select translated(city_work_scope.name), from: :registration_user_city_work_area
@@ -205,7 +194,6 @@ describe "Registration", type: :system do
     end
 
     context "when living area is other" do
-
       it "allows user to register" do
         fill_registration_form(step: 2, living_area: :other)
         submit_form
