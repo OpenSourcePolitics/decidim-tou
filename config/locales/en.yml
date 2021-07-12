@@ -285,12 +285,12 @@ en:
       sms:
         authorizations:
           edit:
-            send: Confirm
-            verification_code: Verification code
-            title: Introduce the verification code you received
-            resend: Reset verification code
-            destroy: Destroy
             confirm_destroy: Confirm
+            destroy: Destroy
+            resend: Reset verification code
+            send: Confirm
+            title: Introduce the verification code you received
+            verification_code: Verification code
           new:
             instructions: Enter your phone number and the verification code sent by SMS. This method allows us to ensure that you have voted only once.
             instructions_helper: "<ul><li>Must contain only numbers</li><li>Must start with 0</li><li>Must contain 10 digits</li><li>Must not be used by another account on this platform</li></ul>"
