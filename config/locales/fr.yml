@@ -151,6 +151,9 @@ fr:
         user_city_work_area: Work area
         user_email: Email
         user_gender: Gender
+        user_living_area: Living area
+        user_metropolis_residential_area: Residential area
+        user_metropolis_work_area: Work area
         user_name: Username
         user_nickname: Nickname
         user_status: User status

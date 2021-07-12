@@ -1,4 +1,5 @@
 ---
+
 en:
   activemodel:
     attributes:
@@ -141,14 +142,17 @@ en:
           or: Or
     forms:
       user_answers_serializer:
+        user_metropolis_residential_area: Metropolis residential area
+        user_metropolis_work_area: Metropolis work area
+        user_living_area: Living area
         created_at: Answered on
         id: Answer ID
         ip_hash: Ip Hash
         registered: Registered
         unregistered: Unregistered
         user_birth_date: Birth date
-        user_city_residential_area: Residential area
-        user_city_work_area: Work area
+        user_city_residential_area: City residential area
+        user_city_work_area: City work area
         user_email: Email
         user_gender: Gender
         user_name: Username
