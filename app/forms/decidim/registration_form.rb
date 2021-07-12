@@ -97,6 +97,14 @@ module Decidim
 
     def city_work_area_for_select
       city_scopes
+      end
+
+    def metropolis_residential_area_for_select
+      metropolis_scopes
+    end
+
+    def metropolis_work_area_for_select
+      metropolis_scopes
     end
 
     def gender_types_for_select

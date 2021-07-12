@@ -9,9 +9,15 @@ $(() => {
     const $mandatoryFormFirstStepFields = $formFirstStepFields.not("#registration_user_newsletter").not("input[type ='hidden']").add($tosAgreement);
     const $userPassword = $("#registration_user_password");
     const $userPasswordConfirmation = $("#registration_user_password_confirmation");
+    const $userLivingArea = $("#registration_user_living_area");
+    const $city_living_area = $(".city_living_area");
+    const $metropolis_living_area = $(".metropolis_living_area");
 
     const $underageSelector = $("#registration_underage_registration");
     const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
+
+    $metropolis_living_area.hide();
+    $city_living_area.hide();
 
     const emailSelectorToggle = () => {
         if ($underageSelector.is(":checked")) {
@@ -28,6 +34,19 @@ $(() => {
     $underageSelector.on("click", () => {
         console.log($statutoryRepresentativeEmailSelector)
         emailSelectorToggle();
+    });
+
+    $userLivingArea.on("change", () => {
+        if ($userLivingArea.val() === "city") {
+            $city_living_area.show();
+            $metropolis_living_area.hide();
+        } else if ($userLivingArea.val() === "metropolis") {
+            $city_living_area.hide();
+            $metropolis_living_area.show();
+        } else {
+            $city_living_area.hide();
+            $metropolis_living_area.hide();
+        }
     });
 
     const setGroupFieldsVisibility = (value) => {
