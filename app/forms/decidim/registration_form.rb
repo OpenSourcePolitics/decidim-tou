@@ -8,7 +8,7 @@ module Decidim
     include JsonbAttributes
 
     GENDER_TYPES = %w(male female other).freeze
-    LIVING_AREA = ["City", "Other"].freeze
+    LIVING_AREA = %w(city other metropolis).freeze
 
     MONTHNAMES = (1..12).map { |m| Date::MONTHNAMES[m] }.freeze
 
@@ -20,6 +20,8 @@ module Decidim
     attribute :living_area, String
     attribute :city_residential_area, String
     attribute :city_work_area, String
+    attribute :metropolis_residential_area, String
+    attribute :metropolis_work_area, String
     attribute :gender, String
     attribute :tos_agreement, Boolean
     attribute :additional_tos, Boolean
@@ -56,11 +58,20 @@ module Decidim
     validates :city_residential_area,
               inclusion: { in: :city_scopes_ids },
               presence: true,
-              if: ->() { city_living_area? }
+              if: -> { city_living_area? }
 
     validates :city_work_area,
               inclusion: { in: :city_scopes_ids },
               if: ->(form) { form.city_work_area.present? && city_living_area? }
+
+    validates :metropolis_residential_area,
+              inclusion: { in: :metropolis_scopes_ids },
+              presence: true,
+              if: -> { metropolis_living_area? }
+
+    validates :metropolis_work_area,
+              inclusion: { in: :metropolis_scopes_ids },
+              if: ->(form) { form.metropolis_work_area.present? && metropolis_living_area? }
 
     validates :month,
               inclusion: { in: MONTHNAMES },
@@ -113,15 +124,27 @@ module Decidim
     private
 
     def city_living_area?
-      self.living_area == "City"
+      living_area == "city"
+    end
+
+    def metropolis_living_area?
+      living_area == "metropolis"
     end
 
     def city_scopes
-      current_organization.scopes
+      @city_scopes ||= current_organization.scopes.where(parent: top_level_city_scopes)
+    end
+
+    def metropolis_scopes
+      @metropolis_scopes ||= current_organization.scopes.where(parent: top_level_metropolis_scopes)
     end
 
     def city_scopes_ids
-      current_organization.scopes.collect { |scope| scope.id.to_s }
+      city_scopes.collect { |scope| scope.id.to_s }
+    end
+
+    def metropolis_scopes_ids
+      metropolis_scopes.collect { |scope| scope.id.to_s }
     end
 
     def email_unique_in_organization
@@ -134,6 +157,20 @@ module Decidim
 
     def no_pending_invitations_exist
       errors.add :base, I18n.t("devise.failure.invited") if User.has_pending_invitations?(current_organization.id, email)
+    end
+
+    def top_level_metropolis_scopes
+      @top_level_metropolis_scopes ||= top_level_scopes.where("name @> ?", { en: "Toulouse metropolis" }.to_json)
+                                                       .or(top_level_scopes.where("name @> ?", { fr: "Métropole de Toulouse" }.to_json))
+    end
+
+    def top_level_city_scopes
+      @top_level_city_scopes ||= top_level_scopes.where("name @> ?", { en: "Toulouse city" }.to_json)
+                                                 .or(top_level_scopes.where("name @> ?", { fr: "Ville de Toulouse" }.to_json))
+    end
+
+    def top_level_scopes
+      @top_level_scopes ||= current_organization.scopes.top_level
     end
   end
 end
