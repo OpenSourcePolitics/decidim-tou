@@ -331,7 +331,7 @@ fr:
   global:
     age:
       between: De %{from} à %{to} ans
-      greather_than: Plus de %{age} ans
+      greater_than: Plus de %{age} ans
       lower_than: Moins de %{age} ans
   layouts:
     decidim:
