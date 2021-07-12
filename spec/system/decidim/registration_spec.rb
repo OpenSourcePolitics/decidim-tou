@@ -24,13 +24,25 @@ def fill_registration_form(params = {})
     fill_in :registration_user_nickname, with: "the-greatest-genius-in-history"
 
     if params[:living_area] == :metropolis
-      select("Metropolis", from: :registration_user_living_area)
-      select translated(scopes.first.name), from: :registration_user_city_residential_area
-      select translated(scopes.first.name), from: :registration_user_city_work_area
+      expect(page).not_to have_select("user[metropolis_residential_area]")
+      expect(page).not_to have_select("user[metropolis_work_area]")
+      expect(page).not_to have_select("user[city_residential_area]")
+      expect(page).not_to have_select("user[city_work_area]")
 
+      select("Metropolis", from: :registration_user_living_area)
+      select translated(metropolis_residential_scope.name), from: :registration_user_metropolis_residential_area
+      select translated(metropolis_work_scope.name), from: :registration_user_metropolis_work_area
+
+      expect(page).to have_select("user[metropolis_residential_area]")
+      expect(page).to have_select("user[metropolis_work_area]")
       expect(page).not_to have_select("user[city_residential_area]")
       expect(page).not_to have_select("user[city_work_area]")
     elsif params[:living_area] == :other
+      expect(page).not_to have_select("user[metropolis_residential_area]")
+      expect(page).not_to have_select("user[metropolis_work_area]")
+      expect(page).not_to have_select("user[city_residential_area]")
+      expect(page).not_to have_select("user[city_work_area]")
+
       select("Other", from: :registration_user_living_area)
 
       expect(page).not_to have_select("user[city_residential_area]")
@@ -38,12 +50,19 @@ def fill_registration_form(params = {})
       expect(page).not_to have_select("user[metropolis_residential_area]")
       expect(page).not_to have_select("user[metropolis_work_area]")
     else
+      expect(page).not_to have_select("user[metropolis_residential_area]")
+      expect(page).not_to have_select("user[metropolis_work_area]")
+      expect(page).not_to have_select("user[city_residential_area]")
+      expect(page).not_to have_select("user[city_work_area]")
+
       select("City", from: :registration_user_living_area)
-      select translated(scopes.first.name), from: :registration_user_work_residential_area
-      select translated(scopes.first.name), from: :registration_user_work_work_area
+      select translated(city_residential_scope.name), from: :registration_user_city_residential_area
+      select translated(city_work_scope.name), from: :registration_user_city_work_area
 
       expect(page).not_to have_select("user[metropolis_residential_area]")
       expect(page).not_to have_select("user[metropolis_work_area]")
+      expect(page).to have_select("user[city_residential_area]")
+      expect(page).to have_select("user[city_work_area]")
     end
 
     select "Other", from: :registration_user_gender
@@ -61,8 +80,28 @@ def submit_form
 end
 
 describe "Registration", type: :system do
-  let!(:scopes) { create_list(:scope, 5, organization: organization) }
   let(:organization) { create(:organization) }
+  let!(:city_parent_scope) do
+    create(:scope,
+           name: {
+             fr: "Ville de Toulouse",
+             en: "Toulouse city"
+           },
+           organization: organization)
+  end
+  let!(:metropolis_parent_scope) do
+    create(:scope,
+           name: {
+             fr: "Métropole de Toulouse",
+             en: "Toulouse metropolis"
+           },
+           organization: organization)
+  end
+
+  let!(:city_residential_scope) { create(:scope, parent: city_parent_scope) }
+  let!(:city_work_scope) { create(:scope, parent: city_parent_scope) }
+  let!(:metropolis_residential_scope) { create(:scope, parent: metropolis_parent_scope) }
+  let!(:metropolis_work_scope) { create(:scope, parent: metropolis_parent_scope) }
   let!(:terms_and_conditions_page) { Decidim::StaticPage.find_by(slug: "terms-and-conditions", organization: organization) }
   let!(:another_user) { create(:user, organization: organization) }
 
@@ -133,8 +172,6 @@ describe "Registration", type: :system do
         expect(page).to have_field("registration_user_name", with: "")
         expect(page).to have_field("registration_user_nickname", with: "")
         expect(page).to have_select("user[living_area]", selected: "Please select")
-        expect(page).to have_select("user[city_residential_area]", selected: "Please select")
-        expect(page).to have_select("user[city_work_area]", selected: "Please select")
         expect(page).to have_select("user[gender]", selected: "Please select")
         expect(page).to have_select("user[month]", selected: "Please select")
         expect(page).to have_select("user[year]", selected: "Please select")
