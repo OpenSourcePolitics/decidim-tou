@@ -146,6 +146,7 @@ fr:
         ip_hash: Ip Hash
         registered: Registered
         unregistered: Unregistered
+        user_age_scope: Tranche d'âge
         user_birth_date: Birth date
         user_email: Email
         user_gender: Gender

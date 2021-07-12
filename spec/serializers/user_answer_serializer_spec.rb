@@ -43,7 +43,7 @@ module Decidim
       let(:residential_area) { create(:scope, organization: questionable.organization) }
       let(:registration_metadata) do
         {
-          birth_date: "1981",
+          birth_date: "1995",
           gender: "Female",
           work_area: work_area.id,
           residential_area: residential_area.id,
@@ -100,6 +100,10 @@ module Decidim
             described_class.new(questionnaire.answers, true)
           end
 
+          before do
+            allow(Time.zone.now).to receive(:year).and_return("2021")
+          end
+
           let(:serialized) { subject.serialize }
 
           it "serializes user data" do
@@ -113,6 +117,7 @@ module Decidim
             expect(serialized["Residential area"]).to eq(translated(residential_area.name))
             expect(serialized["Statutory representative email"]).to eq(registration_metadata[:statutory_representative_email])
             expect(serialized["Birth date"]).to eq(registration_metadata[:birth_date])
+            expect(serialized["Age scope"]).to eq("From 25 to 39 years old")
           end
 
           context "when user has no registration metadata" do

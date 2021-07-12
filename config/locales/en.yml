@@ -147,6 +147,7 @@ en:
         registered: Registered
         unregistered: Unregistered
         user_birth_date: Birth date
+        user_age_scope: Age scope
         user_email: Email
         user_gender: Gender
         user_name: Username
