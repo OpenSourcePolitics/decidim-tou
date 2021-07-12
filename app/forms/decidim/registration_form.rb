@@ -8,7 +8,7 @@ module Decidim
     include JsonbAttributes
 
     GENDER_TYPES = %w(male female other).freeze
-    LIVING_AREA = %w(city other metropolis).freeze
+    LIVING_AREA = %w(city metropolis other).freeze
 
     MONTHNAMES = (1..12).map { |m| Date::MONTHNAMES[m] }.freeze
 
