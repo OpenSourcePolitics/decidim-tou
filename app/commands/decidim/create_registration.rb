@@ -55,8 +55,8 @@ module Decidim
     def registration_metadata
       {
         additional_tos: form.additional_tos,
-        residential_area: form.residential_area,
-        work_area: form.work_area,
+        city_residential_area: form.city_residential_area,
+        city_work_area: form.city_work_area,
         gender: form.gender,
         birth_date: form.birth_date,
         statutory_representative_email: form.statutory_representative_email

@@ -18,8 +18,8 @@ module Decidim
         let(:newsletter) { "1" }
         let(:current_locale) { "es" }
 
-        let(:residential_area) { create(:scope, organization: organization).id.to_s }
-        let(:work_area) { create(:scope, organization: organization).id.to_s }
+        let(:city_residential_area) { create(:scope, organization: organization).id.to_s }
+        let(:city_work_area) { create(:scope, organization: organization).id.to_s }
         let(:gender) { "other" }
         let(:birth_date) do
           {
@@ -33,8 +33,8 @@ module Decidim
         let(:registration_metadata) do
           {
             additional_tos: additional_tos,
-            residential_area: residential_area,
-            work_area: work_area,
+            city_residential_area: city_residential_area,
+            city_work_area: city_work_area,
             gender: gender,
             birth_date: birth_date,
             statutory_representative_email: statutory_representative_email
@@ -52,8 +52,8 @@ module Decidim
               "tos_agreement" => tos_agreement,
               "additional_tos" => additional_tos,
               "newsletter_at" => newsletter,
-              "residential_area" => residential_area,
-              "work_area" => work_area,
+              "city_residential_area" => city_residential_area,
+              "city_work_area" => city_work_area,
               "gender" => gender,
               "birth_date" => birth_date,
               "underage" => underage,

@@ -39,14 +39,14 @@ module Decidim
         answer_option = singlechoice_answer_options.first
         create :answer_choice, answer: singlechoice_answer, answer_option: answer_option, body: answer_option.body[I18n.locale.to_s], custom_body: "Free text"
       end
-      let(:work_area) { create(:scope, organization: questionable.organization) }
-      let(:residential_area) { create(:scope, organization: questionable.organization) }
+      let(:city_work_area) { create(:scope, organization: questionable.organization) }
+      let(:city_residential_area) { create(:scope, organization: questionable.organization) }
       let(:registration_metadata) do
         {
           birth_date: "1981",
           gender: "Female",
-          work_area: work_area.id,
-          residential_area: residential_area.id,
+          city_work_area: city_work_area.id,
+          city_residential_area: city_residential_area.id,
           statutory_representative_email: "statutory_representative_email@example.org"
         }
       end
@@ -109,8 +109,8 @@ module Decidim
             expect(serialized["Nickname"]).to eq(user.nickname)
             expect(serialized["Email"]).to eq(user.email)
             expect(serialized["Gender"]).to eq(registration_metadata[:gender])
-            expect(serialized["Work area"]).to eq(translated(work_area.name))
-            expect(serialized["Residential area"]).to eq(translated(residential_area.name))
+            expect(serialized["Work area"]).to eq(translated(city_work_area.name))
+            expect(serialized["Residential area"]).to eq(translated(city_residential_area.name))
             expect(serialized["Statutory representative email"]).to eq(registration_metadata[:statutory_representative_email])
             expect(serialized["Birth date"]).to eq(registration_metadata[:birth_date])
           end

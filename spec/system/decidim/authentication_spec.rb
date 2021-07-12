@@ -12,8 +12,8 @@ def fill_registration_fields
 
   fill_in :registration_user_name, with: "Responsible Citizen"
   fill_in :registration_user_nickname, with: "responsible"
-  select translated(scopes.first.name), from: :registration_user_residential_area
-  select translated(scopes.first.name), from: :registration_user_work_area
+  select translated(scopes.first.name), from: :registration_user_city_residential_area
+  select translated(scopes.first.name), from: :registration_user_city_work_area
   select "Other", from: :registration_user_gender
   select "September", from: :registration_user_month
   select "1992", from: :registration_user_year
@@ -531,8 +531,8 @@ describe "Authentication", type: :system do
 
             fill_in :registration_user_name, with: "Responsible Citizen"
             fill_in :registration_user_nickname, with: "responsible"
-            select translated(scopes.first.name), from: :registration_user_residential_area
-            select translated(scopes.first.name), from: :registration_user_work_area
+            select translated(scopes.first.name), from: :registration_user_city_residential_area
+            select translated(scopes.first.name), from: :registration_user_city_work_area
             select "Other", from: :registration_user_gender
             select "September", from: :registration_user_month
             select "1992", from: :registration_user_year

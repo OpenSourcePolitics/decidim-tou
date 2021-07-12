@@ -58,9 +58,9 @@ module Decidim
         registration_metadata = user.try(:registration_metadata)
         return "" if registration_metadata.nil?
 
-        if sym_target == :work_area
+        if sym_target == :city_work_area
           scope_area_name(registration_metadata[sym_target.to_s])
-        elsif sym_target == :residential_area
+        elsif sym_target == :city_residential_area
           scope_area_name(registration_metadata[sym_target.to_s])
         else
           registration_metadata[sym_target.to_s] || ""

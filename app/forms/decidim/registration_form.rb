@@ -16,8 +16,8 @@ module Decidim
     attribute :email, String
     attribute :password, String
     attribute :password_confirmation, String
-    attribute :residential_area, String
-    attribute :work_area, String
+    attribute :city_residential_area, String
+    attribute :city_work_area, String
     attribute :gender, String
     attribute :tos_agreement, Boolean
     attribute :additional_tos, Boolean
@@ -47,13 +47,13 @@ module Decidim
               inclusion: { in: GENDER_TYPES },
               if: ->(form) { form.gender.present? }
 
-    validates :residential_area,
-              inclusion: { in: :scopes_ids },
+    validates :city_residential_area,
+              inclusion: { in: :city_scopes_ids },
               presence: true
 
-    validates :work_area,
-              inclusion: { in: :scopes_ids },
-              if: ->(form) { form.work_area.present? }
+    validates :city_work_area,
+              inclusion: { in: :city_scopes_ids },
+              if: ->(form) { form.city_work_area.present? }
 
     validates :month,
               inclusion: { in: MONTHNAMES },
@@ -73,12 +73,12 @@ module Decidim
       self.year = model.birth_date["year"]
     end
 
-    def residential_area_for_select
-      scopes
+    def city_residential_area_for_select
+      city_scopes
     end
 
-    def work_area_for_select
-      scopes
+    def city_work_area_for_select
+      city_scopes
     end
 
     def gender_types_for_select
@@ -105,11 +105,11 @@ module Decidim
 
     private
 
-    def scopes
+    def city_scopes
       current_organization.scopes
     end
 
-    def scopes_ids
+    def city_scopes_ids
       current_organization.scopes.collect { |scope| scope.id.to_s }
     end
 

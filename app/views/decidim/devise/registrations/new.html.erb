@@ -64,16 +64,16 @@
           <div class="card" <%= form_step_attributes(step: 2) %>>
             <div class="card__content">
               <div class="field">
-                <%= f.select :residential_area,
-                             @form.residential_area_for_select.map { |residential_area| [translated_attribute(residential_area.name), residential_area.id.to_s] },
-                             label: t(".residential_area"),
+                <%= f.select :city_residential_area,
+                             @form.city_residential_area_for_select.map { |city_residential_area| [translated_attribute(city_residential_area.name), city_residential_area.id.to_s] },
+                             label: t(".city_residential_area"),
                              prompt: true %>
               </div>
 
               <div class="field">
-                <%= f.select :work_area,
-                             @form.work_area_for_select.map { |work_area| [translated_attribute(work_area.name), work_area.id.to_s] },
-                             label: t(".work_area"),
+                <%= f.select :city_work_area,
+                             @form.city_work_area_for_select.map { |city_work_area| [translated_attribute(city_work_area.name), city_work_area.id.to_s] },
+                             label: t(".city_work_area"),
                              prompt: true %>
               </div>
 

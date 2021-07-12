@@ -22,8 +22,8 @@ def fill_registration_form(params = {})
 
     fill_in :registration_user_name, with: "Nikola Tesla"
     fill_in :registration_user_nickname, with: "the-greatest-genius-in-history"
-    select translated(scopes.first.name), from: :registration_user_residential_area
-    select translated(scopes.first.name), from: :registration_user_work_area
+    select translated(scopes.first.name), from: :registration_user_city_residential_area
+    select translated(scopes.first.name), from: :registration_user_city_work_area
     select "Other", from: :registration_user_gender
     select "September", from: :registration_user_month
     select "1992", from: :registration_user_year
@@ -110,8 +110,8 @@ describe "Registration", type: :system do
         expect(page).not_to have_field("registration_user_password_confirmation")
         expect(page).to have_field("registration_user_name", with: "")
         expect(page).to have_field("registration_user_nickname", with: "")
-        expect(page).to have_select("user[residential_area]", selected: "Please select")
-        expect(page).to have_select("user[work_area]", selected: "Please select")
+        expect(page).to have_select("user[city_residential_area]", selected: "Please select")
+        expect(page).to have_select("user[city_work_area]", selected: "Please select")
         expect(page).to have_select("user[gender]", selected: "Please select")
         expect(page).to have_select("user[month]", selected: "Please select")
         expect(page).to have_select("user[year]", selected: "Please select")

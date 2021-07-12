@@ -28,9 +28,9 @@ en:
               gender: Gender
               id: ID
               name: Name
-              residential_area: Residential area
+              city_residential_area: Residential area
               statutory_representative_email: Statutory representative email
-              work_area: Work area
+              city_work_area: Work area
             body: Content
             commentable_id: Commentable ID
             commentable_type: Commentable type
@@ -74,11 +74,11 @@ en:
                 name: Name
                 nickname: Nickname
                 registration_form_answers: Registration form answers
-                residential_area: Residential area
+                city_residential_area: Residential area
                 statutory_representative_email: Statutory representative email
                 user: User
                 user_group: User group
-                work_area: Work area
+                city_work_area: Work area
     devise:
       registrations:
         new:
@@ -116,7 +116,7 @@ en:
           newsletter_title: Newsletter title
           nickname_help: Nickname help
           password_help: Password help
-          residential_area: Residential area
+          city_residential_area: Residential area
           sign_in: Sign in
           sign_up: Sign up
           sign_up_as:
@@ -128,7 +128,7 @@ en:
           tos_title: Terms of Service
           underage: Underage
           username_help: Username help
-          work_area: Work area
+          city_work_area: Work area
           year_label: Year label
       shared:
         omniauth_buttons:
@@ -145,10 +145,10 @@ en:
         user_gender: Gender
         user_name: Username
         user_nickname: Nickname
-        user_residential_area: Residential area
+        user_city_residential_area: Residential area
         user_status: User status
         user_statutory_representative_email: Statutory representative email
-        user_work_area: Work area
+        user_city_work_area: Work area
     meetings:
       admin:
         exports:
@@ -163,11 +163,11 @@ en:
                 name: Name
                 nickname: Nickname
                 registration_form_answers: Registration form answers
-                residential_area: Residential area
+                city_residential_area: Residential area
                 statutory_representative_email: Statutory representative email
                 user: User
                 user_group: User group
-                work_area: Work area
+                city_work_area: Work area
     participatory_processes:
       admin:
         participatory_processes:
@@ -212,9 +212,9 @@ en:
                 gender: Gender
                 names: Names
                 nicknames: Nicknames
-                residential_area: Residential area
+                city_residential_area: Residential area
                 statutory_representative_email: Statutory representative email
-                work_area: Work area
+                city_work_area: Work area
               body: Content
               category:
                 category: Category
@@ -248,7 +248,7 @@ en:
           newsletter_title: Newsletter title
           nickname_help: Nickname help
           password_help: Password help
-          residential_area: Residential area
+          city_residential_area: Residential area
           sign_in: Sign in
           sign_up: Sign up
           sign_up_as:
@@ -261,7 +261,7 @@ en:
           tos_title: Terms of Service
           underage: Underage
           username_help: Username help
-          work_area: Work area
+          city_work_area: Work area
           year_label: Year label
     statutory_representative:
       inform:

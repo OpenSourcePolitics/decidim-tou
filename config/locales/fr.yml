@@ -28,9 +28,9 @@ fr:
               gender: Genre
               id: ID
               name: Nom
-              residential_area: Lieu de résidence
+              city_residential_area: Lieu de résidence
               statutory_representative_email: Email representatif
-              work_area: Lieu de travail
+              city_work_area: Lieu de travail
             body: Contenu
             commentable_id: Commentable ID
             commentable_type: Commentable type
@@ -74,11 +74,11 @@ fr:
                 name: Name
                 nickname: Nickname
                 registration_form_answers: Registration form answers
-                residential_area: Residential area
+                city_residential_area: Residential area
                 statutory_representative_email: Statutory representative email
                 user: User
                 user_group: User group
-                work_area: Work area
+                city_work_area: Work area
     devise:
       registrations:
         new:
@@ -116,7 +116,7 @@ fr:
           newsletter_title: Newsletter title
           nickname_help: Nickname help
           password_help: Password help
-          residential_area: Residential area
+          city_residential_area: Residential area
           sign_in: Sign in
           sign_up: Sign up
           sign_up_as:
@@ -128,7 +128,7 @@ fr:
           tos_title: Terms of Service
           underage: Underage
           username_help: Username help
-          work_area: Work area
+          city_work_area: Work area
           year_label: Year label
       shared:
         omniauth_buttons:
@@ -145,10 +145,10 @@ fr:
         user_gender: Gender
         user_name: Username
         user_nickname: Nickname
-        user_residential_area: Residential area
+        user_city_residential_area: Residential area
         user_status: User status
         user_statutory_representative_email: Statutory representative email
-        user_work_area: Work area
+        user_city_work_area: Work area
     meetings:
       admin:
         exports:
@@ -163,11 +163,11 @@ fr:
                 name: Name
                 nickname: Nickname
                 registration_form_answers: Registration form answers
-                residential_area: Residential area
+                city_residential_area: Residential area
                 statutory_representative_email: Statutory representative email
                 user: User
                 user_group: User group
-                work_area: Work area
+                city_work_area: Work area
     participatory_processes:
       admin:
         participatory_processes:
@@ -212,9 +212,9 @@ fr:
                 gender: Gender
                 names: Names
                 nicknames: Nicknames
-                residential_area: Residential area
+                city_residential_area: Residential area
                 statutory_representative_email: Statutory representative email
-                work_area: Work area
+                city_work_area: Work area
               body: Content
               category:
                 category: Category
@@ -248,7 +248,7 @@ fr:
           newsletter_title: Recevoir les actualités de la plateforme
           nickname_help: Cet identifiant est public et unique sur la plateforme "%{organization}" ; il permet aux autres utilisateurs de vous suivre, de vous contacter ou de vous mentionner dans leurs commentaires. Il s’affichera précédé d’un « @ » ; il ne doit pas contenir d’espace ni de caractère spécial.
           password_help: "%{minimun_characters} caractères minimum, ne doit pas être trop commun (ex. 123456) et doit être différent de votre pseudonyme et de votre email."
-          residential_area: Dans quel quartier habitez-vous ?
+          city_residential_area: Dans quel quartier habitez-vous ?
           sign_in: S'identifier
           sign_up: S'inscrire
           sign_up_as:
@@ -261,7 +261,7 @@ fr:
           tos_title: Conditions d'utilisation
           underage: J’ai moins de 15 ans, mon parent ou mon représentant légal m’autorise à m’inscrire.
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
-          work_area: Dans quel quartier travaillez-vous ?
+          city_work_area: Dans quel quartier travaillez-vous ?
           year_label: Année
     statutory_representative:
       inform:

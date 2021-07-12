@@ -13,6 +13,9 @@ module Decidim
     end
 
     let(:organization) { create(:organization) }
+    let(:city_residential_scope) { create(:scope, organization: organization) }
+    let(:city_work_scope) { create(:scope, organization: organization) }
+
     let(:name) { "User" }
     let(:nickname) { "justme" }
     let(:email) { "user@example.org" }
@@ -20,8 +23,8 @@ module Decidim
     let(:password_confirmation) { password }
     let(:tos_agreement) { "1" }
     let(:additional_tos) { "1" }
-    let(:residential_area) { create(:scope, organization: organization).id.to_s }
-    let(:work_area) { create(:scope, organization: organization).id.to_s }
+    let(:city_residential_area) { city_residential_scope.id.to_s }
+    let(:city_work_area) { city_work_scope.id.to_s }
     let(:gender) { "female" }
     let(:month) { "January" }
     let(:year) { "1992" }
@@ -37,8 +40,8 @@ module Decidim
         password_confirmation: password_confirmation,
         tos_agreement: tos_agreement,
         additional_tos: additional_tos,
-        residential_area: residential_area,
-        work_area: work_area,
+        city_residential_area: city_residential_area,
+        city_work_area: city_work_area,
         gender: gender,
         month: month,
         year: year,
@@ -147,26 +150,26 @@ module Decidim
       it { is_expected.to be_invalid }
     end
 
-    context "when residential_area is not a scope" do
-      let(:residential_area) { "23" }
+    context "when city_residential_area is not a scope" do
+      let(:city_residential_area) { "23" }
 
       it { is_expected.to be_invalid }
     end
 
-    context "when residential_area is nil" do
-      let(:residential_area) { nil }
+    context "when city_residential_area is nil" do
+      let(:city_residential_area) { nil }
 
       it { is_expected.to be_invalid }
     end
 
-    context "when work_area is not a scope" do
-      let(:work_area) { "abcd" }
+    context "when city_work_area is not a scope" do
+      let(:city_work_area) { "abcd" }
 
       it { is_expected.to be_invalid }
     end
 
-    context "when work_area is nil" do
-      let(:work_area) { nil }
+    context "when city_work_area is nil" do
+      let(:city_work_area) { nil }
 
       it { is_expected.to be_valid }
     end
@@ -217,6 +220,24 @@ module Decidim
       let(:statutory_representative_email) { nil }
 
       it { is_expected.to be_invalid }
+    end
+
+    describe "#city_scopes" do
+      it "matches city scopes" do
+        expect(subject.send(:city_scopes)).to match_array([
+                                                            city_residential_scope,
+                                                            city_work_scope
+                                                          ])
+      end
+    end
+
+    describe "#city_scopes_ids" do
+      it "matches city scopes" do
+        expect(subject.send(:city_scopes_ids)).to match_array([
+                                                                city_residential_scope.id.to_s,
+                                                                city_work_scope.id.to_s
+                                                              ])
+      end
     end
   end
 end
