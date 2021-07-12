@@ -328,7 +328,7 @@ en:
   global:
     age:
       between: From %{from} to %{to} years old
-      greather_than: More than %{age} years old
+      greater_than: More than %{age} years old
       lower_than: Less than %{age} years old
   layouts:
     decidim:
