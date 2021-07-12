@@ -16,7 +16,7 @@ module Decidim
       let(:residential_area) { create(:scope, organization: participatory_process.organization) }
       let(:registration_metadata) do
         {
-          birth_date: "1981",
+          birth_date: "1995",
           gender: "Female",
           work_area: work_area.id,
           residential_area: residential_area.id,
@@ -70,6 +70,10 @@ module Decidim
             described_class.new(debate, true)
           end
 
+          before do
+            allow(Time.zone.now).to receive(:year).and_return("2021")
+          end
+
           it "serializes user data" do
             author.update!(registration_metadata: registration_metadata)
 
@@ -78,6 +82,7 @@ module Decidim
             expect(serialized["User"]).to include("Nickname" => author.nickname)
             expect(serialized["User"]).to include("Email" => author.email)
             expect(serialized["User"]).to include("Birth date" => registration_metadata[:birth_date])
+            expect(serialized["User"]).to include("Age scope" => "From 25 to 39 years old")
             expect(serialized["User"]).to include("Gender" => registration_metadata[:gender])
             expect(serialized["User"]).to include("Work area" => translated(work_area.name))
             expect(serialized["User"]).to include("Residential area" => translated(residential_area.name))
