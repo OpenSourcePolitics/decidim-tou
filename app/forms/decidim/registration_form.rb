@@ -8,7 +8,7 @@ module Decidim
     include JsonbAttributes
 
     GENDER_TYPES = %w(male female other).freeze
-    LIVING_AREA = ["city"].freeze
+    LIVING_AREA = ["City", "Other"].freeze
 
     MONTHNAMES = (1..12).map { |m| Date::MONTHNAMES[m] }.freeze
 
@@ -55,11 +55,12 @@ module Decidim
 
     validates :city_residential_area,
               inclusion: { in: :city_scopes_ids },
-              presence: true
+              presence: true,
+              if: ->() { city_living_area? }
 
     validates :city_work_area,
               inclusion: { in: :city_scopes_ids },
-              if: ->(form) { form.city_work_area.present? }
+              if: ->(form) { form.city_work_area.present? && city_living_area? }
 
     validates :month,
               inclusion: { in: MONTHNAMES },
@@ -110,6 +111,10 @@ module Decidim
     end
 
     private
+
+    def city_living_area?
+      self.living_area == "City"
+    end
 
     def city_scopes
       current_organization.scopes

@@ -23,7 +23,7 @@ module Decidim
     let(:password_confirmation) { password }
     let(:tos_agreement) { "1" }
     let(:additional_tos) { "1" }
-    let(:living_area) { "city" }
+    let(:living_area) { "City" }
     let(:city_residential_area) { city_residential_scope.id.to_s }
     let(:city_work_area) { city_work_scope.id.to_s }
     let(:gender) { "female" }
@@ -229,6 +229,38 @@ module Decidim
         let(:city_work_area) { "abcd" }
 
         it { is_expected.to be_invalid }
+      end
+
+      context "when city_work_area is nil" do
+        let(:city_work_area) { nil }
+
+        it { is_expected.to be_valid }
+      end
+    end
+
+    context "when living_area is other" do
+      let(:living_area) { "Other" }
+
+      context "when everything is OK" do
+        it { is_expected.to be_valid }
+      end
+
+      context "when city_residential_area is not a scope" do
+        let(:city_residential_area) { "23" }
+
+        it { is_expected.to be_valid }
+      end
+
+      context "when city_residential_area is nil" do
+        let(:city_residential_area) { nil }
+
+        it { is_expected.to be_valid }
+      end
+
+      context "when city_work_area is not a scope" do
+        let(:city_work_area) { "abcd" }
+
+        it { is_expected.to be_valid }
       end
 
       context "when city_work_area is nil" do
