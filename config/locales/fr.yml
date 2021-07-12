@@ -17,6 +17,10 @@ fr:
         create:
           error: Error
           success: Success
+    authorization_handlers:
+      osp_authorization_handler:
+        explanation: Explanation
+        name: OSP authorization handler
     comments:
       exports:
         column_name:
@@ -277,6 +281,21 @@ fr:
         select_your_interests: Cliquez sur les curseurs et recevez des notifications personnalisées
         skip: Passer cette étape
         welcome: Bienvenue !
+    verifications:
+      sms:
+        authorizations:
+          edit:
+            confirm_destroy: Confirmer
+            resend: Renvoyer un SMS
+            send: Authentifier mon compte
+            title: Vérifier votre identité avec la méthode de vérification par SMS
+            verification_code: Code de vérification
+          new:
+            instructions: Renseignez votre numéro de téléphone puis le code de vérification transmis par SMS. Cette méthode nous permet de nous assurer que vous avez bien voté une seule fois.
+            instructions_helper: "<ul><li>Ne doit contenir que des chiffres</li><li>Doit commencer par 0</li><li>Doit contenir 10 chiffres</li><li>Ne doit pas être utilisé par un autre compte sur cette plateforme</li></ul>"
+            mobile_phone_number: Votre numéro de téléphone mobile
+            send: Envoyer un SMS
+            title: Vérifier votre identité avec la méthode de vérification par SMS
   devise:
     failure:
       invited: Invited
@@ -326,3 +345,5 @@ fr:
         account: Account
         conversations: Conversations
         notifications: Notifications
+  sms_verification_workflow:
+    message: Bonjour, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
