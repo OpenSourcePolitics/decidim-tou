@@ -29,6 +29,7 @@ en:
             author:
               author: Author
               birth_date: Birth date
+              age_scope: Age scope
               gender: Gender
               id: ID
               name: Name

@@ -29,6 +29,7 @@ fr:
             author:
               author: Auteur
               birth_date: Date de naissance
+              age_scope: Tranche d'âge
               gender: Genre
               id: ID
               name: Nom
@@ -72,6 +73,7 @@ fr:
               title: title
               url: Url
               user:
+                age_scope: Tranche d'âge
                 birth_date: Birth date
                 email: Email
                 gender: Gender
