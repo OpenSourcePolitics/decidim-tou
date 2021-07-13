@@ -27,7 +27,6 @@ describe "Authentication", type: :system do
   let(:organization) { create(:organization) }
   let(:last_user) { Decidim::User.last }
 
-
   let!(:city_parent_scope) do
     create(:scope,
            name: {
