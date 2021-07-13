@@ -85,8 +85,8 @@ module Decidim
       context "when age is nil" do
         let(:age) { nil }
 
-        it "returns nil" do
-          expect(subject.send(:age_scope, age)).to be_nil
+        it "returns empty string" do
+          expect(subject.send(:age_scope, age)).to be_empty
         end
       end
 
