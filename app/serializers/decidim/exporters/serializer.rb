@@ -76,29 +76,26 @@ module Decidim
       end
 
       # Returns age computed according to the current year
-      # rubocop:disable Metrics/CyclomaticComplexity
-      # rubocop:disable Metrics/PerceivedComplexity
       def age_scope(date)
         return if date.blank?
 
         age = Time.zone.now.year - date.to_i
 
-        if age < 18
-          I18n.t(".global.age.lower_than", age: 18)
-        elsif age > 65
-          I18n.t(".global.age.greater_than", age: 65)
-        elsif age >= 18 && age <= 24
+        return I18n.t(".global.age.lower_than", age: 18) if age < 18
+        return I18n.t(".global.age.greater_than", age: 65) if age > 65
+
+        scope_from_to age
+      end
+
+      def scope_from_to(age)
+        if age >= 18 && age <= 24
           I18n.t(".global.age.between", from: 18, to: 24)
         elsif age >= 25 && age <= 39
           I18n.t(".global.age.between", from: 25, to: 39)
         elsif age >= 40 && age <= 65
           I18n.t(".global.age.between", from: 40, to: 65)
-        else
-          ""
         end
       end
-      # rubocop:enable Metrics/CyclomaticComplexity
-      # rubocop:enable Metrics/PerceivedComplexity
     end
   end
 end
