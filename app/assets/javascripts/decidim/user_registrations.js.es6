@@ -10,8 +10,8 @@ $(() => {
     const $userPassword = $("#registration_user_password");
     const $userPasswordConfirmation = $("#registration_user_password_confirmation");
     const $userLivingArea = $("#registration_user_living_area");
-    const $city_living_area = $(".city_living_area");
-    const $metropolis_living_area = $(".metropolis_living_area");
+    const $cityLivingArea = $(".city_living_area");
+    const $metropolisLivingArea = $(".metropolis_living_area");
 
     const $underageSelector = $("#registration_underage_registration");
     const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
@@ -29,20 +29,19 @@ $(() => {
     }
 
     $underageSelector.on("click", () => {
-        console.log($statutoryRepresentativeEmailSelector)
         emailSelectorToggle();
     });
 
     const userLivingAreaToggle = () => {
         if ($userLivingArea.val() === "city") {
-            $city_living_area.show();
-            $metropolis_living_area.hide();
+            $cityLivingArea.show();
+            $metropolisLivingArea.hide();
         } else if ($userLivingArea.val() === "metropolis") {
-            $city_living_area.hide();
-            $metropolis_living_area.show();
+            $cityLivingArea.hide();
+            $metropolisLivingArea.show();
         } else {
-            $city_living_area.hide();
-            $metropolis_living_area.hide();
+            $cityLivingArea.hide();
+            $metropolisLivingArea.hide();
         }
     };
 
