@@ -16,9 +16,6 @@ $(() => {
     const $underageSelector = $("#registration_underage_registration");
     const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
 
-    $metropolis_living_area.hide();
-    $city_living_area.hide();
-
     const emailSelectorToggle = () => {
         if ($underageSelector.is(":checked")) {
             $statutoryRepresentativeEmailSelector.removeClass("hide");
@@ -36,7 +33,7 @@ $(() => {
         emailSelectorToggle();
     });
 
-    $userLivingArea.on("change", () => {
+    const userLivingAreaToggle = () => {
         if ($userLivingArea.val() === "city") {
             $city_living_area.show();
             $metropolis_living_area.hide();
@@ -47,7 +44,7 @@ $(() => {
             $city_living_area.hide();
             $metropolis_living_area.hide();
         }
-    });
+    };
 
     const setGroupFieldsVisibility = (value) => {
         if (value === "user") {
@@ -136,6 +133,8 @@ $(() => {
         checkMandatoryFormField().each((index, element) => {
             displayError(element);
         });
+
+        userLivingAreaToggle();
 
         $formStepForwardButton.attr("disabled", (checkMandatoryFormField().length > 0));
     });
