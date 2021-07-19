@@ -12,6 +12,7 @@ $(() => {
     const $userLivingArea = $("#registration_user_living_area");
     const $cityLivingArea = $(".city_living_area");
     const $metropolisLivingArea = $(".metropolis_living_area");
+    const $railsValidationAsterisk = $("[for=\"registration_user_living_area\"]").children("span.label-required").clone()
 
     const $underageSelector = $("#registration_underage_registration");
     const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
@@ -33,6 +34,8 @@ $(() => {
     });
 
     const userLivingAreaToggle = () => {
+        addValidationAsterisk($userLivingArea.val())
+
         if ($userLivingArea.val() === "city") {
             $cityLivingArea.show();
             $metropolisLivingArea.hide();
@@ -45,6 +48,14 @@ $(() => {
         }
     };
 
+    // Clone rails validator asterisk and add before the selector
+    const addValidationAsterisk = (selector) => {
+        const $element = $(`#registration_user_${selector}_residential_area`);
+
+        if ( $element.length && $element.parent().children("span.label-required").length <= 0) {
+            $element.before($railsValidationAsterisk);
+        }
+    }
     const setGroupFieldsVisibility = (value) => {
         if (value === "user") {
             $userGroupFields.hide();
@@ -64,6 +75,7 @@ $(() => {
         }, 200);
     };
 
+    userLivingAreaToggle();
     setGroupFieldsVisibility($userRegistrationForm.find(`${inputSelector}:checked`).val());
 
     $userRegistrationForm.on("change", inputSelector, (event) => {
