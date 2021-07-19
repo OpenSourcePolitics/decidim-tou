@@ -17,7 +17,6 @@
 
     <div class="row">
       <div class="columns large-6 medium-10 medium-centered">
-
         <%= decidim_form_for(@form, namespace: "registration", as: resource_name, url: registration_path(resource_name), html: { class: "register-form new_user", id: "register-form" }) do |f| %>
           <%= invisible_captcha %>
           <div class="card">
@@ -74,8 +73,8 @@
               <div class="field city_living_area">
                 <%= f.select :city_residential_area,
                              @form.city_residential_area_for_select.map { |city_residential_area| [translated_attribute(city_residential_area.name), city_residential_area.id.to_s] },
-                             label: t(".city_residential_area"),
-                             prompt: true %>
+                             { label: t(".city_residential_area"), prompt: true },
+                             { class: "required-conditional" } %>
               </div>
 
               <div class="field city_living_area">
@@ -88,8 +87,8 @@
               <div class="field metropolis_living_area">
                 <%= f.select :metropolis_residential_area,
                              @form.metropolis_residential_area_for_select.map { |metropolis_residential_area| [translated_attribute(metropolis_residential_area.name), metropolis_residential_area.id.to_s] },
-                             label: t(".metropolis_residential_area"),
-                             prompt: true %>
+                             { label: t(".metropolis_residential_area"), prompt: true },
+                             { class: "required-conditional" } %>
               </div>
 
               <div class="field metropolis_living_area">
