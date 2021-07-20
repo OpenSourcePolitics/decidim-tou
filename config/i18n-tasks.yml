@@ -97,7 +97,9 @@ ignore_missing:
  - layouts.decidim.user_menu.profile
  - faker.*
  - decidim.statutory_representative.inform.*
-
+ - decidim.admin.actions.*
+ - decidim.admin.titles.*
+ - decidim.admin.models.scope_type.fields.*
 # Consider these keys used:
 ignore_unused:
   - decidim.devise.registrations.new.gender.*
