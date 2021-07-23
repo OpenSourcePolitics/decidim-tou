@@ -98,7 +98,9 @@ ignore_missing:
  - faker.*
  - decidim.statutory_representative.inform.*
  - .global.age.*
-
+ - decidim.admin.actions.*
+ - decidim.admin.titles.*
+ - decidim.admin.models.scope_type.fields.*
 # Consider these keys used:
 ignore_unused:
   - decidim.authorization_handlers.osp_authorization_handler.*

@@ -30,12 +30,12 @@ en:
               age_scope: Age scope
               author: Author
               birth_date: Birth date
+              city_residential_area: Residential area
+              city_work_area: Work area
               gender: Gender
               id: ID
               name: Name
-              residential_area: Residential area
               statutory_representative_email: Statutory representative email
-              work_area: Work area
             body: Content
             commentable_id: Commentable ID
             commentable_type: Commentable type
@@ -75,16 +75,16 @@ en:
               user:
                 age_scope: Age scope
                 birth_date: Birth date
+                city_residential_area: Residential area
+                city_work_area: Work area
                 email: Email
                 gender: Gender
                 name: Name
                 nickname: Nickname
                 registration_form_answers: Registration form answers
-                residential_area: Residential area
                 statutory_representative_email: Statutory representative email
                 user: User
                 user_group: User group
-                work_area: Work area
     devise:
       registrations:
         new:
@@ -93,6 +93,9 @@ en:
           already_have_an_account?: Already have an account?
           back: Back
           birth_date: Birth date
+          city: City
+          city_residential_area: Residential area
+          city_work_area: Work area
           complete_profile: Complete profile
           complete_sign_up: Plus que quelques questions...
           complete_sign_up_subtitle: Remplissez ces quelques champs pour finaliser la création de votre compte.
@@ -104,6 +107,10 @@ en:
             male: Male
             other: Other
           gender_label: Gender label
+          living_area: Living area
+          metropolis: Metropolis
+          metropolis_residential_area: Metropolis residential area
+          metropolis_work_area: Metropolis work area
           month_label: Month label
           month_name:
             april: April
@@ -121,8 +128,8 @@ en:
           newsletter: Newsletter
           newsletter_title: Newsletter title
           nickname_help: Nickname help
+          other: Other
           password_help: Password help
-          residential_area: Residential area
           sign_in: Sign in
           sign_up: Sign up
           sign_up_as:
@@ -134,7 +141,6 @@ en:
           tos_title: Terms of Service
           underage: Underage
           username_help: Username help
-          work_area: Work area
           year_label: Year label
       shared:
         omniauth_buttons:
@@ -148,14 +154,17 @@ en:
         unregistered: Unregistered
         user_age_scope: Age scope
         user_birth_date: Birth date
+        user_city_residential_area: City residential area
+        user_city_work_area: City work area
         user_email: Email
         user_gender: Gender
+        user_living_area: Living area
+        user_metropolis_residential_area: Metropolis residential area
+        user_metropolis_work_area: Metropolis work area
         user_name: Username
         user_nickname: Nickname
-        user_residential_area: Residential area
         user_status: User status
         user_statutory_representative_email: Statutory representative email
-        user_work_area: Work area
     meetings:
       admin:
         exports:
@@ -165,16 +174,16 @@ en:
               id: ID
               user:
                 birth_date: Birth date
+                city_residential_area: Residential area
+                city_work_area: Work area
                 email: Email
                 gender: Gender
                 name: Name
                 nickname: Nickname
                 registration_form_answers: Registration form answers
-                residential_area: Residential area
                 statutory_representative_email: Statutory representative email
                 user: User
                 user_group: User group
-                work_area: Work area
     participatory_processes:
       admin:
         participatory_processes:
@@ -206,6 +215,8 @@ en:
     proposals:
       admin:
         exports:
+          city_residential_area: Residential area
+          city_work_area: Work area
           column_name:
             proposals:
               amendments: Amendments
@@ -215,13 +226,13 @@ en:
               authors:
                 authors: Authors
                 birth_date: Birth date
+                city_residential_area: Residential area
+                city_work_area: Work area
                 emails: Emails
                 gender: Gender
                 names: Names
                 nicknames: Nicknames
-                residential_area: Residential area
                 statutory_representative_email: Statutory representative email
-                work_area: Work area
               body: Content
               category:
                 category: Category
@@ -255,7 +266,6 @@ en:
           newsletter_title: Newsletter title
           nickname_help: Nickname help
           password_help: Password help
-          residential_area: Residential area
           sign_in: Sign in
           sign_up: Sign up
           sign_up_as:
@@ -268,7 +278,6 @@ en:
           tos_title: Terms of Service
           underage: Underage
           username_help: Username help
-          work_area: Work area
           year_label: Year label
     statutory_representative:
       inform:
