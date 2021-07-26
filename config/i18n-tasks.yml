@@ -97,9 +97,13 @@ ignore_missing:
  - layouts.decidim.user_menu.profile
  - faker.*
  - decidim.statutory_representative.inform.*
-
+ - .global.age.*
+ - decidim.admin.actions.*
+ - decidim.admin.titles.*
+ - decidim.admin.models.scope_type.fields.*
 # Consider these keys used:
 ignore_unused:
+  - decidim.authorization_handlers.osp_authorization_handler.*
   - decidim.devise.registrations.new.gender.*
   - decidim.devise.registrations.new.month_name.*
   - activemodel.attributes.assembly.sort_children
@@ -116,4 +120,4 @@ ignore_unused:
   - faker.*
   - layouts.decidim.participatory_process_groups.participatory_process_group.processes_count
   - decidim.participatory_processes.emitter.values.*
-
+  - global.age.*
