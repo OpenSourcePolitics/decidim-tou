@@ -76,6 +76,15 @@ Decidim.configure do |config|
   end
 
   config.base_uploads_path = ENV["HEROKU_APP_NAME"] + "/" if ENV["HEROKU_APP_NAME"].present?
+
+  # Allows to define the column name in database, default : :extended_data
+  config.extended_data_column = :registration_metadata
+
+  # Update fields to export from column extended_data : Default - [:country, :postal_code]
+  config.export_user_fields = [:gender, :birth_date, :living_area, :city_work_area, :metropolis_work_area, :city_residential_area, :metropolis_residential_area]
+
+  # Change the export format list : Default - %w(CSV JSON Excel)
+  config.export_users_formats = %w(CSV JSON Excel).freeze
 end
 
 Rails.application.config.i18n.available_locales = Decidim.available_locales
