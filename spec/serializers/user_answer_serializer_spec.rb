@@ -148,7 +148,7 @@ module Decidim
               expect(serialized["Metropolis residential area"]).to eq("")
               expect(serialized["Statutory representative email"]).to eq(registration_metadata[:statutory_representative_email])
               expect(serialized["Birth date"]).to eq(registration_metadata[:birth_date])
-              expect(serialized["Age scope"]).to eq("From 25 to 39 years old") 
+              expect(serialized["Age scope"]).to eq("From 25 to 39 years old")
             end
           end
 
