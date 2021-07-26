@@ -13,8 +13,8 @@ gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolit
 gem "decidim-navbar_links", git: "https://github.com/OpenSourcePolitics/decidim-module-navbar_links", branch: "0.23-stable"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "0.23-stable"
 
-gem "decidim-user_exporter", git: "https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git", branch: "main"
 gem "bootsnap", "~> 1.3"
+gem "decidim-user_exporter", git: "https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git", branch: "main"
 gem "puma", ">= 4.3.5"
 gem "uglifier", "~> 4.1"
 
