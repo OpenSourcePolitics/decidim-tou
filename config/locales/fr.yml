@@ -293,6 +293,11 @@ fr:
         select_your_interests: Cliquez sur les curseurs et recevez des notifications personnalisées
         skip: Passer cette étape
         welcome: Bienvenue !
+    user_exporter:
+      admin:
+        user_exporter:
+          export_users:
+            error: Erreur rencontrée lors de l'export des utilisateurs
     verifications:
       sms:
         authorizations:
