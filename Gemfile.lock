@@ -17,6 +17,14 @@ GIT
       decidim-core (~> 0.23.2)
 
 GIT
+  remote: https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git
+  revision: a4ba8df2d3d7af3c036d1009c2b5eede888491ba
+  branch: main
+  specs:
+    decidim-user_exporter (0.23.6)
+      decidim-core (= 0.23.6)
+
+GIT
   remote: https://github.com/mainio/decidim-module-term_customizer
   revision: 35f3dca81e278d28ef1aac4c5898a4ed27485e18
   branch: 0.23-stable
@@ -879,6 +887,7 @@ DEPENDENCIES
   decidim-homepage_interactive_map!
   decidim-navbar_links!
   decidim-term_customizer!
+  decidim-user_exporter!
   dotenv-rails
   faker (~> 1.9)
   fog-aws
@@ -902,7 +911,7 @@ DEPENDENCIES
   web-console (~> 3.5)
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.7.1p83
 
 BUNDLED WITH
    2.2.15

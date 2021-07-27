@@ -121,3 +121,4 @@ ignore_unused:
   - layouts.decidim.participatory_process_groups.participatory_process_group.processes_count
   - decidim.participatory_processes.emitter.values.*
   - global.age.*
+  - decidim.user_exporter.admin.user_exporter.export_users.error
