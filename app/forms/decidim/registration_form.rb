@@ -169,12 +169,12 @@ module Decidim
 
     def top_level_metropolis_scopes
       @top_level_metropolis_scopes ||= top_level_scopes.where("name @> ?", { en: "Toulouse metropolis" }.to_json)
-                                                       .or(top_level_scopes.where("name @> ?", { fr: "Métropole de Toulouse" }.to_json))
+                                                       .or(top_level_scopes.where("name @> ?", { fr: "Toulouse Métropole" }.to_json))
     end
 
     def top_level_city_scopes
       @top_level_city_scopes ||= top_level_scopes.where("name @> ?", { en: "Toulouse city" }.to_json)
-                                                 .or(top_level_scopes.where("name @> ?", { fr: "Ville de Toulouse" }.to_json))
+                                                 .or(top_level_scopes.where("name @> ?", { fr: "Mairie de Toulouse" }.to_json))
     end
 
     def top_level_scopes
