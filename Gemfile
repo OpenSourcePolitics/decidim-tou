@@ -34,7 +34,7 @@ group :development, :test do
   gem "decidim-dev", "0.23.6"
 
   # Since the v0.21.0, rubocop-rails is loaded in decidim-dev engine. For the v0.18.0, we can load rubocop-rails directly in app.
-  gem "rubocop-rails", require: false
+  gem "rubocop-rails", require: true
 end
 
 group :development do
