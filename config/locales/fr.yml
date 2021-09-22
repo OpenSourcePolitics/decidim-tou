@@ -335,6 +335,19 @@ fr:
         sign_in_with_provider: Se connecter avec %{provider}
         sign_up: Sign up
   faker:
+    address:
+      country_code:
+        - FR
+        - FR0
+        - FR1
+        - FR2
+        - FR3
+        - FR4
+        - FR5
+        - FR6
+        - FR7
+        - FR8
+        - FR9
     hipster:
       words: Words
     lorem:
