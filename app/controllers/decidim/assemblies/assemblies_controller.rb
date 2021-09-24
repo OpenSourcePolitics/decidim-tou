@@ -85,7 +85,8 @@ module Decidim
       end
 
       def assembly_participatory_processes
-        related_pps = @current_participatory_space.linked_participatory_space_resources(:participatory_processes, "included_participatory_processes").order(end_date: :desc, start_date: :asc)
+        related_pps = @current_participatory_space.linked_participatory_space_resources(:participatory_processes, "included_participatory_processes")
+                                                  .order(end_date: :desc, start_date: :asc)
         @assembly_participatory_processes ||= sort_related_pp(related_pps)
       end
 
