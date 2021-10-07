@@ -21,7 +21,7 @@ gem "uglifier", "~> 4.1"
 
 gem "dotenv-rails"
 
-gem "faker", "~> 2.14"
+gem "faker", "~> 1.9"
 
 gem "ruby-progressbar"
 gem "sentry-raven"
