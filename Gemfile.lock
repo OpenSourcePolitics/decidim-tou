@@ -9,14 +9,6 @@ GIT
       decidim-dev (= 0.23.6)
 
 GIT
-  remote: https://github.com/OpenSourcePolitics/decidim-module-navbar_links
-  revision: a172a4e489bc37ef816c17170523080df26f8aa5
-  branch: 0.23-stable
-  specs:
-    decidim-navbar_links (0.23.2)
-      decidim-core (~> 0.23.2)
-
-GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git
   revision: a4ba8df2d3d7af3c036d1009c2b5eede888491ba
   branch: main
@@ -885,7 +877,6 @@ DEPENDENCIES
   decidim-decidim_awesome (~> 0.6.6)
   decidim-dev (= 0.23.6)
   decidim-homepage_interactive_map!
-  decidim-navbar_links!
   decidim-term_customizer!
   decidim-user_exporter!
   dotenv-rails
