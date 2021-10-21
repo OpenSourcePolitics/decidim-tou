@@ -279,6 +279,9 @@ fr:
           underage: J’ai moins de 15 ans, mon parent ou mon représentant légal m’autorise à m’inscrire.
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
           year_label: Année
+    scopes:
+      picker:
+        title: Title
     statutory_representative:
       inform:
         body: Nous vous informons de l'inscription de %{name} sur %{organization}. <br><br>C'est une plateforme de participation citoyenne lancée par la Mairie de Toulouse pour faciliter la participation de tous pour co-construire Toulouse. <br>Comme %{name} a moins de 15 ans, en tant que parent ou représentant légal, nous vous laissons maintenir ou pas cette inscription. <br><br>Pour plus d'informations, contactez-nous à l'adresse <a href=\"mailto:jeparticipe@mairie-toulouse.fr\">jeparticipe@mairie-toulouse.fr</a>.
