@@ -281,7 +281,7 @@ fr:
           year_label: Année
     scopes:
       picker:
-        title: Title
+        title: Portée générale
     statutory_representative:
       inform:
         body: Nous vous informons de l'inscription de %{name} sur %{organization}. <br><br>C'est une plateforme de participation citoyenne lancée par la Mairie de Toulouse pour faciliter la participation de tous pour co-construire Toulouse. <br>Comme %{name} a moins de 15 ans, en tant que parent ou représentant légal, nous vous laissons maintenir ou pas cette inscription. <br><br>Pour plus d'informations, contactez-nous à l'adresse <a href=\"mailto:jeparticipe@mairie-toulouse.fr\">jeparticipe@mairie-toulouse.fr</a>.
