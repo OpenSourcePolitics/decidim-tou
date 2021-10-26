@@ -101,6 +101,9 @@ ignore_missing:
  - decidim.admin.actions.*
  - decidim.admin.titles.*
  - decidim.admin.models.scope_type.fields.*
+ - decidim.scopes.global
+ - decidim.proposals.application_helper.filter_category_values.all
+ - decidim.proposals.application_helper.filter_scope_values.all
 # Consider these keys used:
 ignore_unused:
   - decidim.authorization_handlers.osp_authorization_handler.*

@@ -279,6 +279,9 @@ en:
           underage: Underage
           username_help: Username help
           year_label: Year label
+    scopes:
+      picker:
+        title: Title
     statutory_representative:
       inform:
         body: Body
