@@ -53,6 +53,12 @@ module ProposalSerializerExtends
 
   attr_reader :proposal
 
+  def options_merge(options_object)
+    return {} unless options_object.is_a?(Hash) && @private_scope
+
+    @public_scope ? {} : options_object
+  end
+
   def admin_extra_fields
     {
       t_column_name(:authors, ".authors") => extract_author_data do

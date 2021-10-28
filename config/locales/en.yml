@@ -279,6 +279,9 @@ en:
           underage: Underage
           username_help: Username help
           year_label: Year label
+    scopes:
+      picker:
+        title: Title
     statutory_representative:
       inform:
         body: Body
@@ -293,6 +296,11 @@ en:
         select_your_interests: Select your interests
         skip: Skip this step
         welcome: Welcome
+    user_exporter:
+      admin:
+        user_exporter:
+          export_users:
+            error: An error occured while exporting users
     verifications:
       sms:
         authorizations:
