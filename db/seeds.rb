@@ -25,7 +25,7 @@ organization = Decidim::Organization.first
 
 mairie_toulouse = Decidim::Scope.create!(
   name: {
-    en: "Mairie de Toulouse",
+    en: "Toulouse city",
     fr: "Mairie de Toulouse"
   },
   code: "SCP-1",
@@ -34,8 +34,8 @@ mairie_toulouse = Decidim::Scope.create!(
 
 metropole_toulouse = Decidim::Scope.create!(
   name: {
-    en: "Toulouse métropole",
-    fr: "Toulouse métropole"
+    en: "Toulouse metropolis",
+    fr: "Toulouse Métropole"
   },
   code: "SCP-2",
   organization: organization
