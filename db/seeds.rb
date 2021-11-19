@@ -50,7 +50,6 @@ Decidim::Scope.create!(
   organization: organization
 )
 
-
 8.times do |idx|
   Decidim::Scope.create!(
     name: Decidim::Faker::Localized.word,
