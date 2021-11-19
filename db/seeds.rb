@@ -13,16 +13,9 @@ if ENV["HEROKU_APP_NAME"].present?
   ENV["SEED"] = "true"
 end
 
-#  factory :scope, class: "Decidim::Scope" do
-#     name { Decidim::Faker::Localized.literal(generate(:scope_name)) }
-#     code { generate(:scope_code) }
-#     scope_type { create(:scope_type, organization: organization) }
-#     organization { parent ? parent.organization : build(:organization) }
-#   end
 Decidim.seed!
 
 organization = Decidim::Organization.first
-
 mairie_toulouse = Decidim::Scope.create!(
   name: {
     en: "Toulouse city",
@@ -57,9 +50,7 @@ Decidim::Scope.create!(
     organization: organization,
     parent: mairie_toulouse
   )
-end
 
-8.times do |idx|
   Decidim::Scope.create!(
     name: Decidim::Faker::Localized.word,
     code: "SCPM-#{idx}",
@@ -67,3 +58,4 @@ end
     parent: metropole_toulouse
   )
 end
+
