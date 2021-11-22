@@ -58,4 +58,3 @@ Decidim::Scope.create!(
     parent: metropole_toulouse
   )
 end
-
