@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe "User complete registration", type: :system do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :confirmed) }
   let(:organization) { user.organization }
 
   before do

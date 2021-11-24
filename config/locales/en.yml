@@ -302,6 +302,12 @@ en:
           export_users:
             error: An error occured while exporting users
     verifications:
+      authorizations:
+        first_login:
+          actions:
+            osp_authorization_handler: Autorisation OSP
+            phone_authorization_handler: Récupération du numéro de téléphone
+        skip_verification: 'Vous pouvez omettre cette étape pour le moment et %{link}. Ces informations pourront vous être demandées sur certaines actions spécifiques de la plateforme (ex: vote du budget participatif, etc.)'
       sms:
         authorizations:
           edit:

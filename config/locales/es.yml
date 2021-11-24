@@ -23,6 +23,7 @@ es:
           comments:
             alignment: Alignment
             author:
+              age_scope: Age scope
               author: Author
               birth_date: Birth date
               city_residential_area: Residential area
@@ -68,6 +69,7 @@ es:
               title: title
               url: Url
               user:
+                age_scope: Age scope
                 birth_date: Birth date
                 city_residential_area: Residential area
                 city_work_area: Work area
@@ -146,6 +148,7 @@ es:
         ip_hash: Ip Hash
         registered: Registered
         unregistered: Unregistered
+        user_age_scope: Age scope
         user_birth_date: Birth date
         user_city_residential_area: Residential area
         user_city_work_area: Work area
@@ -272,6 +275,9 @@ es:
           underage: Underage
           username_help: Username help
           year_label: Year label
+    scopes:
+      picker:
+        title: Title
     statutory_representative:
       inform:
         body: Body
@@ -286,12 +292,30 @@ es:
         select_your_interests: Select your interests
         skip: Skip this step
         welcome: Welcome
+    user_exporter:
+      admin:
+        user_exporter:
+          export_users:
+            error: An error occured while exporting users
     verifications:
+      authorizations:
+        first_login:
+          actions:
+            osp_authorization_handler: Autorisation OSP
+            phone_authorization_handler: Récupération du numéro de téléphone
+        skip_verification: 'Vous pouvez omettre cette étape pour le moment et %{link}. Ces informations pourront vous être demandées sur certaines actions spécifiques de la plateforme (ex: vote du budget participatif, etc.)'
       sms:
         authorizations:
+          edit:
+            confirm_destroy: Confirm
+            resend: Reset verification code
+            send: Confirm
+            title: Introduce the verification code you received
+            verification_code: Verification code
           new:
             instructions: Enter your phone number and the verification code sent by SMS. This method allows us to ensure that you have voted only once.
             instructions_helper: "<ul><li>Must contain only numbers</li><li>Must start with 0</li><li>Must contain 10 digits</li><li>Must not be used by another account on this platform</li></ul>"
+            mobile_phone_number: Mobile phone number
             send: Send
             title: Verify your identity with the SMS verification method
   devise:
@@ -315,6 +339,11 @@ es:
         sign_in: Sign in
         sign_in_with_provider: Sign in with provider
         sign_up: Sign up
+  global:
+    age:
+      between: From %{from} to %{to} years old
+      greater_than: More than %{age} years old
+      lower_than: Less than %{age} years old
   layouts:
     decidim:
       header:
