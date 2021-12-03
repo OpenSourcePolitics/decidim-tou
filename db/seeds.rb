@@ -12,4 +12,49 @@ if ENV["HEROKU_APP_NAME"].present?
   ENV["DECIDIM_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
   ENV["SEED"] = "true"
 end
+
 Decidim.seed!
+
+organization = Decidim::Organization.first
+mairie_toulouse = Decidim::Scope.create!(
+  name: {
+    en: "Toulouse city",
+    fr: "Mairie de Toulouse"
+  },
+  code: "SCP-1",
+  organization: organization
+)
+
+metropole_toulouse = Decidim::Scope.create!(
+  name: {
+    en: "Toulouse metropolis",
+    fr: "Toulouse Métropole"
+  },
+  code: "SCP-2",
+  organization: organization
+)
+
+Decidim::Scope.create!(
+  name: {
+    en: "Other",
+    fr: "Autre"
+  },
+  code: "SCP-3",
+  organization: organization
+)
+
+8.times do |idx|
+  Decidim::Scope.create!(
+    name: Decidim::Faker::Localized.word,
+    code: "SCPC-#{idx}",
+    organization: organization,
+    parent: mairie_toulouse
+  )
+
+  Decidim::Scope.create!(
+    name: Decidim::Faker::Localized.word,
+    code: "SCPM-#{idx}",
+    organization: organization,
+    parent: metropole_toulouse
+  )
+end
