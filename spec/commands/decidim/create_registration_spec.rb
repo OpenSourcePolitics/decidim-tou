@@ -59,8 +59,8 @@ module Decidim
           {
             additional_tos: additional_tos,
             living_area: living_area,
-            city_residential_area: city_residential_area,
-            city_work_area: city_work_area,
+            city_residential_area: translated(city_residential_scope.name),
+            city_work_area: translated(city_work_scope.name),
             metropolis_residential_area: metropolis_residential_area,
             metropolis_work_area: metropolis_work_area,
             gender: gender,

@@ -180,7 +180,7 @@ describe "Registration", type: :system do
         fill_registration_form(step: 2)
         submit_form
 
-        expect(page).to have_content("Welcome! You have signed up successfully.")
+        expect(page).to have_content("A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.")
       end
     end
 
@@ -189,7 +189,7 @@ describe "Registration", type: :system do
         fill_registration_form(step: 2, living_area: :metropolis)
         submit_form
 
-        expect(page).to have_content("Welcome! You have signed up successfully.")
+        expect(page).to have_content("A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.")
       end
     end
 
@@ -198,7 +198,7 @@ describe "Registration", type: :system do
         fill_registration_form(step: 2, living_area: :other)
         submit_form
 
-        expect(page).to have_content("Welcome! You have signed up successfully.")
+        expect(page).to have_content("A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.")
       end
     end
   end

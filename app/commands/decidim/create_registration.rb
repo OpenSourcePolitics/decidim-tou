@@ -56,10 +56,10 @@ module Decidim
       {
         additional_tos: form.additional_tos,
         living_area: form.living_area,
-        city_residential_area: city_living_area? ? form.city_residential_area : nil,
-        city_work_area: city_living_area? ? form.city_work_area : nil,
-        metropolis_residential_area: metropolis_living_area? ? form.metropolis_residential_area : nil,
-        metropolis_work_area: metropolis_living_area? ? form.metropolis_work_area : nil,
+        city_residential_area: city_living_area? ? scope_for(form.city_residential_area) : nil,
+        city_work_area: city_living_area? ? scope_for(form.city_work_area) : nil,
+        metropolis_residential_area: metropolis_living_area? ? scope_for(form.metropolis_residential_area) : nil,
+        metropolis_work_area: metropolis_living_area? ? scope_for(form.metropolis_work_area) : nil,
         gender: form.gender,
         birth_date: form.birth_date,
         statutory_representative_email: form.statutory_representative_email
@@ -82,6 +82,17 @@ module Decidim
 
     def metropolis_living_area?
       form.living_area == "metropolis"
+    end
+
+    def scope_for(scope_id)
+      # Ensure scope_id only contains numeric chars
+      return unless scope_id !~ /\D/
+
+      scope = Decidim::Scope.find(scope_id)
+      # If scope is blank or parent undefined, then it isn't a registration form scope.
+      return if scope.blank? || scope.try(:parent).blank?
+
+      scope.name[Decidim.default_locale.to_s]
     end
   end
 end

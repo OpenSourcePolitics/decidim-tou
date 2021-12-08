@@ -63,7 +63,7 @@ describe "Authentication", type: :system do
           find("*[type=submit]").click
         end
 
-        expect(page).to have_content("You have signed up successfully")
+        expect(page).to have_content("A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.")
       end
     end
 
@@ -83,7 +83,7 @@ describe "Authentication", type: :system do
           find("*[type=submit]").click
         end
 
-        expect(page).to have_content("¡Bienvenida! Te has registrado con éxito.")
+        expect(page).to have_content("Se ha enviado un mensaje con un enlace de confirmación a tu dirección de correo electrónico. Por favor, sigue el enlace para activar tu cuenta.")
         expect(last_user.locale).to eq("es")
       end
     end
@@ -563,7 +563,7 @@ describe "Authentication", type: :system do
             find("*[type=submit]").click
           end
 
-          expect(page).to have_content("You have signed up successfully")
+          expect(page).to have_content("A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.")
         end
       end
     end
