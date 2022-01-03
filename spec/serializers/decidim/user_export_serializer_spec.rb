@@ -6,7 +6,21 @@ module Decidim
   module UserExporter
     describe UserExportSerializer do
       let(:subject) { described_class.new(resource) }
-      let(:resource) { create(:user) }
+      let!(:organization) { create(:organization) }
+      let(:resource) { create(:user, organization: organization, registration_metadata: registration_metadata) }
+      let!(:city_work_area) { create(:scope, organization: organization) }
+      let!(:city_residential_area) { create(:scope, organization: organization) }
+      let!(:living_area) { "city" }
+      let(:registration_metadata) do
+        {
+          living_area: living_area,
+          city_residential_area: city_residential_area.id,
+          city_work_area: city_work_area.id,
+          gender: "other",
+          birth_date: { month: "June", year: "1990" },
+          statutory_representative_email: generate(:email)
+        }
+      end
       let(:serialized) { subject.serialize }
 
       describe "#serialize" do
@@ -162,9 +176,9 @@ module Decidim
 
         context "when export_user_fields is defined" do
           it "exports fields from registration metadata" do
-            expect(serialized).to include(living_area: resource.registration_metadata["living_area"])
-            expect(serialized).to include(city_work_area: resource.registration_metadata["city_work_area"])
-            expect(serialized).to include(city_residential_area: resource.registration_metadata["city_residential_area"])
+            expect(serialized).to include(living_area: "city")
+            expect(serialized).to include(city_work_area: translated(Decidim::Scope.find(resource.registration_metadata["city_work_area"]).name))
+            expect(serialized).to include(city_residential_area: translated(Decidim::Scope.find(resource.registration_metadata["city_residential_area"]).name))
             expect(serialized).to include(metropolis_work_area: "")
             expect(serialized).to include(metropolis_residential_area: "")
             expect(serialized).to include(gender: "other")
