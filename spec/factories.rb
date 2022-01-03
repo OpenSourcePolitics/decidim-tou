@@ -149,6 +149,7 @@ FactoryBot.modify do
     email_on_notification { true }
     registration_metadata do
       {
+        living_area: "city",
         city_residential_area: build(:scope).id.to_s,
         city_work_area: build(:scope).id.to_s,
         gender: "other",
