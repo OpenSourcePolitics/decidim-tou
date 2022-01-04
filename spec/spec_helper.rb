@@ -5,7 +5,7 @@ Decidim::Dev.dummy_app_path = File.expand_path(Rails.root.to_s)
 require "decidim/dev/test/base_spec_helper"
 
 RSpec.configure do |config|
-  AVAILABLE_LOCALES = [:en, :ca, :es].freeze
+  AVAILABLE_LOCALES = [:en, :ca, :es, :fr].freeze
   DEFAULT_LOCALE = :en
 
   config.before do
