@@ -14,8 +14,11 @@ module Decidim
         {
           birth_date: "1995",
           gender: "Female",
+          living_area: "city",
           city_work_area: city_work_area.id,
+          metropolis_work_area: city_work_area.id,
           city_residential_area: city_residential_area.id,
+          metropolis_residential_area: city_residential_area.id,
           statutory_representative_email: "statutory_representative_email@example.org"
         }
       end
@@ -61,8 +64,11 @@ module Decidim
           expect(subject.serialize["Author"]).to include("Birth date" => "1995")
           expect(subject.serialize["Author"]).to include("Age scope" => "From 25 to 39 years old")
           expect(subject.serialize["Author"]).to include("Gender" => "Female")
-          expect(subject.serialize["Author"]).to include("Work area" => translated(city_work_area.name))
-          expect(subject.serialize["Author"]).to include("Residential area" => translated(city_residential_area.name))
+          expect(subject.serialize["Author"]).to include("Living area" => "city")
+          expect(subject.serialize["Author"]).to include("City work area" => translated(city_work_area.name))
+          expect(subject.serialize["Author"]).to include("Metropolis work area" => translated(city_work_area.name))
+          expect(subject.serialize["Author"]).to include("City residential area" => translated(city_residential_area.name))
+          expect(subject.serialize["Author"]).to include("Metropolis residential area" => translated(city_residential_area.name))
           expect(subject.serialize["Author"]).to include("Statutory representative email" => "statutory_representative_email@example.org")
         end
       end
