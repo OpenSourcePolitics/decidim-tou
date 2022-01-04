@@ -139,12 +139,16 @@ module Decidim
           context "when creator is a unique user" do
             let(:city_work_area) { create(:scope, organization: participatory_process.organization) }
             let(:city_residential_area) { create(:scope, organization: participatory_process.organization) }
+            let(:living_area) { "city" }
             let(:registration_metadata) do
               {
                 birth_date: "1981",
                 gender: "Female",
+                living_area: living_area,
                 city_work_area: city_work_area.id,
+                metropolis_work_area: city_work_area.id,
                 city_residential_area: city_residential_area.id,
+                metropolis_residential_area: city_residential_area.id,
                 statutory_representative_email: "statutory_representative_email@example.org"
               }
             end
@@ -158,8 +162,11 @@ module Decidim
               expect(serialized["Authors"]).to include("Nicknames" => creator.nickname)
               expect(serialized["Authors"]).to include("Emails" => creator.email)
               expect(serialized["Authors"]).to include("Gender" => registration_metadata[:gender])
-              expect(serialized["Authors"]).to include("Work area" => translated(city_work_area.name))
-              expect(serialized["Authors"]).to include("Residential area" => translated(city_residential_area.name))
+              expect(serialized["Authors"]).to include("Living area" => "city")
+              expect(serialized["Authors"]).to include("City work area" => translated(city_work_area.name))
+              expect(serialized["Authors"]).to include("City residential area" => translated(city_residential_area.name))
+              expect(serialized["Authors"]).to include("Metropolis work area" => translated(city_work_area.name))
+              expect(serialized["Authors"]).to include("Metropolis residential area" => translated(city_residential_area.name))
               expect(serialized["Authors"]).to include("Statutory representative email" => registration_metadata[:statutory_representative_email])
               expect(serialized["Authors"]).to include("Birth date" => registration_metadata[:birth_date])
             end
@@ -172,8 +179,11 @@ module Decidim
               it "leaves empty each fields" do
                 expect(serialized["Authors"]["Birth date"]).to be_empty
                 expect(serialized["Authors"]["Gender"]).to be_empty
-                expect(serialized["Authors"]["Work area"]).to be_empty
-                expect(serialized["Authors"]["Residential area"]).to be_empty
+                expect(serialized["Authors"]["Living area"]).to be_empty
+                expect(serialized["Authors"]["City work area"]).to be_empty
+                expect(serialized["Authors"]["City residential area"]).to be_empty
+                expect(serialized["Authors"]["Metropolis work area"]).to be_empty
+                expect(serialized["Authors"]["Metropolis residential area"]).to be_empty
                 expect(serialized["Authors"]["Statutory representative email"]).to be_empty
               end
             end
@@ -183,12 +193,17 @@ module Decidim
             let(:another_creator) { create(:user, :confirmed, organization: proposal.organization) }
             let(:city_work_area_2) { create(:scope, organization: participatory_process.organization) }
             let(:city_residential_area_2) { create(:scope, organization: participatory_process.organization) }
+            let(:living_area) { "metropolis" }
+
             let(:registration_metadata_2) do
               {
                 birth_date: { "year": "2016", "month": "May" },
                 gender: "Male",
+                living_area: living_area,
                 city_work_area: city_work_area_2.id,
+                metropolis_work_area: city_work_area_2.id,
                 city_residential_area: city_residential_area_2.id,
+                metropolis_residential_area: city_residential_area_2.id,
                 statutory_representative_email: "statutory_representative_email_2@example.org"
               }
             end
@@ -204,8 +219,11 @@ module Decidim
               expect(serialized["Authors"]["Nicknames"]).to eq("#{creator.nickname},#{another_creator.nickname}")
               expect(serialized["Authors"]["Emails"]).to eq("#{creator.email},#{another_creator.email}")
               expect(serialized["Authors"]["Gender"]).to eq("other,#{registration_metadata_2[:gender]}")
-              expect(serialized["Authors"]["Work area"]).to eq("-,#{translated(city_work_area_2.name)}")
-              expect(serialized["Authors"]["Residential area"]).to eq("-,#{translated(city_residential_area_2.name)}")
+              expect(serialized["Authors"]["Living area"]).to eq("city,metropolis")
+              expect(serialized["Authors"]["City work area"]).to eq("-,#{translated(city_work_area_2.name)}")
+              expect(serialized["Authors"]["City residential area"]).to eq("-,#{translated(city_residential_area_2.name)}")
+              expect(serialized["Authors"]["Metropolis work area"]).to eq("-,#{translated(city_work_area_2.name)}")
+              expect(serialized["Authors"]["Metropolis residential area"]).to eq("-,#{translated(city_residential_area_2.name)}")
               expect(serialized["Authors"]["Statutory representative email"]).to eq(registration_metadatas.map { |rg_metadata| rg_metadata["statutory_representative_email"] }.join(","))
               expect(serialized["Authors"]["Birth date"]).not_to be_empty
             end
@@ -231,8 +249,11 @@ module Decidim
               expect(serialized["Authors"]["Nicknames"]).to eq("#{creator.nickname},#{author.nickname}")
               expect(serialized["Authors"]["Emails"]).to eq("#{creator.email},#{author.email}")
               expect(serialized["Authors"]["Gender"]).to eq("other,other")
-              expect(serialized["Authors"]["Work area"]).to eq("-,-")
-              expect(serialized["Authors"]["Residential area"]).to eq("-,-")
+              expect(serialized["Authors"]["Living area"]).to eq("city,city")
+              expect(serialized["Authors"]["City work area"]).to eq("-,-")
+              expect(serialized["Authors"]["City residential area"]).to eq("-,-")
+              expect(serialized["Authors"]["Metropolis residential area"]).to eq("-,-")
+              expect(serialized["Authors"]["Metropolis work area"]).to eq("-,-")
               expect(serialized["Authors"]["Statutory representative email"]).to eq(registration_metadatas.map { |rg_metadata| rg_metadata["statutory_representative_email"] }.join(","))
               expect(serialized["Authors"]["Birth date"]).not_to be_empty
             end
@@ -250,9 +271,11 @@ module Decidim
               expect(serialized["Authors"]).to include("Nicknames")
               expect(serialized["Authors"]).to include("Emails")
               expect(serialized["Authors"]).to include("Birth date")
-              expect(serialized["Authors"]).to include("Gender")
-              expect(serialized["Authors"]).to include("Work area")
-              expect(serialized["Authors"]).to include("Residential area")
+              expect(serialized["Authors"]).to include("Living area")
+              expect(serialized["Authors"]).to include("City residential area")
+              expect(serialized["Authors"]).to include("City work area")
+              expect(serialized["Authors"]).to include("Metropolis residential area")
+              expect(serialized["Authors"]).to include("Metropolis work area")
               expect(serialized["Authors"]).to include("Statutory representative email")
             end
 
@@ -262,8 +285,11 @@ module Decidim
               expect(serialized["Authors"]["Emails"]).to be_empty
               expect(serialized["Authors"]["Birth date"]).to be_empty
               expect(serialized["Authors"]["Gender"]).to be_empty
-              expect(serialized["Authors"]["Work area"]).to be_empty
-              expect(serialized["Authors"]["Residential area"]).to be_empty
+              expect(serialized["Authors"]["Living area"]).to be_empty
+              expect(serialized["Authors"]["City work area"]).to be_empty
+              expect(serialized["Authors"]["Metropolis work area"]).to be_empty
+              expect(serialized["Authors"]["City residential area"]).to be_empty
+              expect(serialized["Authors"]["Metropolis residential area"]).to be_empty
               expect(serialized["Authors"]["Statutory representative email"]).to be_empty
             end
           end

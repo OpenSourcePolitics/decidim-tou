@@ -30,10 +30,13 @@ en:
               age_scope: Age scope
               author: Author
               birth_date: Birth date
-              city_residential_area: Residential area
-              city_work_area: Work area
+              city_residential_area: City residential area
+              city_work_area: City work area
               gender: Gender
               id: ID
+              living_area: Living area
+              metropolis_residential_area: Metropolis residential area
+              metropolis_work_area: Metropolis work area
               name: Name
               statutory_representative_email: Statutory representative email
             body: Content
@@ -215,8 +218,8 @@ en:
     proposals:
       admin:
         exports:
-          city_residential_area: Residential area
-          city_work_area: Work area
+          city_residential_area: City residential area
+          city_work_area: City work area
           column_name:
             proposals:
               amendments: Amendments
@@ -226,10 +229,13 @@ en:
               authors:
                 authors: Authors
                 birth_date: Birth date
-                city_residential_area: Residential area
-                city_work_area: Work area
+                city_residential_area: City residential area
+                city_work_area: City work area
                 emails: Emails
                 gender: Gender
+                living_area: Living area
+                metropolis_residential_area: Metropolis residential area
+                metropolis_work_area: Metropolis work area
                 names: Names
                 nicknames: Nicknames
                 statutory_representative_email: Statutory representative email
@@ -262,6 +268,9 @@ en:
               supports: Supports
               title: Title
               url: Url
+          living_area: Living area
+          metropolis_residential_area: Metropolis residential area
+          metropolis_work_area: Metropolis work area
           newsletter: Newsletter
           newsletter_title: Newsletter title
           nickname_help: Nickname help

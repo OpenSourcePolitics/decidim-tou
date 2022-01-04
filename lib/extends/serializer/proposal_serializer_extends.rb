@@ -68,8 +68,11 @@ module ProposalSerializerExtends
           t_column_name(:emails, ".authors") => proposal.authors.collect(&:email).join(","),
           t_column_name(:birth_date, ".authors") => collect_registration_metadata(:birth_date).join(","),
           t_column_name(:gender, ".authors") => collect_registration_metadata(:gender).join(","),
+          t_column_name(:living_area, ".authors") => collect_registration_metadata(:living_area).join(","),
           t_column_name(:city_work_area, ".authors") => collect_registration_metadata(:city_work_area).join(","),
           t_column_name(:city_residential_area, ".authors") => collect_registration_metadata(:city_residential_area).join(","),
+          t_column_name(:metropolis_work_area, ".authors") => collect_registration_metadata(:metropolis_work_area).join(","),
+          t_column_name(:metropolis_residential_area, ".authors") => collect_registration_metadata(:metropolis_residential_area).join(","),
           t_column_name(:statutory_representative_email, ".authors") => collect_registration_metadata(:statutory_representative_email).join(",")
         }
       end
@@ -83,14 +86,15 @@ module ProposalSerializerExtends
     return "" unless target_key.is_a?(Symbol)
 
     default_empty_value = multiple_authors? ? "-" : ""
-    registration_metadatas = proposal.authors.collect(&:registration_metadata).map { |metadata| metadata&.transform_keys { |k| k.to_sym } }
+    metadatas = proposal.authors.select { |author| author.respond_to?(:registration_metadata) }
+    registration_metadatas = metadatas.collect(&:registration_metadata).map { |metadata| metadata&.transform_keys { |k| k.to_sym } }
 
-    registration_metadatas.map { |hash| hash.nil? ? default_empty_value : replace_empty_value(hash, default_empty_value)[target_key] }
+    registration_metadatas.map { |hash| hash.nil? ? default_empty_value : replace_empty_value(hash, default_empty_value)&.fetch(target_key, default_empty_value) }
   end
 
   # Private: Take a hash as parameter and returns this hash with sym keys and allows to replace empty values
   def replace_empty_value(hash, replaced_by = "-")
-    return unless hash.is_a? Hash
+    return replaced_by unless hash.is_a? Hash
 
     refactored_hash = {}
     hash.each_pair do |k, v|
@@ -100,6 +104,7 @@ module ProposalSerializerExtends
                                     v.presence ? check_specific_key(k, v) : replaced_by
                                   end
     end
+
     refactored_hash
   end
 
@@ -114,8 +119,11 @@ module ProposalSerializerExtends
         t_column_name(:emails, ".authors") => "",
         t_column_name(:birth_date, ".authors") => "",
         t_column_name(:gender, ".authors") => "",
+        t_column_name(:living_area, ".authors") => "",
         t_column_name(:city_work_area, ".authors") => "",
+        t_column_name(:metropolis_work_area, ".authors") => "",
         t_column_name(:city_residential_area, ".authors") => "",
+        t_column_name(:metropolis_residential_area, ".authors") => "",
         t_column_name(:statutory_representative_email, ".authors") => ""
       }
     else
@@ -162,7 +170,9 @@ module ProposalSerializerExtends
   # Private: Define a specific process for a given key
   def check_specific_key(key, value)
     return scope_area_name(value) if key == :city_work_area
+    return scope_area_name(value) if key == :metropolis_work_area
     return scope_area_name(value) if key == :city_residential_area
+    return scope_area_name(value) if key == :metropolis_residential_area
 
     value
   end

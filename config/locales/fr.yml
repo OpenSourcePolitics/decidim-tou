@@ -34,6 +34,9 @@ fr:
               city_work_area: Lieu de travail
               gender: Genre
               id: ID
+              living_area: Living area
+              metropolis_residential_area: Metropolis residential area
+              metropolis_work_area: Metropolis work area
               name: Nom
               statutory_representative_email: Email representatif
             body: Contenu
@@ -226,10 +229,13 @@ fr:
               authors:
                 authors: Authors
                 birth_date: Birth date
-                city_residential_area: Residential area
-                city_work_area: Work area
+                city_residential_area: City residential area
+                city_work_area: City work area
                 emails: Emails
                 gender: Gender
+                living_area: Living area
+                metropolis_residential_area: Metropolis residential area
+                metropolis_work_area: Metropolis work area
                 names: Names
                 nicknames: Nicknames
                 statutory_representative_email: Statutory representative email
@@ -262,6 +268,9 @@ fr:
               supports: Supports
               title: Title
               url: Url
+          living_area: Living area
+          metropolis_residential_area: Metropolis residential area
+          metropolis_work_area: Metropolis work area
           newsletter: En cochant cette case, je consens à ce que mes données soient traitées dans le cadre de ma participation au projet pour lequel je contribue en ligne, organisé par la Mairie de Toulouse. Je suis informé.e du retrait possible de mon consentement, à tout moment, en le demandant à jeparticipe@mairie-toulouse.fr.
           newsletter_title: Recevoir les actualités de la plateforme
           nickname_help: Cet identifiant est public et unique sur la plateforme "%{organization}" ; il permet aux autres utilisateurs de vous suivre, de vous contacter ou de vous mentionner dans leurs commentaires. Il s’affichera précédé d’un « @ » ; il ne doit pas contenir d’espace ni de caractère spécial.
