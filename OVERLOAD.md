@@ -140,6 +140,11 @@ emitter: form.emitter,
 - config/initializers/decidim.rb
 - config/initializers/extends.rb
 
+## Order user interests
+- app/forms/decidim/user_interest_scope_form.rb
+- app/forms/decidim/user_interests_form.rb
+- app/models/decidim/scope.rb
+
 ## Custom registration form and exports
 ### Added
 - app/assets/javascripts/decidim/user_registrations.js.es6
@@ -189,6 +194,9 @@ emitter: form.emitter,
 - spec/factories.rb
 - spec/forms/participatory_process_form_spec.rb
 - spec/forms/registration_form_spec.rb
+- spec/forms/user_interest_scope_form_spec.rb
+- spec/forms/user_interests_form_spec.rb
+- spec/models/decidim/scope_spec.rb
 - spec/helpers/decidim/check_boxes_tree_helper_spec.rb
 - spec/lib/exporters/csv_spec.rb
 - spec/lib/exporters/json_spec.rb
