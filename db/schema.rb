@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_155222) do
+ActiveRecord::Schema.define(version: 2021_11_19_102756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -358,18 +358,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_155222) do
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
   end
 
-  create_table "decidim_calendar_external_events", force: :cascade do |t|
-    t.jsonb "title", null: false
-    t.datetime "start_at", null: false
-    t.datetime "end_at", null: false
-    t.string "url"
-    t.integer "decidim_author_id", null: false
-    t.string "decidim_author_type"
-    t.integer "decidim_organization_id", null: false
-    t.index ["decidim_author_id"], name: "decidim_calendar_external_event_author"
-    t.index ["decidim_organization_id"], name: "decidim_calendar_external_event_organization"
-  end
-
   create_table "decidim_categories", id: :serial, force: :cascade do |t|
     t.jsonb "name", null: false
     t.jsonb "description", null: false
@@ -437,17 +425,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_155222) do
     t.index ["decidim_commentable_type", "decidim_commentable_id"], name: "decidim_comments_comment_commentable"
     t.index ["decidim_root_commentable_type", "decidim_root_commentable_id"], name: "decidim_comments_comment_root_commentable"
     t.index ["decidim_user_group_id"], name: "index_decidim_comments_comments_on_decidim_user_group_id"
-  end
-
-  create_table "decidim_comparative_stats_endpoints", force: :cascade do |t|
-    t.string "endpoint"
-    t.boolean "active"
-    t.bigint "decidim_organization_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "api_version"
-    t.index ["decidim_organization_id"], name: "decidim_comparative_stats_constraint_organization"
   end
 
   create_table "decidim_components", id: :serial, force: :cascade do |t|
@@ -1504,15 +1481,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_155222) do
     t.index ["translation_set_id"], name: "decidim_term_customizer_translation_translation_set"
   end
 
-  create_table "decidim_user_blocks", force: :cascade do |t|
-    t.bigint "decidim_user_id"
-    t.integer "blocking_user_id"
-    t.text "justification"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["decidim_user_id"], name: "index_decidim_user_blocks_on_decidim_user_id"
-  end
-
   create_table "decidim_user_group_memberships", id: :serial, force: :cascade do |t|
     t.integer "decidim_user_id", null: false
     t.integer "decidim_user_group_id", null: false
@@ -1524,23 +1492,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_155222) do
     t.index ["decidim_user_id", "decidim_user_group_id"], name: "decidim_user_group_memberships_unique_user_and_group_ids", unique: true
     t.index ["decidim_user_id"], name: "index_decidim_user_group_memberships_on_decidim_user_id"
     t.index ["role", "decidim_user_group_id"], name: "decidim_group_membership_one_creator_per_group", unique: true, where: "((role)::text = 'creator'::text)"
-  end
-
-  create_table "decidim_user_moderations", force: :cascade do |t|
-    t.bigint "decidim_user_id"
-    t.integer "report_count", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["decidim_user_id"], name: "index_decidim_user_moderations_on_decidim_user_id"
-  end
-
-  create_table "decidim_user_reports", force: :cascade do |t|
-    t.integer "user_moderation_id"
-    t.integer "user_id", null: false
-    t.string "reason"
-    t.text "details"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "decidim_users", id: :serial, force: :cascade do |t|
@@ -1612,18 +1563,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_155222) do
     t.index ["unlock_token"], name: "index_decidim_users_on_unlock_token", unique: true
   end
 
-  create_table "decidim_verifications_conflicts", force: :cascade do |t|
-    t.bigint "current_user_id"
-    t.bigint "managed_user_id"
-    t.integer "times", default: 0
-    t.string "unique_id"
-    t.boolean "solved", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["current_user_id"], name: "authorization_current_user"
-    t.index ["managed_user_id"], name: "authorization_managed_user"
-  end
-
   create_table "decidim_verifications_csv_data", force: :cascade do |t|
     t.string "email"
     t.bigint "decidim_organization_id"
@@ -1680,32 +1619,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_155222) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "redirect_rules", id: :serial, force: :cascade do |t|
-    t.string "source", null: false
-    t.boolean "source_is_regex", default: false, null: false
-    t.boolean "source_is_case_sensitive", default: false, null: false
-    t.string "destination", null: false
-    t.boolean "active", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "decidim_organization_id"
-    t.index ["active"], name: "index_redirect_rules_on_active"
-    t.index ["source"], name: "index_redirect_rules_on_source"
-    t.index ["source_is_case_sensitive"], name: "index_redirect_rules_on_source_is_case_sensitive"
-    t.index ["source_is_regex"], name: "index_redirect_rules_on_source_is_regex"
-  end
-
-  create_table "request_environment_rules", id: :serial, force: :cascade do |t|
-    t.integer "redirect_rule_id", null: false
-    t.string "environment_key_name", null: false
-    t.string "environment_value", null: false
-    t.boolean "environment_value_is_regex", default: false, null: false
-    t.boolean "environment_value_is_case_sensitive", default: true, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["redirect_rule_id"], name: "index_request_environment_rules_on_redirect_rule_id"
-  end
-
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
@@ -1745,7 +1658,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_155222) do
   add_foreign_key "decidim_term_customizer_constraints", "decidim_organizations"
   add_foreign_key "decidim_term_customizer_constraints", "decidim_term_customizer_translation_sets", column: "translation_set_id"
   add_foreign_key "decidim_term_customizer_translations", "decidim_term_customizer_translation_sets", column: "translation_set_id"
-  add_foreign_key "decidim_user_reports", "decidim_user_moderations", column: "user_moderation_id"
   add_foreign_key "decidim_users", "decidim_organizations"
   add_foreign_key "decidim_verifications_csv_data", "decidim_organizations"
   add_foreign_key "oauth_access_grants", "decidim_users", column: "resource_owner_id"
