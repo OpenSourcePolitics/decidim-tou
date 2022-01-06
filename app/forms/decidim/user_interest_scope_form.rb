@@ -17,9 +17,9 @@ module Decidim
       self.id = scope.id
       self.name = scope.name
       self.checked = user.interested_scopes_ids.include?(scope.id)
-      self.children = scope.children.map do |children_scope|
-        UserInterestScopeForm.from_model(scope: children_scope, user: user)
-      end
+      self.children = scope.children
+                           .sort_by { |children_scope| children_scope.name[I18n.locale.to_s] }
+                           .map { |children_scope| UserInterestScopeForm.from_model(scope: children_scope, user: user) }
     end
   end
 end
