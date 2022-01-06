@@ -13,6 +13,7 @@ module Decidim
 
     describe "has an association for children scopes" do
       subject(:scope_children) { scope.children.map(&:id) }
+
       let!(:subscope_0) { create(:scope, name: { en: "3.1 Scope" }, parent: scope) }
       let!(:subscope_1) { create(:scope, name: { en: "1.1 A Scope" }, parent: scope) }
       let!(:subscope_2) { create(:scope, name: { en: "1 Scope" }, parent: scope) }
@@ -20,7 +21,7 @@ module Decidim
       let!(:subscope_4) { create(:scope, name: { en: "0 Scope" }, parent: scope) }
       let!(:subscope_5) { create(:scope, name: { en: "3.2 Scope" }, parent: scope) }
 
-      it { is_expected.to eq([subscope_0.id, subscope_1.id, subscope_2.id, subscope_3.id, subscope_4.id, subscope_5.id]) }
+      it { is_expected.to eq([subscope_4.id, subscope_2.id, subscope_1.id, subscope_3.id, subscope_0.id, subscope_5.id]) }
     end
 
     context "with two scopes with the same code and organization" do

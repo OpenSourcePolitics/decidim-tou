@@ -5,6 +5,7 @@ require "spec_helper"
 module Decidim
   describe UserInterestsForm do
     subject { described_class.from_model(user) }
+
     let!(:organization) { create(:organization) }
     let!(:user) { create(:user, organization: organization) }
     let!(:scope_0) { create(:scope, name: { en: "3.1 Scope" }, organization: organization) }

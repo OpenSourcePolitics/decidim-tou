@@ -27,6 +27,7 @@ module Decidim
                optional: true
 
     has_many :children,
+             -> { order(name: :asc) },
              foreign_key: "parent_id",
              class_name: "Decidim::Scope",
              inverse_of: :parent,
