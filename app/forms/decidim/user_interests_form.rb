@@ -1,4 +1,4 @@
-user_interest_scope_form.rb# frozen_string_literal: true
+# frozen_string_literal: true
 
 module Decidim
   # The form object that handles the data behind updating a user's
