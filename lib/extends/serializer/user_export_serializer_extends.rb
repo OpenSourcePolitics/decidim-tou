@@ -34,7 +34,9 @@ module UserExportSerializerExtends
       officialized_at: resource.officialized_at,
       officialized_as: resource.officialized_as,
       age_scope: age_scope(fetch_age)
-    }.merge(extra_fields)
+    }.merge(extra_fields).merge(
+      area_to_scope_name
+    )
   end
 
   private
@@ -50,6 +52,15 @@ module UserExportSerializerExtends
     return age.fetch("year", "") if age.is_a? Hash
 
     age
+  end
+
+  def area_to_scope_name
+    {
+      city_work_area: resource.fetch_registration_area(:city_work_area),
+      city_residential_area: resource.fetch_registration_area(:city_residential_area),
+      metropolis_work_area: resource.fetch_registration_area(:metropolis_work_area),
+      metropolis_residential_area: resource.fetch_registration_area(:metropolis_residential_area)
+    }
   end
 end
 

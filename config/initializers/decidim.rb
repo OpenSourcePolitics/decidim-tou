@@ -81,7 +81,7 @@ Decidim.configure do |config|
   config.extended_data_column = :registration_metadata
 
   # Update fields to export from column extended_data : Default - [:country, :postal_code]
-  config.export_user_fields = [:gender, :birth_date, :living_area, :city_work_area, :metropolis_work_area, :city_residential_area, :metropolis_residential_area]
+  config.export_user_fields = [:gender, :birth_date, :living_area, :city_work_area, :metropolis_work_area, :city_residential_area, :metropolis_residential_area, :statutory_representative_email]
 
   # Change the export format list : Default - %w(CSV JSON Excel)
   config.export_users_formats = %w(CSV JSON Excel).freeze
