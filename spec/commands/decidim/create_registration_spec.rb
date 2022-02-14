@@ -41,10 +41,10 @@ module Decidim
         let(:current_locale) { "es" }
 
         let(:living_area) { "city" }
-        let(:city_residential_area) { city_residential_scope.id.to_s }
-        let(:city_work_area) { city_work_scope.id.to_s }
-        let(:metropolis_residential_area) { nil }
-        let(:metropolis_work_area) { nil }
+        let(:city_residential_area) { city_residential_scope.id }
+        let(:city_work_area) { city_work_scope.id }
+        let(:metropolis_residential_area) { "" }
+        let(:metropolis_work_area) { "" }
         let(:gender) { "other" }
         let(:birth_date) do
           {
@@ -59,8 +59,8 @@ module Decidim
           {
             additional_tos: additional_tos,
             living_area: living_area,
-            city_residential_area: translated(city_residential_scope.name),
-            city_work_area: translated(city_work_scope.name),
+            city_residential_area: city_residential_scope.id,
+            city_work_area: city_work_scope.id,
             metropolis_residential_area: metropolis_residential_area,
             metropolis_work_area: metropolis_work_area,
             gender: gender,
@@ -193,22 +193,26 @@ module Decidim
             it "saves city attributes" do
               expect do
                 command.call
-                expect(User.last.registration_metadata[:metropolis_residential_area]).to eq(nil)
-                expect(User.last.registration_metadata[:metropolis_work_area]).to eq(nil)
+                expect(User.last.registration_metadata["metropolis_residential_area"]).to eq("")
+                expect(User.last.registration_metadata["metropolis_work_area"]).to eq("")
+                expect(User.last.registration_metadata["city_residential_area"]).to eq(city_residential_area)
+                expect(User.last.registration_metadata["city_work_area"]).to eq(city_work_area)
               end.to change(User, :count).by(1)
             end
           end
 
           describe "when living area is metropolis" do
             let(:living_area) { "metropolis" }
-            let(:metropolis_residential_area) { metropolis_residential_scope.id.to_s }
-            let(:metropolis_work_area) { metropolis_work_scope.id.to_s }
+            let(:metropolis_residential_area) { metropolis_residential_scope.id }
+            let(:metropolis_work_area) { metropolis_work_scope.id }
 
-            it "saves city attributes" do
+            it "saves metropolis attributes" do
               expect do
                 command.call
-                expect(User.last.registration_metadata[:city_residential_area]).to eq(nil)
-                expect(User.last.registration_metadata[:city_work_area]).to eq(nil)
+                expect(User.last.registration_metadata["city_residential_area"]).to eq("")
+                expect(User.last.registration_metadata["city_work_area"]).to eq("")
+                expect(User.last.registration_metadata["metropolis_residential_area"]).to eq(metropolis_residential_area)
+                expect(User.last.registration_metadata["metropolis_work_area"]).to eq(metropolis_work_area)
               end.to change(User, :count).by(1)
             end
           end
@@ -219,10 +223,10 @@ module Decidim
             it "doesn't saves city and metropolis attributes" do
               expect do
                 command.call
-                expect(User.last.registration_metadata[:city_residential_area]).to eq(nil)
-                expect(User.last.registration_metadata[:city_work_area]).to eq(nil)
-                expect(User.last.registration_metadata[:metropolis_residential_area]).to eq(nil)
-                expect(User.last.registration_metadata[:metropolis_work_area]).to eq(nil)
+                expect(User.last.registration_metadata["city_residential_area"]).to eq("")
+                expect(User.last.registration_metadata["city_work_area"]).to eq("")
+                expect(User.last.registration_metadata["metropolis_residential_area"]).to eq("")
+                expect(User.last.registration_metadata["metropolis_work_area"]).to eq("")
               end.to change(User, :count).by(1)
             end
           end

@@ -149,8 +149,9 @@ FactoryBot.modify do
     email_on_notification { true }
     registration_metadata do
       {
-        city_residential_area: build(:scope).id.to_s,
-        city_work_area: build(:scope).id.to_s,
+        living_area: "city",
+        city_residential_area: build(:scope).id,
+        city_work_area: build(:scope).id,
         gender: "other",
         birth_date: { month: Faker::Date.birthday.month, year: Faker::Date.birthday.year },
         statutory_representative_email: generate(:email)
