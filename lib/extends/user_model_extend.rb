@@ -18,5 +18,3 @@ module UserModelExtend
     end
   end
 end
-
-Decidim::User.send(:include, UserModelExtend)

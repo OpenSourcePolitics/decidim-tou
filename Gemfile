@@ -4,23 +4,25 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-gem "decidim", "0.23.6"
-gem "decidim-conferences", "0.23.6"
+DECIDIM_VERSION = "release/0.25-stable"
+
+gem "decidim", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
+gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
 
 # Modules
-gem "decidim-decidim_awesome", "~> 0.6.6"
-gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "release/0.23-stable"
-gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "release/0.23-stable"
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "0.23-stable"
+#gem "decidim-decidim_awesome", "~> 0.6.6"
+#gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "bump/0.25-stable"
+#gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "bump/0.25-stable"
+#gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: DECIDIM_VERSION
 
 gem "bootsnap", "~> 1.4"
-gem "decidim-user_exporter", git: "https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git", branch: "main"
+#gem "decidim-user_exporter", git: "https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git", branch: "main"
 gem "puma", ">= 5.3.1"
 gem "uglifier", "~> 4.1"
 
 gem "dotenv-rails"
 
-gem "faker", "~> 1.9"
+gem "faker", "~> 2.14"
 
 gem "ruby-progressbar"
 gem "sentry-raven"
@@ -31,7 +33,7 @@ gem "sprockets", "~> 3.7"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
-  gem "decidim-dev", "0.23.6"
+  gem "decidim-dev", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
 
   # Since the v0.21.0, rubocop-rails is loaded in decidim-dev engine. For the v0.18.0, we can load rubocop-rails directly in app.
   gem "rubocop-rails", require: false

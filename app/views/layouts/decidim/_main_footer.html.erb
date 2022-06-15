@@ -2,11 +2,11 @@
   <div class="footer-logo">
     <% if current_organization.official_img_footer? %>
       <%= link_to current_organization.official_url, target: "_blank", class: "main-footer__badge primary" do %>
-        <%= image_tag current_organization.official_img_footer.url.to_s, alt: current_organization.name %>
+        <%= image_pack_tag current_organization.official_img_footer.url.to_s, alt: current_organization.name %>
       <% end %>
     <% end %>
     <%= link_to "https://www.toulouse.fr/", target: "_blank", class: "main-footer__badge secondary d-flex align-items-center" do %>
-      <%= image_tag "toulouse/logo-mairie.png", alt: "Mairie de Toulouse" %>
+      <%= image_pack_tag "media/images/logo-mairie.png", alt: "Mairie de Toulouse" %>
     <% end %>
   </div>
   <ul class="main__footer__nav footer-nav">

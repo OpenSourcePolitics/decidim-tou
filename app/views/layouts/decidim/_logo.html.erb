@@ -1,7 +1,7 @@
 <% if organization %>
   <%= link_to decidim.root_url(host: organization.host) do %>
     <% if organization.logo.present? %>
-      <%= image_tag organization.logo.medium.url, alt: organization.name %>
+      <%= image_pack_tag organization.logo.medium.url, alt: organization.name %>
     <% end %>
     <span><%= organization.name %></span>
   <% end %>

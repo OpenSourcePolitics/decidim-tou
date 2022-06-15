@@ -146,7 +146,7 @@ emitter: form.emitter,
 
 ## Custom registration form and exports
 ### Added
-- app/assets/javascripts/decidim/user_registrations.js.es6
+- app/assets/javascripts/decidim/user_registrations.js
 - app/assets/stylesheets/decidim/modules/_shared.scss
 - app/assets/stylesheets/decidim/modules/_signup.scss
 - app/commands/decidim/create_registration.rb
