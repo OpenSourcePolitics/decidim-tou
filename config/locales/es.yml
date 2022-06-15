@@ -1,9 +1,5 @@
 ---
 es:
-  activemodel:
-    attributes:
-      assembly:
-        sort_children: Sort children
   decidim:
     accessibility:
       skip_button: Skip button

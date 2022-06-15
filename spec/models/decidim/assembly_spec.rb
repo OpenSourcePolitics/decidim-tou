@@ -153,24 +153,5 @@ module Decidim
 
       it { is_expected.to be_valid }
     end
-
-    describe "#sort_children_by" do
-      let(:slugs) { %w(AAAA BBBB CCCC DDDD) }
-
-      let!(:assembly) { create :assembly }
-      let!(:assemblies) { slugs.map { |slug| create :assembly, slug: slug, parent: assembly } }
-
-      it "doesn't sort the child assemblies by default" do
-        expect(assembly.sort_children_by).to match_array(assemblies)
-      end
-
-      context "when child sorting is enabled" do
-        let!(:assembly) { create :assembly, sort_children: true }
-
-        it "sorts the children assemblies by slug" do
-          expect(assembly.sort_children_by.collect(&:slug)).to match_array(slugs)
-        end
-      end
-    end
   end
 end

@@ -171,13 +171,6 @@ module Decidim
       :admin
     end
 
-    # returns the children sorted by "ordered_by" params if the assembly has sort_children set to true
-    def sort_children_by(ordered_by = :slug)
-      return children.published unless sort_children?
-
-      children.published.order(ordered_by)
-    end
-
     private
 
     # When an assembly changes their parent, we need to update the parents_path attribute
