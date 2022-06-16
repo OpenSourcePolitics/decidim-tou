@@ -4,8 +4,6 @@ require "sidekiq/web"
 require "sidekiq-scheduler/web"
 
 Rails.application.routes.draw do
-  # Disable open-data route
-  get "/open-data/download" => redirect("/")
 
   authenticate :admin do
     mount Sidekiq::Web => "/sidekiq"
