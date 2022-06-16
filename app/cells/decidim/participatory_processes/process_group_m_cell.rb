@@ -14,11 +14,11 @@ module Decidim
       end
 
       def resource_image_path
-        model.hero_image.url
+        model.attached_uploader(:hero_image).path
       end
 
       def title
-        translated_attribute model.name
+        translated_attribute model.title
       end
 
       def resource_path
