@@ -9,7 +9,7 @@ namespace :import do
 
     @verbose = ENV["VERBOSE"].to_s == "true"
     Rails.logger = if @verbose
-                     Logger.new(STDOUT)
+                     Logger.new($stdout)
                    else
                      Logger.new("log/import-user-#{Time.zone.now.strftime "%Y-%m-%d-%H:%M:%S"}.log")
                    end
@@ -120,8 +120,8 @@ end
 
 def import_data(id, first_name, last_name, email)
   # Extends are only loaded at the last time
-  require "extends/commands/decidim/admin/create_participatory_space_private_user_extends.rb"
-  require "extends/commands/decidim/admin/impersonate_user_extends.rb"
+  require "extends/commands/decidim/admin/create_participatory_space_private_user_extends"
+  require "extends/commands/decidim/admin/impersonate_user_extends"
 
   if email.nil?
     import_without_email(id, first_name, last_name)
@@ -207,7 +207,7 @@ def import_with_email(id, first_name, last_name, email)
 end
 
 def set_name(first_name, last_name)
-  first_name + " " + last_name
+  "#{first_name} #{last_name}"
 end
 
 def task_current_user

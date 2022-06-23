@@ -27,8 +27,7 @@ module DevelopmentApp
     # the framework and any gems in your application.
 
     config.to_prepare do
-      Decidim::User.send(:include, UserModelExtend)
+      Decidim::User.include UserModelExtend
     end
-
   end
 end

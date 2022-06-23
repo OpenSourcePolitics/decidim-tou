@@ -25,7 +25,7 @@ module Decidim
     translatable_fields :title, :subtitle, :short_description, :description, :developer_group, :meta_scope, :local_area,
                         :target, :participatory_scope, :participatory_structure, :announcement
 
-    enum emitter: [:unspecified, :city, :metropolis, :both]
+    enum emitter: { unspecified: 0, city: 1, metropolis: 2, both: 3 }
 
     belongs_to :organization,
                foreign_key: "decidim_organization_id",

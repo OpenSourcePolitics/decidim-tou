@@ -86,6 +86,6 @@ namespace :decidim do
 end
 
 def log_to_stdout
-  Rails.logger = Logger.new(STDOUT)
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  Rails.logger = Logger.new($stdout)
+  ActiveRecord::Base.logger = Logger.new($stdout)
 end

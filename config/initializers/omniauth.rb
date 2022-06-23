@@ -4,7 +4,7 @@ require "omniauth/strategies/decidim"
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   OmniAuth.config.logger = Rails.logger
-  omniauth_config = Rails.application.secrets.dig(:omniauth)
+  omniauth_config = Rails.application.secrets[:omniauth]
 
   if omniauth_config[:decidim].present?
     provider(

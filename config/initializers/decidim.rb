@@ -75,7 +75,7 @@ Decidim.configure do |config|
     }
   end
 
-  config.base_uploads_path = ENV["HEROKU_APP_NAME"] + "/" if ENV["HEROKU_APP_NAME"].present?
+  config.base_uploads_path = "#{ENV["HEROKU_APP_NAME"]}/" if ENV["HEROKU_APP_NAME"].present?
 
   # Allows to define the column name in database, default : :extended_data
   config.extended_data_column = :registration_metadata

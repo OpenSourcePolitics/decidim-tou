@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateRegistrationMetadata < ActiveRecord::Migration[5.2]
   # Fetch all users with registration_metadata completed
   #
@@ -8,7 +10,7 @@ class UpdateRegistrationMetadata < ActiveRecord::Migration[5.2]
   #
   # The aim of this migration is to copy data. It shouldn't remove any data in registration_metadata field.
   def up
-    Rails.logger = Logger.new(STDOUT)
+    Rails.logger = Logger.new($stdout)
     old_users = fetch_old_users
     new_users = fetch_new_users
 
@@ -49,7 +51,8 @@ registration_metadata->'work_area') is null")
 
   def update_metadata_for(users, seniority)
     return if users.blank?
-    Rails.logger.debug "Updating #{users.count} #{seniority.to_s} users..."
+
+    Rails.logger.debug "Updating #{users.count} #{seniority} users..."
 
     users.each do |user|
       yield(user)

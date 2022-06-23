@@ -10,13 +10,13 @@ gem "decidim", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VE
 gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
 
 # Modules
-#gem "decidim-decidim_awesome", "~> 0.6.6"
-#gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "bump/0.25-stable"
-#gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "bump/0.25-stable"
-#gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: DECIDIM_VERSION
+# gem "decidim-decidim_awesome", "~> 0.6.6"
+# gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "bump/0.25-stable"
+# gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "bump/0.25-stable"
+# gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: DECIDIM_VERSION
 
 gem "bootsnap", "~> 1.4"
-#gem "decidim-user_exporter", git: "https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git", branch: "main"
+# gem "decidim-user_exporter", git: "https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git", branch: "main"
 gem "puma", ">= 5.3.1"
 gem "uglifier", "~> 4.1"
 
@@ -41,6 +41,7 @@ end
 
 group :development do
   gem "listen", "~> 3.1"
+  gem "rubocop-faker"
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 3.5"

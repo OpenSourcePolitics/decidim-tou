@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CastScopeIdRegistrationMetadata < ActiveRecord::Migration[5.2]
   def up
-    Rails.logger = Logger.new(STDOUT)
+    Rails.logger = Logger.new($stdout)
     Rails.logger.debug "Updating scope ID in users registration metadata"
 
     users = fetch_users
@@ -9,7 +11,7 @@ class CastScopeIdRegistrationMetadata < ActiveRecord::Migration[5.2]
     Rails.logger.debug "Retrieving a list of #{users.count} users"
     users.each do |user|
       registration_metadata = user.registration_metadata
-      %w[city_work_area city_residential_area metropolis_residential_area metropolis_work_area].each do |scope_key|
+      %w(city_work_area city_residential_area metropolis_residential_area metropolis_work_area).each do |scope_key|
         scope_id = registration_metadata.fetch(scope_key, nil)
         next if scope_id.blank?
 
@@ -37,7 +39,7 @@ class CastScopeIdRegistrationMetadata < ActiveRecord::Migration[5.2]
     return scope_id if scope.blank? || scope.try(:parent).blank?
 
     scope.name[Decidim.default_locale.to_s]
-  rescue
+  rescue StandardError
     # Better to return initial value to prevent migration fail
     scope_id
   end

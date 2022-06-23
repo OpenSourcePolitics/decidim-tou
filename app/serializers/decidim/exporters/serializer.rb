@@ -11,6 +11,7 @@ module Decidim
     # own serializer or this default will be used.
     class Serializer
       attr_reader :resource
+
       EXPORTABLE_LIVING_AREA = [
         :city_work_area,
         :metropolis_work_area,

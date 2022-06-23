@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CleanScopesIdsInRegistrationMetadata < ActiveRecord::Migration[5.2]
   def up
-    mirror_logger = Logger.new(STDOUT)
+    mirror_logger = Logger.new($stdout)
     Rails.logger.debug "Updating scope ID in users registration metadata"
     mirror_logger.debug "Updating scope ID in users registration metadata"
 
@@ -13,7 +15,7 @@ class CleanScopesIdsInRegistrationMetadata < ActiveRecord::Migration[5.2]
     users.each do |user|
       registration_metadata = user.try(:registration_metadata) || {}
 
-      %w[city_work_area city_residential_area metropolis_residential_area metropolis_work_area work_area residential_area].each do |scope_key|
+      %w(city_work_area city_residential_area metropolis_residential_area metropolis_work_area work_area residential_area).each do |scope_key|
         registration_metadata[scope_key] = registration_metadata.fetch(scope_key, "") || ""
 
         # If scope key is defined
@@ -26,7 +28,7 @@ class CleanScopesIdsInRegistrationMetadata < ActiveRecord::Migration[5.2]
           else
             # If it contains letters, maybe it is a scope name
             # We check for a name called like this
-            scope = Decidim::Scope.find_by(name: {"fr": registration_metadata[scope_key]})
+            scope = Decidim::Scope.find_by(name: { "fr": registration_metadata[scope_key] })
 
             if scope.present? && scope.is_a?(Decidim::Scope)
               # Replace scope name by scope title if scope is defined

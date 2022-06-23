@@ -143,7 +143,7 @@ FactoryBot.modify do
     tos_agreement { "1" }
     avatar { Decidim::Dev.test_file("avatar.jpg", "image/jpeg") }
     personal_url { Faker::Internet.url }
-    about { "<script>alert(\"ABOUT\");</script>" + Faker::Lorem.paragraph(2) }
+    about { "<script>alert("ABOUT");</script>#{Faker::Lorem.paragraph(sentence_count: 2)}" }
     confirmation_sent_at { Time.current }
     accepted_tos_version { organization.tos_version }
     email_on_notification { true }

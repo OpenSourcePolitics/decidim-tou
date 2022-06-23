@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_conferences (originally 20191003080307)
 
 class AddCustomLinkToDecidimConferences < ActiveRecord::Migration[5.2]

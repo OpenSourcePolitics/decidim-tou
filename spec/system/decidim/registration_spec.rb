@@ -27,7 +27,8 @@ def fill_registration_form(params = {})
     expect(page).not_to have_select("user[metropolis_work_area]")
     expect(page).not_to have_select("user[city_residential_area]")
     expect(page).not_to have_select("user[city_work_area]")
-    if params[:living_area] == :metropolis
+    case params[:living_area]
+    when :metropolis
       select("Metropolis", from: :registration_user_living_area)
       select translated(metropolis_residential_scope.name), from: :registration_user_metropolis_residential_area
       select translated(metropolis_work_scope.name), from: :registration_user_metropolis_work_area
@@ -36,7 +37,7 @@ def fill_registration_form(params = {})
       expect(page).to have_select("user[metropolis_work_area]")
       expect(page).not_to have_select("user[city_residential_area]")
       expect(page).not_to have_select("user[city_work_area]")
-    elsif params[:living_area] == :other
+    when :other
       select("Other", from: :registration_user_living_area)
 
       expect(page).not_to have_select("user[city_residential_area]")

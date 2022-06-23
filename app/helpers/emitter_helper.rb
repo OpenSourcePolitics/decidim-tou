@@ -16,9 +16,10 @@ module EmitterHelper
   private
 
   def render_picture(emitter)
-    if emitter == "city"
+    case emitter
+    when "city"
       city_picture
-    elsif emitter == "metropolis"
+    when "metropolis"
       metropolis_picture
     else
       metropolis_picture.concat(city_picture)
