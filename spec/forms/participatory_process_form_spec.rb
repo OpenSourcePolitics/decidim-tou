@@ -23,6 +23,7 @@ module Decidim
             ca: "Subtítol"
           }
         end
+        let(:weight) { 1 }
         let(:description) do
           {
             en: "Description",
@@ -47,6 +48,7 @@ module Decidim
             "participatory_process" => {
               "title" => title,
               "subtitle" => subtitle,
+              "weight" => weight,
               "description" => description,
               "short_description" => short_description,
               "emitter" => emitter,

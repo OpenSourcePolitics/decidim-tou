@@ -60,7 +60,7 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
           ca: "Descripció més llarga"
         )
 
-        group_name = participatory_process_groups.first.name["en"]
+        group_name = participatory_process_groups.first.title["en"]
         select group_name, from: :participatory_process_participatory_process_group_id
 
         fill_in :participatory_process_slug, with: "slug"
@@ -95,8 +95,8 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
       click_button "Update"
 
       expect(page).to have_admin_callout("successfully")
-      expect(page).to have_css("img[src*='#{participatory_process3.hero_image.url}']")
-      expect(page).to have_css("img[src*='#{participatory_process3.banner_image.url}']")
+      expect(page).to have_css("img[src*='#{participatory_process3.attached_uploader(:hero_image).path}']")
+      expect(page).to have_css("img[src*='#{participatory_process3.attached_uploader(:banner_image).path}']")
     end
   end
 end

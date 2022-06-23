@@ -67,6 +67,8 @@ module Decidim::ParticipatoryProcesses
         expect(new_participatory_process.end_date).to eq(old_participatory_process.end_date)
         expect(new_participatory_process.participatory_process_group).to eq(old_participatory_process.participatory_process_group)
         expect(new_participatory_process.private_space).to eq(old_participatory_process.private_space)
+        expect(new_participatory_process.hero_image.blob).to eq(old_participatory_process.hero_image.blob)
+        expect(new_participatory_process.banner_image.blob).to eq(old_participatory_process.banner_image.blob)
       end
 
       it "broadcasts ok" do
@@ -134,7 +136,8 @@ module Decidim::ParticipatoryProcesses
 
         expect(last_component.participatory_space).to eq(last_participatory_process)
         expect(last_component.name).to eq(component.name)
-        expect(last_component.settings.attributes).to eq(component.settings.attributes)
+        expect(last_component.settings.attributes.except(:dummy_global_translatable_text)).to eq(component.settings.attributes.except(:dummy_global_translatable_text))
+        expect(last_component.settings.attributes[:dummy_global_translatable_text]).to include(component.settings.attributes[:dummy_global_translatable_text])
         expect(last_component.step_settings.keys).not_to eq(component.step_settings.keys)
         expect(last_component.step_settings.values).not_to eq(component.step_settings.values)
       end
