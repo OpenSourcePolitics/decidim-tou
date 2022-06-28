@@ -6,13 +6,18 @@ Decidim.configure do |config|
   config.mailer_sender = "OSP Agora <ne-pas-repondre@opensourcepolitics.eu>"
 
   # Change these lines to set your preferred locales
-  if Rails.env.test?
-    config.default_locale = :en
-    config.available_locales = [:en, :ca, :es]
-  else
-    config.default_locale = :fr
-    config.available_locales = [:fr]
-  end
+  # if Rails.env.test?
+  #   config.default_locale = :en
+  #   config.available_locales = [:en, :ca, :es]
+  # else
+  #   config.default_locale = :fr
+  #   config.available_locales = [:fr]
+  # end
+
+  # Change these lines to set your preferred locales
+  config.default_locale = :en
+  config.available_locales = [:en, :fr]
+
   config.maximum_attachment_height_or_width = 6000
 
   # Geocoder configuration
@@ -85,6 +90,8 @@ Decidim.configure do |config|
 
   # Change the export format list : Default - %w(CSV JSON Excel)
   config.export_users_formats = %w(CSV JSON Excel).freeze
+
+  config.enable_machine_translations = false
 end
 
 Rails.application.config.i18n.available_locales = Decidim.available_locales
