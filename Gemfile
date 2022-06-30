@@ -7,6 +7,7 @@ DECIDIM_VERSION = "release/0.26-stable"
 ruby RUBY_VERSION
 
 gem "decidim", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
+gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
 
 # Modules
 # gem "decidim-decidim_awesome", "~> 0.8.3"

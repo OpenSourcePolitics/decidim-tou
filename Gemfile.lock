@@ -49,6 +49,11 @@ GIT
     decidim-comments (0.26.1)
       decidim-core (= 0.26.1)
       redcarpet (~> 3.5, >= 3.5.1)
+    decidim-conferences (0.26.1)
+      decidim-core (= 0.26.1)
+      decidim-meetings (= 0.26.1)
+      wicked_pdf (~> 2.1)
+      wkhtmltopdf-binary (~> 0.12)
     decidim-core (0.26.1)
       active_link_to (~> 1.0)
       acts_as_list (~> 0.9)
@@ -832,6 +837,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   dalli
   decidim!
+  decidim-conferences!
   decidim-dev!
   dotenv-rails
   faker (~> 2.14)
