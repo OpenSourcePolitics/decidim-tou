@@ -11,10 +11,10 @@ gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch
 
 # Modules
 gem "decidim-decidim_awesome", "~> 0.8.3"
+gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: "release/0.26-stable"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer"
+gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "release/0.26-stable"
 # gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "release/0.23-stable"
-# gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "release/0.23-stable"
-# gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "0.23-stable"
-# gem "decidim-user_exporter", git: "https://github.com/OpenSourcePolitics/decidim-module-user_exporter.git", branch: "main"
 
 gem "dotenv-rails"
 
@@ -29,7 +29,6 @@ gem "activejob-uniqueness", require: "active_job/uniqueness/sidekiq_patch"
 gem "fog-aws"
 gem "sys-filesystem"
 
-gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: "release/0.26-stable"
 gem "letter_opener_web", "~> 1.3"
 
 group :development, :test do
