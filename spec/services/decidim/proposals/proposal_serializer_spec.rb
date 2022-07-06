@@ -47,30 +47,30 @@ module Decidim
         end
 
         it "serializes the author data" do
-          expect(serialized).to include("Pseudo" => proposal.creator_identity&.user_name)
+          expect(serialized).to include("Username" => proposal.creator_identity&.user_name)
           expect(serialized).to include("Email" => proposal.creator_identity&.email)
         end
 
         it "serializes the category" do
-          expect(serialized["Categorie"]).to include("ID" => category.id)
-          expect(serialized["Categorie"]).to include("Nom" => category.name)
+          expect(serialized["Category"]).to include("ID" => category.id)
+          expect(serialized["Category"]).to include("Name" => category.name)
         end
 
         it "serializes the scope" do
           expect(serialized["Scope"]).to include("ID" => scope.id)
-          expect(serialized["Scope"]).to include("Nom" => scope.name)
+          expect(serialized["Scope"]).to include("Name" => scope.name)
         end
 
         it "serializes the title" do
-          expect(serialized).to include("Titre" => proposal.title)
+          expect(serialized).to include("Title" => proposal.title)
         end
 
         it "serializes the body" do
-          expect(serialized).to include("Contenu" => proposal.body)
+          expect(serialized).to include("Body" => proposal.body)
         end
 
         it "serializes the address" do
-          expect(serialized).to include("Adresse" => proposal.address)
+          expect(serialized).to include("Address" => proposal.address)
         end
 
         it "serializes the latitude" do
@@ -86,11 +86,11 @@ module Decidim
         end
 
         it "serializes the amount of comments" do
-          expect(serialized).to include("Commentaires" => proposal.comments_count)
+          expect(serialized).to include("Comments" => proposal.comments_count)
         end
 
         it "serializes the date of creation" do
-          expect(serialized).to include("Publiée le" => proposal.published_at)
+          expect(serialized).to include("Published at" => proposal.published_at)
         end
 
         it "serializes the url" do
@@ -98,21 +98,21 @@ module Decidim
         end
 
         it "serializes the component" do
-          expect(serialized["Composant"]).to include("ID" => proposal.component.id)
+          expect(serialized["Component"]).to include("ID" => proposal.component.id)
         end
 
         it "serializes the meetings" do
-          expect(serialized["Urls de rencontre"].length).to eq(2)
-          expect(serialized["Urls de rencontre"].first).to match(%r{http.*/meetings})
+          expect(serialized["Meeting URLS"].length).to eq(2)
+          expect(serialized["Meeting URLS"].first).to match(%r{http.*/meetings})
         end
 
         it "serializes the participatory space" do
-          expect(serialized["Espace de participation"]).to include("ID" => participatory_process.id)
-          expect(serialized["Espace de participation"]["URL"]).to include("http", participatory_process.slug)
+          expect(serialized["Participatory space"]).to include("ID" => participatory_process.id)
+          expect(serialized["Participatory space"]["URL"]).to include("http", participatory_process.slug)
         end
 
         it "serializes the state" do
-          expect(serialized).to include("Statut" => proposal.state)
+          expect(serialized).to include("State" => proposal.state)
         end
 
         it "serializes the reference" do
@@ -120,37 +120,37 @@ module Decidim
         end
 
         it "serializes the answer" do
-          expect(serialized).to include("Réponse" => expected_answer)
+          expect(serialized).to include("Answer" => expected_answer)
         end
 
         it "serializes the amount of attachments" do
-          expect(serialized).to include("Pièces jointes" => proposal.attachments.count)
+          expect(serialized).to include("Attachments" => proposal.attachments.count)
         end
 
         it "serializes the endorsements" do
-          expect(serialized["Soutiens"]).to include("Total" => proposal.endorsements.count)
-          expect(serialized["Soutiens"]).to include("Soutiens de l'utilisateur" => proposal.endorsements.for_listing.map { |identity| identity.normalized_author&.name })
+          expect(serialized["Endorsements"]).to include("Total count" => proposal.endorsements.count)
+          expect(serialized["Endorsements"]).to include("User endorsements" => proposal.endorsements.for_listing.map { |identity| identity.normalized_author&.name })
         end
 
         it "serializes related proposals" do
-          expect(serialized["Proposition liées"].length).to eq(2)
-          expect(serialized["Proposition liées"].first).to match(%r{http.*/proposals})
+          expect(serialized["Related proposals"].length).to eq(2)
+          expect(serialized["Related proposals"].first).to match(%r{http.*/proposals})
         end
 
         it "serializes if proposal is_amend" do
-          expect(serialized).to include("Est amendée" => proposal.emendation?)
+          expect(serialized).to include("Is amend" => proposal.emendation?)
         end
 
         it "serializes the original proposal" do
-          expect(serialized["Proposition originale"]).to include("Titre" => proposal&.amendable&.title)
-          expect(serialized["Proposition originale"]["URL"]).to be_nil || include("http", proposal.id.to_s)
+          expect(serialized["Original proposal"]).to include("Title" => proposal&.amendable&.title)
+          expect(serialized["Original proposal"]["URL"]).to be_nil || include("http", proposal.id.to_s)
         end
 
         context "with proposal having an answer" do
           let!(:proposal) { create(:proposal, :with_answer) }
 
           it "serializes the answer" do
-            expect(serialized).to include("Réponse" => expected_answer)
+            expect(serialized).to include("Answer" => expected_answer)
           end
         end
       end
