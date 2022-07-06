@@ -29,6 +29,7 @@ gem "activejob-uniqueness", require: "active_job/uniqueness/sidekiq_patch"
 gem "fog-aws"
 gem "sys-filesystem"
 
+gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: "release/0.26-stable"
 gem "letter_opener_web", "~> 1.3"
 
 group :development, :test do
