@@ -1,5 +1,6 @@
 ---
 fr:
+
   activemodel:
     attributes:
       osp_authorization_handler:
@@ -66,6 +67,51 @@ fr:
           invalid: Il y a eu une erreur lors de la mise à jour de la rencontre.
           success: La rencontre a été mise à jour avec succès.
     proposals:
+      admin:
+        exports:
+          column_name:
+            proposal:
+              id: ID
+              category:
+                category: Categorie
+                id: ID
+                name: Nom
+              scope:
+                scope: Scope
+                id: ID
+                name: Nom
+              participatory_space:
+                participatory_space: Espace de participation
+                id: ID
+                url: URL
+              component:
+                component: Composant
+                id: ID
+              title: Titre
+              body: Contenu
+              address: Adresse
+              latitude: Latitude
+              longitude: Longitude
+              state: Statut
+              reference: Reference
+              answer: Réponse
+              supports: Supports
+              endorsements:
+                endorsements: Soutiens
+                total_count: Total
+                user_endorsements: Soutiens de l'utilisateur
+              comments: Commentaires
+              attachments: Pièces jointes
+              followers: Abonnés
+              published_at: Publiée le
+              url: URL
+              meeting_urls: Urls de rencontre
+              related_proposals: Proposition liées
+              is_amend: Est amendée
+              original_proposal:
+                original_proposal: Proposition originale
+                title: Titre
+                url: URL
       create:
         error: Il y a eu des erreurs lors de la sauvegarde de la proposition.
         success: Proposition créée avec succès. Enregistrée comme brouillon.
