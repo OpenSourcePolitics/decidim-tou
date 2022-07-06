@@ -13,7 +13,6 @@ module SerializerExporterExtend
   end
 end
 
-
 Decidim::Exporters::Serializer.class_eval do
   prepend(SerializerExporterExtend)
 end

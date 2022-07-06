@@ -2,7 +2,6 @@
 
 # Overrides Decidim::Surveys::ProposalSerializer
 module DataSerializerExtend
-
   # Returns: Array of Decidim::Forms::Questionnaire as a json hash,
   #     or nil if none exists.
   def serialize

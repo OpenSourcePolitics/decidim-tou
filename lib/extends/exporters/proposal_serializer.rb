@@ -2,7 +2,6 @@
 
 # Overrides Decidim::Proposals::ProposalSerializer
 module ProposalSerializerExtend
-
   # Public: Exports a hash with the serialized data for this proposal.
   def serialize
     {
@@ -56,7 +55,6 @@ module ProposalSerializerExtend
     "decidim.proposals.admin.exports.column_name.proposal"
   end
 end
-
 
 Decidim::Proposals::ProposalSerializer.class_eval do
   prepend(ProposalSerializerExtend)

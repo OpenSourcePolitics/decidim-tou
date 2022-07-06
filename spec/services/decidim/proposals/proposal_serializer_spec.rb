@@ -51,10 +51,6 @@ module Decidim
           expect(serialized).to include("Email" => proposal.creator_identity&.email)
         end
 
-        it "serializes the id" do
-          expect(serialized).to include("ID" => proposal.id)
-        end
-
         it "serializes the category" do
           expect(serialized["Categorie"]).to include("ID" => category.id)
           expect(serialized["Categorie"]).to include("Nom" => category.name)

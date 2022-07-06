@@ -54,7 +54,7 @@ module Decidim
         expect(Time.zone.parse(worksheet[1][5].value.to_s)).to eq(Time.zone.local(2017, 10, 1, 5, 0))
 
         expect(worksheet[2][0..4].map(&:value)).to eq([2, "barcat", "bares", "2, 3, 4", 0.55])
-        expect(Time.zone.parse(worksheet[2][5].value.to_s)).to eq(Time.zone.local(2017, 9, 20, 0, 0 ,1))
+        expect(Time.zone.parse(worksheet[2][5].value.to_s)).to eq(Time.zone.local(2017, 9, 20, 0, 0, 1))
       end
     end
 
