@@ -31,8 +31,6 @@ gem "sys-filesystem"
 
 gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: "release/0.26-stable"
 gem "letter_opener_web", "~> 1.3"
-gem "omniauth-oauth2", ">= 1.4.0", "< 2.0"
-gem "sprockets", "~> 3.7"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
