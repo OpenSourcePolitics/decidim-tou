@@ -72,6 +72,8 @@ en:
           column_name:
             proposal:
               id: ID
+              username: Username
+              email: Email
               category:
                 category: Category
                 id: ID

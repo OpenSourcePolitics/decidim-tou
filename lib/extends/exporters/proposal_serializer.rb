@@ -7,6 +7,8 @@ module ProposalSerializerExtend
   def serialize
     {
       t_column_name(:id) => proposal.id,
+      t_column_name(:username) => proposal.creator_identity&.user_name || "",
+      t_column_name(:email) => proposal.creator_identity&.email || "",
       t_column_name(:category, ".category") => {
         t_column_name(:id, ".category") => proposal.category.try(:id),
         t_column_name(:name, ".category") => proposal.category.try(:name) || empty_translatable

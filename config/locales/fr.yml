@@ -99,6 +99,8 @@ fr:
           column_name:
             proposal:
               id: ID
+              username: Pseudo
+              email: Email
               category:
                 category: Categorie
                 id: ID
