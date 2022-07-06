@@ -1,6 +1,5 @@
 ---
 fr:
-
   activemodel:
     attributes:
       osp_authorization_handler:
@@ -10,6 +9,34 @@ fr:
       participatory_process:
         private_space: Espace privé
   decidim:
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              id: ID
+              title: Titre
+              description: Description
+              tos: Conditions d'utilisation
+              questionnaire_for_type: Type du questionnaire
+              questionnaire_for_id: ID du questionnaire
+              published_at: Date de publication
+              created_at: Date de création
+              updated_at: Date de mise à jour
+              salt: Hash
+              questions: Questions
+              questionnaire: Questionnaire
+              answer_options: Options de réponse
+              decidim_questionnaire_id: ID du questionnaire
+              decidim_question_id: ID de la question
+              decidim_component_id: ID du composant
+              position: Position
+              question_type: Type de question
+              mandatory: Obligatoire
+              body: Contenu
+              max_choices: Choix maximum
+              max_characters: Caractères maximum
+              free_text: Texte libre
     accessibility:
       skip_button: Passer au contenu principal
     admin:

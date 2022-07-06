@@ -133,6 +133,34 @@ en:
       withdraw:
         errors:
           has_supports: This proposal can not be withdrawn because it already has supports.
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              id: ID
+              title: Title
+              description: Description
+              tos: Terms of service
+              questionnaire_for_type: Questionnaire for type
+              questionnaire_for_id: Questionnaire for ID
+              published_at: Published at
+              created_at: Created at
+              updated_at: Updated at
+              salt: Salt
+              questions: Questions
+              questionnaire: Questionnaire
+              answer_options: Answer options
+              decidim_questionnaire_id: Questionnaire ID
+              decidim_question_id: Question ID
+              decidim_component_id: Component ID
+              position: Position
+              question_type: Question type
+              mandatory: Mandatory
+              body: Body
+              max_choices: Max choices
+              max_characters: Max characters
+              free_text: Free text
     scopes:
       global: Global
       picker:
