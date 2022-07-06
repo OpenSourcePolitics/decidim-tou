@@ -858,7 +858,6 @@ DEPENDENCIES
   listen (~> 3.1)
   lograge
   newrelic_rpm
-  omniauth-oauth2 (>= 1.4.0, < 2.0)
   passenger
   puma (>= 5.5.1)
   rubocop-faker
@@ -870,12 +869,11 @@ DEPENDENCIES
   sidekiq-scheduler
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
-  sprockets (~> 3.7)
   sys-filesystem
   web-console (= 4.0.4)
 
 RUBY VERSION
-   ruby 2.7.1p83
+   ruby 2.7.5p203
 
 BUNDLED WITH
    2.3.13
