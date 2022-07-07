@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler
+  revision: 488cc8827845ec1c5266aa499df2ebf9b20e02a3
+  branch: release/0.26-stable
+  specs:
+    decidim-phone_authorization_handler (1.0.0)
+      decidim-core (~> 0.26)
+
+GIT
   remote: https://github.com/decidim/decidim.git
   revision: 8c4b5461f24345ca2ff8927809f2c839059e2421
   branch: release/0.26-stable
@@ -184,6 +192,14 @@ GIT
   specs:
     decidim-faceless (0.26.0)
       decidim-core (~> 0.26)
+
+GIT
+  remote: https://github.com/mainio/decidim-module-term_customizer
+  revision: 9540a2ab20b872896e51ea5f97c5ebae3388ca60
+  specs:
+    decidim-term_customizer (0.26.0)
+      decidim-admin (~> 0.26.0)
+      decidim-core (~> 0.26.0)
 
 GIT
   remote: https://github.com/sgruhier/foundation_rails_helper.git
@@ -850,6 +866,8 @@ DEPENDENCIES
   decidim-decidim_awesome (~> 0.8.3)
   decidim-dev!
   decidim-faceless!
+  decidim-phone_authorization_handler!
+  decidim-term_customizer!
   dotenv-rails
   faker (~> 2.14)
   fog-aws
