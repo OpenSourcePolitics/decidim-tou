@@ -66,6 +66,53 @@ fr:
           invalid: Il y a eu une erreur lors de la mise à jour de la rencontre.
           success: La rencontre a été mise à jour avec succès.
     proposals:
+      admin:
+        exports:
+          column_name:
+            proposal:
+              address: Adresse
+              answer: Réponse
+              attachments: Pièces jointes
+              body: Contenu
+              category:
+                category: Categorie
+                id: ID
+                name: Nom
+              comments: Commentaires
+              component:
+                component: Composant
+                id: ID
+              email: Email
+              endorsements:
+                endorsements: Soutiens
+                total_count: Total
+                user_endorsements: Soutiens de l'utilisateur
+              followers: Abonnés
+              id: ID
+              is_amend: Est amendée
+              latitude: Latitude
+              longitude: Longitude
+              meeting_urls: Urls de rencontre
+              original_proposal:
+                original_proposal: Proposition originale
+                title: Titre
+                url: URL
+              participatory_space:
+                id: ID
+                participatory_space: Espace de participation
+                url: URL
+              published_at: Publiée le
+              reference: Reference
+              related_proposals: Proposition liées
+              scope:
+                id: ID
+                name: Nom
+                scope: Scope
+              state: Statut
+              supports: Supports
+              title: Titre
+              url: URL
+              username: Pseudo
       create:
         error: Il y a eu des erreurs lors de la sauvegarde de la proposition.
         success: Proposition créée avec succès. Enregistrée comme brouillon.
@@ -94,6 +141,34 @@ fr:
         change: Modifier
         choose: Sélectionner
         currently_selected: Sélectionné
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              answer_options: Options de réponse
+              body: Contenu
+              created_at: Date de création
+              decidim_component_id: ID du composant
+              decidim_question_id: ID de la question
+              decidim_questionnaire_id: ID du questionnaire
+              description: Description
+              free_text: Texte libre
+              id: ID
+              mandatory: Obligatoire
+              max_characters: Caractères maximum
+              max_choices: Choix maximum
+              position: Position
+              published_at: Date de publication
+              question_type: Type de question
+              questionnaire: Questionnaire
+              questionnaire_for_id: ID du questionnaire
+              questionnaire_for_type: Type du questionnaire
+              questions: Questions
+              salt: Hash
+              title: Titre
+              tos: Conditions d'utilisation
+              updated_at: Date de mise à jour
     system:
       organizations:
         omniauth_settings:

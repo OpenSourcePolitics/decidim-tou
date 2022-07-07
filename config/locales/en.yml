@@ -66,6 +66,53 @@ en:
           invalid: There was a problem updating the meeting.
           success: You have updated the meeting successfully.
     proposals:
+      admin:
+        exports:
+          column_name:
+            proposal:
+              address: Address
+              answer: Answer
+              attachments: Attachments
+              body: Body
+              category:
+                category: Category
+                id: ID
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              email: Email
+              endorsements:
+                endorsements: Endorsements
+                total_count: Total count
+                user_endorsements: User endorsements
+              followers: Followers
+              id: ID
+              is_amend: Is amend
+              latitude: Latitude
+              longitude: Longitude
+              meeting_urls: Meeting URLS
+              original_proposal:
+                original_proposal: Original proposal
+                title: Title
+                url: URL
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              published_at: Published at
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: URL
+              username: Username
       create:
         error: There was a problem saving
         success: Success
@@ -94,6 +141,34 @@ en:
         change: Change
         choose: Choose
         currently_selected: Currently selected
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              answer_options: Answer options
+              body: Body
+              created_at: Created at
+              decidim_component_id: Component ID
+              decidim_question_id: Question ID
+              decidim_questionnaire_id: Questionnaire ID
+              description: Description
+              free_text: Free text
+              id: ID
+              mandatory: Mandatory
+              max_characters: Max characters
+              max_choices: Max choices
+              position: Position
+              published_at: Published at
+              question_type: Question type
+              questionnaire: Questionnaire
+              questionnaire_for_id: Questionnaire for ID
+              questionnaire_for_type: Questionnaire for type
+              questions: Questions
+              salt: Salt
+              title: Title
+              tos: Terms of service
+              updated_at: Updated at
     system:
       organizations:
         omniauth_settings:

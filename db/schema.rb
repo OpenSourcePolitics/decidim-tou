@@ -1420,7 +1420,6 @@ ActiveRecord::Schema.define(version: 2022_07_01_092838) do
     t.integer "endorsements_count", default: 0, null: false
     t.jsonb "title"
     t.jsonb "body"
-    t.integer "comments_count", default: 0, null: false
     t.integer "follows_count", default: 0, null: false
     t.index "md5((body)::text)", name: "decidim_proposals_proposal_body_search"
     t.index "md5((title)::text)", name: "decidim_proposals_proposal_title_search"
