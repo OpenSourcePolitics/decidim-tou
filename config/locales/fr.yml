@@ -157,7 +157,6 @@ fr:
   layouts:
     decidim:
       footer:
-        download_open_data: Données ouvertes
         made_with_open_source: Site réalisé par <a target="_blank" href="https://opensourcepolitics.eu">Open Source Politics</a> grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
       header:
         close_menu: Fermer
@@ -173,4 +172,4 @@ fr:
         conversations: Conversations
         notifications: Notifications
   sms_verification_workflow:
-    message: Message
+    message: Bonjour, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.metropole.toulouse.fr
