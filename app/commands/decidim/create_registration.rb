@@ -46,8 +46,19 @@ module Decidim
         newsletter_notifications_at: form.newsletter_at,
         email_on_notification: true,
         accepted_tos_version: form.current_organization.tos_version,
-        locale: form.current_locale
+        locale: form.current_locale,
+        registration_metadata: registration_metadata
       )
+    end
+
+    def registration_metadata
+      {
+        living_area: form.living_area,
+        city_residential_area: city_living_area? ? form.city_residential_area : nil,
+        city_work_area: city_living_area? ? form.city_work_area : nil,
+        metropolis_residential_area: metropolis_living_area? ? form.metropolis_residential_area : nil,
+        metropolis_work_area: metropolis_living_area? ? form.metropolis_work_area : nil,
+      }
     end
   end
 end
