@@ -55,6 +55,10 @@ module Decidim
                                      end
         end
 
+        def linked_assemblies_for(process)
+          process.linked_participatory_space_resources(:assembly, "included_participatory_processes").published
+        end
+
         def promoted_groups
           @promoted_groups ||= (OrganizationParticipatoryProcessGroups.new(current_organization) | PromotedParticipatoryProcessGroups.new).query.limit(max_results)
         end
