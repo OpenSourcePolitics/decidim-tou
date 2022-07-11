@@ -47,7 +47,7 @@ module Decidim
             newsletter: "0",
             living_area: "city",
             city_residential_area: city_residential_area.id.to_s,
-            city_work_area: city_work_area.id.to_s,
+            city_work_area: city_work_area.id.to_s
           }
         }
       end

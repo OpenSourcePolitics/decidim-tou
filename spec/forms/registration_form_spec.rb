@@ -58,7 +58,7 @@ module Decidim
         city_residential_area: city_residential_area,
         city_work_area: city_work_area,
         metropolis_residential_area: metropolis_residential_area,
-        metropolis_work_area: metropolis_work_area,
+        metropolis_work_area: metropolis_work_area
       }
     end
 

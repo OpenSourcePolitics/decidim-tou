@@ -58,7 +58,6 @@ module Decidim
       Time.current
     end
 
-
     def city_residential_area_for_select
       city_scopes
     end

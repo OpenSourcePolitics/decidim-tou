@@ -57,7 +57,7 @@ module Decidim
         city_residential_area: city_living_area? ? form.city_residential_area : nil,
         city_work_area: city_living_area? ? form.city_work_area : nil,
         metropolis_residential_area: metropolis_living_area? ? form.metropolis_residential_area : nil,
-        metropolis_work_area: metropolis_living_area? ? form.metropolis_work_area : nil,
+        metropolis_work_area: metropolis_living_area? ? form.metropolis_work_area : nil
       }
     end
   end
