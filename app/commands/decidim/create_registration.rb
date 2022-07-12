@@ -24,6 +24,7 @@ module Decidim
       end
 
       create_user
+      send_email_to_statutory_representative
 
       broadcast(:ok, @user)
     rescue ActiveRecord::RecordInvalid
@@ -53,12 +54,35 @@ module Decidim
 
     def registration_metadata
       {
+        additional_tos: form.additional_tos,
         living_area: form.living_area,
         city_residential_area: city_living_area? ? form.city_residential_area : nil,
         city_work_area: city_living_area? ? form.city_work_area : nil,
         metropolis_residential_area: metropolis_living_area? ? form.metropolis_residential_area : nil,
-        metropolis_work_area: metropolis_living_area? ? form.metropolis_work_area : nil
+        metropolis_work_area: metropolis_living_area? ? form.metropolis_work_area : nil,
+        gender: form.gender,
+        birth_date: form.birth_date,
+        statutory_representative_email: form.statutory_representative_email
       }
+    end
+
+    def statutory_representative_email
+      form.statutory_representative_email if form.underage.present?
+    end
+
+    def send_email_to_statutory_representative
+      byebug
+      return if registration_metadata[:statutory_representative_email].blank?
+
+      Decidim::StatutoryRepresentativeMailer.inform(@user).deliver_later
+    end
+
+    def city_living_area?
+      form.living_area == "city"
+    end
+
+    def metropolis_living_area?
+      form.living_area == "metropolis"
     end
   end
 end

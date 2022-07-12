@@ -12,6 +12,23 @@ en:
     devise:
       registrations:
         new:
+          gender:
+            male: Male
+            female: Female
+            other: Other
+          month_name:
+            january: January
+            february: February
+            march: March
+            april: April
+            may: May
+            june: June
+            july: July
+            august: August
+            september: September
+            october: October
+            november: November
+            december: December
           gdpr_disclaimer: GDPR disclaimer
           back: Back
           continue: Continue

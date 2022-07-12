@@ -6,7 +6,7 @@ module Decidim
     include JsonbAttributes
     mimic :user
 
-    GENDER_TYPES = %w(male female other).freeze
+    GENDER_TYPES = %w(female male other).freeze
     LIVING_AREA = %w(city metropolis other).freeze
 
     MONTHNAMES = (1..12).map { |m| Date::MONTHNAMES[m] }.freeze
@@ -128,6 +128,8 @@ module Decidim
       (Time.current.year - 120..Time.current.year).map(&:to_s).reverse
     end
 
+    private
+
     def city_living_area?
       living_area == "city"
     end
@@ -135,8 +137,6 @@ module Decidim
     def metropolis_living_area?
       living_area == "metropolis"
     end
-
-    private
 
     def city_scopes
       @city_scopes ||= current_organization.scopes.where(parent: top_level_city_scopes)
