@@ -9,36 +9,6 @@ en:
       participatory_process:
         private_space: Private space
   decidim:
-    devise:
-      registrations:
-        new:
-          gender:
-            male: Male
-            female: Female
-            other: Other
-          month_name:
-            january: January
-            february: February
-            march: March
-            april: April
-            may: May
-            june: June
-            july: July
-            august: August
-            september: September
-            october: October
-            november: November
-            december: December
-          gdpr_disclaimer: GDPR disclaimer
-          back: Back
-          continue: Continue
-          additional_tos_title: Additional TOS
-          birth_date: Birth date
-          month_label: Month
-          year_label: Year
-          gender_label: Gender label
-          create_account: Create account
-          complete_profile: Complete profile
     accessibility:
       skip_button: Skip button
     admin:
@@ -62,6 +32,36 @@ en:
         name: Identity Verification Form
       osp_authorization_workflow:
         name: Authorization procedure
+    devise:
+      registrations:
+        new:
+          additional_tos_title: Additional TOS
+          back: Back
+          birth_date: Birth date
+          complete_profile: Complete profile
+          continue: Continue
+          create_account: Create account
+          gdpr_disclaimer: GDPR disclaimer
+          gender:
+            female: Female
+            male: Male
+            other: Other
+          gender_label: Gender label
+          month_label: Month
+          month_name:
+            april: April
+            august: August
+            december: December
+            february: February
+            january: January
+            july: July
+            june: June
+            march: March
+            may: May
+            november: November
+            october: October
+            september: September
+          year_label: Year
     events:
       budgets:
         pending_order:

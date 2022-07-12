@@ -35,33 +35,33 @@ fr:
     devise:
       registrations:
         new:
-          gender:
-            male: Homme
-            female: Femme
-            other: Autre
-          month_name:
-            january: Janvier
-            february: Février
-            march: Mars
-            april: Avril
-            may: Mai
-            june: Juin
-            july: Juillet
-            august: Août
-            september: Septembre
-            october: Octobre
-            november: Novembre
-            december: Decembre
-          gdpr_disclaimer: Les données recueillies font l’objet d’un traitement informatique destiné à solliciter les usagers dans une démarche de participation citoyenne relative aux projets à l’échelle de la commune ou de Toulouse Métropole. La Mairie de Toulouse est responsable du traitement, représentée par la Direction de l'Action Territoriale. Seuls les agents habilités des directions en charge des projets et les élus concernés sont destinataires des données qui seront conservées la durée de l’inscription. Conformément à la législation relative à la protection des données personnelles, vous bénéficiez d'un droit d'accès, de modification et de suppression des données qui vous concernent. Vous pouvez exercer ces droits en vous adressant par voie postale à Direction Action Territoriale – pôle participation citoyenne 34 rue pargaminières 31000 TOULOUSE ou par email à contact.participation@mairie-toulouse.fr. La base légale de ce traitement est le consentement.
-          back: Retour
-          continue: Continuer
           additional_tos_title: Traitement de vos données personnelles
+          back: Retour
           birth_date: Date de naissance
-          month_label: Mois
-          year_label: Année
-          gender_label: Genre
-          create_account: S'inscrire
           complete_profile: Completer mon profil
+          continue: Continuer
+          create_account: S'inscrire
+          gdpr_disclaimer: Les données recueillies font l’objet d’un traitement informatique destiné à solliciter les usagers dans une démarche de participation citoyenne relative aux projets à l’échelle de la commune ou de Toulouse Métropole. La Mairie de Toulouse est responsable du traitement, représentée par la Direction de l'Action Territoriale. Seuls les agents habilités des directions en charge des projets et les élus concernés sont destinataires des données qui seront conservées la durée de l’inscription. Conformément à la législation relative à la protection des données personnelles, vous bénéficiez d'un droit d'accès, de modification et de suppression des données qui vous concernent. Vous pouvez exercer ces droits en vous adressant par voie postale à Direction Action Territoriale – pôle participation citoyenne 34 rue pargaminières 31000 TOULOUSE ou par email à contact.participation@mairie-toulouse.fr. La base légale de ce traitement est le consentement.
+          gender:
+            female: Femme
+            male: Homme
+            other: Autre
+          gender_label: Genre
+          month_label: Mois
+          month_name:
+            april: Avril
+            august: Août
+            december: Decembre
+            february: Février
+            january: Janvier
+            july: Juillet
+            june: Juin
+            march: Mars
+            may: Mai
+            november: Novembre
+            october: Octobre
+            september: Septembre
+          year_label: Année
     events:
       budgets:
         pending_order:
