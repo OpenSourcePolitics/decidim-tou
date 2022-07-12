@@ -11,7 +11,7 @@ Decidim.configure do |config|
     config.available_locales = [:fr, :en, :ca, :es]
   else
     config.default_locale = :fr
-    config.available_locales = [:fr]
+    config.available_locales = [:fr, :en]
   end
 
   # Timeout session

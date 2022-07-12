@@ -9,6 +9,19 @@ en:
       participatory_process:
         private_space: Private space
   decidim:
+    devise:
+      registrations:
+        new:
+          gdpr_disclaimer: GDPR disclaimer
+          back: Back
+          continue: Continue
+          additional_tos_title: Additional TOS
+          birth_date: Birth date
+          month_label: Month
+          year_label: Year
+          gender_label: Gender label
+          create_account: Create account
+          complete_profile: Complete profile
     accessibility:
       skip_button: Skip button
     admin:
