@@ -128,8 +128,6 @@ module Decidim
       (Time.current.year - 120..Time.current.year).map(&:to_s).reverse
     end
 
-    private
-
     def city_living_area?
       living_area == "city"
     end
@@ -137,6 +135,8 @@ module Decidim
     def metropolis_living_area?
       living_area == "metropolis"
     end
+
+    private
 
     def city_scopes
       @city_scopes ||= current_organization.scopes.where(parent: top_level_city_scopes)
@@ -173,13 +173,11 @@ module Decidim
     end
 
     def top_level_metropolis_scopes
-      @top_level_metropolis_scopes ||= top_level_scopes.where("name @> ?", { en: "Toulouse metropolis" }.to_json)
-                                                       .or(top_level_scopes.where("name @> ?", { fr: "Métropole de Toulouse" }.to_json))
+      @top_level_metropolis_scopes ||= top_level_scopes.where(id: 59)
     end
 
     def top_level_city_scopes
-      @top_level_city_scopes ||= top_level_scopes.where("name @> ?", { en: "Toulouse city" }.to_json)
-                                                 .or(top_level_scopes.where("name @> ?", { fr: "Ville de Toulouse" }.to_json))
+      @top_level_city_scopes ||= top_level_scopes.where(id: 58)
     end
 
     def top_level_scopes
