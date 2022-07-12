@@ -71,7 +71,6 @@ module Decidim
     end
 
     def send_email_to_statutory_representative
-      byebug
       return if registration_metadata[:statutory_representative_email].blank?
 
       Decidim::StatutoryRepresentativeMailer.inform(@user).deliver_later

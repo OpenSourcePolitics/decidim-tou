@@ -61,7 +61,6 @@ module Decidim
         resource.organization = current_organization
       end
 
-
       def form_step_style(params)
         "display: none" if params[:step] == 2 && @form.errors.empty?
       end
