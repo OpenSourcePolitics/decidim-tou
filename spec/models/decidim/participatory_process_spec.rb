@@ -6,7 +6,9 @@ module Decidim
   describe ParticipatoryProcess do
     subject { participatory_process }
 
-    let(:participatory_process) { build(:participatory_process, slug: "my-slug") }
+    let(:participatory_process) { build(:participatory_process, slug: "my-slug", organization: organization, display_linked_assemblies: display_linked_assemblies) }
+    let(:organization) { create(:organization) }
+    let(:display_linked_assemblies) { false }
 
     it { is_expected.to be_valid }
 
@@ -132,6 +134,39 @@ module Decidim
           expect(described_class.past_spaces).not_to include active
           expect(described_class.past_spaces).to include past
           expect(described_class.past_spaces).not_to include upcoming
+        end
+      end
+
+      describe "#linked_assemblies" do
+        context "when there is linked assemblies to PP" do
+          let!(:published_assembly) { create(:assembly, :published, organization: organization) }
+          let!(:unpublished_assembly) { create(:assembly, :unpublished, organization: organization) }
+          let!(:private_assembly) { create(:assembly, :published, :private, :opaque, organization: organization) }
+          let!(:transparent_assembly) { create(:assembly, :published, :private, :transparent, organization: organization) }
+
+          before do
+            published_assembly.link_participatory_space_resources(subject, "included_participatory_processes")
+            unpublished_assembly.link_participatory_space_resources(subject, "included_participatory_processes")
+            private_assembly.link_participatory_space_resources(subject, "included_participatory_processes")
+            transparent_assembly.link_participatory_space_resources(subject, "included_participatory_processes")
+          end
+
+          context "and display_linked_assemblies is not enabled" do
+            it "doesn't return the linked assemblies" do
+              expect(subject.linked_assemblies).to be_nil
+            end
+          end
+
+          context "and display_linked_assemblies is enabled" do
+            let(:display_linked_assemblies) { true }
+
+            it "returns the linked_assemblies" do
+              expect(subject.linked_assemblies).to include(published_assembly)
+              expect(subject.linked_assemblies).to include(transparent_assembly)
+              expect(subject.linked_assemblies).not_to include(unpublished_assembly)
+              expect(subject.linked_assemblies).not_to include(private_assembly)
+            end
+          end
         end
       end
     end
