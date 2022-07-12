@@ -68,7 +68,7 @@ module Decidim
 
         it "doesn't ask the user to confirm the email" do
           post :create, params: params
-          expect(controller.flash.notice).not_to have_content("confirmation")
+          expect(controller.flash.notice).to have_content("confirmation")
         end
       end
 

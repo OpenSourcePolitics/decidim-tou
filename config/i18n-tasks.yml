@@ -110,3 +110,5 @@ ignore_unused:
   - decidim.verifications.authorizations.first_login.actions.*
   - decidim.proposals.admin.exports.column_name.proposal.*
   - decidim.surveys.admin.exports.column_name.data.*
+  - decidim.devise.registrations.new.gender.*
+  - decidim.devise.registrations.new.month_name.*

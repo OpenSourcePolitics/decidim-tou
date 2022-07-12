@@ -183,19 +183,6 @@ describe "Participatory Processes", type: :system do
             end
           end
 
-          context "when cta_text is empty in current locale" do
-            let(:cta_text) { { en: "", fr: "Take action!" } }
-
-            it "displays the regular cta button" do
-              visit decidim_participatory_processes.participatory_processes_path
-
-              within "#participatory_process_#{participatory_process.id}" do
-                expect(page).not_to have_link("Take action!")
-                expect(page).to have_link("More info")
-              end
-            end
-          end
-
           context "when process is promoted" do
             let(:cta_text) { { en: "Take promoted action!", fr: "Take promoted action!" } }
             let!(:active_step) do
