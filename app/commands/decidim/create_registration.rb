@@ -18,6 +18,7 @@ module Decidim
     # Returns nothing.
     def call
       if form.invalid?
+
         user = User.has_pending_invitations?(form.current_organization.id, form.email)
         user.invite!(user.invited_by) if user
         return broadcast(:invalid)
@@ -56,10 +57,10 @@ module Decidim
       {
         additional_tos: form.additional_tos,
         living_area: form.living_area,
-        city_residential_area: city_living_area? ? form.city_residential_area : nil,
-        city_work_area: city_living_area? ? form.city_work_area : nil,
-        metropolis_residential_area: metropolis_living_area? ? form.metropolis_residential_area : nil,
-        metropolis_work_area: metropolis_living_area? ? form.metropolis_work_area : nil,
+        city_residential_area: city_living_area? ? scope_id_for(form.city_residential_area) : "",
+        city_work_area: city_living_area? ? scope_id_for(form.city_work_area) : "",
+        metropolis_residential_area: metropolis_living_area? ? scope_id_for(form.metropolis_residential_area) : "",
+        metropolis_work_area: metropolis_living_area? ? scope_id_for(form.metropolis_work_area) : "",
         gender: form.gender,
         birth_date: form.birth_date,
         statutory_representative_email: form.statutory_representative_email
@@ -77,11 +78,21 @@ module Decidim
     end
 
     def city_living_area?
-      form.living_area == "city"
+      form.try(:living_area) == "city"
     end
 
     def metropolis_living_area?
-      form.living_area == "metropolis"
+      form.try(:living_area) == "metropolis"
+    end
+
+
+    # Returns empty string or scope_id as Integer
+    def scope_id_for(scope_id)
+      return "" if scope_id.blank?
+      # Ensure scope_id only contains numeric chars
+      return "" unless scope_id !~ /\D/
+
+      scope_id.to_i
     end
   end
 end
