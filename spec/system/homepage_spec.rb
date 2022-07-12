@@ -361,8 +361,6 @@ describe "Homepage", type: :system do
         it "includes the links to social networks" do
           expect(page).to have_xpath("//a[@href = 'https://twitter.com/twitter_handler']")
           expect(page).to have_xpath("//a[@href = 'https://www.facebook.com/facebook_handler']")
-          expect(page).to have_xpath("//a[@href = 'https://www.youtube.com/youtube_handler']")
-          expect(page).to have_xpath("//a[@href = 'https://www.github.com/github_handler']")
         end
       end
 

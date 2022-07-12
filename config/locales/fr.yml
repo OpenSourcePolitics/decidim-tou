@@ -35,9 +35,13 @@ fr:
     devise:
       registrations:
         new:
+          additional_tos_agreement: En cochant cette case, je consens à ce que mes données soient traitées dans le cadre de ma participation au projet pour lequel je contribue en ligne, organisé par la Mairie de Toulouse. Je suis informé.e du retrait possible de mon consentement, à tout moment, en le demandant à <a href="jeparticipe@mairie-toulouse.fr">jeparticipe@mairie-toulouse.fr</a>.
           additional_tos_title: Traitement de vos données personnelles
           back: Retour
           birth_date: Date de naissance
+          city: City
+          city_residential_area: City residential area
+          city_work_area: City work area
           complete_profile: Completer mon profil
           continue: Continuer
           create_account: S'inscrire
@@ -47,6 +51,10 @@ fr:
             male: Homme
             other: Autre
           gender_label: Genre
+          living_area: Living area
+          metropolis: Metropolis
+          metropolis_residential_area: Metropolis residential area
+          metropolis_work_area: Metropolis work area
           month_label: Mois
           month_name:
             april: Avril
@@ -61,6 +69,9 @@ fr:
             november: Novembre
             october: Octobre
             september: Septembre
+          other: Autre
+          statutory_representative_email: Email representatif
+          underage: Underage
           year_label: Année
     events:
       budgets:

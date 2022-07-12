@@ -35,9 +35,13 @@ en:
     devise:
       registrations:
         new:
+          additional_tos_agreement: Additional TOS agreement
           additional_tos_title: Additional TOS
           back: Back
           birth_date: Birth date
+          city: City
+          city_residential_area: City residential area
+          city_work_area: City work area
           complete_profile: Complete profile
           continue: Continue
           create_account: Create account
@@ -47,6 +51,10 @@ en:
             male: Male
             other: Other
           gender_label: Gender label
+          living_area: Living area
+          metropolis: Metropolis
+          metropolis_residential_area: Metropolis residential area
+          metropolis_work_area: Metropolis work area
           month_label: Month
           month_name:
             april: April
@@ -61,6 +69,9 @@ en:
             november: November
             october: October
             september: September
+          other: Other
+          statutory_representative_email: Statutory representative email
+          underage: Underage
           year_label: Year
     events:
       budgets:
