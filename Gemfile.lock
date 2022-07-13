@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git
+  revision: 68c215675a11508c341aefb4f428eecd8cbc6256
+  branch: release/0.26-stable
+  specs:
+    decidim-homepage_interactive_map (2.0.0)
+      decidim-admin (>= 0.25.0, < 0.27)
+      decidim-core (>= 0.25.0, < 0.27)
+      decidim-dev (>= 0.25.0, < 0.27)
+
+GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler
   revision: 488cc8827845ec1c5266aa499df2ebf9b20e02a3
   branch: release/0.26-stable
@@ -866,6 +876,7 @@ DEPENDENCIES
   decidim-decidim_awesome (~> 0.8.3)
   decidim-dev!
   decidim-faceless!
+  decidim-homepage_interactive_map!
   decidim-phone_authorization_handler!
   decidim-term_customizer!
   dotenv-rails

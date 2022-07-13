@@ -12,9 +12,9 @@ gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch
 # Modules
 gem "decidim-decidim_awesome", "~> 0.8.3"
 gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: "release/0.26-stable"
+gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "release/0.26-stable"
 gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "release/0.26-stable"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer"
-# gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "release/0.23-stable"
 
 gem "dotenv-rails"
 
