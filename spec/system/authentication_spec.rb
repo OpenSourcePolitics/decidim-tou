@@ -2,9 +2,52 @@
 
 require "spec_helper"
 
+def fill_registration_fields(gender="Other", month="September")
+  fill_in :registration_user_email, with: "user@example.org"
+  fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
+  fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
+  check :registration_user_tos_agreement
+  check :registration_user_additional_tos
+  click_button "Continue"
+
+  fill_in :registration_user_name, with: "Responsible Citizen"
+  fill_in :registration_user_nickname, with: "responsible"
+  select "City", from: :registration_user_living_area
+  select translated(city_residential_area.name), from: :registration_user_city_residential_area
+  select translated(city_work_area.name), from: :registration_user_city_work_area
+  select gender, from: :registration_user_gender
+  select month, from: :registration_user_month
+  select "1992", from: :registration_user_year
+  check :registration_underage_registration
+  fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
+end
+
 describe "Authentication", type: :system do
+  let!(:scopes) { create_list(:scope, 5, organization: organization) }
   let(:organization) { create(:organization) }
   let(:last_user) { Decidim::User.last }
+
+  let!(:city_parent_scope) do
+    create(:scope,
+           id: 58,
+           name: {
+             fr: "Ville de Toulouse",
+             en: "Toulouse city"
+           },
+           organization: organization)
+  end
+  let!(:metropolis_parent_scope) do
+    create(:scope,
+           id: 59,
+           name: {
+             fr: "Métropole de Toulouse",
+             en: "Toulouse metropolis"
+           },
+           organization: organization)
+  end
+
+  let!(:city_residential_area) { create(:scope, parent: city_parent_scope) }
+  let!(:city_work_area) { create(:scope, parent: city_parent_scope) }
 
   before do
     switch_to_host(organization.host)
@@ -17,17 +60,12 @@ describe "Authentication", type: :system do
         find(".sign-up-link").click
 
         within ".new_user" do
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
-          check :registration_user_tos_agreement
-          check :registration_user_newsletter
+          fill_registration_fields
+
           find("*[type=submit]").click
         end
 
-        expect(page).to have_content("confirmation link")
+        expect(page).to have_content("A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.")
       end
     end
 
@@ -42,13 +80,8 @@ describe "Authentication", type: :system do
         find(".sign-up-link").click
 
         within ".new_user" do
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
-          check :registration_user_tos_agreement
-          check :registration_user_newsletter
+          fill_registration_fields("Autre", "Septembre")
+
           find("*[type=submit]").click
         end
 
@@ -63,17 +96,11 @@ describe "Authentication", type: :system do
 
         within ".new_user" do
           page.execute_script("$($('.new_user > div > input')[0]).val('Ima robot :D')")
-          fill_in :registration_user_email, with: "user@example.org"
-          fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
-          fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
-          check :registration_user_tos_agreement
-          check :registration_user_newsletter
+          fill_registration_fields
           find("*[type=submit]").click
         end
 
-        expect(page).not_to have_content("A message with a confirmation link has been sent to your email address.")
+        expect(page).not_to have_content("You have signed up successfully")
       end
     end
 
@@ -92,14 +119,11 @@ describe "Authentication", type: :system do
       before do
         OmniAuth.config.test_mode = true
         OmniAuth.config.mock_auth[:facebook] = omniauth_hash
-        OmniAuth.config.add_camelization "facebook", "FaceBook"
-        OmniAuth.config.request_validation_phase = ->(env) {} if OmniAuth.config.respond_to?(:request_validation_phase)
       end
 
       after do
         OmniAuth.config.test_mode = false
         OmniAuth.config.mock_auth[:facebook] = nil
-        OmniAuth.config.camelizations.delete("facebook")
       end
 
       context "when the user has confirmed the email in facebook" do
@@ -131,15 +155,11 @@ describe "Authentication", type: :system do
       before do
         OmniAuth.config.test_mode = true
         OmniAuth.config.mock_auth[:twitter] = omniauth_hash
-
-        OmniAuth.config.add_camelization "twitter", "Twitter"
-        OmniAuth.config.request_validation_phase = ->(env) {} if OmniAuth.config.respond_to?(:request_validation_phase)
       end
 
       after do
         OmniAuth.config.test_mode = false
         OmniAuth.config.mock_auth[:twitter] = nil
-        OmniAuth.config.camelizations.delete("twitter")
       end
 
       context "when the response doesn't include the email" do
@@ -206,15 +226,11 @@ describe "Authentication", type: :system do
       before do
         OmniAuth.config.test_mode = true
         OmniAuth.config.mock_auth[:google_oauth2] = omniauth_hash
-
-        OmniAuth.config.add_camelization "google_oauth2", "GoogleOauth"
-        OmniAuth.config.request_validation_phase = ->(env) {} if OmniAuth.config.respond_to?(:request_validation_phase)
       end
 
       after do
         OmniAuth.config.test_mode = false
         OmniAuth.config.mock_auth[:google_oauth2] = nil
-        OmniAuth.config.camelizations.delete("google_oauth2")
       end
 
       it "creates a new User" do
@@ -308,17 +324,6 @@ describe "Authentication", type: :system do
         expect(page).to have_content("Signed in successfully")
         expect(page).to have_content(user.name)
       end
-
-      it "caches the omniauth buttons correctly with different languages", :caching do
-        find(".sign-in-link").click
-        expect(page).to have_content("Sign in with Facebook")
-
-        within_language_menu do
-          click_link "Français"
-        end
-
-        expect(page).to have_content("S'identifier avec Facebook")
-      end
     end
 
     describe "Forgot password" do
@@ -330,7 +335,7 @@ describe "Authentication", type: :system do
           perform_enqueued_jobs { find("*[type=submit]").click }
         end
 
-        expect(page).to have_content("If your email address exists in our database")
+        expect(page).to have_content("you will receive a password recovery link")
         expect(emails.count).to eq(1)
       end
 
@@ -363,7 +368,6 @@ describe "Authentication", type: :system do
         expect(page).to have_content("Your password has been successfully changed")
         expect(page).to have_current_path "/"
       end
-
       it "enforces rules when setting a new password for the user" do
         visit last_email_link
 
@@ -415,7 +419,7 @@ describe "Authentication", type: :system do
             end
           end
 
-          it "doesn't show the last attempt warning before locking the account" do
+          it "shows the last attempt warning before locking the account" do
             within ".new_user" do
               fill_in :session_user_email, with: user.email
               fill_in :session_user_password, with: "not-the-pasword"
@@ -466,17 +470,8 @@ describe "Authentication", type: :system do
             perform_enqueued_jobs { find("*[type=submit]").click }
           end
 
-          expect(page).to have_content("If your account exists")
+          expect(page).to have_content("you will receive an email with instructions for how to unlock it in a few minutes.")
           expect(emails.count).to eq(1)
-        end
-
-        it "says it resends the unlock instructions when is a non-existing user account" do
-          within ".new_user" do
-            fill_in :unlock_user_email, with: user.email
-            find("*[type=submit]").click
-          end
-
-          expect(page).to have_content("If your account exists")
         end
       end
 
@@ -514,14 +509,11 @@ describe "Authentication", type: :system do
     before do
       OmniAuth.config.test_mode = true
       OmniAuth.config.mock_auth[:facebook] = omniauth_hash
-      OmniAuth.config.add_camelization "facebook", "FaceBook"
-      OmniAuth.config.request_validation_phase = ->(env) {} if OmniAuth.config.respond_to?(:request_validation_phase)
     end
 
     after do
       OmniAuth.config.test_mode = false
       OmniAuth.config.mock_auth[:facebook] = nil
-      OmniAuth.config.camelizations.delete("facebook")
     end
 
     describe "Sign in" do
@@ -579,16 +571,26 @@ describe "Authentication", type: :system do
 
           within ".new_user" do
             fill_in :registration_user_email, with: user.email
-            fill_in :registration_user_name, with: "Responsible Citizen"
-            fill_in :registration_user_nickname, with: "responsible"
             fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
             fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
             check :registration_user_tos_agreement
-            check :registration_user_newsletter
+            check :registration_user_additional_tos
+            click_button "Continue"
+
+            fill_in :registration_user_name, with: "Responsible Citizen"
+            fill_in :registration_user_nickname, with: "responsible"
+            select "City", from: :registration_user_living_area
+            select translated(city_residential_area.name), from: :registration_user_city_residential_area
+            select translated(city_work_area.name), from: :registration_user_city_work_area
+            select "Other", from: :registration_user_gender
+            select "September", from: :registration_user_month
+            select "1992", from: :registration_user_year
+            check :registration_underage_registration
+            fill_in :registration_user_statutory_representative_email, with: "milutin.tesla@example.org"
             find("*[type=submit]").click
           end
 
-          expect(page).to have_content("A message with a confirmation link has been sent to your email address.")
+          expect(page).to have_content("A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.")
         end
       end
     end
@@ -613,14 +615,11 @@ describe "Authentication", type: :system do
     before do
       OmniAuth.config.test_mode = true
       OmniAuth.config.mock_auth[:facebook] = omniauth_hash
-      OmniAuth.config.add_camelization "facebook", "FaceBook"
-      OmniAuth.config.request_validation_phase = ->(env) {} if OmniAuth.config.respond_to?(:request_validation_phase)
     end
 
     after do
       OmniAuth.config.test_mode = false
       OmniAuth.config.mock_auth[:facebook] = nil
-      OmniAuth.config.camelizations.delete("facebook")
     end
 
     describe "Sign Up" do
