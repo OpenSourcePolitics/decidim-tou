@@ -41,7 +41,7 @@ module Decidim
     validates :password, password: { name: :name, email: :email, username: :nickname }
     validates :password_confirmation, presence: true
     validates :month, :year, presence: true
-    validates :additional_tos, allow_nil: false, acceptance: true
+    validates :additional_tos, :tos_agreement, allow_nil: false, acceptance: true
     validates :living_area,
               inclusion: { in: LIVING_AREA },
               presence: true

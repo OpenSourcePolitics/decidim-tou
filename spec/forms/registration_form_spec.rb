@@ -15,6 +15,7 @@ module Decidim
     let(:organization) { create(:organization) }
     let(:city_parent_scope) do
       create(:scope,
+             id: 58,
              name: {
                fr: "Ville de Toulouse",
                en: "Toulouse city"
@@ -23,6 +24,7 @@ module Decidim
     end
     let(:metropolis_parent_scope) do
       create(:scope,
+             id: 59,
              name: {
                fr: "Métropole de Toulouse",
                en: "Toulouse metropolis"
@@ -58,7 +60,10 @@ module Decidim
         city_residential_area: city_residential_area,
         city_work_area: city_work_area,
         metropolis_residential_area: metropolis_residential_area,
-        metropolis_work_area: metropolis_work_area
+        metropolis_work_area: metropolis_work_area,
+        month: "June",
+        year: "1997",
+        additional_tos: true,
       }
     end
 

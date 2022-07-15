@@ -86,6 +86,12 @@ ignore_missing:
  - decidim.devise.shared.omniauth_buttons.or
  - devise.shared.links.sign_in_with_provider
  - layouts.decidim.header.user_menu
+ - decidim.statutory_representative.inform.{subject,body}
+ - decidim.devise.registrations.new.*
+ - devise.failure.invited
+ - devise.registrations.new.sign_up
+ - layouts.decidim.social_media_links.*
+
 
 # Consider these keys used:
 ignore_unused:
