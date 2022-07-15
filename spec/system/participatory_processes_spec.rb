@@ -13,8 +13,8 @@ describe "Participatory Processes", type: :system do
       :participatory_process,
       :active,
       organization: organization,
-      description: { en: "Description", fr: "Description" },
-      short_description: { en: "Short description", fr: "Description courte" },
+      description: { en: "Description", ca: "Descripció", es: "Descripción" },
+      short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
       show_metrics: show_metrics,
       show_statistics: show_statistics
     )
@@ -154,7 +154,7 @@ describe "Participatory Processes", type: :system do
           create(:participatory_process_step,
                  :active,
                  participatory_process: participatory_process,
-                 title: { en: "Active step", fr: "Etape active" })
+                 title: { en: "Active step", ca: "Fase activa", es: "Fase activa" })
         end
 
         it "links to the active step" do
@@ -169,7 +169,7 @@ describe "Participatory Processes", type: :system do
 
         context "when the active step has CTA text and url set" do
           let(:cta_path) { "my_path" }
-          let(:cta_text) { { en: "Take action!", fr: "Take action!" } }
+          let(:cta_text) { { en: "Take action!", ca: "Take action!", es: "Take action!" } }
 
           before do
             active_step.update!(cta_path: cta_path, cta_text: cta_text)
@@ -182,14 +182,26 @@ describe "Participatory Processes", type: :system do
               expect(page).to have_link("Take action!")
             end
           end
+          context "when cta_text is empty in current locale" do
+            let(:cta_text) { { en: "", ca: "Take action!", es: "Take action!" } }
+
+            it "displays the regular cta button" do
+              visit decidim_participatory_processes.participatory_processes_path
+
+              within "#participatory_process_#{participatory_process.id}" do
+                expect(page).not_to have_link("Take action!")
+                expect(page).to have_link("More info")
+              end
+            end
+          end
 
           context "when process is promoted" do
-            let(:cta_text) { { en: "Take promoted action!", fr: "Take promoted action!" } }
+            let(:cta_text) { { en: "Take promoted action!", ca: "Take promoted action!", es: "Take promoted action!" } }
             let!(:active_step) do
               create(:participatory_process_step,
                      :active,
                      participatory_process: promoted_process,
-                     title: { en: "Active step", fr: "Etape active" })
+                     title: { en: "Active step", ca: "Fase activa", es: "Fase activa" })
             end
 
             it "shows a CTA button" do
@@ -205,7 +217,7 @@ describe "Participatory Processes", type: :system do
             before do
               visit decidim_participatory_processes.participatory_processes_path
               within_language_menu do
-                click_link "English"
+                click_link "Català"
               end
             end
 
@@ -223,6 +235,8 @@ describe "Participatory Processes", type: :system do
         let(:promoted_items_titles) { page.all("#highlighted-processes .card__title").map(&:text) }
 
         before do
+          promoted_group.title["en"] = "D'Artagnan #{promoted_group.title["en"]}"
+          promoted_group.save!
           visit decidim_participatory_processes.participatory_processes_path
         end
 
@@ -233,6 +247,13 @@ describe "Participatory Processes", type: :system do
         it "lists only promoted groups" do
           expect(promoted_items_titles).to include(translated(promoted_group.title, locale: :en))
           expect(promoted_items_titles).not_to include(translated(group.title, locale: :en))
+        end
+
+        it "lists all the highlighted process groups" do
+          within "#highlighted-processes" do
+            expect(page).to have_content(translated(promoted_group.title, locale: :en))
+            expect(page).to have_selector(".card--full", count: 2)
+          end
         end
 
         context "and promoted group has defined a CTA content block" do
