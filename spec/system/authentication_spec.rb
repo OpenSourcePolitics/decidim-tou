@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-def fill_registration_fields(gender="Other", month="September")
+def fill_registration_fields(gender = "Other", month = "September")
   fill_in :registration_user_email, with: "user@example.org"
   fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
   fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
@@ -368,6 +368,7 @@ describe "Authentication", type: :system do
         expect(page).to have_content("Your password has been successfully changed")
         expect(page).to have_current_path "/"
       end
+
       it "enforces rules when setting a new password for the user" do
         visit last_email_link
 

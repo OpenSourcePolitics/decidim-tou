@@ -182,6 +182,7 @@ describe "Participatory Processes", type: :system do
               expect(page).to have_link("Take action!")
             end
           end
+
           context "when cta_text is empty in current locale" do
             let(:cta_text) { { en: "", ca: "Take action!", es: "Take action!" } }
 

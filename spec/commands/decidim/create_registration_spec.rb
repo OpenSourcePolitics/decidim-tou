@@ -133,7 +133,7 @@ module Decidim
                 user.reload
               end.to change(User, :count).by(0)
                                          .and broadcast(:invalid)
-                                                .and change(user.reload, :invitation_token)
+                .and change(user.reload, :invitation_token)
             end
           end
         end

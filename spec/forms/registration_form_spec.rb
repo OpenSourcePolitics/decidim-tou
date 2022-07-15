@@ -63,7 +63,7 @@ module Decidim
         metropolis_work_area: metropolis_work_area,
         month: "June",
         year: "1997",
-        additional_tos: true,
+        additional_tos: true
       }
     end
 

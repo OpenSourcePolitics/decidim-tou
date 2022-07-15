@@ -85,7 +85,6 @@ module Decidim
       form.try(:living_area) == "metropolis"
     end
 
-
     # Returns empty string or scope_id as Integer
     def scope_id_for(scope_id)
       return "" if scope_id.blank?
