@@ -1,3 +1,4 @@
+---
 fr:
   activemodel:
     attributes:
@@ -181,6 +182,24 @@ fr:
         create:
           error: Erreur
           success: Succès
+    admin_log:
+      participatory_process:
+        create: "%{user_name} a créé la concertation %{resource_name}"
+        publish: "%{user_name} a publié la concertation %{resource_name}"
+        unpublish: "%{user_name} n'a pas publié la concertation %{resource_name}"
+        update: "%{user_name} a mis à jour la concertation %{resource_name}"
+      participatory_process_group:
+        create: "%{user_name} a créé le groupe de concertations %{resource_name}"
+        update: "%{user_name} a mis à jour le groupe de concertations %{resource_name}"
+      participatory_process_step:
+        activate: "%{user_name} a activé l'étape %{resource_name} dans la concertation %{space_name}"
+        create: "%{user_name} a créé l'étape %{resource_name} dans la concertation %{space_name}"
+        delete: "%{user_name} a supprimé l'étape %{resource_name} de la concertation %{space_name}"
+        update: "%{user_name} a mis à jour l'étape %{resource_name} de la concertation %{space_name}"
+      participatory_process_user_role:
+        create: "%{user_name} a invité l'utilisateur %{resource_name} à la concertation %{space_name}"
+        delete: "%{user_name} a supprimé l'utilisateur %{resource_name} de la concertation %{space_name}"
+        update: "%{user_name} a changé le rôle de l'utilisateur %{resource_name} dans la concertation %{space_name}"
     amendments:
       emendation:
         announcement:
@@ -245,6 +264,22 @@ fr:
           email_outro: Vous avez reçu cette notification parce que vous avez commencé à voter sur la concertation "%{participatory_space_title}"
           email_subject: Votre vote est toujours en attente sur la concertation %{participatory_space_title}
           notification_title: Votre vote pour le budget <a href="%{resource_path}">%{resource_title}</a> attend d'être finalisé sur la concertation %{participatory_space_title}
+      participatory_process:
+        role_assigned:
+          email_intro: Vous avez été assigné en tant que %{role} pour la concertation "%{resource_title}".
+          email_outro: Vous avez reçu cette notification parce que vous êtes %{role} de la concertation "%{resource_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
+          email_subject: Vous avez été assigné comme %{role} pour "%{resource_title}".
+          notification_title: Vous avez été assigné en tant que %{role} pour la concertation <a href="%{resource_url}">%{resource_title}</a>.
+        step_activated:
+          email_intro: 'L''étape %{resource_title} vient d''être activée pour %{participatory_space_title}. Vous pouvez désormais la consulter sur cette page :'
+          email_outro: Vous venez de recevoir cette notification car vous suivez %{participatory_space_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
+          email_subject: Une mise à jour de %{participatory_space_title} vient d'être effectuée ! Nous vous invitons à venir consulter la page afin de découvrir les dernières améliorations
+          notification_title: L'étape %{resource_title} est désormais activée pour <a href="%{resource_path}">%{participatory_space_title}</a>
+        step_changed:
+          email_intro: 'Les dates de l''étape %{resource_title} de %{participatory_space_title} ont été mises à jour. Vous pouvez les retrouver sur cette page :'
+          email_outro: Vous venez de recevoir cette notification car vous suivez %{participatory_space_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
+          email_subject: Une mise à jour de %{participatory_space_title} vient d'être réalisée ! Nous vous invitons à venir voir les dernières améliorations
+          notification_title: Les dates de l'étape <a href="%{resource_path}">%{resource_title}</a> sur <a href="%{participatory_space_url}">%{participatory_space_title}</a> ont été mises à jour.
       users:
         user_officialized:
           email_intro: Le participant %{name} (%{nickname}) a été officialisé.
@@ -257,6 +292,12 @@ fr:
           email_outro: Vérifiez la <a href="%{conflicts_path}">Liste de conflits des vérifications</a> et contactez les participants pour vérifier leurs renseignements et résoudre le problème.
           email_subject: Un utilisateur a tenté de se faire vérifier avec les données d'un utilisateur représenté
           notification_title: Le participant <a href="%{resource_path}">%{resource_title}</a> a tenté de se faire vérifier avec les données de l'utilisateur représenté <a href="%{managed_user_path}">%{managed_user_name}</a>.
+    help:
+      participatory_spaces:
+        participatory_processes:
+          contextual: "<p>Une <strong>concertation</strong> est une séquence d'activités de participation (par exemple remplir un sondage, puis faire des propositions, les discuter en face-à-face ou en ligne, et enfin les hiérarchiser) dans le but de définir et de prendre une décision sur un sujet spécifique.</p> <p>Exemples de processus participatifs: un processus d’élection des membres du comité (où les candidatures sont d'abord présentées, puis débattues et finalement une candidature est choisie), les budgets participatifs (où les propositions sont faites, évaluées économiquement et votées selon l'argent disponible), un processus de planification stratégique, la rédaction collaborative d'un règlement ou d'une norme, la conception d'un espace urbain ou la production d'un plan de politique publique.</p>\n"
+          page: "<p>Une <strong>concertation</strong> est une séquence d'activités de participation (par exemple remplir un sondage, puis faire des propositions, les discuter en face-à-face ou en ligne, et enfin les hiérarchiser) dans le but de définir et de prendre une décision sur un sujet spécifique.</p> <p>Exemples de processus participatifs: un processus d’élection des membres du comité (où les candidatures sont d'abord présentées, puis débattues et finalement une candidature est choisie), les budgets participatifs (où les propositions sont faites, évaluées économiquement et votées selon l'argent disponible), un processus de planification stratégique, la rédaction collaborative d'un règlement ou d'une norme, la conception d'un espace urbain ou la production d'un plan de politique publique.</p>\n"
+          title: Qu'est-ce qu'une concertation ?
     meetings:
       directory:
         meetings:
@@ -265,12 +306,12 @@ fr:
       meeting:
         not_allowed: Vous n'êtes pas autorisé à vous inscrire à cette rencontre.
       meetings:
-          error: Une erreur s'est produite lors de l'import de cette concertation.
-          success: Concertation importée avec succès.
+        error: Une erreur s'est produite lors de l'import de cette concertation.
         new:
           import: Importer
           select: Sélectionnez les données que vous souhaitez importer
           title: Importer une concertation
+        success: Concertation importée avec succès.
       participatory_process_publications:
         create:
           error: Une erreur s'est produite lors de la publication de cette concertation.
@@ -354,47 +395,6 @@ fr:
         resend_invitation:
           error: Une erreur s'est produite lors de l'envoi de l’invitation.
           success: Invitation renvoyée avec succès.
-    admin_log:
-      participatory_process:
-        create: "%{user_name} a créé la concertation %{resource_name}"
-        publish: "%{user_name} a publié la concertation %{resource_name}"
-        unpublish: "%{user_name} n'a pas publié la concertation %{resource_name}"
-        update: "%{user_name} a mis à jour la concertation %{resource_name}"
-      participatory_process_group:
-        create: "%{user_name} a créé le groupe de concertations %{resource_name}"
-        update: "%{user_name} a mis à jour le groupe de concertations %{resource_name}"
-      participatory_process_step:
-        activate: "%{user_name} a activé l'étape %{resource_name} dans la concertation %{space_name}"
-        create: "%{user_name} a créé l'étape %{resource_name} dans la concertation %{space_name}"
-        delete: "%{user_name} a supprimé l'étape %{resource_name} de la concertation %{space_name}"
-        update: "%{user_name} a mis à jour l'étape %{resource_name} de la concertation %{space_name}"
-      participatory_process_user_role:
-        create: "%{user_name} a invité l'utilisateur %{resource_name} à la concertation %{space_name}"
-        delete: "%{user_name} a supprimé l'utilisateur %{resource_name} de la concertation %{space_name}"
-        update: "%{user_name} a changé le rôle de l'utilisateur %{resource_name} dans la concertation %{space_name}"
-    events:
-      participatory_process:
-        role_assigned:
-          email_intro: Vous avez été assigné en tant que %{role} pour la concertation "%{resource_title}".
-          email_outro: Vous avez reçu cette notification parce que vous êtes %{role} de la concertation "%{resource_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
-          email_subject: Vous avez été assigné comme %{role} pour "%{resource_title}".
-          notification_title: Vous avez été assigné en tant que %{role} pour la concertation <a href="%{resource_url}">%{resource_title}</a>.
-        step_activated:
-          email_intro: 'L''étape %{resource_title} vient d''être activée pour %{participatory_space_title}. Vous pouvez désormais la consulter sur cette page :'
-          email_outro: Vous venez de recevoir cette notification car vous suivez %{participatory_space_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
-          email_subject: Une mise à jour de %{participatory_space_title} vient d'être effectuée ! Nous vous invitons à venir consulter la page afin de découvrir les dernières améliorations
-          notification_title: L'étape %{resource_title} est désormais activée pour <a href="%{resource_path}">%{participatory_space_title}</a>
-        step_changed:
-          email_intro: 'Les dates de l''étape %{resource_title} de %{participatory_space_title} ont été mises à jour. Vous pouvez les retrouver sur cette page :'
-          email_outro: Vous venez de recevoir cette notification car vous suivez %{participatory_space_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
-          email_subject: Une mise à jour de %{participatory_space_title} vient d'être réalisée ! Nous vous invitons à venir voir les dernières améliorations
-          notification_title: Les dates de l'étape <a href="%{resource_path}">%{resource_title}</a> sur <a href="%{participatory_space_url}">%{participatory_space_title}</a> ont été mises à jour.
-    help:
-      participatory_spaces:
-        participatory_processes:
-          contextual: "<p>Une <strong>concertation</strong> est une séquence d'activités de participation (par exemple remplir un sondage, puis faire des propositions, les discuter en face-à-face ou en ligne, et enfin les hiérarchiser) dans le but de définir et de prendre une décision sur un sujet spécifique.</p> <p>Exemples de processus participatifs: un processus d’élection des membres du comité (où les candidatures sont d'abord présentées, puis débattues et finalement une candidature est choisie), les budgets participatifs (où les propositions sont faites, évaluées économiquement et votées selon l'argent disponible), un processus de planification stratégique, la rédaction collaborative d'un règlement ou d'une norme, la conception d'un espace urbain ou la production d'un plan de politique publique.</p>\n"
-          page: "<p>Une <strong>concertation</strong> est une séquence d'activités de participation (par exemple remplir un sondage, puis faire des propositions, les discuter en face-à-face ou en ligne, et enfin les hiérarchiser) dans le but de définir et de prendre une décision sur un sujet spécifique.</p> <p>Exemples de processus participatifs: un processus d’élection des membres du comité (où les candidatures sont d'abord présentées, puis débattues et finalement une candidature est choisie), les budgets participatifs (où les propositions sont faites, évaluées économiquement et votées selon l'argent disponible), un processus de planification stratégique, la rédaction collaborative d'un règlement ou d'une norme, la conception d'un espace urbain ou la production d'un plan de politique publique.</p>\n"
-          title: Qu'est-ce qu'une concertation ?
     menu:
       processes: Concertations
     metrics:
@@ -549,10 +549,6 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
-      user_menu:
-        account: Mon compte
-        conversations: Conversations
-        notifications: Notifications
       participatory_process_groups:
         participatory_process_group:
           browse: Parcourir
@@ -584,3 +580,7 @@ fr:
         view_steps: Voir les étapes
       process_navigation:
         process_menu_item: Présentation
+      user_menu:
+        account: Mon compte
+        conversations: Conversations
+        notifications: Notifications
