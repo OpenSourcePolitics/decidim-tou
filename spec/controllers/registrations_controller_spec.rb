@@ -10,6 +10,7 @@ module Decidim
     let(:email) { "test@example.org" }
     let!(:city_parent_scope) do
       create(:scope,
+             id: 58,
              name: {
                fr: "Ville de Toulouse",
                en: "Toulouse city"
@@ -18,6 +19,7 @@ module Decidim
     end
     let!(:metropolis_parent_scope) do
       create(:scope,
+             id: 59,
              name: {
                fr: "Métropole de Toulouse",
                en: "Toulouse metropolis"
@@ -47,7 +49,10 @@ module Decidim
             newsletter: "0",
             living_area: "city",
             city_residential_area: city_residential_area.id.to_s,
-            city_work_area: city_work_area.id.to_s
+            city_work_area: city_work_area.id.to_s,
+            additional_tos: true,
+            month: "June",
+            year: "1997"
           }
         }
       end
@@ -68,7 +73,7 @@ module Decidim
 
         it "doesn't ask the user to confirm the email" do
           post :create, params: params
-          expect(controller.flash.notice).to have_content("confirmation")
+          expect(controller.flash.notice).not_to have_content("confirmation")
         end
       end
 
