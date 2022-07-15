@@ -67,20 +67,6 @@ en:
           attributes:
             document:
               invalid_document_type: 'Invalid document type. Accepted formats are: %{valid_mime_types}'
-    models:
-      decidim/participatory_process_step_activated_event: Phase activated
-      decidim/participatory_process_step_changed_event: Phase changed
-  activerecord:
-    models:
-      decidim/participatory_process:
-        one: Participatory process
-        other: Participatory processes
-      decidim/participatory_process_group:
-        one: Participatory process group
-        other: Participatory process groups
-      decidim/participatory_process_step:
-        one: Phase
-        other: Phases
   decidim:
     admin:
       actions:

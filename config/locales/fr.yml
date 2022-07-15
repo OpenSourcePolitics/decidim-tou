@@ -67,20 +67,6 @@ fr:
           attributes:
             document:
               invalid_document_type: 'Type de document invalide. Les formats acceptés sont: %{valid_mime_types}'
-    models:
-      decidim/participatory_process_step_activated_event: Étape activée
-      decidim/participatory_process_step_changed_event: Étape modifiée
-  activerecord:
-    models:
-      decidim/participatory_process:
-        one: Concertation
-        other: Concertations
-      decidim/participatory_process_group:
-        one: Groupe de concertations
-        other: Groupes de concertations
-      decidim/participatory_process_step:
-        one: Étape
-        other: Étapes
   decidim:
     admin:
       actions:
