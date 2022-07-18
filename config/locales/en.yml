@@ -67,20 +67,6 @@ en:
           attributes:
             document:
               invalid_document_type: 'Invalid document type. Accepted formats are: %{valid_mime_types}'
-    models:
-      decidim/participatory_process_step_activated_event: Phase activated
-      decidim/participatory_process_step_changed_event: Phase changed
-  activerecord:
-    models:
-      decidim/participatory_process:
-        one: Participatory process
-        other: Participatory processes
-      decidim/participatory_process_group:
-        one: Participatory process group
-        other: Participatory process groups
-      decidim/participatory_process_step:
-        one: Phase
-        other: Phases
   decidim:
     admin:
       actions:
@@ -180,95 +166,8 @@ en:
           success: Participatory process group successfully updated.
       participatory_process_imports:
         create:
-          error: There was a problem importing this participatory process.
-          success: Participatory process successfully imported.
-        new:
-          import: Import
-          select: Select which data you would like to import
-          title: Import participatory process
-      participatory_process_publications:
-        create:
-          error: There was a problem publishing this participatory process.
-          success: Participatory process successfully published.
-        destroy:
-          error: There was a problem unpublishing this participatory process.
-          success: Participatory process successfully unpublished.
-      participatory_process_step_activations:
-        create:
-          error: There was a problem activating this participatory process phase.
-          success: Participatory process phase successfully activated.
-      participatory_process_steps:
-        create:
-          error: There was a problem creating a new participatory process phase.
-          success: Participatory process phase successfully created.
-        default_title: Introduction
-        destroy:
-          error:
-            active_step: Can't delete the active phase.
-            last_step: Can't delete the last phase of a process.
-          success: Participatory process phase successfully deleted.
-        edit:
-          title: Edit participatory process phase
-          update: Update
-        index:
-          steps_title: Phases
-        new:
-          create: Create
-          title: New participatory process phase
-        ordering:
-          error: There was a problem in reordering these phases of the participatory process.
-        update:
-          error: There was a problem updating this phase of the participatory process.
-          success: Participatory phase successfully updated.
-      participatory_process_user_roles:
-        create:
-          error: There was a problem adding a participant for this participatory process.
-          success: Admin successfully added to this participatory process.
-        destroy:
-          success: Admin successfully removed from this participatory process.
-        edit:
-          title: Update participatory process admin
-          update: Update
-        index:
-          process_admins_title: Participatory process admins
-        new:
-          create: Create
-          title: New participatory process admin
-        update:
-          error: There was a problem updating an admin for this participatory process.
-          success: Admin successfully updated for this participatory process.
-      participatory_processes:
-        create:
-          error: There was a problem creating a new participatory process.
-          success: Participatory process successfully created. Configure now its phases.
-        edit:
-          update: Update
-        index:
-          not_published: Not published
-          private: Private
-          public: Public
-          published: Published
-        new:
-          create: Create
-          title: New participatory process
-        update:
-          error: There was a problem updating this participatory process.
-          success: Participatory process successfully updated.
-      participatory_processes_copies:
-        create:
-          error: There was a problem duplicating this participatory process.
-          success: Participatory process successfully duplicated.
-      participatory_processes_group:
-        create:
-          error: There was a problem creating a new participatory process group.
-          success: Participatory process group successfully created.
-      titles:
-        participatory_process_groups: Participatory process groups
-        participatory_processes: Participatory processes
-      users:
-        resend_invitation:
-          error: There was a problem resending the invitation.
-          success: Invitation successfully resent.
+          error: Error
+          success: Success
     admin_log:
       participatory_process:
         create: "%{user_name} created the %{resource_name} participatory process"
@@ -287,7 +186,70 @@ en:
         create: "%{user_name} invited the participant %{resource_name} to the %{space_name} participatory process"
         delete: "%{user_name} removed the participant %{resource_name} from the %{space_name} participatory process"
         update: "%{user_name} changed the role of the participant %{resource_name} in the %{space_name} participatory process"
+    amendments:
+      emendation:
+        announcement:
+          evaluating: |-
+            This amendment for %{amendable_type} %{proposal_link}
+            is in evaluation state.
+    authorization_handlers:
+      osp_authorization_handler:
+        explanation: Verify your identity by entering a unique number
+        fields:
+          birthday: Birthday
+          document_number: Unique number
+          postal_code: Postal code
+        name: Identity Verification Form
+      osp_authorization_workflow:
+        name: Authorization procedure
+    devise:
+      registrations:
+        new:
+          additional_tos_agreement: Additional TOS agreement
+          additional_tos_title: Additional TOS
+          back: Back
+          birth_date: Birth date
+          city: City
+          city_residential_area: City residential area
+          city_work_area: City work area
+          complete_profile: Complete profile
+          continue: Continue
+          create_account: Create account
+          gdpr_disclaimer: GDPR disclaimer
+          gender:
+            female: Female
+            male: Male
+            other: Other
+          gender_label: Gender label
+          living_area: Living area
+          metropolis: Metropolis
+          metropolis_residential_area: Metropolis residential area
+          metropolis_work_area: Metropolis work area
+          month_label: Month
+          month_name:
+            april: April
+            august: August
+            december: December
+            february: February
+            january: January
+            july: July
+            june: June
+            march: March
+            may: May
+            november: November
+            october: October
+            september: September
+          other: Other
+          statutory_representative_email: Statutory representative email
+          underage: Underage
+          year_label: Year
     events:
+      budgets:
+        pending_order:
+          email_intro: The vote on budget "%{resource_title}" is not confirmed yet in "%{participatory_space_title}".
+          email_outro: You have received this notification because you are participating in "%{participatory_space_title}"
+          email_subject: Your vote is still pending in %{participatory_space_title}
+          notification_title: The vote on budget <a href="%{resource_path}">%{resource_title}</a> is still waiting for your confirmation in %{participatory_space_title}
       participatory_process:
         role_assigned:
           email_intro: You have been assigned as %{role} for participatory process "%{resource_title}".
@@ -304,6 +266,18 @@ en:
           email_outro: You have received this notification because you are following %{participatory_space_title}. You can stop receiving notifications following the previous link.
           email_subject: An update to %{participatory_space_title}
           notification_title: The dates for the <a href="%{resource_path}">%{resource_title}</a> phase at <a href="%{participatory_space_url}">%{participatory_space_title}</a> have been updated.
+      users:
+        user_officialized:
+          email_intro: Participant %{name} (%{nickname}) has been officialized.
+          email_outro: You have received this notification because you are an administrator of the organization.
+          email_subject: "%{name} has been officialized"
+          notification_title: Participant %{name} (%{nickname}) has been officialized.
+      verifications:
+        verify_with_managed_user:
+          email_intro: The participant <a href="%{resource_path}">%{resource_title}</a> has tried to verify themself with the data of the managed participant <a href="%{managed_user_path}">%{managed_user_name}</a>.
+          email_outro: Check the <a href="%{conflicts_path}">Verifications's conflicts list</a> and contact the participant to verify their details and solve the issue.
+          email_subject: Failed verification attempt against a managed participant
+          notification_title: The participant <a href="%{resource_path}">%{resource_title}</a> has tried to verify themself with the data of the managed participant <a href="%{managed_user_path}">%{managed_user_name}</a>.
     help:
       participatory_spaces:
         participatory_processes:
@@ -457,6 +431,13 @@ en:
       processes_count: Processes
   layouts:
     decidim:
+      footer:
+        made_with_open_source: Website made by <a target="_blank" href="https://opensourcepolitics.eu/en/">Open Source Politics</a> with the <a target="_blank" href="https://github.com/decidim/decidim">decidim free software</a>.
+      header:
+        close_menu: Close menu
+        navigation: Navigation
+        sign_in: Sign in
+        sign_up: Sign up
       participatory_process_groups:
         participatory_process_group:
           browse: Browse
@@ -488,3 +469,7 @@ en:
         view_steps: Process phases
       process_navigation:
         process_menu_item: The process
+      user_menu:
+        account: Account
+        conversations: Conversations
+        notifications: Notifications

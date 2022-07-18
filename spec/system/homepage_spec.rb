@@ -361,8 +361,6 @@ describe "Homepage", type: :system do
         it "includes the links to social networks" do
           expect(page).to have_xpath("//a[@href = 'https://twitter.com/twitter_handler']")
           expect(page).to have_xpath("//a[@href = 'https://www.facebook.com/facebook_handler']")
-          expect(page).to have_xpath("//a[@href = 'https://www.youtube.com/youtube_handler']")
-          expect(page).to have_xpath("//a[@href = 'https://www.github.com/github_handler']")
         end
       end
 
@@ -419,24 +417,6 @@ describe "Homepage", type: :system do
 
         it "shows the banner's action subtitle" do
           expect(page).to have_i18n_content(organization.highlighted_content_banner_action_subtitle)
-        end
-      end
-
-      context "when downloading open data", download: true do
-        before do
-          Decidim::OpenDataJob.perform_now(organization)
-          switch_to_host(organization.host)
-          visit decidim.root_path
-        end
-
-        it "lets the users download open data files" do
-          click_link "Open data"
-          expect(File.basename(download_path)).to include("open-data.zip")
-          Zip::File.open(download_path) do |zipfile|
-            expect(zipfile.glob("*open-data-proposals.csv").length).to eq(1)
-            expect(zipfile.glob("*open-data-results.csv").length).to eq(1)
-            expect(zipfile.glob("*open-data-meetings.csv").length).to eq(1)
-          end
         end
       end
     end
