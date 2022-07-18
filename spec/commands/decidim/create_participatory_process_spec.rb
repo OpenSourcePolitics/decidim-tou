@@ -17,12 +17,14 @@ module Decidim::ParticipatoryProcesses
     let(:longitude) { 2.1234 }
     let(:emitter) { :unspecified }
     let(:related_process_ids) { [] }
+    let(:weight) { 1 }
     let(:form) do
       instance_double(
         Admin::ParticipatoryProcessForm,
         invalid?: invalid,
         title: { en: "title" },
         subtitle: { en: "subtitle" },
+        weight: weight,
         slug: "slug",
         hashtag: "hashtag",
         meta_scope: { en: "meta scope" },

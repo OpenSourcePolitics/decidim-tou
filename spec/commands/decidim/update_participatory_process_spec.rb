@@ -13,11 +13,10 @@ module Decidim::ParticipatoryProcesses
             id: my_process.id,
             title: { en: "Foo title", ca: "Foo title", es: "Foo title" },
             subtitle: my_process.subtitle,
+            weight: my_process.weight,
             slug: my_process.slug,
             hashtag: my_process.hashtag,
             meta_scope: my_process.meta_scope,
-            hero_image: my_process.hero_image,
-            banner_image: my_process.banner_image,
             emitter: emitter,
             promoted: my_process.promoted,
             description_en: my_process.description,
@@ -35,7 +34,13 @@ module Decidim::ParticipatoryProcesses
             show_metrics: my_process.show_metrics,
             show_statistics: my_process.show_statistics,
             private_space: my_process.private_space
-          }
+          }.merge(attachment_params)
+        }
+      end
+      let(:attachment_params) do
+        {
+          hero_image: my_process.hero_image.blob,
+          banner_image: my_process.banner_image.blob
         }
       end
       let(:user) { create :user, :admin, :confirmed, organization: my_process.organization }
@@ -125,24 +130,35 @@ module Decidim::ParticipatoryProcesses
         end
 
         context "when no homepage image is set" do
+          let(:attachment_params) do
+            {
+              banner_image: my_process.banner_image.blob
+            }
+          end
+
           it "does not replace the homepage image" do
             expect(my_process).not_to receive(:hero_image=)
 
             command.call
             my_process.reload
 
-            expect(my_process.hero_image).to be_present
+            expect(my_process.hero_image.attached?).to be true
           end
         end
 
         context "when no banner image is set" do
+          let(:attachment_params) do
+            {
+              hero_image: my_process.hero_image.blob
+            }
+          end
           it "does not replace the banner image" do
             expect(my_process).not_to receive(:banner_image=)
 
             command.call
             my_process.reload
 
-            expect(my_process.banner_image).to be_present
+            expect(my_process.banner_image.attached?).to be true
           end
         end
       end

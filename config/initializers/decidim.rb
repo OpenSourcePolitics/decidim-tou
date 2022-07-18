@@ -8,7 +8,7 @@ Decidim.configure do |config|
   # Change these lines to set your preferred locales
   if Rails.env.test?
     config.default_locale = :en
-    config.available_locales = [:en, :fr]
+    config.available_locales = [:en, :fr, :es, :ca]
   else
     config.default_locale = :fr
     config.available_locales = [:en, :fr]

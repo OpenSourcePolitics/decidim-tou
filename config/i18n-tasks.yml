@@ -86,6 +86,12 @@ ignore_missing:
  - decidim.devise.shared.omniauth_buttons.or
  - devise.shared.links.sign_in_with_provider
  - layouts.decidim.header.user_menu
+ - en.layouts.decidim.participatory_process_groups.participatory_process_group.processes_count
+ - en.layouts.decidim.participatory_processes.promoted_process.more_info
+ - en.layouts.decidim.participatory_processes.promoted_process.active_step
+ - en.layouts.decidim.social_media_links.*
+ - en.decidim.participatory_processes.admin.participatory_processes.form.address_help
+
 
 # Consider these keys used:
 ignore_unused:
@@ -108,3 +114,4 @@ ignore_unused:
   - decidim.system.organizations.omniauth_settings.publik.*
   - decidim.verifications.authorizations.create.*
   - decidim.verifications.authorizations.first_login.actions.*
+  - decidim.participatory_processes.emitter.values.*

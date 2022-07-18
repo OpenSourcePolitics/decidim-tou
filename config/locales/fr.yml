@@ -65,6 +65,34 @@ fr:
         update:
           invalid: Il y a eu une erreur lors de la mise à jour de la rencontre.
           success: La rencontre a été mise à jour avec succès.
+    participatory_processes:
+      admin:
+        participatory_processes:
+          form:
+            announcement_help: Le texte saisi ici sera affiché juste en dessous des informations de la concertation.
+            both: Consultation de la ville de Toulouse et de Toulouse métropole
+            city: Consultation de la ville de Toulouse
+            duration: Durée
+            emitter: Organisateur de la consultation
+            filters: Filtres
+            images: Images
+            metadata: Métadonnées
+            metropolis: Consultation de Toulouse métropole
+            other: Autre
+            related_processes: Concertations liées
+            scope_type_max_depth_help: Restreindre la profondeur du filtre de secteur; Le filtre s'affichera du secteur général au type de secteur sélectionné.
+            select_an_area: Sélectionnez un secteur
+            select_process_group: Sélectionnez un groupe de concertations
+            slug_help: "Les identifiants d''URL sont utilisés pour générer les URL qui envoient vers cette concertation. Ils n''acceptent que des lettres, des chiffres et des tirets et doivent commencer par une lettre. Exemple : %{url}"
+            title: Informations générales
+            unspecified: Non spécifié
+            visbility: Visibilité
+      emitter:
+        emitter_text: Consultation publiée par %{developer_group}
+        values:
+          both: La ville de Toulouse et Toulouse Métropole
+          city: La ville de Toulouse
+          metropolis: Toulouse Métropole
     proposals:
       create:
         error: Il y a eu des erreurs lors de la sauvegarde de la proposition.
@@ -143,7 +171,6 @@ fr:
   layouts:
     decidim:
       footer:
-        download_open_data: Données ouvertes
         made_with_open_source: Site réalisé par <a target="_blank" href="https://opensourcepolitics.eu">Open Source Politics</a> grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
       header:
         close_menu: Fermer
