@@ -114,7 +114,6 @@ describe "Participatory Processes", type: :system do
               short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
               show_metrics: show_metrics,
               show_statistics: show_statistics,
-              display_linked_assemblies: display_linked_assemblies,
               developer_group: { en: "Developer group" }
             )
           end

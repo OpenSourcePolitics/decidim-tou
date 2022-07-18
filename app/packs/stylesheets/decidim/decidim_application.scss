@@ -8,3 +8,12 @@
 
 @import "email/email-custom";
 @import "modules/footer";
+
+.emitter-header .card-data__item{
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 0px;
+
+  img {
+    max-width: 60%;
+  }
+}

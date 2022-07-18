@@ -26,10 +26,10 @@ module EmitterHelper
   end
 
   def metropolis_picture
-    image_tag("toulouse/logo-metropole-grey.png")
+    image_pack_tag("media/images/logo-metropole-grey.png")
   end
 
   def city_picture
-    image_tag("toulouse/logo-mairie-noir.png")
+    image_pack_tag("media/images/logo-mairie-noir.png")
   end
 end
