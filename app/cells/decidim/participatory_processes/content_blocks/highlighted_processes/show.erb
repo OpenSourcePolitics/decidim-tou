@@ -9,7 +9,7 @@
             <article class="card card--process card--mini">
               <%= link_to decidim_participatory_processes.participatory_process_path(process), class: "card__link" do %>
                 <div class="card__image-top"
-                     style="background-image:url(<%= process.hero_image.url %>)"></div>
+                     style="background-image:url(<%= process.attached_uploader(:hero_image).path %>)"></div>
               <% end %>
               <% if display_emitter(process) %>
                 <div class="card-data emitter-header">
