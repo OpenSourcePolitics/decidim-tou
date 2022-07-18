@@ -119,6 +119,8 @@ describe "Authentication", type: :system do
       before do
         OmniAuth.config.test_mode = true
         OmniAuth.config.mock_auth[:facebook] = omniauth_hash
+        OmniAuth.config.add_camelization "facebook", "FaceBook"
+        OmniAuth.config.request_validation_phase = ->(env) {} if OmniAuth.config.respond_to?(:request_validation_phase)
       end
 
       after do
@@ -155,11 +157,14 @@ describe "Authentication", type: :system do
       before do
         OmniAuth.config.test_mode = true
         OmniAuth.config.mock_auth[:twitter] = omniauth_hash
+        OmniAuth.config.add_camelization "twitter", "Twitter"
+        OmniAuth.config.request_validation_phase = ->(env) {} if OmniAuth.config.respond_to?(:request_validation_phase)
       end
 
       after do
         OmniAuth.config.test_mode = false
         OmniAuth.config.mock_auth[:twitter] = nil
+        OmniAuth.config.camelizations.delete("twitter")
       end
 
       context "when the response doesn't include the email" do
@@ -226,11 +231,14 @@ describe "Authentication", type: :system do
       before do
         OmniAuth.config.test_mode = true
         OmniAuth.config.mock_auth[:google_oauth2] = omniauth_hash
+        OmniAuth.config.add_camelization "google_oauth2", "GoogleOauth"
+        OmniAuth.config.request_validation_phase = ->(env) {} if OmniAuth.config.respond_to?(:request_validation_phase)
       end
 
       after do
         OmniAuth.config.test_mode = false
         OmniAuth.config.mock_auth[:google_oauth2] = nil
+        OmniAuth.config.camelizations.delete("google_oauth2")
       end
 
       it "creates a new User" do
