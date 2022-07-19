@@ -3,33 +3,24 @@
 module EmitterHelper
   def display_emitter(process)
     return unless process.respond_to?(:emitter)
-    return if process.emitter == "unspecified"
+    return if process.attached_uploader(:emitter).path == nil
 
     {
-      picture: render_picture(process.emitter),
+      picture: image_tag(process.attached_uploader(:emitter).path),
       text: t("emitter_text",
               developer_group: translated_attribute(process.developer_group),
               scope: "decidim.participatory_processes.emitter")
     }
   end
 
-  private
+  def emitter_options
+    options = {}
+    Decidim::ParticipatoryProcess.where(organization:current_organization).each do |p|
+      next unless p.emitter_name && p.emitter
 
-  def render_picture(emitter)
-    if emitter == "city"
-      city_picture
-    elsif emitter == "metropolis"
-      metropolis_picture
-    else
-      metropolis_picture.concat(city_picture)
+      options.store(p.emitter_name, ActiveStorage::Blob.service.path_for(p.emitter.key))
     end
-  end
-
-  def metropolis_picture
-    image_pack_tag("media/images/logo-metropole-grey.png")
-  end
-
-  def city_picture
-    image_pack_tag("media/images/logo-mairie-noir.png")
+    options
   end
 end
+

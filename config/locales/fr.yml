@@ -73,7 +73,9 @@ fr:
             both: Consultation de la ville de Toulouse et de Toulouse métropole
             city: Consultation de la ville de Toulouse
             duration: Durée
-            emitter: Organisateur de la consultation
+            emitter: Organisateur
+            emitter_logo: Logo de l'organisateur de la consultation
+            emitter_name: Nom du logo
             filters: Filtres
             images: Images
             metadata: Métadonnées

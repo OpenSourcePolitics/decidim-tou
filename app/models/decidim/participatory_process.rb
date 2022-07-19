@@ -25,8 +25,6 @@ module Decidim
     translatable_fields :title, :subtitle, :short_description, :description, :developer_group, :meta_scope, :local_area,
                         :target, :participatory_scope, :participatory_structure, :announcement
 
-    enum emitter: [:unspecified, :city, :metropolis, :both]
-
     belongs_to :organization,
                foreign_key: "decidim_organization_id",
                class_name: "Decidim::Organization"
@@ -73,6 +71,9 @@ module Decidim
 
     has_one_attached :banner_image
     validates_upload :banner_image, uploader: Decidim::BannerImageUploader
+
+    has_one_attached :emitter
+    validates_upload :emitter, uploader: Decidim::EmitterUploader
 
     scope :past, -> { where(arel_table[:end_date].lt(Date.current)) }
     scope :upcoming, -> { where(arel_table[:start_date].gt(Date.current)) }

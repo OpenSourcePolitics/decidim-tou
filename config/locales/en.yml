@@ -73,7 +73,8 @@ en:
             both: Consultation of the city of Toulouse and Toulouse metropolis
             city: Consultation of the city of Toulouse
             duration: Duration
-            emitter: Consultation organizer
+            emitter_logo: Consultation organizer image
+            emitter_name: Name of the logo
             filters: Filters
             images: Images
             metadata: Metadata

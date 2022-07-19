@@ -167,12 +167,26 @@
       <%= form.check_box :promoted %>
     </div>
     <div class="row column">
-      <%= form.label t(".emitter") %>
-      <%= form.select :emitter, Decidim::ParticipatoryProcess.emitters.keys.map { |key| [t(".#{key}"), key] }, label: false %>
-    </div>
-    <div class="row column">
       <%= form.check_box :display_linked_assemblies %>
     </div>
+  </div>
+
+  <div class="card-divider">
+    <h2 class="card-title"><%= t(".emitter") %></h2>
+  </div>
+
+  <div class="card-section">
+    <div class="row column">
+      <%= form.upload :emitter_image, label: t(".emitter_logo") %>
+    </div>
+    <div class="row column">
+      <%= form.text_field :emitter_name_image, label: t(".emitter_name") %>
+    </div>
+    <% if form.object.emitter_name.blank? %>
+      <div class="row column">
+        <%= form.select :emitter_select, options_for_select(emitter_options), {:include_blank => true, label: t(".emitter_logo")} %>
+      </div>
+    <% end %>
   </div>
 
   <div class="card-divider">

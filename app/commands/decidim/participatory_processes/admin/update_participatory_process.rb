@@ -54,6 +54,7 @@ module Decidim
         end
 
         def attributes
+          byebug
           {
             title: form.title,
             subtitle: form.subtitle,
@@ -77,7 +78,7 @@ module Decidim
             meta_scope: form.meta_scope,
             start_date: form.start_date,
             end_date: form.end_date,
-            emitter: form.emitter,
+            emitter_name: form.emitter_name,
             participatory_process_group: form.participatory_process_group,
             show_metrics: form.show_metrics,
             show_statistics: form.show_statistics,
@@ -87,6 +88,8 @@ module Decidim
             longitude: form.longitude
           }.merge(
             attachment_attributes(:hero_image, :banner_image)
+          ).merge(
+            form.emitter.class==String ? { emitter: File.open(form.emitter) } : attachment_attributes(:emitter)
           )
         end
 
