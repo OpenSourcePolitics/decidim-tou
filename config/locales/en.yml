@@ -12,6 +12,12 @@ en:
     accessibility:
       skip_button: Skip button
     admin:
+      forms:
+        file_help:
+          emitter:
+            explanation: 'Guidance for logo:'
+            message_1: Preferrably a logo that will be seen on a white background.
+            message_2: The service reduce the image.
       participatory_space_private_users:
         create:
           error: Error

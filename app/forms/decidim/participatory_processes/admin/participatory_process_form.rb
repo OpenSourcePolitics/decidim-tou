@@ -46,13 +46,7 @@ module Decidim
         attribute :show_statistics, Boolean
 
         attribute :emitter
-        attribute :emitter_name
-        attribute :emitter_image
-        attribute :emitter_select
-        attribute :emitter_name_image, String
-        attribute :emitter_name_select, String
-        attribute :remove_emitter, Boolean
-        attribute :remove_emitter_image, Boolean, default: false
+        attribute :remove_emitter, Boolean, default: false
 
         attribute :end_date, Decidim::Attributes::LocalizedDate
         attribute :start_date, Decidim::Attributes::LocalizedDate
@@ -73,7 +67,7 @@ module Decidim
 
         validates :banner_image, passthru: { to: Decidim::ParticipatoryProcess }
         validates :hero_image, passthru: { to: Decidim::ParticipatoryProcess }
-        validates :emitter_image, passthru: { to: Decidim::ParticipatoryProcess }
+        validates :emitter, passthru: { to: Decidim::ParticipatoryProcess }
 
         alias organization current_organization
 
@@ -104,59 +98,7 @@ module Decidim
           @processes ||= Decidim::ParticipatoryProcess.where(organization: current_organization)
         end
 
-        def emitter_image=(image)
-          @emitter_image = image if image
-          prepare_emitter
-        end
-
-        def emitter_select=(image)
-          @emitter_select = image if image
-          prepare_emitter
-        end
-
-        def emitter_image
-          @emitter_image || self.emitter
-        end
-
-        def emitter_select
-          @emitter_select || self.emitter
-        end
-
-        def emitter_name_image=(name)
-          @emitter_name_image = name if name
-          prepare_emitter_name
-        end
-
-        def emitter_name_select=(name)
-          @emitter_name_select = name if name
-          prepare_emitter_name
-        end
-
-        def emitter_name_image
-          @emitter_name_image || self.emitter_name
-        end
-
-        def emitter_name_select
-          @emitter_name_select || self.emitter_name
-        end
-
-        def remove_emitter_image=(bool)
-          @remove_emitter_image = bool if bool
-          @remove_emitter = bool if bool
-        end
-
         private
-
-        def prepare_emitter
-          self.emitter = emitter_select if emitter_select
-          self.emitter = emitter_image if emitter_image
-        end
-
-        def prepare_emitter_name
-          self.emitter_name = emitter_name_select if emitter_name_select
-          self.emitter_name = emitter_name_image if emitter_name_image
-          self.emitter_name = nil unless self.emitter
-        end
 
         def organization_participatory_processes
           OrganizationParticipatoryProcesses.new(current_organization).query
