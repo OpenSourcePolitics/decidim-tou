@@ -4,37 +4,34 @@ module Decidim
   module ParticipatoryProcesses
     module ContentBlocks
       class HighlightedProcessesCell < Decidim::ViewModel
+        include Decidim::ApplicationHelper
         include Decidim::SanitizeHelper
+        include Decidim::CardHelper
+        include Cell::ViewModel::Partial
+        include ParticipatoryProcessHelper
+        include Decidim::ParticipatoryProcesses::Engine.routes.url_helpers
         include EmitterHelper
 
         delegate :current_user, to: :controller
 
         def show
-          if single_process?
+          if single_item?
             render "single_process"
-          elsif highlighted_processes.any?
+          elsif highlighted_items.any?
             render
           end
         end
 
-        def single_process?
-          highlighted_processes.to_a.length == 1
+        def single_item?
+          highlighted_items.length == 1
         end
 
         def max_results
           model.settings.max_results
         end
 
-        def highlighted_processes
-          @highlighted_processes ||= (
-            OrganizationPublishedParticipatoryProcesses.new(current_organization, current_user) |
-            HighlightedParticipatoryProcesses.new |
-            FilteredParticipatoryProcesses.new("active")
-          ).query.includes([:organization]).limit(max_results)
-        end
-
-        def linked_assemblies_for(process)
-          process.linked_participatory_space_resources(:assembly, "included_participatory_processes").published
+        def highlighted_items
+          @highlighted_items ||= promoted_groups + highlighted_processes
         end
 
         def i18n_scope
@@ -45,8 +42,30 @@ module Decidim
           Decidim::ParticipatoryProcesses::Engine.routes.url_helpers
         end
 
-        def decidim_assemblies
-          Decidim::Assemblies::Engine.routes.url_helpers
+        private
+
+        def highlighted_processes
+          @highlighted_processes ||= if highlighted_processes_max_results.zero?
+                                       []
+                                     else
+                                       (
+                                         OrganizationPublishedParticipatoryProcesses.new(current_organization, current_user) |
+                                         HighlightedParticipatoryProcesses.new |
+                                         FilteredParticipatoryProcesses.new("active")
+                                       ).query.includes([:organization]).limit(highlighted_processes_max_results)
+                                     end
+        end
+
+        def linked_assemblies_for(process)
+          process.linked_participatory_space_resources(:assembly, "included_participatory_processes").published
+        end
+
+        def promoted_groups
+          @promoted_groups ||= (OrganizationParticipatoryProcessGroups.new(current_organization) | PromotedParticipatoryProcessGroups.new).query.limit(max_results)
+        end
+
+        def highlighted_processes_max_results
+          @highlighted_processes_max_results ||= max_results - promoted_groups.count
         end
       end
     end

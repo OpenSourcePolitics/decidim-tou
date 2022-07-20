@@ -61,7 +61,6 @@ module Decidim
             slug: form.slug,
             hashtag: form.hashtag,
             promoted: form.promoted,
-            display_linked_assemblies: form.display_linked_assemblies,
             description: form.description,
             short_description: form.short_description,
             scopes_enabled: form.scopes_enabled,
@@ -80,10 +79,7 @@ module Decidim
             participatory_process_group: form.participatory_process_group,
             show_metrics: form.show_metrics,
             show_statistics: form.show_statistics,
-            announcement: form.announcement,
-            address: form.address,
-            latitude: form.latitude,
-            longitude: form.longitude
+            announcement: form.announcement
           }.merge(
             attachment_attributes(:hero_image, :banner_image, :emitter)
           )

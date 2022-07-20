@@ -24,10 +24,6 @@ module Decidim
         translatable_attribute :title, String
         translatable_attribute :target, String
 
-        attribute :address, String
-        attribute :latitude, Float
-        attribute :longitude, Float
-
         attribute :hashtag, String
         attribute :slug, String
 
@@ -36,11 +32,10 @@ module Decidim
         attribute :scope_id, Integer
         attribute :related_process_ids, Array[Integer]
         attribute :scope_type_max_depth_id, Integer
-        attribute :weight, Integer
+        attribute :weight, Integer, default: 0
 
         attribute :private_space, Boolean
         attribute :promoted, Boolean
-        attribute :display_linked_assemblies, Boolean
         attribute :scopes_enabled, Boolean
         attribute :show_metrics, Boolean
         attribute :show_statistics, Boolean
@@ -58,7 +53,6 @@ module Decidim
 
         validates :area, presence: true, if: proc { |object| object.area_id.present? }
         validates :scope, presence: true, if: proc { |object| object.scope_id.present? }
-        validates :address, geocoding: true, if: ->(form) { form.address.present? }
         validates :slug, presence: true, format: { with: Decidim::ParticipatoryProcess.slug_format }
 
         validate :slug_uniqueness
@@ -68,6 +62,7 @@ module Decidim
         validates :banner_image, passthru: { to: Decidim::ParticipatoryProcess }
         validates :hero_image, passthru: { to: Decidim::ParticipatoryProcess }
         validates :emitter, passthru: { to: Decidim::ParticipatoryProcess }
+        validates :weight, presence: true
 
         alias organization current_organization
 

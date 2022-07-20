@@ -1718,6 +1718,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_142533) do
     t.integer "following_count", default: 0, null: false
     t.integer "followers_count", default: 0, null: false
     t.string "notification_types", default: "all", null: false
+    t.jsonb "registration_metadata"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"

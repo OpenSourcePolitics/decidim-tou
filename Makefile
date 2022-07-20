@@ -1,3 +1,10 @@
+#### Decidim
+local:
+	bundle exec rake db:drop db:setup
+
+test_app:
+	bundle exec rake test:setup
+
 #### Terraform | Scaleway provider
 init-scw:
 	terraform -chdir=deploy/providers/scaleway init

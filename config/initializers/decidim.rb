@@ -8,10 +8,10 @@ Decidim.configure do |config|
   # Change these lines to set your preferred locales
   if Rails.env.test?
     config.default_locale = :en
-    config.available_locales = [:en, :fr, :es, :ca]
+    config.available_locales = [:fr, :en, :ca, :es]
   else
     config.default_locale = :fr
-    config.available_locales = [:en, :fr]
+    config.available_locales = [:fr]
   end
 
   # Timeout session
@@ -85,7 +85,7 @@ Decidim.configure do |config|
   #   end
   # end
   #
-  # config.sms_gateway_service = 'Decidim::Verifications::Sms::ExampleGateway'
+  config.sms_gateway_service = "SMSGatewayService"
 
   # Etherpad configuration
   #

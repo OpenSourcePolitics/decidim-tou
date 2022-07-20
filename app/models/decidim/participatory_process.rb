@@ -127,7 +127,7 @@ module Decidim
     def active?
       return false if start_date.blank?
 
-      start_date < Date.current && (end_date.blank? || end_date > Date.current)
+      start_date <= Date.current && (end_date.blank? || end_date >= Date.current)
     end
 
     def past?
@@ -159,9 +159,13 @@ module Decidim
       slug
     end
 
-    # Overrides the method from `Participable`.
+    # Overrides the moderators methods from `Participable`.
     def moderators
       "#{admin_module_name}::Moderators".constantize.for(self)
+    end
+
+    def self.moderators(organization)
+      "#{admin_module_name}::Moderators".constantize.for_organization(organization)
     end
 
     def user_roles(role_name = nil)
