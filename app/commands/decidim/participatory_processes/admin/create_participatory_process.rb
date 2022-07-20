@@ -6,6 +6,8 @@ module Decidim
       # A command with all the business logic when creating a new participatory
       # process in the system.
       class CreateParticipatoryProcess < Rectify::Command
+        include ::Decidim::AttachmentAttributesMethods
+
         # Public: Initializes the command.
         #
         # form - A form object with the params.
@@ -83,6 +85,7 @@ module Decidim
             local_area: form.local_area,
             area: form.area,
             target: form.target,
+            emitter: form.emitter,
             participatory_scope: form.participatory_scope,
             participatory_structure: form.participatory_structure,
             meta_scope: form.meta_scope,

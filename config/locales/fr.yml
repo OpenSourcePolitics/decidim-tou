@@ -88,6 +88,12 @@ fr:
         publish: Publier
         resend_invitation: Renvoyer l'invitation
         unpublish: Dépublier
+      forms:
+        file_help:
+          emitter:
+            explanation: 'Guidance for logo:'
+            message_1: Choisissez un logo visible sur fond blanc.
+            message_2: Le système réduit l'image.
       menu:
         participatory_process_groups: Groupes de concertations
         participatory_process_groups_submenu:
@@ -449,6 +455,9 @@ fr:
           form:
             announcement_help: Le texte saisi ici sera affiché juste en dessous des informations de la concertation.
             duration: Durée
+            emitter: Organisateur
+            emitter_logo: Logo de l'organisateur de la consultation
+            emitter_name: Nom du logo
             filters: Filtres
             images: Images
             metadata: Métadonnées
@@ -463,6 +472,8 @@ fr:
       content_blocks:
         highlighted_processes:
           name: Concertations mises en avant
+      emitter:
+        emitter_text: Consultation publiée par %{developer_group}
       index:
         title: Concertations
       last_activity:

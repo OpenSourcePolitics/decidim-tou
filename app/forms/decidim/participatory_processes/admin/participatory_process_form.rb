@@ -40,6 +40,9 @@ module Decidim
         attribute :show_metrics, Boolean
         attribute :show_statistics, Boolean
 
+        attribute :emitter
+        attribute :remove_emitter, Boolean, default: false
+
         attribute :end_date, Decidim::Attributes::LocalizedDate
         attribute :start_date, Decidim::Attributes::LocalizedDate
 
@@ -58,7 +61,7 @@ module Decidim
 
         validates :banner_image, passthru: { to: Decidim::ParticipatoryProcess }
         validates :hero_image, passthru: { to: Decidim::ParticipatoryProcess }
-
+        validates :emitter, passthru: { to: Decidim::ParticipatoryProcess }
         validates :weight, presence: true
 
         alias organization current_organization

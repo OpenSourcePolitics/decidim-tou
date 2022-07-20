@@ -88,6 +88,12 @@ en:
         publish: Publish
         resend_invitation: Resend invitation
         unpublish: Unpublish
+      forms:
+        file_help:
+          emitter:
+            explanation: 'Guidance for logo:'
+            message_1: Preferrably a logo that will be seen on a white background.
+            message_2: The service reduce the image.
       menu:
         participatory_process_groups: Process groups
         participatory_process_groups_submenu:
@@ -352,6 +358,8 @@ en:
           form:
             announcement_help: The text you enter here will be shown to the user right below the process information.
             duration: Duration
+            emitter_logo: Consultation organizer image
+            emitter_name: Name of the logo
             filters: Filters
             images: Images
             metadata: Metadata
@@ -366,6 +374,8 @@ en:
       content_blocks:
         highlighted_processes:
           name: Highlighted processes
+      emitter:
+        emitter_text: Consultation published by %{developer_group}
       index:
         title: Participatory processes
       last_activity:

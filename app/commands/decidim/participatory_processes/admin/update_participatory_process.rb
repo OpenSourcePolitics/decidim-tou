@@ -81,7 +81,7 @@ module Decidim
             show_statistics: form.show_statistics,
             announcement: form.announcement
           }.merge(
-            attachment_attributes(:hero_image, :banner_image)
+            attachment_attributes(:hero_image, :banner_image, :emitter)
           )
         end
 

@@ -1,6 +1,16 @@
 <div class="card card--full card--process">
   <div class="row collapse card--process__row">
     <div class="columns mediumlarge-8 large-6 card--process__column">
+      <% if display_emitter(promoted_process) %>
+        <div class="card-data emitter-header">
+          <div class="large-4 small-12 card-data__item">
+            <%= display_emitter(promoted_process).try(:[], :picture) %>
+          </div>
+          <div class="small-12 large-8 card-data__item">
+            <%= display_emitter(promoted_process).try(:[], :text) %>
+          </div>
+        </div>
+      <% end %>
       <div class="card__content">
         <% if linked_assemblies_for(promoted_process).present? %>
           <div class="linked_assemblies">

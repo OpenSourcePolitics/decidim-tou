@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_01_092838) do
+ActiveRecord::Schema.define(version: 2022_07_18_142533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1291,6 +1291,7 @@ ActiveRecord::Schema.define(version: 2022_07_01_092838) do
     t.boolean "show_metrics", default: true
     t.integer "weight", default: 1, null: false
     t.integer "follows_count", default: 0, null: false
+    t.string "emitter", default: "0"
     t.string "address"
     t.float "latitude"
     t.float "longitude"

@@ -7,6 +7,7 @@ module Decidim
     class ProcessMCell < Decidim::CardMCell
       include Decidim::SanitizeHelper
       include Decidim::TranslationsHelper
+      include EmitterHelper
       include Decidim::TwitterSearchHelper
 
       private

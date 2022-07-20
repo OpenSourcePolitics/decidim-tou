@@ -65,7 +65,7 @@ module Decidim
         end
 
         def copy_participatory_process_attachments
-          [:hero_image, :banner_image].each do |attribute|
+          [:hero_image, :banner_image, :emitter].each do |attribute|
             next unless @participatory_process.attached_uploader(attribute).attached?
 
             @copied_process.send(attribute).attach(@participatory_process.send(attribute).blob)

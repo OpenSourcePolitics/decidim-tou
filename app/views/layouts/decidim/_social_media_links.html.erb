@@ -24,5 +24,21 @@
         </a>
       </li>
     <% end %>
+    <% if current_organization.youtube_handler.present? %>
+      <li>
+        <a class="footer-social__icon" target="_blank" rel="noopener" href="https://www.youtube.com/<%= current_organization.youtube_handler %>">
+          <span class="show-for-sr"><%= t("layouts.decidim.social_media_links.youtube", organization: translated_attribute(current_organization.name)) %></span>
+          <%= icon "youtube", role: "img", aria_label: "YouTube" %>
+        </a>
+      </li>
+    <% end %>
+    <% if current_organization.github_handler.present? %>
+      <li>
+        <a class="footer-social__icon" target="_blank" rel="noopener" href="https://www.github.com/<%= current_organization.github_handler %>">
+          <span class="show-for-sr"><%= t("layouts.decidim.social_media_links.github", organization: translated_attribute(current_organization.name)) %></span>
+          <%= icon "github", role: "img", aria_label: "GitHub" %>
+        </a>
+      </li>
+    <% end %>
   </ul>
 </div>

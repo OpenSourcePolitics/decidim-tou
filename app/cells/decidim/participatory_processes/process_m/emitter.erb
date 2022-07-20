@@ -1,0 +1,10 @@
+<% if display_emitter(model) %>
+  <div class="card-data emitter-header">
+    <div class="large-4 small-12 columns card-data__item">
+      <%= display_emitter(model).try(:[], :picture) %>
+    </div>
+    <div class="small-12 large-8 columns card-data__item">
+      <%= display_emitter(model).try(:[], :text) %>
+    </div>
+  </div>
+<% end %>

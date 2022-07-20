@@ -32,6 +32,12 @@ describe "Account", type: :system do
 
     it_behaves_like "accessible page"
 
+    describe "update avatar" do
+      it "cannot update avatar" do
+        expect(page).not_to have_content("avatar")
+      end
+    end
+
     describe "updating personal data" do
       it "updates the user's data" do
         within "form.edit_user" do

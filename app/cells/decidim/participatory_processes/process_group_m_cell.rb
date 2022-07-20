@@ -5,6 +5,8 @@ module Decidim
     # This cell renders the Medium (:m) process group card
     # for an given instance of a ProcessGroup
     class ProcessGroupMCell < Decidim::CardMCell
+      include EmitterHelper
+
       private
 
       def has_image?
@@ -36,12 +38,10 @@ module Decidim
       end
 
       def processes_count_status
-        # rubocop: disable Style/StringConcatenation
         content_tag(
           :strong,
-          t("layouts.decidim.participatory_process_groups.participatory_process_group.processes_count")
-        ) + " " + processes_visible_for_user
-        # rubocop: enable Style/StringConcatenation
+          "#{t("layouts.decidim.participatory_process_groups.participatory_process_group.processes_count")}  #{processes_visible_for_user}"
+        )
       end
 
       def processes_visible_for_user
