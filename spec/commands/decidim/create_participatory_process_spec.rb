@@ -12,9 +12,6 @@ module Decidim::ParticipatoryProcesses
     let(:area) { create :area, organization: organization }
     let(:current_user) { create :user, :admin, organization: organization }
     let(:errors) { double.as_null_object }
-    let(:address) { "Carrer Pare Llaurador 113, baixos, 08224 Terrassa" }
-    let(:latitude) { 40.1234 }
-    let(:longitude) { 2.1234 }
     let(:emitter) { nil }
     let(:related_process_ids) { [] }
     let(:weight) { 1 }
@@ -31,7 +28,6 @@ module Decidim::ParticipatoryProcesses
         hero_image: nil,
         banner_image: nil,
         promoted: nil,
-        display_linked_assemblies: nil,
         developer_group: { en: "developer group" },
         local_area: { en: "local" },
         target: { en: "target" },
@@ -52,16 +48,12 @@ module Decidim::ParticipatoryProcesses
         errors: errors,
         related_process_ids: related_process_ids,
         participatory_process_group: participatory_process_group,
-        address: address,
-        latitude: latitude,
-        longitude: longitude
+        show_statistics: false,
+        show_metrics: false,
+        announcement: { en: "message" }
       )
     end
     let(:invalid) { false }
-
-    before do
-      stub_geocoding(address, [latitude, longitude])
-    end
 
     context "when the form is not valid" do
       let(:invalid) { true }
@@ -127,6 +119,12 @@ module Decidim::ParticipatoryProcesses
         subject.call
         expect(process.steps.count).to eq(1)
         expect(process.steps.first).to be_active
+      end
+
+      it "doesn't enable by default stats and metrics" do
+        subject.call
+        expect(process.show_statistics).to eq(false)
+        expect(process.show_metrics).to eq(false)
       end
 
       it "adds the admins as followers" do

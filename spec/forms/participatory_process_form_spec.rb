@@ -70,7 +70,7 @@ module Decidim
             organization.settings.tap do |settings|
               settings.upload.maximum_file_size.default = 5
             end
-            expect(subject.hero_image).to receive(:size).twice.and_return(6.megabytes)
+            expect(subject.hero_image).to receive(:size).exactly(3).times.and_return(6.megabytes)
           end
 
           it { is_expected.not_to be_valid }
@@ -81,7 +81,7 @@ module Decidim
             organization.settings.tap do |settings|
               settings.upload.maximum_file_size.default = 5
             end
-            expect(subject.banner_image).to receive(:size).twice.and_return(6.megabytes)
+            expect(subject.banner_image).to receive(:size).exactly(3).times.and_return(6.megabytes)
           end
 
           it { is_expected.not_to be_valid }
@@ -92,7 +92,7 @@ module Decidim
             organization.settings.tap do |settings|
               settings.upload.maximum_file_size.default = 5
             end
-            expect(subject.emitter).to receive(:size).twice.and_return(6.megabytes)
+            expect(subject.emitter).to receive(:size).exactly(3).times.and_return(6.megabytes)
           end
 
           it { is_expected.not_to be_valid }

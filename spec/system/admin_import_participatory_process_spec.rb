@@ -31,7 +31,7 @@ describe "Admin imports participatory process", type: :system do
     end
 
     it "imports the json document" do
-      expect(page).to have_content("successfully")
+      expect(page).to have_content("Success")
       expect(page).to have_content("Import participatory process")
       expect(page).to have_content("Not published")
 

@@ -10,7 +10,6 @@ module Decidim
       include EmitterHelper
       include Decidim::TwitterSearchHelper
 
-
       private
 
       def has_image?

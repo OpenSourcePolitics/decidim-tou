@@ -164,24 +164,6 @@ module Decidim::ParticipatoryProcesses
             expect(my_process.banner_image.attached?).to be true
           end
         end
-
-        context "when no emitter image is set" do
-          let(:attachment_params) do
-            {
-              hero_image: my_process.hero_image.blob,
-              banner_image: my_process.banner_image.blob
-            }
-          end
-
-          it "does not replace the homepage image" do
-            expect(my_process).not_to receive(:emitter)
-
-            command.call
-            my_process.reload
-
-            expect(my_process.emitter.attached?).to be true
-          end
-        end
       end
     end
   end
