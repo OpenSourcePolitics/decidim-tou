@@ -5,9 +5,8 @@ module Decidim
   class EmitterUploader < RecordImageUploader
     set_variants do
       {
-        emitter: { resize_to_fill: [512, 82] },
+        emitter: { resize_to_fill: [512, 82] }
       }
     end
   end
 end
-

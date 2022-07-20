@@ -6,7 +6,6 @@ module Decidim::ParticipatoryProcesses
   describe Admin::UpdateParticipatoryProcess do
     describe "call" do
       let(:my_process) { create :participatory_process }
-      let(:emitter) { :unspecified }
       let(:params) do
         {
           participatory_process: {
@@ -17,7 +16,6 @@ module Decidim::ParticipatoryProcesses
             slug: my_process.slug,
             hashtag: my_process.hashtag,
             meta_scope: my_process.meta_scope,
-            emitter: emitter,
             promoted: my_process.promoted,
             description_en: my_process.description,
             description_ca: my_process.description,
@@ -40,7 +38,8 @@ module Decidim::ParticipatoryProcesses
       let(:attachment_params) do
         {
           hero_image: my_process.hero_image.blob,
-          banner_image: my_process.banner_image.blob
+          banner_image: my_process.banner_image.blob,
+          emitter: my_process.banner_image.blob
         }
       end
       let(:user) { create :user, :admin, :confirmed, organization: my_process.organization }
@@ -132,7 +131,8 @@ module Decidim::ParticipatoryProcesses
         context "when no homepage image is set" do
           let(:attachment_params) do
             {
-              banner_image: my_process.banner_image.blob
+              banner_image: my_process.banner_image.blob,
+              emitter: my_process.banner_image.blob
             }
           end
 
@@ -149,9 +149,12 @@ module Decidim::ParticipatoryProcesses
         context "when no banner image is set" do
           let(:attachment_params) do
             {
-              hero_image: my_process.hero_image.blob
+              hero_image: my_process.hero_image.blob,
+              emitter: my_process.banner_image.blob
+
             }
           end
+
           it "does not replace the banner image" do
             expect(my_process).not_to receive(:banner_image=)
 
@@ -159,6 +162,24 @@ module Decidim::ParticipatoryProcesses
             my_process.reload
 
             expect(my_process.banner_image.attached?).to be true
+          end
+        end
+
+        context "when no emitter image is set" do
+          let(:attachment_params) do
+            {
+              hero_image: my_process.hero_image.blob,
+              banner_image: my_process.banner_image.blob
+            }
+          end
+
+          it "does not replace the homepage image" do
+            expect(my_process).not_to receive(:emitter)
+
+            command.call
+            my_process.reload
+
+            expect(my_process.emitter.attached?).to be true
           end
         end
       end

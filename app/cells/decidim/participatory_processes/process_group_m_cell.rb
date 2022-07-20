@@ -40,8 +40,8 @@ module Decidim
       def processes_count_status
         content_tag(
           :strong,
-          t("layouts.decidim.participatory_process_groups.participatory_process_group.processes_count")
-        ) + " " + processes_visible_for_user
+          "#{t("layouts.decidim.participatory_process_groups.participatory_process_group.processes_count")}  #{processes_visible_for_user}"
+        )
       end
 
       def processes_visible_for_user

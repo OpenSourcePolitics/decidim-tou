@@ -53,7 +53,6 @@ module Decidim
             scope: @participatory_process.scope,
             developer_group: @participatory_process.developer_group,
             local_area: @participatory_process.local_area,
-            emitter: @participatory_process.emitter,
             area: @participatory_process.area,
             target: @participatory_process.target,
             participatory_scope: @participatory_process.participatory_scope,
@@ -67,7 +66,7 @@ module Decidim
         end
 
         def copy_participatory_process_attachments
-          [:hero_image, :banner_image].each do |attribute|
+          [:hero_image, :banner_image, :emitter].each do |attribute|
             next unless @participatory_process.attached_uploader(attribute).attached?
 
             @copied_process.send(attribute).attach(@participatory_process.send(attribute).blob)

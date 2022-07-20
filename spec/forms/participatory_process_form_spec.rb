@@ -51,9 +51,9 @@ module Decidim
               "weight" => weight,
               "description" => description,
               "short_description" => short_description,
-              "emitter" => emitter,
               "hero_image" => attachment,
               "banner_image" => attachment,
+              "emitter" => attachment,
               "slug" => slug,
               "show_metrics" => show_metrics,
               "show_statistics" => show_statistics
@@ -82,6 +82,17 @@ module Decidim
               settings.upload.maximum_file_size.default = 5
             end
             expect(subject.banner_image).to receive(:size).twice.and_return(6.megabytes)
+          end
+
+          it { is_expected.not_to be_valid }
+        end
+
+        context "when emitter is too big" do
+          before do
+            organization.settings.tap do |settings|
+              settings.upload.maximum_file_size.default = 5
+            end
+            expect(subject.emitter).to receive(:size).twice.and_return(6.megabytes)
           end
 
           it { is_expected.not_to be_valid }
@@ -166,12 +177,6 @@ module Decidim
               expect(subject).to be_valid
             end
           end
-        end
-
-        context "when emitter is not valid" do
-          let(:emitter) { "dummy" }
-
-          it { is_expected.to be_invalid }
         end
       end
     end

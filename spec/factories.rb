@@ -36,18 +36,10 @@ FactoryBot.modify do
     end_date { 2.months.from_now }
     area { nil }
     display_linked_assemblies { false }
-    emitter { :unspecified }
+    emitter { nil }
 
-    trait :from_city do
-      emitter { :city }
-    end
-
-    trait :from_metropolis do
-      emitter { :metropolis }
-    end
-
-    trait :from_both_city_and_metropolis do
-      emitter { :both }
+    trait :with_emitter do
+      emitter { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
     end
 
     trait :with_linked_assemblies do
