@@ -142,7 +142,7 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
   context "when creating a participatory process with emitter select" do
     let(:image1_filename) { "city.jpeg" }
     let(:image1_path) { Decidim::Dev.asset(image1_filename) }
-    let(:process1) { create(:participatory_process, :with_emitter, organization: organization) }
+    let!(:process1) { create(:participatory_process, :with_emitter, organization: organization) }
 
     before do
       click_link "New process"
@@ -181,7 +181,7 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
         fill_in :participatory_process_slug, with: "slug"
         fill_in :participatory_process_weight, with: 1
 
-        select process1.emitter_name, from: "Ou importez un nouveau logo"
+        select process1.emitter_name, from: "Or select an existing one"
 
         find("*[type=submit]").click
       end
