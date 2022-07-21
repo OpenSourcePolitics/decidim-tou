@@ -31,7 +31,8 @@ module Decidim::ParticipatoryProcesses
             participatory_process_group: my_process.participatory_process_group,
             show_metrics: my_process.show_metrics,
             show_statistics: my_process.show_statistics,
-            private_space: my_process.private_space
+            private_space: my_process.private_space,
+            emitter_name: my_process.emitter_name
           }.merge(attachment_params)
         }
       end

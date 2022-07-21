@@ -79,7 +79,8 @@ module Decidim
             participatory_process_group: form.participatory_process_group,
             show_metrics: form.show_metrics,
             show_statistics: form.show_statistics,
-            announcement: form.announcement
+            announcement: form.announcement,
+            emitter_name: form.emitter_name
           }.merge(
             attachment_attributes(:hero_image, :banner_image, :emitter)
           )

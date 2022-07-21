@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_18_142533) do
+ActiveRecord::Schema.define(version: 2022_07_20_131126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1296,6 +1296,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_142533) do
     t.float "latitude"
     t.float "longitude"
     t.boolean "display_linked_assemblies", default: false
+    t.text "emitter_name"
     t.index ["decidim_area_id"], name: "index_decidim_participatory_processes_on_decidim_area_id"
     t.index ["decidim_organization_id", "slug"], name: "index_unique_process_slug_and_organization", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_processes_on_decidim_organization_id"

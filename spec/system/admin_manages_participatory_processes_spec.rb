@@ -68,7 +68,120 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
         fill_in :participatory_process_weight, with: 1
         attach_file :participatory_process_hero_image, image1_path
         attach_file :participatory_process_banner_image, image2_path
-        attach_file :participatory_process_emitter, image1_path
+
+        find("*[type=submit]").click
+      end
+
+      expect(page).to have_admin_callout("successfully")
+
+      within ".container" do
+        expect(page).to have_current_path decidim_admin_participatory_processes.participatory_process_steps_path(Decidim::ParticipatoryProcess.last)
+        expect(page).to have_content("Phases")
+        expect(page).to have_content("Introduction")
+      end
+    end
+  end
+
+  context "when creating a participatory process with emitter image" do
+    let(:image1_filename) { "city.jpeg" }
+    let(:image1_path) { Decidim::Dev.asset(image1_filename) }
+
+    before do
+      click_link "New process"
+    end
+
+    it "creates a new participatory process" do
+      within ".new_participatory_process" do
+        fill_in_i18n(
+          :participatory_process_title,
+          "#participatory_process-title-tabs",
+          en: "My participatory process",
+          es: "Mi proceso participativo",
+          ca: "El meu procés participatiu"
+        )
+        fill_in_i18n(
+          :participatory_process_subtitle,
+          "#participatory_process-subtitle-tabs",
+          en: "Subtitle",
+          es: "Subtítulo",
+          ca: "Subtítol"
+        )
+        fill_in_i18n_editor(
+          :participatory_process_short_description,
+          "#participatory_process-short_description-tabs",
+          en: "Short description",
+          es: "Descripción corta",
+          ca: "Descripció curta"
+        )
+        fill_in_i18n_editor(
+          :participatory_process_description,
+          "#participatory_process-description-tabs",
+          en: "A longer description",
+          es: "Descripción más larga",
+          ca: "Descripció més llarga"
+        )
+        fill_in :participatory_process_slug, with: "slug"
+        fill_in :participatory_process_weight, with: 1
+
+        attach_file :participatory_process_emitter_image, image1_path
+        fill_in :participatory_process_emitter_name_image, with: "logo"
+
+        find("*[type=submit]").click
+      end
+
+      expect(page).to have_admin_callout("successfully")
+
+      within ".container" do
+        expect(page).to have_current_path decidim_admin_participatory_processes.participatory_process_steps_path(Decidim::ParticipatoryProcess.last)
+        expect(page).to have_content("Phases")
+        expect(page).to have_content("Introduction")
+      end
+    end
+  end
+
+  context "when creating a participatory process with emitter select" do
+    let(:image1_filename) { "city.jpeg" }
+    let(:image1_path) { Decidim::Dev.asset(image1_filename) }
+    let(:process1) { create(:participatory_process, :with_emitter, organization: organization) }
+
+    before do
+      click_link "New process"
+    end
+
+    it "creates a new participatory process" do
+      within ".new_participatory_process" do
+        fill_in_i18n(
+          :participatory_process_title,
+          "#participatory_process-title-tabs",
+          en: "My participatory process",
+          es: "Mi proceso participativo",
+          ca: "El meu procés participatiu"
+        )
+        fill_in_i18n(
+          :participatory_process_subtitle,
+          "#participatory_process-subtitle-tabs",
+          en: "Subtitle",
+          es: "Subtítulo",
+          ca: "Subtítol"
+        )
+        fill_in_i18n_editor(
+          :participatory_process_short_description,
+          "#participatory_process-short_description-tabs",
+          en: "Short description",
+          es: "Descripción corta",
+          ca: "Descripció curta"
+        )
+        fill_in_i18n_editor(
+          :participatory_process_description,
+          "#participatory_process-description-tabs",
+          en: "A longer description",
+          es: "Descripción más larga",
+          ca: "Descripció més llarga"
+        )
+        fill_in :participatory_process_slug, with: "slug"
+        fill_in :participatory_process_weight, with: 1
+
+        select process1.emitter_name, from: "Ou importez un nouveau logo"
 
         find("*[type=submit]").click
       end

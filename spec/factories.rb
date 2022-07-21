@@ -103,9 +103,11 @@ FactoryBot.modify do
     area { nil }
     display_linked_assemblies { false }
     emitter { nil }
+    emitter_name { nil }
 
     trait :with_emitter do
       emitter { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
+      emitter_name { "city" }
     end
 
     trait :with_linked_assemblies do
