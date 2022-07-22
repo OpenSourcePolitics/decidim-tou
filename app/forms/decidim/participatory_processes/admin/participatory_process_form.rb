@@ -101,30 +101,33 @@ module Decidim
 
         def remove_emitter_image=(value)
           self.remove_emitter = value if value
-          prepare_emitter_name
+          prepare_emitter_name!
         end
 
         def emitter_name_image=(value)
           @emitter_name_image = value if value
-          prepare_emitter_name
+          prepare_emitter_name!
         end
 
         def emitter_name_select=(value)
           @emitter_name_select = value if value
-          prepare_emitter_name
+          prepare_emitter_name!
         end
 
         def emitter_image=(value)
           @emitter_image = value if value
-          prepare_emitter
+          prepare_emitter!
         end
 
         def emitter_select=(value)
-          blob = Decidim::ParticipatoryProcess.find(value).emitter.attachment.blob if value.present?
-          @emitter_select = blob if blob
-          @emitter_name_select = Decidim::ParticipatoryProcess.find(value).emitter_name if value.present?
-          prepare_emitter
-          prepare_emitter_name
+          if value.present?
+            target_pp = Decidim::ParticipatoryProcess.find(value)
+            blob = target_pp.emitter.attachment.blob
+            @emitter_select = blob
+            @emitter_name_select = target_pp.emitter_name
+          end
+          prepare_emitter!
+          prepare_emitter_name!
         end
 
         def emitter_image
@@ -145,13 +148,13 @@ module Decidim
 
         private
 
-        def prepare_emitter_name
+        def prepare_emitter_name!
           self.emitter_name = emitter_name_select if emitter_name_select.present?
           self.emitter_name = emitter_name_image if emitter_name_image.present?
           self.emitter_name = nil if remove_emitter
         end
 
-        def prepare_emitter
+        def prepare_emitter!
           self.emitter = emitter_select if emitter_select
           self.emitter = emitter_image if emitter_image
         end

@@ -14,12 +14,8 @@ module EmitterHelper
   end
 
   def emitter_options
-    options = []
-    Decidim::ParticipatoryProcess.where(organization: current_organization).each do |p|
-      next if p.emitter_name.blank?
-
-      options << [p.emitter_name, p.id, { 'data-image': p.attached_uploader(:emitter).path }]
+    Decidim::ParticipatoryProcess.where(organization: current_organization).where.not(emitter_name: nil).map do |pp|
+      [pp.emitter_name, pp.id, { 'data-image': pp.attached_uploader(:emitter).path }]
     end
-    options
   end
 end

@@ -361,7 +361,7 @@ en:
             emitter: Emitter
             emitter_logo: Import a new emitter logo
             emitter_name: Name of the logo
-            emitter_logo_select: Or select an existing one
+            emitter_logo_select: Or select an emitter logo that already exists on the platform
             filters: Filters
             images: Images
             metadata: Metadata

@@ -458,7 +458,7 @@ fr:
             emitter: Organisateur
             emitter_logo: Choisissez un nouveau logo pour l'organisateur de la consultation
             emitter_name: Nom du logo
-            emitter_logo_select: Ou importez un nouveau logo
+            emitter_logo_select: Ou récupérez un logo d'organisateur déjà existant sur cette plateforme
             filters: Filtres
             images: Images
             metadata: Métadonnées
