@@ -581,3 +581,5 @@ fr:
         account: Mon compte
         conversations: Conversations
         notifications: Notifications
+  sms_verification_workflow:
+    message: Bonjour, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr

@@ -132,7 +132,6 @@ ignore_missing:
  - decidim.meetings.titles.participatory_processes
  - decidim.meetings.users.resend_invitation.error
  - decidim.meetings.users.resend_invitation.success
- - sms_verification_workflow.message
  - decidim.verifications.sms.authorizations.new.*
 
 # Consider these keys used:
