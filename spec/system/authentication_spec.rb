@@ -55,6 +55,18 @@ describe "Authentication", type: :system do
   end
 
   describe "Sign Up" do
+    it "creates an user with no email on notification" do
+      find(".sign-up-link").click
+
+      within ".new_user" do
+        fill_registration_fields
+
+        find("*[type=submit]").click
+      end
+
+      expect(Decidim::User.last.email_on_notification).to eq(false)
+    end
+
     context "when using email and password" do
       it "creates a new User" do
         find(".sign-up-link").click
