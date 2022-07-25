@@ -5035,7 +5035,7 @@ jquery.autocomplete@1.2.0:
   resolved "https://registry.npmjs.org/jquery.autocomplete/-/jquery.autocomplete-1.2.0.tgz"
   integrity sha512-aoJC3KVrPpRGaZBUo9UxhwznYmQ0UuYd+FfjP9RAKmyB+1T3OLIjuQImT8pKX6eKpBt1z9JmD48GiD2Dx303bA==
 
-"jquery@>=1.8.0 <4.0.0", jquery@>=3.4.1, jquery@^3.2.1:
+"jquery@>=1.8.0 <4.0.0", jquery@>=3.4.1, jquery@^3.2.1, jquery@^3.6.0:
   version "3.6.0"
   resolved "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz"
   integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==

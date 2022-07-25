@@ -483,3 +483,5 @@ en:
         account: Account
         conversations: Conversations
         notifications: Notifications
+  sms_verification_workflow:
+    message: Message
