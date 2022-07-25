@@ -13,6 +13,7 @@ module Decidim::ParticipatoryProcesses
     let(:current_user) { create :user, :admin, organization: organization }
     let(:errors) { double.as_null_object }
     let(:emitter) { nil }
+    let(:emitter_name) { nil }
     let(:related_process_ids) { [] }
     let(:weight) { 1 }
     let(:form) do
@@ -40,6 +41,7 @@ module Decidim::ParticipatoryProcesses
         current_user: current_user,
         current_organization: organization,
         emitter: emitter,
+        emitter_name: emitter_name,
         scopes_enabled: true,
         private_space: false,
         scope: scope,

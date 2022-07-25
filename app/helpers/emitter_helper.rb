@@ -12,4 +12,10 @@ module EmitterHelper
               scope: "decidim.participatory_processes.emitter")
     }
   end
+
+  def emitter_options
+    Decidim::ParticipatoryProcess.where(organization: current_organization).where.not(emitter_name: nil).map do |pp|
+      [pp.emitter_name, pp.id, { 'data-image': pp.attached_uploader(:emitter).path }]
+    end
+  end
 end

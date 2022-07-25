@@ -41,7 +41,13 @@ module Decidim
         attribute :show_statistics, Boolean
 
         attribute :emitter
+        attribute :emitter_name
+        attribute :emitter_image
+        attribute :emitter_select
+        attribute :emitter_name_image
+        attribute :emitter_name_select
         attribute :remove_emitter, Boolean, default: false
+        attribute :remove_emitter_image, Boolean, default: false
 
         attribute :end_date, Decidim::Attributes::LocalizedDate
         attribute :start_date, Decidim::Attributes::LocalizedDate
@@ -93,7 +99,65 @@ module Decidim
           @processes ||= Decidim::ParticipatoryProcess.where(organization: current_organization)
         end
 
+        def remove_emitter_image=(value)
+          self.remove_emitter = value if value
+          prepare_emitter_name!
+        end
+
+        def emitter_name_image=(value)
+          @emitter_name_image = value if value
+          prepare_emitter_name!
+        end
+
+        def emitter_name_select=(value)
+          @emitter_name_select = value if value
+          prepare_emitter_name!
+        end
+
+        def emitter_image=(value)
+          @emitter_image = value if value
+          prepare_emitter!
+        end
+
+        def emitter_select=(value)
+          if value.present?
+            target_pp = Decidim::ParticipatoryProcess.find(value)
+            blob = target_pp.emitter.attachment.blob
+            @emitter_select = blob
+            @emitter_name_select = target_pp.emitter_name
+          end
+          prepare_emitter!
+          prepare_emitter_name!
+        end
+
+        def emitter_image
+          @emitter_image || emitter
+        end
+
+        def emitter_select
+          @emitter_select || emitter
+        end
+
+        def emitter_name_image
+          @emitter_name_image || emitter_name
+        end
+
+        def emitter_name_select
+          @emitter_name_select || emitter_name
+        end
+
         private
+
+        def prepare_emitter_name!
+          self.emitter_name = emitter_name_select if emitter_name_select.present?
+          self.emitter_name = emitter_name_image if emitter_name_image.present?
+          self.emitter_name = nil if remove_emitter
+        end
+
+        def prepare_emitter!
+          self.emitter = emitter_select if emitter_select
+          self.emitter = emitter_image if emitter_image
+        end
 
         def organization_participatory_processes
           OrganizationParticipatoryProcesses.new(current_organization).query
