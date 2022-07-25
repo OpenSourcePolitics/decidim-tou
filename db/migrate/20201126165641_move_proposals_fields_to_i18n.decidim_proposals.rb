@@ -4,6 +4,8 @@
 
 class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
   def up
+    puts "Skipping migration '20201126165641' - MoveProposalsFieldsToI18n"
+    return
     add_column :decidim_proposals_proposals, :new_title, :jsonb
     add_column :decidim_proposals_proposals, :new_body, :jsonb
 
