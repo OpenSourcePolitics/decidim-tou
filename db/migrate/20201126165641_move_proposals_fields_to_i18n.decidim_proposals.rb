@@ -3,9 +3,10 @@
 # This migration comes from decidim_proposals (originally 20200708091228)
 
 class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
+  # rubocop:disable Lint/UnreachableCode
   def up
-    puts "Skipping migration '20201126165641' - MoveProposalsFieldsToI18n"
     return
+
     add_column :decidim_proposals_proposals, :new_title, :jsonb
     add_column :decidim_proposals_proposals, :new_body, :jsonb
 
@@ -48,6 +49,7 @@ class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
 
     reset_column_information
   end
+  # rubocop:enable Lint/UnreachableCode
 
   def down
     add_column :decidim_proposals_proposals, :new_title, :string
