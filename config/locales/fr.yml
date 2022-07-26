@@ -586,6 +586,34 @@ fr:
               username: Pseudo
     statistics:
       processes_count: Concertations
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              answer_options: Options de réponse
+              body: Contenu
+              created_at: Date de création
+              decidim_component_id: ID du composant
+              decidim_question_id: ID de la question
+              decidim_questionnaire_id: ID du questionnaire
+              description: Description
+              free_text: Texte libre
+              id: ID
+              mandatory: Obligatoire
+              max_characters: Caractères maximum
+              max_choices: Choix maximum
+              position: Position
+              published_at: Date de publication
+              question_type: Type de question
+              questionnaire: Questionnaire
+              questionnaire_for_id: ID du questionnaire
+              questionnaire_for_type: Type du questionnaire
+              questions: Questions
+              salt: Hash
+              title: Titre
+              tos: Conditions d'utilisation
+              updated_at: Date de mise à jour
     verifications:
       sms:
         authorizations:

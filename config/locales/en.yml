@@ -489,6 +489,34 @@ en:
               username: Pseudo
     statistics:
       processes_count: Processes
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              answer_options: Answer options
+              body: Body
+              created_at: Created at
+              decidim_component_id: Component ID
+              decidim_question_id: Question ID
+              decidim_questionnaire_id: Questionnaire ID
+              description: Description
+              free_text: Free text
+              id: ID
+              mandatory: Mandatory
+              max_characters: Max characters
+              max_choices: Max choices
+              position: Position
+              published_at: Published at
+              question_type: Question type
+              questionnaire: Questionnaire
+              questionnaire_for_id: Questionnaire for ID
+              questionnaire_for_type: Questionnaire for type
+              questions: Questions
+              salt: Salt
+              title: Title
+              tos: Terms of service
+              updated_at: Updated at
     verifications:
       sms:
         authorizations:
