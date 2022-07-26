@@ -3,6 +3,7 @@
 # Overrides Decidim::Proposals::ProposalSerializer
 module ProposalSerializerExtend
   # Public: Exports a hash with the serialized data for this proposal.
+  # rubocop:disable Metrics/CyclomaticComplexity
   def serialize
     {
       t_column_name(:id) => proposal.id,
@@ -49,6 +50,7 @@ module ProposalSerializerExtend
       }
     }
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   protected
 
