@@ -6,6 +6,7 @@
   - mailers
   - newsletter
   - events
+  - exports
   - user_report
   - block_user
   - scheduled
@@ -18,10 +19,6 @@
   PreloadOpenData:
     cron: '0 0 1 * * *' # Run at 01:00
     class: PreloadOpenDataJob
-    queue: scheduled
-  DetectSpamUsers:
-    cron: '0 0 8 * * *' # Run at 08:00
-    class: Decidim::SpamDetection::MarkUsersJob
     queue: scheduled
   Backup:
     cron: '0 0 4 * * *' # Run at 04:00
