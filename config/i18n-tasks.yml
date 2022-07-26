@@ -132,7 +132,7 @@ ignore_missing:
  - decidim.meetings.titles.participatory_processes
  - decidim.meetings.users.resend_invitation.error
  - decidim.meetings.users.resend_invitation.success
- - decidim.verifications.sms.authorizations.new.*
+ - decidim.verifications.sms.authorizations.new.{title,send}
 
 # Consider these keys used:
 ignore_unused:
@@ -311,3 +311,5 @@ ignore_unused:
   - layouts.decidim.process_header_steps.view_steps
   - layouts.decidim.process_navigation.process_menu_item
   - decidim.participatory_process_groups.content_blocks.*
+  - decidim.admin.forms.file_help.emitter.*
+
