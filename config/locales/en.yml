@@ -360,8 +360,8 @@ en:
             duration: Duration
             emitter: Emitter
             emitter_logo: Import a new emitter logo
-            emitter_name: Name of the logo
             emitter_logo_select: Or select an emitter logo that already exists on the platform
+            emitter_name: Name of the logo
             filters: Filters
             images: Images
             metadata: Metadata
@@ -441,6 +441,15 @@ en:
         unspecified: Not specified
     statistics:
       processes_count: Processes
+    verifications:
+      sms:
+        authorizations:
+          edit:
+            verification_code: Code de vérification
+          new:
+            instructions: Instrutions d'envoi du code de vérification par SMS
+            instructions_helper: Aide des instructions
+            mobile_phone_number: Numéro de téléphone
   layouts:
     decidim:
       footer:

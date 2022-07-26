@@ -457,8 +457,8 @@ fr:
             duration: Durée
             emitter: Organisateur
             emitter_logo: Choisissez un nouveau logo pour l'organisateur de la consultation
-            emitter_name: Nom du logo
             emitter_logo_select: Ou récupérez un logo d'organisateur déjà existant sur cette plateforme
+            emitter_name: Nom du logo
             filters: Filtres
             images: Images
             metadata: Métadonnées
@@ -538,6 +538,15 @@ fr:
         unspecified: Non précisé
     statistics:
       processes_count: Concertations
+    verifications:
+      sms:
+        authorizations:
+          edit:
+            verification_code: Code de vérification
+          new:
+            instructions: Instrutions d'envoi du code de vérification par SMS
+            instructions_helper: Aide des instructions
+            mobile_phone_number: Numéro de téléphone
   layouts:
     decidim:
       footer:
