@@ -3,7 +3,6 @@
 require "spec_helper"
 
 describe "Account", type: :system do
-  # let(:organization) { create(:organization, available_locales: %w(en)) }
   let(:user) { create(:user, :confirmed, password: password, password_confirmation: password) }
   let(:password) { "dqCFgjfDbC7dPbrv" }
   let(:organization) { user.organization }
@@ -40,21 +39,19 @@ describe "Account", type: :system do
     end
 
     describe "update locales" do
-      context "when the user has one locale" do
+      context "when the organization has one locale" do
+        let(:organization) { create(:organization, available_locales: ["en"]) }
+
         it "is not possible to change locales, #user_locale is disabled" do
-          if organization.available_locales.size === 1
-            expect(page).to have_css("#user_locale", text: "English")
-            expect(find("#user_locale")).to be_disabled
-          end
+          expect(page).to have_css("#user_locale", text: "English")
+          expect(find("#user_locale")).to be_disabled
         end
       end
 
-      context "when the user has more than one locale" do
+      context "when the organization has more than one locale" do
         it "shows the list of locales" do
-          if organization.available_locales.size > 1
-            find("#user_locale").click
-            expect(page).to have_css("option", count: organization.available_locales.size)
-          end
+          find("#user_locale").click
+          expect(page).to have_css("option", count: organization.available_locales.size)
         end
       end
     end
@@ -77,33 +74,22 @@ describe "Account", type: :system do
     end
 
     describe "updating locale" do
-      context "when the user has one locale" do
-        it "is not possible to change locales, #user_locale is disabled" do
-          if organization.available_locales.size == 1
-            expect(page).to have_css("#user_locale", text: "English")
-            expect(find("#user_locale")).to be_disabled
-          end
-        end
-      end
-
-      context "when the user has more than one locale" do
+      context "when the organization has more than one locale" do
         it "switches the locale to french" do
-          if organization.available_locales.size > 1
-            within "form.edit_user" do
-              find("#user_locale").click
-              find("option", text: "Français").select_option
-              find("*[type=submit]").click
-            end
-
-            within_flash_messages do
-              expect(page).to have_content("successfully")
-            end
-
-            within "#user_locale" do
-              expect(page).to have_content("Français")
-            end
-            expect(page).to have_css(".help-text", text: organization.name)
+          within "form.edit_user" do
+            find("#user_locale").click
+            find("option", text: "Français").select_option
+            find("*[type=submit]").click
           end
+
+          within_flash_messages do
+            expect(page).to have_content("successfully")
+          end
+
+          within "#user_locale" do
+            expect(page).to have_content("Français")
+          end
+          expect(page).to have_css(".help-text", text: organization.name)
         end
       end
     end
