@@ -456,9 +456,9 @@ fr:
             announcement_help: Le texte saisi ici sera affiché juste en dessous des informations de la concertation.
             duration: Durée
             emitter: Organisateur
-            emitter_logo: Choisissez un nouveau logo pour l'organisateur de la consultation
+            emitter_logo: Ou choisissez un nouveau logo pour l'organisateur de la consultation
             emitter_name: Nom du logo
-            emitter_logo_select: Ou récupérez un logo d'organisateur déjà existant sur cette plateforme
+            emitter_logo_select: Récupérez un logo d'organisateur déjà existant sur cette plateforme
             filters: Filtres
             images: Images
             metadata: Métadonnées

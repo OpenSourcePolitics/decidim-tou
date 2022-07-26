@@ -46,6 +46,7 @@ module Decidim
         attribute :emitter_select
         attribute :emitter_name_image
         attribute :emitter_name_select
+        attribute :emitter_name_image_changed
         attribute :remove_emitter, Boolean, default: false
         attribute :remove_emitter_image, Boolean, default: false
 
@@ -104,9 +105,14 @@ module Decidim
           prepare_emitter_name!
         end
 
+        def emitter_name_image_changed=(value)
+          @emitter_name_image_changed = ActiveModel::Type::Boolean.new.cast(value) if value
+        end
+
         def emitter_name_image=(value)
-          @emitter_name_image = value if value
+          @emitter_name_image = value if value && @emitter_name_image_changed
           prepare_emitter_name!
+          prepare_emitter!
         end
 
         def emitter_name_select=(value)
@@ -120,7 +126,7 @@ module Decidim
         end
 
         def emitter_select=(value)
-          if value.present?
+          if value.present? && !@emitter_name_image_changed
             target_pp = Decidim::ParticipatoryProcess.find(value)
             blob = target_pp.emitter.attachment.blob
             @emitter_select = blob
