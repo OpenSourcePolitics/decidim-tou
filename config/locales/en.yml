@@ -444,50 +444,50 @@ en:
         exports:
           column_name:
             proposal:
-              address: Adresse
-              answer: Réponse
-              attachments: Pièces jointes
-              body: Contenu
+              address: Address
+              answer: Answer
+              attachments: Attachments
+              body: Body
               category:
-                category: Categorie
+                category: Category
                 id: ID
-                name: Nom
-              comments: Commentaires
+                name: Name
+              comments: Comments
               component:
-                component: Composant
+                component: Component
                 id: ID
               email: Email
               endorsements:
-                endorsements: Soutiens
-                total_count: Total
-                user_endorsements: Soutiens de l'utilisateur
-              followers: Abonnés
+                endorsements: Endorsements
+                total_count: Total count
+                user_endorsements: User endorsements
+              followers: Followers
               id: ID
-              is_amend: Est amendée
+              is_amend: Is amend
               latitude: Latitude
               longitude: Longitude
-              meeting_urls: Urls de rencontre
+              meeting_urls: Meeting URLS
               original_proposal:
-                original_proposal: Proposition originale
-                title: Titre
+                original_proposal: Original proposal
+                title: Title
                 url: URL
               participatory_space:
                 id: ID
-                participatory_space: Espace de participation
+                participatory_space: Participatory space
                 url: URL
               phone_number: Phone number
-              published_at: Publiée le
+              published_at: Published at
               reference: Reference
-              related_proposals: Proposition liées
+              related_proposals: Related proposals
               scope:
                 id: ID
-                name: Nom
+                name: Name
                 scope: Scope
-              state: Statut
+              state: State
               supports: Supports
-              title: Titre
+              title: Title
               url: URL
-              username: Pseudo
+              username: Username
     statistics:
       processes_count: Processes
     surveys:
@@ -522,11 +522,17 @@ en:
       sms:
         authorizations:
           edit:
-            verification_code: Code de vérification
+            confirm_destroy: Confirm
+            resend: Reset verification code
+            send: Confirm
+            title: Introduce the verification code you received
+            verification_code: Verification code
           new:
-            instructions: Instrutions d'envoi du code de vérification par SMS
-            instructions_helper: Aide des instructions
-            mobile_phone_number: Numéro de téléphone
+            instructions: Enter your phone number and the verification code sent by SMS. This method allows us to ensure that you have voted only once.
+            instructions_helper: "<ul><li>Must contain only numbers</li><li>Must start with 0</li><li>Must contain 10 digits</li><li>Must not be used by another account on this platform</li></ul>"
+            mobile_phone_number: Mobile phone number
+            send: Send me an SMS
+            title: Verify your identity with the SMS verification method
   layouts:
     decidim:
       footer:
