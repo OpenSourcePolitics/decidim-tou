@@ -360,8 +360,8 @@ en:
             duration: Duration
             emitter: Emitter
             emitter_logo: Import a new emitter logo
-            emitter_name: Name of the logo
             emitter_logo_select: Or select an emitter logo that already exists on the platform
+            emitter_name: Name of the logo
             filters: Filters
             images: Images
             metadata: Metadata
@@ -439,8 +439,100 @@ en:
         start_date: Start date
         target: Who participates
         unspecified: Not specified
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposal:
+              address: Address
+              answer: Answer
+              attachments: Attachments
+              body: Body
+              category:
+                category: Category
+                id: ID
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              email: Email
+              endorsements:
+                endorsements: Endorsements
+                total_count: Total count
+                user_endorsements: User endorsements
+              followers: Followers
+              id: ID
+              is_amend: Is amend
+              latitude: Latitude
+              longitude: Longitude
+              meeting_urls: Meeting URLS
+              original_proposal:
+                original_proposal: Original proposal
+                title: Title
+                url: URL
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              phone_number: Phone number
+              published_at: Published at
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: URL
+              username: Username
     statistics:
       processes_count: Processes
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              answer_options: Answer options
+              body: Body
+              created_at: Created at
+              decidim_component_id: Component ID
+              decidim_question_id: Question ID
+              decidim_questionnaire_id: Questionnaire ID
+              description: Description
+              free_text: Free text
+              id: ID
+              mandatory: Mandatory
+              max_characters: Max characters
+              max_choices: Max choices
+              position: Position
+              published_at: Published at
+              question_type: Question type
+              questionnaire: Questionnaire
+              questionnaire_for_id: Questionnaire for ID
+              questionnaire_for_type: Questionnaire for type
+              questions: Questions
+              salt: Salt
+              title: Title
+              tos: Terms of service
+              updated_at: Updated at
+    verifications:
+      sms:
+        authorizations:
+          edit:
+            confirm_destroy: Confirm
+            resend: Reset verification code
+            send: Confirm
+            title: Introduce the verification code you received
+            verification_code: Verification code
+          new:
+            instructions: Enter your phone number and the verification code sent by SMS. This method allows us to ensure that you have voted only once.
+            instructions_helper: "<ul><li>Must contain only numbers</li><li>Must start with 0</li><li>Must contain 10 digits</li><li>Must not be used by another account on this platform</li></ul>"
+            mobile_phone_number: Mobile phone number
+            send: Send me an SMS
+            title: Verify your identity with the SMS verification method
   layouts:
     decidim:
       footer:

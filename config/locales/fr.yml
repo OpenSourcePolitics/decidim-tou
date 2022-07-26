@@ -457,8 +457,8 @@ fr:
             duration: Durée
             emitter: Organisateur
             emitter_logo: Choisissez un nouveau logo pour l'organisateur de la consultation
-            emitter_name: Nom du logo
             emitter_logo_select: Ou récupérez un logo d'organisateur déjà existant sur cette plateforme
+            emitter_name: Nom du logo
             filters: Filtres
             images: Images
             metadata: Métadonnées
@@ -536,8 +536,100 @@ fr:
         start_date: Date de début
         target: Participants
         unspecified: Non précisé
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposal:
+              address: Adresse
+              answer: Réponse
+              attachments: Pièces jointes
+              body: Contenu
+              category:
+                category: Categorie
+                id: ID
+                name: Nom
+              comments: Commentaires
+              component:
+                component: Composant
+                id: ID
+              email: Email
+              endorsements:
+                endorsements: Soutiens
+                total_count: Total
+                user_endorsements: Soutiens de l'utilisateur
+              followers: Abonnés
+              id: ID
+              is_amend: Est amendée
+              latitude: Latitude
+              longitude: Longitude
+              meeting_urls: Urls de rencontre
+              original_proposal:
+                original_proposal: Proposition originale
+                title: Titre
+                url: URL
+              participatory_space:
+                id: ID
+                participatory_space: Espace de participation
+                url: URL
+              phone_number: Numéro de téléphone
+              published_at: Publiée le
+              reference: Reference
+              related_proposals: Proposition liées
+              scope:
+                id: ID
+                name: Nom
+                scope: Scope
+              state: Statut
+              supports: Supports
+              title: Titre
+              url: URL
+              username: Pseudo
     statistics:
       processes_count: Concertations
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              answer_options: Options de réponse
+              body: Contenu
+              created_at: Date de création
+              decidim_component_id: ID du composant
+              decidim_question_id: ID de la question
+              decidim_questionnaire_id: ID du questionnaire
+              description: Description
+              free_text: Texte libre
+              id: ID
+              mandatory: Obligatoire
+              max_characters: Caractères maximum
+              max_choices: Choix maximum
+              position: Position
+              published_at: Date de publication
+              question_type: Type de question
+              questionnaire: Questionnaire
+              questionnaire_for_id: ID du questionnaire
+              questionnaire_for_type: Type du questionnaire
+              questions: Questions
+              salt: Hash
+              title: Titre
+              tos: Conditions d'utilisation
+              updated_at: Date de mise à jour
+    verifications:
+      sms:
+        authorizations:
+          edit:
+            confirm_destroy: Confirmer
+            resend: Renvoyer un SMS
+            send: Authentifier mon compte
+            title: Vérifier votre identité avec la méthode de vérification par SMS
+            verification_code: Code de vérification
+          new:
+            instructions: Renseignez votre numéro de téléphone puis le code de vérification transmis par SMS. Cette méthode nous permet de nous assurer que vous avez bien voté une seule fois.
+            instructions_helper: "<ul><li>Ne doit contenir que des chiffres</li><li>Doit commencer par 0</li><li>Doit contenir 10 chiffres</li><li>Ne doit pas être utilisé par un autre compte sur cette plateforme</li></ul>"
+            mobile_phone_number: Votre numéro de téléphone mobile
+            send: Envoyer un SMS
+            title: Vérifier votre identité avec la méthode de vérification par SMS
   layouts:
     decidim:
       footer:
