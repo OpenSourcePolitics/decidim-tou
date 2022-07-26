@@ -38,11 +38,28 @@ describe "Account", type: :system do
       end
     end
 
+    describe "update locales" do
+      context "when the organization has one locale" do
+        let(:organization) { create(:organization, available_locales: ["en"]) }
+
+        it "is not possible to change locales, #user_locale is disabled" do
+          expect(page).to have_css("#user_locale", text: "English")
+          expect(find("#user_locale")).to be_disabled
+        end
+      end
+
+      context "when the organization has more than one locale" do
+        it "shows the list of locales" do
+          find("#user_locale").click
+          expect(page).to have_css("option", count: organization.available_locales.size)
+        end
+      end
+    end
+
     describe "updating personal data" do
       it "updates the user's data" do
         within "form.edit_user" do
           fill_in :user_name, with: "Nikola Tesla"
-
           find("*[type=submit]").click
         end
 
@@ -52,6 +69,27 @@ describe "Account", type: :system do
 
         within ".title-bar" do
           expect(page).to have_content("Nikola Tesla")
+        end
+      end
+    end
+
+    describe "updating locale" do
+      context "when the organization has more than one locale" do
+        it "switches the locale to french" do
+          within "form.edit_user" do
+            find("#user_locale").click
+            find("option", text: "Français").select_option
+            find("*[type=submit]").click
+          end
+
+          within_flash_messages do
+            expect(page).to have_content("successfully")
+          end
+
+          within "#user_locale" do
+            expect(page).to have_content("Français")
+          end
+          expect(page).to have_css(".help-text", text: organization.name)
         end
       end
     end
