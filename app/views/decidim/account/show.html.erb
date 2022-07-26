@@ -11,7 +11,7 @@
       <%= f.text_field :nickname %>
       <%= f.email_field :email %>
 
-      <% if Decidim.available_locales.size > 1 %>
+      <% if @account.organization.available_locales.size > 1 %>
       <%= f.collection_select(
             :locale,
             @account.organization.available_locales,

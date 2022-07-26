@@ -3,7 +3,6 @@
 require "spec_helper"
 
 describe "Account", type: :system do
-  # If you want to try with only one locale -> Comment line 10 and uncomment line 7
   # let(:organization) { create(:organization, available_locales: %w(en)) }
   let(:user) { create(:user, :confirmed, password: password, password_confirmation: password) }
   let(:password) { "dqCFgjfDbC7dPbrv" }
@@ -41,13 +40,21 @@ describe "Account", type: :system do
     end
 
     describe "update locales" do
-      it "shows the list of locales" do
-        find("#user_locale").click
-        if organization.available_locales.size == 1
-          expect(page).to have_css("#user_locale", text: "English")
-          expect(find("#user_locale")).to be_disabled
-        else
-          expect(page).to have_css("option", count: organization.available_locales.size)
+      context "when the user has one locale" do
+        it "is not possible to change locales, #user_locale is disabled" do
+          if organization.available_locales.size === 1
+            expect(page).to have_css("#user_locale", text: "English")
+            expect(find("#user_locale")).to be_disabled
+          end
+        end
+      end
+
+      context "when the user has more than one locale" do
+        it "shows the list of locales" do
+          if organization.available_locales.size > 1
+            find("#user_locale").click
+            expect(page).to have_css("option", count: organization.available_locales.size)
+          end
         end
       end
     end
@@ -56,10 +63,6 @@ describe "Account", type: :system do
       it "updates the user's data" do
         within "form.edit_user" do
           fill_in :user_name, with: "Nikola Tesla"
-          if organization.available_locales.size > 1
-            find("#user_locale").click
-            find("option", text: "Français").select_option
-          end
           find("*[type=submit]").click
         end
 
@@ -70,11 +73,37 @@ describe "Account", type: :system do
         within ".title-bar" do
           expect(page).to have_content("Nikola Tesla")
         end
-        if organization.available_locales.size > 1
-          within "#user_locale" do
-            expect(page).to have_content("Français")
+      end
+    end
+
+    describe "updating locale" do
+      context "when the user has one locale" do
+        it "is not possible to change locales, #user_locale is disabled" do
+          if organization.available_locales.size == 1
+            expect(page).to have_css("#user_locale", text: "English")
+            expect(find("#user_locale")).to be_disabled
           end
-          expect(page).to have_css(".help-text", text: organization.name)
+        end
+      end
+
+      context "when the user has more than one locale" do
+        it "switches the locale to french" do
+          if organization.available_locales.size > 1
+            within "form.edit_user" do
+              find("#user_locale").click
+              find("option", text: "Français").select_option
+              find("*[type=submit]").click
+            end
+
+            within_flash_messages do
+              expect(page).to have_content("successfully")
+            end
+
+            within "#user_locale" do
+              expect(page).to have_content("Français")
+            end
+            expect(page).to have_css(".help-text", text: organization.name)
+          end
         end
       end
     end
