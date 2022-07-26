@@ -4,7 +4,6 @@
 module ProposalSerializerExtend
   # Public: Exports a hash with the serialized data for this proposal.
   def serialize
-    byebug
     {
       t_column_name(:id) => proposal.id,
       t_column_name(:username) => proposal.creator_identity&.user_name || "",
