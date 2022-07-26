@@ -4,10 +4,12 @@
 module ProposalSerializerExtend
   # Public: Exports a hash with the serialized data for this proposal.
   def serialize
+    byebug
     {
       t_column_name(:id) => proposal.id,
       t_column_name(:username) => proposal.creator_identity&.user_name || "",
       t_column_name(:email) => proposal.creator_identity&.email || "",
+      t_column_name(:phone_number) => phone_number(proposal.creator_identity&.id),
       t_column_name(:category, ".category") => {
         t_column_name(:id, ".category") => proposal.category.try(:id),
         t_column_name(:name, ".category") => proposal.category.try(:name) || empty_translatable
@@ -53,6 +55,21 @@ module ProposalSerializerExtend
 
   def i18n_scope
     "decidim.proposals.admin.exports.column_name.proposal"
+  end
+
+  # phone_number retrieve the phone number of an user stored from phone_authorization_handler
+  # Param: user_id : Integer
+  # Return string, empty or with the phone number
+  def phone_number(user_id)
+    authorization = Decidim::Authorization.where(name: "phone_authorization_handler", decidim_user_id: user_id)
+    return "" if authorization.blank?
+
+    metadata = authorization.first.try(:metadata)
+    return "" if metadata.blank?
+
+    # rubocop:disable Lint/SafeNavigationChain
+    authorization.first.try(:metadata)&.to_h["phone_number"].presence || ""
+    # rubocop:enable Lint/SafeNavigationChain
   end
 end
 
