@@ -536,6 +536,54 @@ fr:
         start_date: Date de début
         target: Participants
         unspecified: Non précisé
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposal:
+              address: Adresse
+              answer: Réponse
+              attachments: Pièces jointes
+              body: Contenu
+              category:
+                category: Categorie
+                id: ID
+                name: Nom
+              comments: Commentaires
+              component:
+                component: Composant
+                id: ID
+              email: Email
+              endorsements:
+                endorsements: Soutiens
+                total_count: Total
+                user_endorsements: Soutiens de l'utilisateur
+              followers: Abonnés
+              id: ID
+              is_amend: Est amendée
+              latitude: Latitude
+              longitude: Longitude
+              meeting_urls: Urls de rencontre
+              original_proposal:
+                original_proposal: Proposition originale
+                title: Titre
+                url: URL
+              participatory_space:
+                id: ID
+                participatory_space: Espace de participation
+                url: URL
+              published_at: Publiée le
+              reference: Reference
+              related_proposals: Proposition liées
+              scope:
+                id: ID
+                name: Nom
+                scope: Scope
+              state: Statut
+              supports: Supports
+              title: Titre
+              url: URL
+              username: Pseudo
     statistics:
       processes_count: Concertations
     verifications:
