@@ -46,6 +46,7 @@ module Decidim
         attribute :emitter_select
         attribute :emitter_name_image
         attribute :emitter_name_select
+        attribute :emitter_read_name
         attribute :remove_emitter, Boolean, default: false
         attribute :remove_emitter_image, Boolean, default: false
 
@@ -100,13 +101,14 @@ module Decidim
         end
 
         def remove_emitter_image=(value)
-          self.remove_emitter = value if value
+          self.remove_emitter = ActiveModel::Type::Boolean.new.cast(value) if value
           prepare_emitter_name!
         end
 
         def emitter_name_image=(value)
           @emitter_name_image = value if value
           prepare_emitter_name!
+          prepare_emitter!
         end
 
         def emitter_name_select=(value)
@@ -138,17 +140,25 @@ module Decidim
           @emitter_select || emitter
         end
 
-        def emitter_name_image
-          @emitter_name_image || emitter_name
-        end
+        attr_reader :emitter_name_image
 
         def emitter_name_select
           @emitter_name_select || emitter_name
         end
 
+        def emitter_read_name
+          @emitter_read_name || emitter_name
+        end
+
+        def emitter_read_name=(value)
+          @emitter_read_name = value if value
+          prepare_emitter_name!
+        end
+
         private
 
         def prepare_emitter_name!
+          self.emitter_name = emitter_read_name
           self.emitter_name = emitter_name_select if emitter_name_select.present?
           self.emitter_name = emitter_name_image if emitter_name_image.present?
           self.emitter_name = nil if remove_emitter

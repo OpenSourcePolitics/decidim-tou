@@ -181,7 +181,7 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
         fill_in :participatory_process_slug, with: "slug"
         fill_in :participatory_process_weight, with: 1
 
-        select process1.emitter_name, from: "Or select an emitter logo that already exists on the platform"
+        select process1.emitter_name, from: "Select an emitter logo that already exists on the platform"
 
         find("*[type=submit]").click
       end

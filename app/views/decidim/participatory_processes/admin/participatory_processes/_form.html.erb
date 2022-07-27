@@ -121,11 +121,11 @@
 
       <div class="row" id="scope-depth ">
         <%= form.collection_select :scope_type_max_depth_id,
-                                    organization_scope_depths,
-                                    :id,
-                                    :name,
-                                    scope_type_depth_select_options,
-                                    scope_type_depth_select_html_options %>
+                                   organization_scope_depths,
+                                   :id,
+                                   :name,
+                                   scope_type_depth_select_options,
+                                   scope_type_depth_select_html_options %>
         <p class="help-text">
           <%== t(".scope_type_max_depth_help") %>
         </p>
@@ -152,15 +152,11 @@
                         include_blank: t(".select_process_group") %>
       <% end %>
     </div>
-
     <div class="row column">
       <%= form.check_box :private_space %>
     </div>
     <div class="row column">
       <%= form.check_box :promoted %>
-    </div>
-    <div class="row column">
-      <%= form.upload :emitter, label: t(".emitter_logo"), help_i18n_scope: "decidim.admin.forms.file_help.emitter" %>
     </div>
   </div>
 
@@ -170,16 +166,20 @@
 
   <div class="card-section">
     <div class="row column">
-      <%= form.upload :emitter_image, label: t(".emitter_logo"), help_i18n_scope: "decidim.admin.forms.file_help.emitter" %>
+      <%= form.select :emitter_select, options_for_select(emitter_options), { :include_blank => true, label: t(".emitter_logo_select") }, class: "select-emitter" %>
     </div>
+    <div class="row column select-emitter-image"></div>
+    <label class="row column"> <%= t(".emitter_new") %> </label>
     <div class="row column">
       <%= form.text_field :emitter_name_image, label: t(".emitter_name") %>
     </div>
-    <% if form.object.emitter_name.blank? %>
+    <div class="row column">
+      <%= form.upload :emitter_image, label: t(".emitter_logo"), help_i18n_scope: "decidim.admin.forms.file_help.emitter" %>
+    </div>
+    <% if form.object.emitter_name.present? %>
       <div class="row column">
-        <%= form.select :emitter_select, options_for_select(emitter_options), {:include_blank => true, label: t(".emitter_logo_select")}, class: "select-emitter" %>
+        <%= form.text_field :emitter_read_name, { :readonly => true, :label => t(".emitter_now") } %>
       </div>
-      <div class="row column select-emitter-image"></div>
     <% end %>
   </div>
 
@@ -190,11 +190,11 @@
   <div class="card-section">
     <div class="row column">
       <%= form.select(
-        :related_process_ids,
-        @form.processes.order(title: :asc).map{|process| [translated_attribute(process.title), process.id]},
-        { include_blank: true },
-        { multiple: true, class: "chosen-select" }
-      ) %>
+            :related_process_ids,
+            @form.processes.order(title: :asc).map { |process| [translated_attribute(process.title), process.id] },
+            { include_blank: true },
+            { multiple: true, class: "chosen-select" }
+          ) %>
     </div>
   </div>
 

@@ -1,3 +1,4 @@
+value=document.querySelector("#participatory_process_emitter_name_image").value;
 if(document.querySelector(".select-emitter")){
     document.querySelector(".select-emitter").addEventListener("change", () => {
         let select = document.querySelector(".select-emitter")
@@ -6,15 +7,15 @@ if(document.querySelector(".select-emitter")){
 }
 document.querySelector("#participatory_process_emitter_image").addEventListener("input", () => {
     if(document.querySelector("#participatory_process_emitter_image").value != null){
-        document.querySelector("#participatory_process_emitter_image").required = true;
         document.querySelector("#participatory_process_emitter_name_image").required = true;
+    } else {
+        document.querySelector("#participatory_process_emitter_name_image").required = false;
     }
 });
 document.querySelector("#participatory_process_emitter_name_image").addEventListener("input", () => {
-    if(document.querySelector("#participatory_process_emitter_name_image").value != null){
-        if(!document.querySelector("#participatory_process_emitter_image + label")){
-            document.querySelector("#participatory_process_emitter_image").required = true;
-        }
-        document.querySelector("#participatory_process_emitter_name_image").required = true;
+    if(document.querySelector("#participatory_process_emitter_name_image").value != ''){
+        document.querySelector("#participatory_process_emitter_image").required = true;
+    } else {
+        document.querySelector("#participatory_process_emitter_image").required = false;
     }
 });
