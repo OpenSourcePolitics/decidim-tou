@@ -49,6 +49,7 @@ module Decidim
         it "serializes the author data" do
           expect(serialized).to include("Username" => proposal.creator_identity&.user_name)
           expect(serialized).to include("Email" => proposal.creator_identity&.email)
+          expect(serialized).to include("Phone number" => "")
         end
 
         it "serializes the category" do

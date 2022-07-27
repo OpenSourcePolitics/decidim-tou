@@ -3,6 +3,7 @@
 # This migration comes from decidim_proposals (originally 20200708091228)
 
 class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
+  # rubocop:disable Metrics/PerceivedComplexity
   def up
     add_column :decidim_proposals_proposals, :new_title, :jsonb
     add_column :decidim_proposals_proposals, :new_body, :jsonb
@@ -21,12 +22,17 @@ class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
                    I18n.default_locale.to_s
                  end
 
-        proposal.new_title = {
-          locale => proposal.title
-        }
-        proposal.new_body = {
-          locale => proposal.body
-        }
+        proposal.new_title = if proposal.title.is_a? String
+                               { locale => proposal.title }
+                             else
+                               proposal.title
+                             end
+
+        proposal.new_body = if proposal.title.is_a? String
+                              { locale => proposal.body }
+                            else
+                              proposal.body
+                            end
 
         # rubocop:disable Rails/SkipsModelValidations
         proposal.update_column("new_title", proposal.new_title)
@@ -46,6 +52,7 @@ class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
 
     reset_column_information
   end
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def down
     add_column :decidim_proposals_proposals, :new_title, :string
