@@ -110,7 +110,7 @@ module Decidim
         end
 
         def emitter_name_image=(value)
-          @emitter_name_image = value if value && @emitter_name_image_changed
+          @emitter_name_image = value if value
           prepare_emitter_name!
           prepare_emitter!
         end
@@ -155,8 +155,11 @@ module Decidim
         private
 
         def prepare_emitter_name!
-          self.emitter_name = emitter_name_select if emitter_name_select.present?
-          self.emitter_name = emitter_name_image if emitter_name_image.present?
+          if @emitter_name_image_changed || @emitter_image || emitter_name_select.blank?
+            self.emitter_name = emitter_name_image
+          else
+            self.emitter_name = emitter_name_select
+          end
           self.emitter_name = nil if remove_emitter
         end
 
