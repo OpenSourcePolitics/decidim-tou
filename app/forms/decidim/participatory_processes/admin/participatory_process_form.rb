@@ -46,7 +46,7 @@ module Decidim
         attribute :emitter_select
         attribute :emitter_name_image
         attribute :emitter_name_select
-        attribute :emitter_name_image_changed
+        attribute :emitter_read_name
         attribute :remove_emitter, Boolean, default: false
         attribute :remove_emitter_image, Boolean, default: false
 
@@ -101,12 +101,8 @@ module Decidim
         end
 
         def remove_emitter_image=(value)
-          self.remove_emitter = value if value
+          self.remove_emitter = ActiveModel::Type::Boolean.new.cast(value) if value
           prepare_emitter_name!
-        end
-
-        def emitter_name_image_changed=(value)
-          @emitter_name_image_changed = ActiveModel::Type::Boolean.new.cast(value) if value
         end
 
         def emitter_name_image=(value)
@@ -126,7 +122,7 @@ module Decidim
         end
 
         def emitter_select=(value)
-          if value.present? && !@emitter_name_image_changed
+          if value.present?
             target_pp = Decidim::ParticipatoryProcess.find(value)
             blob = target_pp.emitter.attachment.blob
             @emitter_select = blob
@@ -144,22 +140,27 @@ module Decidim
           @emitter_select || emitter
         end
 
-        def emitter_name_image
-          @emitter_name_image || emitter_name
-        end
+        attr_reader :emitter_name_image
 
         def emitter_name_select
           @emitter_name_select || emitter_name
         end
 
+        def emitter_read_name
+          @emitter_read_name || emitter_name
+        end
+
+        def emitter_read_name=(value)
+          @emitter_read_name = value if value
+          prepare_emitter_name!
+        end
+
         private
 
         def prepare_emitter_name!
-          self.emitter_name = if @emitter_name_image_changed || @emitter_image || emitter_name_select.blank?
-                                emitter_name_image
-                              else
-                                emitter_name_select
-                              end
+          self.emitter_name = emitter_read_name
+          self.emitter_name = emitter_name_select if emitter_name_select.present?
+          self.emitter_name = emitter_name_image if emitter_name_image.present?
           self.emitter_name = nil if remove_emitter
         end
 

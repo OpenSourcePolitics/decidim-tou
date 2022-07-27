@@ -152,7 +152,6 @@
                         include_blank: t(".select_process_group") %>
       <% end %>
     </div>
-
     <div class="row column">
       <%= form.check_box :private_space %>
     </div>
@@ -166,17 +165,22 @@
   </div>
 
   <div class="card-section">
-    <%= form.hidden_field :emitter_name_image_changed, { :value => "false" , :class => "emitter_name_changed" } %>
     <div class="row column">
       <%= form.select :emitter_select, options_for_select(emitter_options), { :include_blank => true, label: t(".emitter_logo_select") }, class: "select-emitter" %>
     </div>
     <div class="row column select-emitter-image"></div>
-    <div class="row column">
-      <%= form.upload :emitter_image, label: t(".emitter_logo"), help_i18n_scope: "decidim.admin.forms.file_help.emitter" %>
-    </div>
+    <label class="row column"> <%= t(".emitter_new") %> </label>
     <div class="row column">
       <%= form.text_field :emitter_name_image, label: t(".emitter_name") %>
     </div>
+    <div class="row column">
+      <%= form.upload :emitter_image, label: t(".emitter_logo"), help_i18n_scope: "decidim.admin.forms.file_help.emitter" %>
+    </div>
+    <% if form.object.emitter_name.present? %>
+      <div class="row column">
+        <%= form.text_field :emitter_read_name, { :readonly => true, :label => t(".emitter_now") } %>
+      </div>
+    <% end %>
   </div>
 
   <div class="card-divider">

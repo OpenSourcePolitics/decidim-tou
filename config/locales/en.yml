@@ -359,9 +359,11 @@ en:
             announcement_help: The text you enter here will be shown to the user right below the process information.
             duration: Duration
             emitter: Emitter
-            emitter_logo: Or import a new emitter logo
-            emitter_name: Name of the logo
+            emitter_logo: New logo
             emitter_logo_select: Select an emitter logo that already exists on the platform
+            emitter_name: Name of the new logo
+            emitter_new: "Or import a new emitter logo :"
+            emitter_now: Current logo name
             filters: Filters
             images: Images
             metadata: Metadata
