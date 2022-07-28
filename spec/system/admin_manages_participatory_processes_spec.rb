@@ -13,7 +13,6 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
   let(:latitude) { 40.1234 }
   let(:longitude) { 2.1234 }
 
-
   before do
     stub_geocoding(address, [latitude, longitude])
     switch_to_host(organization.host)
