@@ -43,6 +43,7 @@ module Decidim
         let(:emitter_name) { "city" }
         let(:show_metrics) { true }
         let(:show_statistics) { true }
+        let(:address) { nil }
         let(:attributes) do
           {
             "participatory_process" => {
@@ -57,7 +58,8 @@ module Decidim
               "emitter_name" => emitter_name,
               "slug" => slug,
               "show_metrics" => show_metrics,
-              "show_statistics" => show_statistics
+              "show_statistics" => show_statistics,
+              "address" => address
             }
           }
         end
@@ -177,6 +179,22 @@ module Decidim
             it "is valid" do
               expect(subject).to be_valid
             end
+          end
+        end
+
+        context "when address is present" do
+          let(:latitude) { 40.1234 }
+          let(:longitude) { 2.1234 }
+          let(:address) { "Carrer Pare Llaurador 113, baixos, 08224 Terrassa" }
+
+          before do
+            stub_geocoding(address, [latitude, longitude])
+          end
+
+          it "is valid" do
+            expect(subject).to be_valid
+            expect(subject.latitude).to eq(latitude)
+            expect(subject.longitude).to eq(longitude)
           end
         end
       end
