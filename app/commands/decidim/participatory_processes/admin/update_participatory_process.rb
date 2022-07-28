@@ -80,7 +80,10 @@ module Decidim
             show_metrics: form.show_metrics,
             show_statistics: form.show_statistics,
             announcement: form.announcement,
-            emitter_name: form.emitter_name
+            emitter_name: form.emitter_name,
+            address: form.address,
+            latitude: form.latitude,
+            longitude: form.longitude
           }.merge(
             attachment_attributes(:hero_image, :banner_image, :emitter)
           )

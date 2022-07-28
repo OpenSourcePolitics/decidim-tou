@@ -43,6 +43,13 @@
     </div>
   </div>
 
+  <% if Decidim::Map.available?(:geocoding) %>
+    <div class="row column">
+      <%= form.text_field :address %>
+      <p class="help-text"><%== t(".address_help") %></p>
+    </div>
+  <% end %>
+
   <div class="card-divider">
     <h2 class="card-title"><%= t(".duration") %></h2>
   </div>
