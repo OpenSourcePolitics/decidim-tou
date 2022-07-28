@@ -27,6 +27,11 @@ module Decidim
         attribute :hashtag, String
         attribute :slug, String
 
+        attribute :address, String
+        attribute :latitude, Float
+        attribute :longitude, Float
+        attribute :display_linked_assemblies, Boolean
+
         attribute :area_id, Integer
         attribute :participatory_process_group_id, Integer
         attribute :scope_id, Integer
@@ -58,6 +63,7 @@ module Decidim
         attribute :remove_banner_image, Boolean, default: false
         attribute :remove_hero_image, Boolean, default: false
 
+        validates :address, geocoding: true, if: proc { |object| object.address.present? }
         validates :area, presence: true, if: proc { |object| object.area_id.present? }
         validates :scope, presence: true, if: proc { |object| object.scope_id.present? }
         validates :slug, presence: true, format: { with: Decidim::ParticipatoryProcess.slug_format }
