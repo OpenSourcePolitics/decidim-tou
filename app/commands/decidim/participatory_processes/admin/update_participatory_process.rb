@@ -61,6 +61,7 @@ module Decidim
             slug: form.slug,
             hashtag: form.hashtag,
             promoted: form.promoted,
+            display_linked_assemblies: form.display_linked_assemblies,
             description: form.description,
             short_description: form.short_description,
             scopes_enabled: form.scopes_enabled,

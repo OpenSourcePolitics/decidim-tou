@@ -83,6 +83,10 @@ module Decidim
       def end_date
         model.end_date
       end
+
+      def decidim_assemblies
+        Decidim::Assemblies::Engine.routes.url_helpers
+      end
     end
   end
 end

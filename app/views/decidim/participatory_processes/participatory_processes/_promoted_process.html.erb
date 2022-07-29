@@ -12,7 +12,7 @@
         </div>
       <% end %>
       <div class="card__content">
-        <% if linked_assemblies_for(promoted_process).present? %>
+        <% if linked_assemblies_for(promoted_process).present? && promoted_process.display_linked_assemblies? %>
           <div class="linked_assemblies">
             <% linked_assemblies_for(promoted_process).each do |assembly| %>
               <%= link_to decidim_assemblies.assembly_path(assembly), class: "linked_assembly" do %>
