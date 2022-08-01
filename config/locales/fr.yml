@@ -227,6 +227,7 @@ fr:
             male: Homme
             other: Autre
           gender_label: Genre
+          invisible_captcha: Ce formulaire est protégé par un mécanisme d'Invisible Captcha (ICM)
           living_area: Living area
           metropolis: Metropolis
           metropolis_residential_area: Metropolis residential area
