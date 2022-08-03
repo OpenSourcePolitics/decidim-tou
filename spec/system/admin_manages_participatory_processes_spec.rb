@@ -9,7 +9,12 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
     create_list(:participatory_process_group, 3, organization: organization)
   end
 
+  let(:address) { "Carrer Pare Llaurador 113, baixos, 08224 Terrassa" }
+  let(:latitude) { 40.1234 }
+  let(:longitude) { 2.1234 }
+
   before do
+    stub_geocoding(address, [latitude, longitude])
     switch_to_host(organization.host)
     login_as user, scope: :user
     visit decidim_admin_participatory_processes.participatory_processes_path
@@ -59,7 +64,7 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
           es: "Descripción más larga",
           ca: "Descripció més llarga"
         )
-
+        fill_in "Address", with: address
         group_title = participatory_process_groups.first.title["en"]
         select group_title, from: :participatory_process_participatory_process_group_id
 
