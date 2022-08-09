@@ -554,7 +554,7 @@ describe "Participatory Processes", type: :system do
             expect(page).to have_no_content(translated(private_assembly.title))
           end
 
-          context "when display_linked_assemblies is enabled" do
+          context "when display_linked_assemblies is disabled" do
             let(:display_linked_assemblies) { false }
 
             it "doesn't display related assemblies" do

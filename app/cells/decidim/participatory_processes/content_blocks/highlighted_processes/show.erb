@@ -22,9 +22,9 @@
                 </div>
               <% end %>
               <div class="card__content">
-                <% if process.try(:linked_assemblies).present? %>
+                <% if linked_assemblies_for(process).present? %>
                   <div class="linked_assemblies column text-center">
-                    <% process.linked_assemblies.each do |assembly| %>
+                    <% linked_assemblies_for(process).each do |assembly| %>
                       <%= link_to decidim_assemblies.assembly_path(assembly), class: "linked_assembly" do %>
                         <%= translated_attribute(assembly.title) %>
                       <% end %>
