@@ -7,7 +7,7 @@ module UserAnswersSerializerExtends
     user = user_for answer
     {
       answer_translated_attribute_name(:id) => answer&.session_token,
-      answer_translated_attribute_name(:user_nickname) => user.try(:nickname) || "",
+      answer_translated_attribute_name(:user_name) => user.try(:name) || "",
       answer_translated_attribute_name(:user_email) => user.try(:email) || "",
       answer_translated_attribute_name(:created_at) => answer&.created_at&.to_s(:db),
       answer_translated_attribute_name(:ip_hash) => answer&.ip_hash,

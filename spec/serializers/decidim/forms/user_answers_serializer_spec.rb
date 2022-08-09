@@ -117,9 +117,9 @@ module Decidim
             expect(serialized[key]).to eq an_answer.created_at.to_s(:db)
           end
 
-          it "the nickname of the user" do
-            key = I18n.t(:user_nickname, scope: "decidim.forms.user_answers_serializer")
-            expect(serialized[key]).to eq user.nickname
+          it "the name of the user" do
+            key = I18n.t(:user_name, scope: "decidim.forms.user_answers_serializer")
+            expect(serialized[key]).to eq user.name
           end
 
           it "the email of the user" do
