@@ -7,6 +7,5 @@ class ModifyEmitterInParticipatoryProcesses < ActiveRecord::Migration[6.0]
     add_column :decidim_participatory_processes, :emitter_name, :text
   end
 
-  def down
-  end
+  def down; end
 end
