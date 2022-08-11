@@ -460,7 +460,7 @@ fr:
             emitter_logo: Nouveau logo
             emitter_logo_select: Récupérez un logo d'organisateur déjà existant sur cette plateforme
             emitter_name: Nom du nouveau logo
-            emitter_new: "Ou choisissez un nouveau logo pour l'organisateur de la consultation :"
+            emitter_new: 'Ou choisissez un nouveau logo pour l''organisateur de la consultation :'
             emitter_now: Nom actuel du logo
             filters: Filtres
             images: Images
@@ -590,6 +590,9 @@ fr:
               username: Pseudo
     statistics:
       processes_count: Concertations
+    statutory_representative:
+      inform:
+        subject: Inscription sur la plateforme
     surveys:
       admin:
         exports:

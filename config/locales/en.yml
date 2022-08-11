@@ -363,7 +363,7 @@ en:
             emitter_logo: New logo
             emitter_logo_select: Select an emitter logo that already exists on the platform
             emitter_name: Name of the new logo
-            emitter_new: "Or import a new emitter logo :"
+            emitter_new: 'Or import a new emitter logo :'
             emitter_now: Current logo name
             filters: Filters
             images: Images
@@ -493,6 +493,9 @@ en:
               username: Username
     statistics:
       processes_count: Processes
+    statutory_representative:
+      inform:
+        subject: Registration on the platform
     surveys:
       admin:
         exports:
