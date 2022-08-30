@@ -50,10 +50,10 @@ module Decidim
       end
 
       context "when there is children" do
-        let(:subscope_name_1) { {"en" => "2.9 - Example"} }
-        let(:subscope_name_2) { {"en" => "1.1 - Example 2"} }
-        let(:subscope_name_3) { {"en" => "2.7 - Example 3"} }
-        let(:subscope_name_4) { {"en" => "0.1 - Example 4"} }
+        let(:subscope_name_1) { { "en" => "2.9 - Example" } }
+        let(:subscope_name_2) { { "en" => "1.1 - Example 2" } }
+        let(:subscope_name_3) { { "en" => "2.7 - Example 3" } }
+        let(:subscope_name_4) { { "en" => "0.1 - Example 4" } }
 
         before do
           create(:subscope, name: subscope_name_1, parent: scope)
