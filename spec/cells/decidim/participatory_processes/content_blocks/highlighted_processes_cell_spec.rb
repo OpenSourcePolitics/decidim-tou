@@ -25,10 +25,10 @@ describe Decidim::ParticipatoryProcesses::ContentBlocks::HighlightedProcessesCel
   end
 
   context "when there is linked assemblies" do
-    let!(:published_assembly) { create(:assembly, :published, organization: organization) }
-    let!(:unpublished_assembly) { create(:assembly, :unpublished, organization: organization) }
-    let!(:private_assembly) { create(:assembly, :published, :private, :opaque, organization: organization) }
-    let!(:transparent_assembly) { create(:assembly, :published, :private, :transparent, organization: organization) }
+    let!(:published_assembly) { create(:assembly, :published, title: { "en" => "2.1 Example title" }, organization: organization) }
+    let!(:unpublished_assembly) { create(:assembly, :unpublished, title: { "en" => "1.1 Example title" }, organization: organization) }
+    let!(:private_assembly) { create(:assembly, :published, :private, :opaque, title: { "en" => "1.2 Example title" }, organization: organization) }
+    let!(:transparent_assembly) { create(:assembly, :published, :private, :transparent, title: { "en" => "2.2 Example title" }, organization: organization) }
 
     before do
       published_assembly.link_participatory_space_resources(participatory_process, "included_participatory_processes")
@@ -44,6 +44,13 @@ describe Decidim::ParticipatoryProcesses::ContentBlocks::HighlightedProcessesCel
         within "#highlighted-processes" do
           expect(subject).to have_selector(".linked_assemblies")
         end
+      end
+
+      it "sorts linked assemblies" do
+        expect(subject.find(".linked_assemblies a:first-child").text.strip).to eq("1.1 Example title")
+        expect(subject.find(".linked_assemblies a:nth-child(2)").text.strip).to eq("1.2 Example title")
+        expect(subject.find(".linked_assemblies a:nth-child(3)").text.strip).to eq("2.1 Example title")
+        expect(subject.find(".linked_assemblies a:last-child").text.strip).to eq("2.2 Example title")
       end
     end
 
