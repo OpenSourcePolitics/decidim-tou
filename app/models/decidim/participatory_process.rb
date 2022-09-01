@@ -182,7 +182,9 @@ module Decidim
     def linked_assemblies
       return unless display_linked_assemblies?
 
-      linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
+      linked_participatory_space_resources(:assembly, "included_participatory_processes")
+        .public_spaces
+        .sort_by { |item| item.title[I18n.locale.to_s] }
     end
 
     # Allow ransacker to search for a key in a hstore column (`title`.`en`)

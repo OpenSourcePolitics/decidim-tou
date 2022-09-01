@@ -139,10 +139,10 @@ module Decidim
 
       describe "#linked_assemblies" do
         context "when there is linked assemblies to PP" do
-          let!(:published_assembly) { create(:assembly, :published, organization: organization) }
+          let!(:published_assembly) { create(:assembly, :published, title: { "en" => "2.1 Example title" }, organization: organization) }
+          let!(:transparent_assembly) { create(:assembly, :published, :private, :transparent, title: { "en" => "1.2 Example title" }, organization: organization) }
           let!(:unpublished_assembly) { create(:assembly, :unpublished, organization: organization) }
           let!(:private_assembly) { create(:assembly, :published, :private, :opaque, organization: organization) }
-          let!(:transparent_assembly) { create(:assembly, :published, :private, :transparent, organization: organization) }
 
           before do
             published_assembly.link_participatory_space_resources(subject, "included_participatory_processes")
@@ -165,6 +165,10 @@ module Decidim
               expect(subject.linked_assemblies).to include(transparent_assembly)
               expect(subject.linked_assemblies).not_to include(unpublished_assembly)
               expect(subject.linked_assemblies).not_to include(private_assembly)
+            end
+
+            it "sorts published linked assemblies" do
+              expect(subject.linked_assemblies.map(&:id)).to eq([transparent_assembly.id, published_assembly.id])
             end
           end
         end
