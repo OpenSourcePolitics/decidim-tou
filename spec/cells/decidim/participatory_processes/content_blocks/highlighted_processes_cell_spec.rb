@@ -26,12 +26,14 @@ describe Decidim::ParticipatoryProcesses::ContentBlocks::HighlightedProcessesCel
 
   context "when there is linked assemblies" do
     let!(:published_assembly) { create(:assembly, :published, title: { "en" => "2.1 Example title" }, organization: organization) }
-    let!(:unpublished_assembly) { create(:assembly, :unpublished, title: { "en" => "1.1 Example title" }, organization: organization) }
-    let!(:private_assembly) { create(:assembly, :published, :private, :opaque, title: { "en" => "1.2 Example title" }, organization: organization) }
+    let!(:published_assembly_2) { create(:assembly, :published, title: { "en" => "1.3 Example title" }, organization: organization) }
+    let!(:unpublished_assembly) { create(:assembly, :unpublished, organization: organization) }
+    let!(:private_assembly) { create(:assembly, :published, :private, :opaque, organization: organization) }
     let!(:transparent_assembly) { create(:assembly, :published, :private, :transparent, title: { "en" => "2.2 Example title" }, organization: organization) }
 
     before do
       published_assembly.link_participatory_space_resources(participatory_process, "included_participatory_processes")
+      published_assembly_2.link_participatory_space_resources(participatory_process, "included_participatory_processes")
       unpublished_assembly.link_participatory_space_resources(participatory_process, "included_participatory_processes")
       private_assembly.link_participatory_space_resources(participatory_process, "included_participatory_processes")
       transparent_assembly.link_participatory_space_resources(participatory_process, "included_participatory_processes")
@@ -46,11 +48,10 @@ describe Decidim::ParticipatoryProcesses::ContentBlocks::HighlightedProcessesCel
         end
       end
 
-      it "sorts linked assemblies" do
-        expect(subject.find(".linked_assemblies a:first-child").text.strip).to eq("1.1 Example title")
-        expect(subject.find(".linked_assemblies a:nth-child(2)").text.strip).to eq("1.2 Example title")
-        expect(subject.find(".linked_assemblies a:nth-child(3)").text.strip).to eq("2.1 Example title")
-        expect(subject.find(".linked_assemblies a:last-child").text.strip).to eq("2.2 Example title")
+      it "sorts published linked assemblies" do
+        expect(subject.find(".linked_assemblies a:first-child").text.strip).to eq("1.3 Example title")
+        expect(subject.find(".linked_assemblies a:nth-child(2)").text.strip).to eq("2.1 Example title")
+        expect(subject.find(".linked_assemblies a:nth-child(3)").text.strip).to eq("2.2 Example title")
       end
     end
 
