@@ -61,7 +61,9 @@ module Decidim
       end
 
       def linked_assemblies
-        first_participatory_process.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
+        first_participatory_process.linked_participatory_space_resources(:assembly, "included_participatory_processes")
+                                   .public_spaces
+                                   .sort_by { |item| item.title[I18n.locale.to_s] }
       end
     end
   end
