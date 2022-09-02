@@ -123,7 +123,7 @@ module Decidim
       return if scope.scope_type && scope.scope_type == current_participatory_space.try(:scope_type_max_depth)
       return unless scope.children.any?
 
-      scope.children.includes(:scope_type, :children).sort_by { |subscope| translated_attribute(subscope.name)}.flat_map do |child|
+      scope.children.includes(:scope_type, :children).sort_by { |subscope| translated_attribute(subscope.name) }.flat_map do |child|
         TreeNode.new(
           TreePoint.new(child.id.to_s, translated_attribute(child.name, current_participatory_space.organization)),
           scope_children_to_tree(child)
