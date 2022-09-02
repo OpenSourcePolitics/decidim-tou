@@ -68,6 +68,11 @@ fr:
             document:
               invalid_document_type: 'Type de document invalide. Les formats acceptés sont: %{valid_mime_types}'
   decidim:
+    account:
+      show:
+        available_locales_helper: Choisissez la langue que vous souhaitez utiliser pour naviguer et recevoir des notifications dans %{organization_name}
+        change_password: Modifier votre mot de passe
+        update_account: Mettre à jour
     admin:
       actions:
         activate: Activer
@@ -454,6 +459,7 @@ fr:
             cta_text_help: Si non défini, le bouton ne sera pas affiché.
         participatory_processes:
           form:
+            address_help: Si vous entrez une adresse dans ce champ, la concertation sera affichée sur la carte interactive en page d'accueil (si celle-ci est paramétrée).
             announcement_help: Le texte saisi ici sera affiché juste en dessous des informations de la concertation.
             duration: Durée
             emitter: Organisateur
@@ -588,6 +594,13 @@ fr:
               title: Titre
               url: URL
               username: Pseudo
+      application_helper:
+        filter_category_values:
+          all: Tout
+        filter_scope_values:
+          all: Tout
+    scopes:
+      global: Portée générale
     statistics:
       processes_count: Concertations
     statutory_representative:
@@ -680,5 +693,6 @@ fr:
         account: Mon compte
         conversations: Conversations
         notifications: Notifications
+        profile: Mon profil public
   sms_verification_workflow:
     message: Bonjour, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
