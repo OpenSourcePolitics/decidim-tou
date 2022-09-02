@@ -68,6 +68,11 @@ en:
             document:
               invalid_document_type: 'Invalid document type. Accepted formats are: %{valid_mime_types}'
   decidim:
+    account:
+      show:
+        available_locales_helper: Available locales helper
+        change_password: Change password
+        update_account: Update account
     admin:
       actions:
         activate: Activate
@@ -357,6 +362,7 @@ en:
             cta_text_help: If not set, the button will not be shown.
         participatory_processes:
           form:
+            address_help: Address help
             announcement_help: The text you enter here will be shown to the user right below the process information.
             duration: Duration
             emitter: Emitter
@@ -491,6 +497,13 @@ en:
               title: Title
               url: URL
               username: Username
+      application_helper:
+        filter_category_values:
+          all: All
+        filter_scope_values:
+          all: All
+    scopes:
+      global: Global
     statistics:
       processes_count: Processes
     statutory_representative:
@@ -583,5 +596,6 @@ en:
         account: Account
         conversations: Conversations
         notifications: Notifications
+        profile: My account
   sms_verification_workflow:
     message: Message
