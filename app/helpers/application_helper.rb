@@ -29,6 +29,8 @@ module ApplicationHelper
   end
 
   def linked_assemblies_for(process)
-    process.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
+    process.linked_participatory_space_resources(:assembly, "included_participatory_processes")
+           .public_spaces
+           .sort_by { |item| item.title[I18n.locale.to_s] }
   end
 end
