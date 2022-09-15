@@ -74,6 +74,27 @@ module Decidim
       end
     end
 
+    describe "#filter_scopes_values_from_parent" do
+      let!(:participatory_space) { create(:participatory_process, organization: organization, scopes_enabled: true, scope: scope) }
+      let!(:scope) { create(:scope, name: { fr: "Quartiers de Toulouse" }, organization: organization) }
+      let!(:scope_1) { create(:scope, name: { fr: "4.1 - Lapujade / Bonnefoy / Périole" }, organization: organization, parent_id: scope.id) }
+      let!(:scope_2) { create(:scope, name: { fr: "1.3\t- Les Chalets / Bayard / Belfort" }, organization: organization, parent_id: scope.id) }
+      let!(:scope_3) { create(:scope, name: { fr: "1.2\t- Amidonniers / Compans-Caffarelli" }, organization: organization, parent_id: scope.id) }
+      let!(:scope_4) { create(:scope, name: { fr: "3.2 - Sept-Deniers" }, organization: organization, parent_id: scope.id) }
+      let!(:scope_5) { create(:scope, name: { fr: "1.1\t- Capitole / Arnaud Bernard / Carmes" }, organization: organization, parent_id: scope.id) }
+      let!(:scope_6) { create(:scope, name: { fr: "Hors Toulouse" }, organization: organization, parent_id: scope.id) }
+
+      it "returns sorted children scopes" do
+        expectation = helper.filter_scopes_values_from_parent(participatory_space.scope)
+
+        expect(expectation.node[0].leaf.label).to eq(scope_5.name["fr"])
+        expect(expectation.node[1].leaf.label).to eq(scope_3.name["fr"])
+        expect(expectation.node[2].leaf.label).to eq(scope_2.name["fr"])
+        expect(expectation.node[3].leaf.label).to eq(scope_4.name["fr"])
+        expect(expectation.node[4].leaf.label).to eq(scope_1.name["fr"])
+        expect(expectation.node[5].leaf.label).to eq(scope_6.name["fr"])
+      end
+    end
     describe "#scope_children_to_tree" do
       let!(:participatory_space) { create(:participatory_process, organization: organization, scopes_enabled: true, scope: scope) }
       let!(:scope) { create(:scope, name: { fr: "0. Scope" }, organization: organization) }
