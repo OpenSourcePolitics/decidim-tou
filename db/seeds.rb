@@ -17,21 +17,28 @@ Decidim.seed!
 
 organization = Decidim::Organization.first
 scope_type = Decidim::ScopeType.create!(organization: organization,
-                           name: {"fr" => "Territoire"},
-                           plural: {"fr" => "Territoires"}
-)
+                                        name: { "fr" => "Territoire" },
+                                        plural: { "fr" => "Territoires" })
 
-["1.1 - Capitole / Arnaud Bernard / Carmes", "1.2 - Amidonniers / Compans-Caffarelli", "1.3 - Les Chalets / Bayard / Belfort / Saint Aubin / Dupuy", "2.1 - Saint-Cyprien", "2.2 - Croix-de-Pierre / Route d'Espagne", "3.1 - Minimes / Barrière de Paris / Ponts-Jumeaux", "3.2 - Sept-Deniers / Ginestous / Lalande", "4.1 - Lapujade / Bonnefoy / Périole / Marengo / La Colonne", "4.2 - Jolimont / Soupetard / Roseraie / Gloire / Gramont / Amouroux", "Hors Toulouse"].each do |scope|
-  if scope == "Hors Toulouse"
-    code = "HS"
-  else
-    code = scope.split('-').first&.strip
-  end
+["1.1 - Capitole / Arnaud Bernard / Carmes",
+ "1.2 - Amidonniers / Compans-Caffarelli",
+ "1.3 - Les Chalets / Bayard / Belfort / Saint Aubin / Dupuy",
+ "2.1 - Saint-Cyprien",
+ "2.2 - Croix-de-Pierre / Route d'Espagne",
+ "3.1 - Minimes / Barrière de Paris / Ponts-Jumeaux",
+ "3.2 - Sept-Deniers / Ginestous / Lalande",
+ "4.1 - Lapujade / Bonnefoy / Périole / Marengo / La Colonne",
+ "4.2 - Jolimont / Soupetard / Roseraie / Gloire / Gramont / Amouroux",
+ "Hors Toulouse"].each do |scope|
+  code = if scope == "Hors Toulouse"
+           "HS"
+         else
+           scope.split("-").first&.strip
+         end
 
   Decidim::Scope.create!(organization: organization,
                          name: { "fr" => scope },
                          scope_type: scope_type,
                          parent_id: nil,
-                         code: code
-  )
+                         code: code)
 end

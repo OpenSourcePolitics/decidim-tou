@@ -95,6 +95,7 @@ module Decidim
         expect(expectation.node[5].leaf.label).to eq(scope_6.name["fr"])
       end
     end
+
     describe "#scope_children_to_tree" do
       let!(:participatory_space) { create(:participatory_process, organization: organization, scopes_enabled: true, scope: scope) }
       let!(:scope) { create(:scope, name: { fr: "0. Scope" }, organization: organization) }
