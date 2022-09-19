@@ -91,17 +91,18 @@ module Decidim
     end
 
     def filter_scopes_values_from_parent(scope)
-      scopes_values = []
-      scope.children.each do |child|
+      scopes_values = scope.children.map do |child|
         unless child.children
-          scopes_values << TreePoint.new(child.id.to_s, translated_attribute(child.name, current_participatory_space.organization))
+          TreePoint.new(child.id.to_s, translated_attribute(child.name, current_participatory_space.organization))
           next
         end
-        scopes_values << TreeNode.new(
+
+        TreeNode.new(
           TreePoint.new(child.id.to_s, translated_attribute(child.name, current_participatory_space.organization)),
           scope_children_to_tree(child)
         )
       end
+      scopes_values.sort_by! { |tree_node| tree_node.leaf.label }
 
       filter_tree_from(scopes_values)
     end
