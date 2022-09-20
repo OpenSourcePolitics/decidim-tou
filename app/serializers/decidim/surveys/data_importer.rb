@@ -80,8 +80,6 @@ module Decidim
         reversed
       end
 
-      # rubocop:disable Metrics/PerceivedComplexity
-      # rubocop:disable Metrics/CyclomaticComplexity
       def reverse_questionnaire(questionnaire)
         hash = {}
         hash[:id] = questionnaire["ID"]
@@ -127,9 +125,6 @@ module Decidim
           obj
         end
       end
-      # rubocop:enable Metrics/PerceivedComplexity
-      # rubocop:enable Metrics/CyclomaticComplexity
-
     end
   end
 end

@@ -28,9 +28,9 @@ module Decidim::Surveys
         end
         questionnaire_attrs[:questions] = questions
         [{
-           id: rand(99_999),
-           questionnaire: questionnaire_attrs
-         }]
+          id: rand(99_999),
+          questionnaire: questionnaire_attrs
+        }]
       end
 
       describe "#import" do
@@ -94,9 +94,8 @@ module Decidim::Surveys
                           "fr" => "Végétalisation"
                         },
                         "Texte libre" => false
-                      },
-                    ],
-                  }
+                      }
+                    ] }
                 ]
               },
               "survey_id" => 136
@@ -132,15 +131,15 @@ module Decidim::Surveys
             expect(subject[:questionnaire][:questions].first).to include(updated_at: "2022-08-30T14:17:35.069Z")
             expect(subject[:questionnaire][:questions].first).to include(max_characters: 25)
             expect(subject[:questionnaire][:questions].first).to include(answer_options: [
-              {
-                id: 1490,
-                decidim_question_id: 1214,
-                body: {
-                  "fr" => "Végétalisation"
-                },
-                free_text: false
-              },
-            ])
+                                                                           {
+                                                                             id: 1490,
+                                                                             decidim_question_id: 1214,
+                                                                             body: {
+                                                                               "fr" => "Végétalisation"
+                                                                             },
+                                                                             free_text: false
+                                                                           }
+                                                                         ])
           end
         end
       end
