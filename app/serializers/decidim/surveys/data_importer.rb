@@ -20,7 +20,11 @@ module Decidim
         ActiveRecord::Base.transaction do
           # we duplicate so that we can delete without affecting the received Hash
           serialized.dup.collect do |serialized_survey|
-            reverse_translated = reverse_t(serialized_survey)
+            reverse_translated = if serialized_survey.keys.first.is_a?(Symbol)
+                                   serialized_survey
+                                 else
+                                   reverse_t(serialized_survey)
+                                 end
 
             import_survey(reverse_translated, user)
           end
@@ -80,17 +84,17 @@ module Decidim
       # rubocop:disable Metrics/CyclomaticComplexity
       def reverse_questionnaire(questionnaire)
         hash = {}
-        hash[:id] = questionnaire["ID"] if questionnaire["ID"].present?
-        hash[:title] = questionnaire["Titre"] if questionnaire["Titre"].present?
-        hash[:description] = questionnaire["Description"] if questionnaire["Description"].present?
-        hash[:tos] = questionnaire["Conditions d'utilisation"] if questionnaire["Conditions d'utilisation"].present?
-        hash[:questionnaire_for_type] = questionnaire["Type du questionnaire"] if questionnaire["Type du questionnaire"].present?
-        hash[:questionnaire_for_id] = questionnaire["ID du questionnaire"] if questionnaire["ID du questionnaire"].present?
-        hash[:published_at] = questionnaire["Date de publication"] if questionnaire["Date de publication"].present?
-        hash[:created_at] = questionnaire["Date de création"] if questionnaire["Date de création"].present?
-        hash[:updated_at] = questionnaire["Date de mise à jour"] if questionnaire["Date de mise à jour"].present?
-        hash[:salt] = questionnaire["Hash"] if questionnaire["Hash"].present?
-        hash[:questions] = reverse_questions(questionnaire["Questions"]) if questionnaire["Questions"].present?
+        hash[:id] = questionnaire["ID"]
+        hash[:title] = questionnaire["Titre"]
+        hash[:description] = questionnaire["Description"]
+        hash[:tos] = questionnaire["Conditions d'utilisation"]
+        hash[:questionnaire_for_type] = questionnaire["Type du questionnaire"]
+        hash[:questionnaire_for_id] = questionnaire["ID du questionnaire"]
+        hash[:published_at] = questionnaire["Date de publication"]
+        hash[:created_at] = questionnaire["Date de création"]
+        hash[:updated_at] = questionnaire["Date de mise à jour"]
+        hash[:salt] = questionnaire["Hash"]
+        hash[:questions] = reverse_questions(questionnaire["Questions"])
 
         hash
       end
@@ -98,15 +102,17 @@ module Decidim
       def reverse_questions(questions)
         questions.map do |hash|
           obj = {}
-          obj[:id] = hash["ID"] if hash["ID"].present?
-          obj[:position] = hash["Position"] if hash["Position"].present?
-          obj[:question_type] = hash["Type de question"] if hash["Type de question"].present?
-          obj[:mandatory] = hash["Obligatoire"] if hash["Obligatoire"].present?
-          obj[:description] = hash["Description"] if hash["Description"].present?
-          obj[:max_choices] = hash["Choix maximum"] if hash["Choix maximum"].present?
-          obj[:max_characters] = hash["Caractères maximum"] if hash["Caractères maximum"].present?
-          obj[:created_at] = hash["Date de création"] if hash["Date de création"].present?
-          obj[:updated_at] = hash["Date de mise à jour"] if hash["Date de mise à jour"].present?
+          obj[:id] = hash["ID"]
+          obj[:questionnaire_for_id] = hash["ID du questionnaire"]
+          obj[:body] = hash["Contenu"]
+          obj[:position] = hash["Position"]
+          obj[:question_type] = hash["Type de question"]
+          obj[:mandatory] = hash["Obligatoire"]
+          obj[:description] = hash["Description"]
+          obj[:max_choices] = hash["Choix maximum"]
+          obj[:max_characters] = hash["Caractères maximum"]
+          obj[:created_at] = hash["Date de création"]
+          obj[:updated_at] = hash["Date de mise à jour"]
           obj[:answer_options] = reverse_answer_options(hash["Options de réponse"])
           obj
         end
@@ -115,10 +121,10 @@ module Decidim
       def reverse_answer_options(answers)
         answers.map do |hash|
           obj = {}
-          obj[:id] = hash["ID"] if hash["ID"].present?
-          obj[:decidim_question_id] = hash["ID de la question"] if hash["ID de la question"].present?
-          obj[:body] = hash["Contenu"] if hash["Contenu"].present?
-          obj[:free_text] = hash["Texte libre"] if hash["Texte libre"].present?
+          obj[:id] = hash["ID"]
+          obj[:decidim_question_id] = hash["ID de la question"]
+          obj[:body] = hash["Contenu"]
+          obj[:free_text] = hash["Texte libre"]
           obj
         end
       end
