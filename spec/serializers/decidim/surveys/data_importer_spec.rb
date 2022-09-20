@@ -77,7 +77,6 @@ module Decidim::Surveys
                 "Hash" => "aaaabbbbbb",
                 "Questions" => [
                   { "ID" => 1214,
-                    "ID du questionnaire" => 261,
                     "Position" => 0,
                     "Type de question" => "short_answer",
                     "Obligatoire" => true,
@@ -123,7 +122,6 @@ module Decidim::Surveys
             expect(subject[:questionnaire]).to include(salt: "aaaabbbbbb")
             expect(subject[:questionnaire]).to include(:questions)
             expect(subject[:questionnaire][:questions].first).to include(id: 1214)
-            expect(subject[:questionnaire][:questions].first).to include(questionnaire_for_id: 261)
             expect(subject[:questionnaire][:questions].first).to include(position: 0)
             expect(subject[:questionnaire][:questions].first).to include(question_type: "short_answer")
             expect(subject[:questionnaire][:questions].first).to include(mandatory: true)

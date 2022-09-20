@@ -103,7 +103,6 @@ module Decidim
         questions.map do |hash|
           obj = {}
           obj[:id] = hash["ID"]
-          obj[:questionnaire_for_id] = hash["ID du questionnaire"]
           obj[:body] = hash["Contenu"]
           obj[:position] = hash["Position"]
           obj[:question_type] = hash["Type de question"]
