@@ -1004,10 +1004,10 @@
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
 "@decidim/browserslist-config@file:packages/browserslist-config":
-  version "0.26.2"
+  version "0.26.1"
 
 "@decidim/core@file:packages/core":
-  version "0.26.2"
+  version "0.26.1"
   dependencies:
     "@joeattardi/emoji-button" "^4.6.0"
     "@zeitiger/appendaround" "^1.0.0"
@@ -1060,22 +1060,22 @@
     webpack-cli "^4.2.0"
 
 "@decidim/dev@file:packages/dev":
-  version "0.26.2"
+  version "0.26.1"
   dependencies:
     axe-core "^4.1.4"
 
 "@decidim/elections@file:packages/elections":
-  version "0.26.2"
+  version "0.26.1"
   dependencies:
     "@decidim/decidim-bulletin_board" "0.22.3"
     "@decidim/voting_schemes-dummy" "0.22.3"
     "@decidim/voting_schemes-electionguard" "0.22.3"
 
 "@decidim/eslint-config@file:packages/eslint-config":
-  version "0.26.2"
+  version "0.26.1"
 
 "@decidim/stylelint-config@file:packages/stylelint-config":
-  version "0.26.2"
+  version "0.26.1"
 
 "@decidim/voting_schemes-dummy@0.22.3":
   version "0.22.3"
@@ -1088,7 +1088,7 @@
   integrity sha512-RZn/1GO5PM6a2SuN8h/SoS4EeLYnHPWw6/tl2M26ms/Xzf1ewJIgBSiByxk4qHoqvE892rccH4+G56h6iVrIqg==
 
 "@decidim/webpacker@file:packages/webpacker":
-  version "0.26.2"
+  version "0.26.1"
   dependencies:
     "@babel/core" "^7.13.13"
     "@babel/eslint-parser" "^7.13.14"
