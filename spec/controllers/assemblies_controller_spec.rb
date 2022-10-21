@@ -114,7 +114,7 @@ module Decidim
           controller.instance_variable_set(:@current_participatory_space, current_participatory_space)
         end
 
-        it "includes only participatory processes related to the assembly, ordered by end_date: :desc, start_date: :asc" do
+        it "includes only participatory processes related to the assembly, first those which are active by end_date :asc, then inactive ones by end_date :desc" do
           sorted_participatory_processes = participatory_processes.select(&:active?).sort_by(&:end_date)
           sorted_participatory_processes += participatory_processes.select(&:past?).sort_by(&:end_date).reverse
 
