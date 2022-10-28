@@ -18,6 +18,7 @@ describe "rake decidim:repare:nickname", type: :task do
   let(:invalid_user_4) { build(:user, nickname: "foo.bar.foo", organization: organization) }
   let(:invalid_user_5) { build(:user, nickname: ".foobar.foo_bar.", organization: organization) }
   let(:invalid_user_6) { build(:user, nickname: "foobar foo_bar", organization: organization) }
+  let(:invalid_user_7) { build(:user, nickname: "", organization: organization) }
 
   context "when executing task" do
     before do
@@ -27,6 +28,7 @@ describe "rake decidim:repare:nickname", type: :task do
       invalid_user_4.save(validate: false)
       invalid_user_5.save(validate: false)
       invalid_user_6.save(validate: false)
+      invalid_user_7.save(validate: false)
     end
 
     it "exits without error" do
@@ -71,6 +73,12 @@ describe "rake decidim:repare:nickname", type: :task do
         expect(invalid_user_5.reload.valid?).to eq(true)
         expect(invalid_user_6.reload.valid?).to eq(true)
       end
+
+      it "doesn't updates empty nicknames" do
+        task_cmd
+
+        expect(invalid_user_7.reload.nickname).to eq("")
+      end
     end
 
     context "when env var is set to default (false)" do
@@ -83,6 +91,7 @@ describe "rake decidim:repare:nickname", type: :task do
         expect(invalid_user_4.reload.nickname).to eq("foo.bar.foo")
         expect(invalid_user_5.reload.nickname).to eq(".foobar.foo_bar.")
         expect(invalid_user_6.reload.nickname).to eq("foobar foo_bar")
+        expect(invalid_user_7.reload.nickname).to eq("")
       end
     end
   end

@@ -7,6 +7,7 @@ namespace :decidim do
       logger = Logger.new("log/repare-nicknames-#{Time.zone.now.strftime("%Y-%m-%d-%H-%M-%S")}.log")
       logger.info("[data:repare:nickname] :: Checking all nicknames...")
       invalid_users = Decidim::User.where.not("nickname ~* ?", "^[\\w-]+$")
+                                   .where.not(nickname: "")
 
       if invalid_users.blank?
         logger.info("[data:repare:nickname] :: All nicknames seems to be valid")
