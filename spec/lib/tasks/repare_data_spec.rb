@@ -23,12 +23,10 @@ describe "rake decidim:repare:nickname", type: :task do
       invalid_user_5.save(validate: false)
     end
 
-    it "exits with 0 code" do
+    it "exits without error" do
       allow($stdin).to receive(:gets).and_return("y")
 
-      expect { Rake::Task[task_cmd].invoke }.to raise_error(SystemExit) do |error|
-        expect(error.status).to eq(0)
-      end
+      expect { Rake::Task[task_cmd].invoke }.not_to raise_error
     end
 
     context "when user accepts update" do

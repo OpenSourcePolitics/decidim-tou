@@ -11,7 +11,6 @@ namespace :decidim do
       if invalid_users.blank?
         logger.info("[data:repare:nickname] :: All nicknames seems to be valid")
         logger.info("[data:repare:nickname] :: Operation terminated")
-        exit 0
       end
 
       logger.info("[data:repare:nickname] :: Found #{invalid_users.count} invalids nicknames")
@@ -46,8 +45,6 @@ namespace :decidim do
         logger.info("[data:repare:nickname] :: Operation terminated")
       end
       logger.close
-
-      exit 0
     end
   end
 end
