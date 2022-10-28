@@ -25,7 +25,7 @@ namespace :decidim do
           chars << char if char.present?
         end
 
-        new_nickname = chars.join.downcase
+        new_nickname = deduplicate_new_nickname(user, chars.join.downcase)
         logger.info("[data:repare:nickname] :: User (##{user.id}) renaming nickname from '#{user.nickname}' to '#{new_nickname}'")
         user.nickname = new_nickname
 
@@ -46,6 +46,15 @@ namespace :decidim do
       end
       logger.close
     end
+  end
+end
+
+def deduplicate_new_nickname(user, new_nickname)
+  user.nickname = new_nickname
+  if user.valid?
+    new_nickname
+  else
+    "#{new_nickname}-#{user.id}"
   end
 end
 

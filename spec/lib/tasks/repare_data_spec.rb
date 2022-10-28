@@ -17,6 +17,7 @@ describe "rake decidim:repare:nickname", type: :task do
   let(:invalid_user_3) { build(:user, nickname: "Foo-Bar_fooo$", organization: organization) }
   let(:invalid_user_4) { build(:user, nickname: "foo.bar.foo", organization: organization) }
   let(:invalid_user_5) { build(:user, nickname: ".foobar.foo_bar.", organization: organization) }
+  let(:invalid_user_6) { build(:user, nickname: "foobar foo_bar", organization: organization) }
 
   context "when executing task" do
     before do
@@ -25,6 +26,7 @@ describe "rake decidim:repare:nickname", type: :task do
       invalid_user_3.save(validate: false)
       invalid_user_4.save(validate: false)
       invalid_user_5.save(validate: false)
+      invalid_user_6.save(validate: false)
     end
 
     it "exits without error" do
@@ -49,6 +51,26 @@ describe "rake decidim:repare:nickname", type: :task do
         expect(invalid_user_4.reload.nickname).to eq("foobarfoo")
         expect(invalid_user_5.reload.nickname).to eq("foobarfoo_bar")
       end
+
+      context "when nickname is already taken" do
+        it "adds a prefix to nicknames" do
+          task_cmd
+
+          expect(invalid_user_5.reload.nickname).to eq("foobarfoo_bar")
+          expect(invalid_user_6.reload.nickname).to eq("foobarfoo_bar-#{invalid_user_6.id}")
+        end
+      end
+
+      it "updates invalid nicknames to valid nicknames" do
+        task_cmd
+
+        expect(invalid_user_1.reload.valid?).to eq(true)
+        expect(invalid_user_2.reload.valid?).to eq(true)
+        expect(invalid_user_3.reload.valid?).to eq(true)
+        expect(invalid_user_4.reload.valid?).to eq(true)
+        expect(invalid_user_5.reload.valid?).to eq(true)
+        expect(invalid_user_6.reload.valid?).to eq(true)
+      end
     end
 
     context "when env var is set to default (false)" do
@@ -60,6 +82,7 @@ describe "rake decidim:repare:nickname", type: :task do
         expect(invalid_user_3.reload.nickname).to eq("Foo-Bar_fooo$")
         expect(invalid_user_4.reload.nickname).to eq("foo.bar.foo")
         expect(invalid_user_5.reload.nickname).to eq(".foobar.foo_bar.")
+        expect(invalid_user_6.reload.nickname).to eq("foobar foo_bar")
       end
     end
   end
