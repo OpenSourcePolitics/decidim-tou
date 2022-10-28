@@ -4,7 +4,11 @@ require "spec_helper"
 
 describe "rake decidim:repare:nickname", type: :task do
   let!(:organization) { create(:organization) }
-  let(:task_cmd) { :"decidim:repare:nickname" }
+  let(:task_cmd) do
+    Rails.application.load_tasks
+    Rake::Task[:"decidim:repare:nickname"].reenable
+    Rake::Task[:"decidim:repare:nickname"].invoke
+  end
 
   let!(:user) { create(:user, organization: organization) }
   let!(:valid_user_2) { create(:user, nickname: "Azerty_Uiop123", organization: organization) }
@@ -24,16 +28,20 @@ describe "rake decidim:repare:nickname", type: :task do
     end
 
     it "exits without error" do
-      allow($stdin).to receive(:gets).and_return("y")
-
-      expect { Rake::Task[task_cmd].invoke }.not_to raise_error
+      expect { task_cmd }.not_to raise_error
     end
 
-    context "when user accepts update" do
-      it "updates invalid nicknames" do
-        allow($stdin).to receive(:gets).and_return("y")
+    context "when env var is set to true" do
+      before do
+        ENV["FORCE_NICKNAME_UPDATE"] = "true"
+      end
 
-        expect { Rake::Task[task_cmd].invoke }.to change(invalid_user_1, :nickname).from("Foo bar").to("foobar")
+      after do
+        ENV["FORCE_NICKNAME_UPDATE"] = nil
+      end
+
+      it "updates invalid nicknames" do
+        task_cmd
 
         invalid_user_1.reload
         expect(invalid_user_1.nickname).to eq("foobar")
@@ -46,11 +54,9 @@ describe "rake decidim:repare:nickname", type: :task do
       end
     end
 
-    context "when user refuses update" do
+    context "when env var is set to default (false)" do
       it "updates invalid nicknames" do
-        allow($stdin).to receive(:gets).and_return("n")
-
-        expect { Rake::Task[task_cmd].invoke }.not_to change(invalid_user_1, :nickname)
+        task_cmd
 
         invalid_user_1.reload
         expect(invalid_user_1.nickname).to eq("Foo bar")

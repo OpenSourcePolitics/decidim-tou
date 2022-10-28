@@ -4,7 +4,7 @@ namespace :decidim do
   namespace :repare do
     desc "Check for nicknames that doesn't respect valid format and update them"
     task nickname: :environment do
-      logger = Logger.new($stdout)
+      logger = Logger.new("log/repare-nickanmes-#{Time.zone.now.strftime("%Y-%m-%d-%H-%M-%S")}.log")
       logger.info("[data:repare:nickname] :: Checking all nicknames...")
       invalid_users = Decidim::User.where.not("nickname ~* ?", "^[\\w-]+$")
 
@@ -32,7 +32,7 @@ namespace :decidim do
         updated_users << user
       end
 
-      if ask_for_permission(updated_users.count)
+      if ENV["FORCE_NICKNAME_UPDATE"].present?
         logger.info("[data:repare:nickname] :: Updating users...")
         updated_users.each do |user|
           user.save!
@@ -47,13 +47,6 @@ namespace :decidim do
       logger.close
     end
   end
-end
-
-def ask_for_permission(users_count)
-  $stdout.puts "Do you want to update these #{users_count} users ? [y/n]"
-  answer = $stdin.gets.chomp
-
-  %w(y Y yes YES).include?(answer)
 end
 
 def ascii_to_valid_char(id)
