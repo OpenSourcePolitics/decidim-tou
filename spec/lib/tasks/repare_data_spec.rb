@@ -19,16 +19,14 @@ describe "rake decidim:repare:nickname", type: :task do
   let(:invalid_user_5) { build(:user, nickname: ".foobar.foo_bar.", organization: organization) }
   let(:invalid_user_6) { build(:user, nickname: "foobar foo_bar", organization: organization) }
   let(:invalid_user_7) { build(:user, nickname: "", organization: organization) }
+  let(:invalid_user_8) { build(:user, nickname: "François", organization: organization) }
+  let(:invalid_user_9) { build(:user, nickname: "Solèné", organization: organization) }
 
   context "when executing task" do
     before do
-      invalid_user_1.save(validate: false)
-      invalid_user_2.save(validate: false)
-      invalid_user_3.save(validate: false)
-      invalid_user_4.save(validate: false)
-      invalid_user_5.save(validate: false)
-      invalid_user_6.save(validate: false)
-      invalid_user_7.save(validate: false)
+      (1..9).each do|i|
+        send("invalid_user_#{i}").save(validate: false)
+      end
     end
 
     it "exits without error" do
@@ -47,11 +45,13 @@ describe "rake decidim:repare:nickname", type: :task do
       it "updates invalid nicknames" do
         task_cmd
 
-        expect(invalid_user_1.reload.nickname).to eq("foobar")
-        expect(invalid_user_2.reload.nickname).to eq("foombar")
-        expect(invalid_user_3.reload.nickname).to eq("foo-bar_fooo")
+        expect(invalid_user_1.reload.nickname).to eq("Foobar")
+        expect(invalid_user_2.reload.nickname).to eq("FooMbar")
+        expect(invalid_user_3.reload.nickname).to eq("Foo-Bar_fooo")
         expect(invalid_user_4.reload.nickname).to eq("foobarfoo")
         expect(invalid_user_5.reload.nickname).to eq("foobarfoo_bar")
+        expect(invalid_user_8.reload.nickname).to eq("Francois")
+        expect(invalid_user_9.reload.nickname).to eq("Solene")
       end
 
       context "when nickname is already taken" do
@@ -82,7 +82,7 @@ describe "rake decidim:repare:nickname", type: :task do
     end
 
     context "when env var is set to default (false)" do
-      it "updates invalid nicknames" do
+      it "doesn't updates invalid nicknames" do
         task_cmd
 
         expect(invalid_user_1.reload.nickname).to eq("Foo bar")
