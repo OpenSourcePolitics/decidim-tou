@@ -53,7 +53,7 @@ describe "rake decidim:repare:nickname", type: :task do
       end
 
       context "when nickname is already taken" do
-        it "adds a prefix to nicknames" do
+        it "adds a suffix to nicknames" do
           task_cmd
 
           expect(invalid_user_5.reload.nickname).to eq("foobarfoo_bar")
