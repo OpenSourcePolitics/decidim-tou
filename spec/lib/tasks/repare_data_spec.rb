@@ -43,14 +43,11 @@ describe "rake decidim:repare:nickname", type: :task do
       it "updates invalid nicknames" do
         task_cmd
 
-        invalid_user_1.reload
-        expect(invalid_user_1.nickname).to eq("foobar")
-        invalid_user_2.reload
-        expect(invalid_user_2.nickname).to eq("foombar")
-        invalid_user_3.reload
-        expect(invalid_user_3.nickname).to eq("foobarfooo")
-        invalid_user_4.reload
-        expect(invalid_user_4.nickname).to eq("foobarfoo")
+        expect(invalid_user_1.reload.nickname).to eq("foobar")
+        expect(invalid_user_2.reload.nickname).to eq("foombar")
+        expect(invalid_user_3.reload.nickname).to eq("foo-bar_fooo")
+        expect(invalid_user_4.reload.nickname).to eq("foobarfoo")
+        expect(invalid_user_5.reload.nickname).to eq("foobarfoo_bar")
       end
     end
 
@@ -58,16 +55,11 @@ describe "rake decidim:repare:nickname", type: :task do
       it "updates invalid nicknames" do
         task_cmd
 
-        invalid_user_1.reload
-        expect(invalid_user_1.nickname).to eq("Foo bar")
-        invalid_user_2.reload
-        expect(invalid_user_2.nickname).to eq("Foo M. bar")
-        invalid_user_3.reload
-        expect(invalid_user_3.nickname).to eq("Foo-Bar_fooo$")
-        invalid_user_4.reload
-        expect(invalid_user_4.nickname).to eq("foo.bar.foo")
-        invalid_user_5.reload
-        expect(invalid_user_5.nickname).to eq(".foobar.foo_bar.")
+        expect(invalid_user_1.reload.nickname).to eq("Foo bar")
+        expect(invalid_user_2.reload.nickname).to eq("Foo M. bar")
+        expect(invalid_user_3.reload.nickname).to eq("Foo-Bar_fooo$")
+        expect(invalid_user_4.reload.nickname).to eq("foo.bar.foo")
+        expect(invalid_user_5.reload.nickname).to eq(".foobar.foo_bar.")
       end
     end
   end
