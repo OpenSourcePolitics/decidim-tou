@@ -1,4 +1,6 @@
-#This is a temporary fix to ignore some HTML/CSS validation issues with the
+# frozen_string_literal: true
+
+# This is a temporary fix to ignore some HTML/CSS validation issues with the
 # Decidim HTML validation process.
 #
 # See: https://github.com/decidim/decidim/pull/10014
