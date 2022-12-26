@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.configuration.to_prepare do
   Decidim.view_hooks.send(:hooks).delete(:upcoming_meeting_for_card)
   Decidim.view_hooks.register(:upcoming_meeting_for_card, priority: Decidim::ViewHooks::LOW_PRIORITY) do |view_context|
