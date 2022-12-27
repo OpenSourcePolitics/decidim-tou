@@ -4,14 +4,13 @@ namespace :decidim do
   namespace :repare do
     desc "Check for nicknames that doesn't respect valid format and update them"
     task nickname: :environment do
-      logger = Logger.new($stdout)
+      logger = Logger.new("log/repare-nicknames-#{Time.zone.now.strftime("%Y-%m-%d-%H-%M-%S")}.log")
       logger.info("[data:repare:nickname] :: Checking all nicknames...")
       invalid_users = Decidim::User.where.not("nickname ~* ?", "^[\\w-]+$")
 
       if invalid_users.blank?
         logger.info("[data:repare:nickname] :: All nicknames seems to be valid")
         logger.info("[data:repare:nickname] :: Operation terminated")
-        exit 0
       end
 
       logger.info("[data:repare:nickname] :: Found #{invalid_users.count} invalids nicknames")
@@ -26,14 +25,14 @@ namespace :decidim do
           chars << char if char.present?
         end
 
-        new_nickname = chars.join.downcase
+        new_nickname = deduplicate_new_nickname(user, chars.join.downcase)
         logger.info("[data:repare:nickname] :: User (##{user.id}) renaming nickname from '#{user.nickname}' to '#{new_nickname}'")
         user.nickname = new_nickname
 
         updated_users << user
       end
 
-      if ask_for_permission(updated_users.count)
+      if ENV["FORCE_NICKNAME_UPDATE"].present?
         logger.info("[data:repare:nickname] :: Updating users...")
         updated_users.each do |user|
           user.save!
@@ -46,17 +45,17 @@ namespace :decidim do
         logger.info("[data:repare:nickname] :: Operation terminated")
       end
       logger.close
-
-      exit 0
     end
   end
 end
 
-def ask_for_permission(users_count)
-  $stdout.puts "Do you want to update these #{users_count} users ? [y/n]"
-  answer = $stdin.gets.chomp
-
-  %w(y Y yes YES).include?(answer)
+def deduplicate_new_nickname(user, new_nickname)
+  user.nickname = new_nickname
+  if user.valid?
+    new_nickname
+  else
+    "#{new_nickname}-#{user.id}"
+  end
 end
 
 def ascii_to_valid_char(id)

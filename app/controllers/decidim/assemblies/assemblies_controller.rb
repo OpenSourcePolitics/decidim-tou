@@ -86,8 +86,12 @@ module Decidim
 
       # OSP : Customization reverse sort by start date
       def assembly_participatory_processes
-        @assembly_participatory_processes ||= @current_participatory_space.linked_participatory_space_resources(:participatory_processes, "included_participatory_processes")
-                                                                          .order("start_date DESC")
+        assembly_participatory_processes = @current_participatory_space.linked_participatory_space_resources(:participatory_processes, "included_participatory_processes")
+
+        sorted_by_end_date = assembly_participatory_processes.active_spaces.order(end_date: :asc)
+        sorted_by_end_date += assembly_participatory_processes.past_spaces.order(end_date: :desc)
+
+        @assembly_participatory_processes ||= sorted_by_end_date
       end
 
       def current_assemblies_settings
