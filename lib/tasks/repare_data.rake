@@ -7,6 +7,7 @@ namespace :decidim do
       logger = Logger.new("log/repare-nicknames-#{Time.zone.now.strftime("%Y-%m-%d-%H-%M-%S")}.log")
       logger.info("[data:repare:nickname] :: Checking all nicknames...")
       invalid_users = Decidim::User.where.not("nickname ~* ?", "^[\\w-]+$")
+                                   .where.not(nickname: "")
 
       if invalid_users.blank?
         logger.info("[data:repare:nickname] :: All nicknames seems to be valid")
@@ -18,14 +19,7 @@ namespace :decidim do
 
       updated_users = []
       invalid_users.each do |user|
-        chars = []
-
-        user.nickname.codepoints.each do |ascii_code|
-          char = ascii_to_valid_char(ascii_code)
-          chars << char if char.present?
-        end
-
-        new_nickname = deduplicate_new_nickname(user, chars.join.downcase)
+        new_nickname = deduplicate_new_nickname(user, sanitize_nickname(user.nickname))
         logger.info("[data:repare:nickname] :: User (##{user.id}) renaming nickname from '#{user.nickname}' to '#{new_nickname}'")
         user.nickname = new_nickname
 
@@ -56,6 +50,21 @@ def deduplicate_new_nickname(user, new_nickname)
   else
     "#{new_nickname}-#{user.id}"
   end
+end
+
+def sanitize_nickname(nickname)
+  chars = []
+
+  nickname.gsub("ç", "c")
+          .gsub("Ç", "C")
+          .gsub("é", "e")
+          .gsub("è", "e")
+          .codepoints.each do |ascii_code|
+    char = ascii_to_valid_char(ascii_code)
+    chars << char if char.present?
+  end
+
+  chars.join
 end
 
 def ascii_to_valid_char(id)
