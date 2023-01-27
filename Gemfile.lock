@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/OpenSourcePolitics/decidim-module-cleaner.git
+  revision: 4023438bf82bd45aa468d1e3486148eb2b79389b
+  branch: release/0.26-stable
+  specs:
+    decidim-cleaner (0.26.4)
+      decidim-core (= 0.26.4)
+
+GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git
   revision: 3710b53715587bd67f0a20911972077bb074cb0d
   branch: release/0.26-stable
@@ -894,6 +902,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   dalli
   decidim!
+  decidim-cleaner!
   decidim-conferences!
   decidim-decidim_awesome (~> 0.8.3)
   decidim-dev!
