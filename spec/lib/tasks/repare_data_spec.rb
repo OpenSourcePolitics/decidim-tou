@@ -24,7 +24,7 @@ describe "rake decidim:repare:nickname", type: :task do
 
   context "when executing task" do
     before do
-      (1..9).each do|i|
+      (1..9).each do |i|
         send("invalid_user_#{i}").save(validate: false)
       end
     end
