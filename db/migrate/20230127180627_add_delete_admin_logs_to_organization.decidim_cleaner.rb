@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_cleaner (originally 20230106105014)
 
 class AddDeleteAdminLogsToOrganization < ActiveRecord::Migration[6.0]

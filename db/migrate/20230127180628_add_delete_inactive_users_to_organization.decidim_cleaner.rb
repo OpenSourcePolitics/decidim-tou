@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_cleaner (originally 20230110150032)
 
 class AddDeleteInactiveUsersToOrganization < ActiveRecord::Migration[6.0]
