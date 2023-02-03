@@ -213,6 +213,10 @@ fr:
         name: Formulaire de vérification d'identité
       osp_authorization_workflow:
         name: Procédure d'autorisation
+    budgets:
+      projects:
+        count:
+          projects_count: Nombre de projets
     devise:
       registrations:
         new:

@@ -213,6 +213,10 @@ en:
         name: Identity Verification Form
       osp_authorization_workflow:
         name: Authorization procedure
+    budgets:
+      projects:
+        count:
+          projects_count: Projects count
     devise:
       registrations:
         new:
