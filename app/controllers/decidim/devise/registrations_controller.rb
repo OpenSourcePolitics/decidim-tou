@@ -68,6 +68,10 @@ module Decidim
       def form_step_attributes(params)
         %(form-step="#{params[:step]}" style="#{form_step_style(params)}").html_safe
       end
+
+      def devise_mapping
+        ::Devise.mappings[:user]
+      end
     end
   end
 end
