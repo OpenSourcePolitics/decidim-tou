@@ -580,6 +580,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.10-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.10-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.13.10-x86_64-linux)
       racc (~> 1.4)
     oauth (1.1.0)
@@ -893,6 +895,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
@@ -920,6 +923,7 @@ DEPENDENCIES
   newrelic_rpm
   passenger
   puma (>= 5.5.1)
+  rack-attack
   rubocop-faker
   sendgrid-ruby
   sentry-rails
