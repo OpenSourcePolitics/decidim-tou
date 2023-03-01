@@ -102,7 +102,7 @@ module Decidim
               :participatory_process,
               :published,
               organization: organization,
-              start_date: Time.zone.now - rand(1..3).days,
+              start_date: Time.zone.now - rand(-2..3).days,
               end_date: Time.zone.now + rand(1..3).days
             )
           end
@@ -114,8 +114,9 @@ module Decidim
           controller.instance_variable_set(:@current_participatory_space, current_participatory_space)
         end
 
-        it "includes only participatory processes related to the assembly, first those which are active by end_date :asc, then inactive ones by end_date :desc" do
+        it "includes only participatory processes related to the assembly, actives one by end_date then upcoming ones by start_date then past ones by end_date reversed" do
           sorted_participatory_processes = participatory_processes.select(&:active?).sort_by(&:end_date)
+          sorted_participatory_processes += participatory_processes.select(&:upcoming?).sort_by(&:start_date)
           sorted_participatory_processes += participatory_processes.select(&:past?).sort_by(&:end_date).reverse
 
           expect(controller.helpers.assembly_participatory_processes.map(&:id)).to eq(sorted_participatory_processes.map(&:id))
