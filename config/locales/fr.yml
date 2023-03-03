@@ -68,6 +68,11 @@ fr:
             document:
               invalid_document_type: 'Type de document invalide. Les formats acceptés sont: %{valid_mime_types}'
   decidim:
+    assemblies:
+      show:
+        active_assembly_participatory_processes: Concertations actives
+        future_assembly_participatory_processes: Concertations futures
+        past_assembly_participatory_processes: Concertations passées
     account:
       show:
         available_locales_helper: Choisissez la langue que vous souhaitez utiliser pour naviguer et recevoir des notifications dans %{organization_name}

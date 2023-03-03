@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "extends/controllers/decidim/meetings/meetings_controller_extends"
+require "extends/helpers/decidim/assemblies/assemblies_helper_extends"
 
 def load_dir(directory)
   files = Dir.glob("lib/extends/#{directory}/*.rb")

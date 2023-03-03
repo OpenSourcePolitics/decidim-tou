@@ -68,6 +68,11 @@ en:
             document:
               invalid_document_type: 'Invalid document type. Accepted formats are: %{valid_mime_types}'
   decidim:
+    assemblies:
+      show:
+        active_assembly_participatory_processes: Active participatory processes
+        future_assembly_participatory_processes: Future participatory processes
+        past_assembly_participatory_processes: Past participatory processes
     account:
       show:
         available_locales_helper: Available locales helper
