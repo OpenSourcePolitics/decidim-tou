@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/OpenSourcePolitics/decidim-module-cleaner.git
-  revision: 2dcd967394032829501e578f84ca84720327130d
-  branch: release/0.26-stable
-  specs:
-    decidim-cleaner (0.0.1)
-      decidim-core (~> 0.26)
-
-GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git
   revision: 0e80a82aa53b06595dbd914964e96c9986aa3c5c
   branch: release/0.26-stable
@@ -385,6 +377,8 @@ GEM
     db-query-matchers (0.10.0)
       activesupport (>= 4.0, < 7)
       rspec (~> 3.0)
+    decidim-cleaner (0.0.1)
+      decidim-core (~> 0.26)
     decidim-decidim_awesome (0.8.3)
       decidim-admin (>= 0.25.0, < 0.27)
       decidim-core (>= 0.25.0, < 0.27)
@@ -905,7 +899,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   dalli
   decidim!
-  decidim-cleaner!
+  decidim-cleaner
   decidim-conferences!
   decidim-decidim_awesome (~> 0.8.3)
   decidim-dev!
@@ -940,4 +934,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.3.14
+   2.4.6
