@@ -46,3 +46,7 @@ de6d804 - fix multipart object tagging (#40) (#41), 2021-12-24
 
 * `lib/tasks/restore_dump.rake`
 705e0ad - Run rubocop, 2021-12-01
+
+## Remove validations
+* `app/forms/decidim/decidim_awesome/proposals/proposal_wizard_create_step_form_override.rb`
+* `app/validators/etiquette_validator.rb`
