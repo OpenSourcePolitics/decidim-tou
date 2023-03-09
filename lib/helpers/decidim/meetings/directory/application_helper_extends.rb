@@ -19,7 +19,7 @@ module Decidim
         end
 
         def sort_children(children)
-          children.sort_by { |child| child.name.values.first.split.first.to_f }
+          children.sort_by { |child| child.name.values.first.split.first }
         end
       end
     end
