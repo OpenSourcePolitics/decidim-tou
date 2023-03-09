@@ -602,4 +602,4 @@ en:
         notifications: Notifications
         profile: My account
   sms_verification_workflow:
-    message: Message
+    message: 'Hello, here is the code to authenticate yourself on the jeparticipe.toulouse.fr platform: %{code}'

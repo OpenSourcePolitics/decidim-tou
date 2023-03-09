@@ -1,4 +1,4 @@
-  # How to contribute to Decidim app by Open Source Politics
+# How to contribute to Decidim app by Open Source Politics
 
 We're really glad you're reading this, you might be interested by the code source of the Decidim app by Open Source Politics decidim application.
 
@@ -44,4 +44,3 @@ If you haven't already, come find the Decidim community in [Gitter](https://gitt
 Thanks! :heart: :heart: :heart:
 
 Open Source Politics
-

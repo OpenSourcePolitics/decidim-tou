@@ -131,7 +131,6 @@ module Decidim
         )
       end
     end
-
     def filter_tree_from(scopes_values)
       TreeNode.new(
         TreePoint.new("", t("decidim.proposals.application_helper.filter_scope_values.all")),
