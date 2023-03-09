@@ -377,7 +377,7 @@ GEM
     db-query-matchers (0.10.0)
       activesupport (>= 4.0, < 7)
       rspec (~> 3.0)
-    decidim-cleaner (1.0.0)
+    decidim-cleaner (1.0.1)
       decidim-core (~> 0.26)
     decidim-decidim_awesome (0.8.3)
       decidim-admin (>= 0.25.0, < 0.27)
