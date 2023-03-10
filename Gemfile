@@ -10,7 +10,7 @@ gem "decidim", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VE
 gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
 
 # Modules
-gem "decidim-cleaner", git: "https://github.com/OpenSourcePolitics/decidim-module-cleaner.git", branch: "release/0.26-stable"
+gem "decidim-cleaner"
 gem "decidim-decidim_awesome", "~> 0.8.3"
 gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: DECIDIM_VERSION
 gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: DECIDIM_VERSION
