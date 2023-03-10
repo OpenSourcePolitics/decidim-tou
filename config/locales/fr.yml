@@ -203,6 +203,14 @@ fr:
           evaluating: |-
             Cet amendement pour le %{amendable_type} %{proposal_link}
             est en cours d’évaluation.
+    assemblies:
+      show:
+        active_assembly_participatory_processes: Concertations actives
+        active_assembly_participatory_processes_mini: Actives
+        future_assembly_participatory_processes: Concertations futures
+        future_assembly_participatory_processes_mini: Futures
+        past_assembly_participatory_processes: Concertations passées
+        past_assembly_participatory_processes_mini: Passées
     authorization_handlers:
       osp_authorization_handler:
         explanation: Vérifier votre identité en saisissant un numéro unique
