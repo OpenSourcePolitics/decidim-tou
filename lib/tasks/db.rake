@@ -12,9 +12,9 @@ namespace :decidim do
           puts klass
           model = klass.constantize
           puts Decidim::Notification
-                 .where(decidim_resource_type: klass)
-                 .where.not(decidim_resource_id: [model.ids])
-                 .pluck(:event_name, :decidim_resource_id, :extra).count
+            .where(decidim_resource_type: klass)
+            .where.not(decidim_resource_id: [model.ids])
+            .pluck(:event_name, :decidim_resource_id, :extra).count
         end
 
         Rails.logger.close
@@ -45,9 +45,9 @@ namespace :decidim do
           puts klass
           model = klass.constantize
           puts Decidim::ActionLog
-                 .where(resource_type: klass)
-                 .where.not(resource_id: [model.ids])
-                 .pluck(:action, :resource_id, :extra).count
+            .where(resource_type: klass)
+            .where.not(resource_id: [model.ids])
+            .pluck(:action, :resource_id, :extra).count
         end
         Rails.logger.close
       end

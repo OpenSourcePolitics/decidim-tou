@@ -114,8 +114,8 @@ module Decidim::ParticipatoryProcesses
       it "traces the creation", versioning: true do
         expect(Decidim::ActionLogger)
           .to receive(:log)
-                .with("create", current_user, a_kind_of(Decidim::ParticipatoryProcess), a_kind_of(Integer))
-                .and_call_original
+          .with("create", current_user, a_kind_of(Decidim::ParticipatoryProcess), a_kind_of(Integer))
+          .and_call_original
 
         expect { subject.call }.to change(Decidim::ActionLog, :count)
 
