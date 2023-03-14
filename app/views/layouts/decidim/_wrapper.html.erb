@@ -1,13 +1,13 @@
 <%
-if respond_to?(:current_component) && current_component && can_be_managed?(current_component)
-  edit_link(
-    manage_component_path(current_component),
-    :read,
-    :component,
-    component: current_component,
-    current_participatory_space: current_participatory_space
-  )
-end
+  if respond_to?(:current_component) && current_component && can_be_managed?(current_component)
+    edit_link(
+        manage_component_path(current_component),
+        :read,
+        :component,
+        component: current_component,
+        current_participatory_space: current_participatory_space
+    )
+  end
 %>
 
 <div class="off-canvas-wrapper">
