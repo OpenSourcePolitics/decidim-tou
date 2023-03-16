@@ -10,6 +10,7 @@
   - user_report
   - block_user
   - scheduled
+  - low
 
 :scheduler:
   :schedule:
@@ -26,7 +27,7 @@
       class: CalculateAllMetricsJob
       queue: scheduled
     PreloadOpenData:
-      cron: '0 0 1 * * *' # Run at 01:00
+      cron: '0 1 * * *' # Run at 01:00
       class: PreloadOpenDataJob
       queue: scheduled
     Backup:
