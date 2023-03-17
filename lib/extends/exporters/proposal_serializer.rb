@@ -71,15 +71,15 @@ module ProposalSerializerExtend
   def creator_phone_number
     return "" if proposal.creator_identity.blank?
 
-    phone_number(proposal.creator_identity.try(:user_id)) || ""
+    return "" if proposal.creator_identity.try(:user_id).blank?
+
+    phone_number(proposal.creator_identity.try(:user_id))
   end
 
   # phone_number retrieve the phone number of an user stored from phone_authorization_handler
   # Param: user_id : Integer
   # Return string, empty or with the phone number
   def phone_number(user_id)
-    return "" if user_id.blank?
-
     authorization = Decidim::Authorization.where(name: "phone_authorization_handler", decidim_user_id: user_id)
     return "" if authorization.blank?
 
