@@ -5,8 +5,6 @@ module Decidim
     queue_as :low
 
     def perform(organization)
-      return unless organization.is_a?(Decidim::Organization)
-
       path = Rails.root.join("tmp/#{organization.open_data_file_path}")
 
       exporter = OpenDataExporter.new(organization, path)
