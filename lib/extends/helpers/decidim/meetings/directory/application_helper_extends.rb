@@ -8,7 +8,9 @@ module Decidim
         def scope_children_to_tree(scope)
           return unless scope.children.any?
 
-          sorted_children = sort_children(scope.children)
+          sorted_children = scope.children.sort_by do |scope|
+            scope.name[I18n.locale.to_s] || scope.name[I18n.default_locale]
+          end
 
           sorted_children.flat_map do |child|
             TreeNode.new(
@@ -16,10 +18,6 @@ module Decidim
               scope_children_to_tree(child)
             )
           end
-        end
-
-        def sort_children(children)
-          children.sort_by { |child| child.name.values.first.split.first }
         end
       end
     end
