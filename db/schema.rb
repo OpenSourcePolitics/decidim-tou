@@ -1188,7 +1188,6 @@ ActiveRecord::Schema.define(version: 2023_01_27_180628) do
     t.jsonb "smtp_settings"
     t.string "deepl_api_key"
     t.boolean "force_users_to_authenticate_before_access_organization", default: false
-    t.integer "comments_max_length", default: 1000
     t.jsonb "omniauth_settings"
     t.boolean "rich_text_editor_in_public_views", default: false
     t.jsonb "admin_terms_of_use_body"
@@ -1196,6 +1195,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_180628) do
     t.boolean "enable_machine_translations", default: false
     t.jsonb "file_upload_settings"
     t.string "machine_translation_display_priority", default: "original", null: false
+    t.integer "comments_max_length", default: 1000
     t.string "external_domain_whitelist", default: [], array: true
     t.boolean "enable_participatory_space_filters", default: true
     t.boolean "delete_admin_logs", default: false, null: false
