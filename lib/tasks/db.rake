@@ -76,8 +76,8 @@ namespace :decidim do
         Decidim::Surveys::Survey
           .where.not(decidim_component_id: [Decidim::Component.ids])
           .pluck(:id, :title, :decidim_component_id).each do |s|
-            puts s.inspect
-          end
+          puts s.inspect
+        end
         Rails.logger.close
       end
 

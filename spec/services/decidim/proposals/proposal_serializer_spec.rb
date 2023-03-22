@@ -154,6 +154,16 @@ module Decidim
             expect(serialized).to include("Answer" => expected_answer)
           end
         end
+
+        context "when author is an organization" do
+          let!(:proposal) { create(:proposal, :accepted, :official) }
+
+          it "serializes the author data" do
+            expect(serialized).to include("Username" => proposal.creator_identity&.name)
+            expect(serialized).to include("Email" => "")
+            expect(serialized).to include("Phone number" => "")
+          end
+        end
       end
     end
   end

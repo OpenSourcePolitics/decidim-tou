@@ -3,13 +3,12 @@
 # Overrides Decidim::Proposals::ProposalSerializer
 module ProposalSerializerExtend
   # Public: Exports a hash with the serialized data for this proposal.
-  # rubocop:disable Metrics/CyclomaticComplexity
   def serialize
     {
       t_column_name(:id) => proposal.id,
-      t_column_name(:username) => proposal.creator_identity&.user_name || "",
-      t_column_name(:email) => proposal.creator_identity&.email || "",
-      t_column_name(:phone_number) => phone_number(proposal.creator_identity&.id),
+      t_column_name(:username) => creator_username,
+      t_column_name(:email) => creator_email,
+      t_column_name(:phone_number) => creator_phone_number,
       t_column_name(:category, ".category") => {
         t_column_name(:id, ".category") => proposal.category.try(:id),
         t_column_name(:name, ".category") => proposal.category.try(:name) || empty_translatable
@@ -50,12 +49,31 @@ module ProposalSerializerExtend
       }
     }
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
 
   protected
 
   def i18n_scope
     "decidim.proposals.admin.exports.column_name.proposal"
+  end
+
+  def creator_username
+    return "" if proposal.creator_identity.blank?
+
+    proposal.creator_identity.try(:user_name).presence || proposal.creator_identity.try(:name).presence || ""
+  end
+
+  def creator_email
+    return "" if proposal.creator_identity.blank?
+
+    proposal.creator_identity.try(:email).presence || ""
+  end
+
+  def creator_phone_number
+    return "" if proposal.creator_identity.blank?
+
+    return "" if proposal.creator_identity.try(:user_id).blank?
+
+    phone_number(proposal.creator_identity.try(:user_id))
   end
 
   # phone_number retrieve the phone number of an user stored from phone_authorization_handler
