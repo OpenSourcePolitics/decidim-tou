@@ -56,8 +56,8 @@ module Decidim::Cleaner::Admin
         it "traces the update", versioning: true do
           expect(Decidim.traceability)
             .to receive(:update!)
-                  .with(organization, user, a_kind_of(Hash))
-                  .and_call_original
+            .with(organization, user, a_kind_of(Hash))
+            .and_call_original
 
           expect { command.call }.to change(Decidim::ActionLog, :count)
 
