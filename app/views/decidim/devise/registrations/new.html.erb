@@ -163,19 +163,6 @@
           <div class="card">
             <div class="card__content">
               <div class="actions">
-                <% if @form.errors.empty? %>
-                  <%= button_tag(
-                        t(".continue"),
-                        class: "button expanded form-step-forward-button",
-                        type: nil,
-                        "form-step": 1,
-                        disabled: true
-                      ) %>
-
-                  <button class="button expanded hollow form-step-back-button">
-                    <%= t(".back") %>
-                  </button>
-                <% end %>
                 <%= f.submit(
                       t("devise.registrations.new.sign_up"),
                       class: "button expanded",
