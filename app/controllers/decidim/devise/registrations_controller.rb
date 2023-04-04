@@ -9,8 +9,6 @@ module Decidim
       include Decidim::DeviseControllers
       include NeedsTosAccepted
 
-      helper_method :form_step_attributes, :form_step_style
-
       before_action :check_sign_up_enabled
       before_action :configure_permitted_parameters
 
