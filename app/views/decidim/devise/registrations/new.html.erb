@@ -176,8 +176,9 @@
       </div>
     </div>
 
+    <% cache current_organization do %>
       <%= render "decidim/devise/shared/omniauth_buttons" %>
-
+    <% end %>
   </div>
   <div class="row collapse">
     <div class="columns large-6 medium-10 medium-centered">
