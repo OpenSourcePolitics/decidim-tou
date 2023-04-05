@@ -617,6 +617,7 @@ fr:
       processes_count: Concertations
     statutory_representative:
       inform:
+        body: Description
         subject: Inscription sur la plateforme
     surveys:
       admin:

@@ -8,6 +8,7 @@ module Decidim
       include FormFactory
       include Decidim::DeviseControllers
       include NeedsTosAccepted
+      include Decidim::FriendlySignup::NeedsHeaderSnippets
 
       before_action :check_sign_up_enabled
       before_action :configure_permitted_parameters
