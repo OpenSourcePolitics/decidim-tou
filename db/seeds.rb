@@ -21,10 +21,10 @@ scope_type = Decidim::ScopeType.create!(organization: organization,
                                         plural: { "fr" => "Territoires" })
 
 mel_tou = Decidim::Scope.create!(organization: organization,
-                       name: { "fr" => "Métropole de Toulouse" },
-                       scope_type: scope_type,
-                       parent_id: nil,
-                       code: "VDT")
+                                 name: { "fr" => "Métropole de Toulouse" },
+                                 scope_type: scope_type,
+                                 parent_id: nil,
+                                 code: "VDT")
 
 ["1.1 - Capitole / Arnaud Bernard / Carmes",
  "1.2 - Amidonniers / Compans-Caffarelli",

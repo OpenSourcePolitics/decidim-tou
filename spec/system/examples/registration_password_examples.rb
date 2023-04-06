@@ -46,14 +46,14 @@ shared_examples "on/off registration passwords" do
         fill_in :registration_user_nickname, with: "responsible"
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
         select "City", from: :registration_user_living_area
-          select translated(city_residential_area.name), from: :registration_user_city_residential_area
-          select translated(city_work_area.name), from: :registration_user_city_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
+        select translated(city_residential_area.name), from: :registration_user_city_residential_area
+        select translated(city_work_area.name), from: :registration_user_city_work_area
+        select "Other", from: :registration_user_gender
+        select "September", from: :registration_user_month
+        select "1992", from: :registration_user_year
 
         check :registration_user_tos_agreement
-          check :registration_user_additional_tos
+        check :registration_user_additional_tos
         find("*[type=submit]").click
       end
 
@@ -81,9 +81,9 @@ shared_examples "on/off registration passwords" do
           select "1992", from: :registration_user_year
 
           check :registration_user_tos_agreement
-            check :registration_user_additional_tos
+          check :registration_user_additional_tos
 
-  check :registration_user_additional_tos
+          check :registration_user_additional_tos
           find("*[type=submit]").click
         end
 
@@ -117,15 +117,15 @@ shared_examples "on/off registration passwords" do
         fill_in :registration_user_nickname, with: "responsible"
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
         select "City", from: :registration_user_living_area
-          select translated(city_residential_area.name), from: :registration_user_city_residential_area
-          select translated(city_work_area.name), from: :registration_user_city_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
+        select translated(city_residential_area.name), from: :registration_user_city_residential_area
+        select translated(city_work_area.name), from: :registration_user_city_work_area
+        select "Other", from: :registration_user_gender
+        select "September", from: :registration_user_month
+        select "1992", from: :registration_user_year
 
         fill_in :registration_user_password_confirmation, with: "nonsense"
         check :registration_user_tos_agreement
-          check :registration_user_additional_tos
+        check :registration_user_additional_tos
         find("*[type=submit]").click
 
         expect(page).to have_content("doesn't match Password")
@@ -161,9 +161,9 @@ shared_examples "on/off registration passwords" do
 
           fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :registration_user_tos_agreement
-            check :registration_user_additional_tos
+          check :registration_user_additional_tos
 
-  check :registration_user_additional_tos
+          check :registration_user_additional_tos
           find("*[type=submit]").click
         end
 

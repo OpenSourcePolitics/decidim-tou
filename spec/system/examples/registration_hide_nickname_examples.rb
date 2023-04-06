@@ -42,14 +42,14 @@ shared_examples "on/off registration hide nickname" do
         fill_in :registration_user_name, with: "Agent Smith"
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
 
-          select "City", from: :registration_user_living_area
-          select translated(city_residential_area.name), from: :registration_user_city_residential_area
-          select translated(city_work_area.name), from: :registration_user_city_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
+        select "City", from: :registration_user_living_area
+        select translated(city_residential_area.name), from: :registration_user_city_residential_area
+        select translated(city_work_area.name), from: :registration_user_city_work_area
+        select "Other", from: :registration_user_gender
+        select "September", from: :registration_user_month
+        select "1992", from: :registration_user_year
         check :registration_user_tos_agreement
-          check :registration_user_additional_tos
+        check :registration_user_additional_tos
 
         find("*[type=submit]").click
       end
@@ -79,7 +79,7 @@ shared_examples "on/off registration hide nickname" do
           select "September", from: :registration_user_month
           select "1992", from: :registration_user_year
           check :registration_user_tos_agreement
-            check :registration_user_additional_tos
+          check :registration_user_additional_tos
 
           find("*[type=submit]").click
         end
@@ -110,14 +110,14 @@ shared_examples "on/off registration hide nickname" do
         fill_in :registration_user_nickname, with: " "
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
 
-          select "City", from: :registration_user_living_area
-          select translated(city_residential_area.name), from: :registration_user_city_residential_area
-          select translated(city_work_area.name), from: :registration_user_city_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
+        select "City", from: :registration_user_living_area
+        select translated(city_residential_area.name), from: :registration_user_city_residential_area
+        select translated(city_work_area.name), from: :registration_user_city_work_area
+        select "Other", from: :registration_user_gender
+        select "September", from: :registration_user_month
+        select "1992", from: :registration_user_year
         check :registration_user_tos_agreement
-          check :registration_user_additional_tos
+        check :registration_user_additional_tos
 
         find("*[type=submit]").click
       end
@@ -129,12 +129,12 @@ shared_examples "on/off registration hide nickname" do
         fill_in :registration_user_nickname, with: "agent_smith"
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
 
-          select "City", from: :registration_user_living_area
-          select translated(city_residential_area.name), from: :registration_user_city_residential_area
-          select translated(city_work_area.name), from: :registration_user_city_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
+        select "City", from: :registration_user_living_area
+        select translated(city_residential_area.name), from: :registration_user_city_residential_area
+        select translated(city_work_area.name), from: :registration_user_city_work_area
+        select "Other", from: :registration_user_gender
+        select "September", from: :registration_user_month
+        select "1992", from: :registration_user_year
         find("*[type=submit]").click
       end
 
@@ -145,12 +145,12 @@ shared_examples "on/off registration hide nickname" do
         fill_in :registration_user_nickname, with: "agent_smith_2"
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
 
-          select "City", from: :registration_user_living_area
-          select translated(city_residential_area.name), from: :registration_user_city_residential_area
-          select translated(city_work_area.name), from: :registration_user_city_work_area
-          select "Other", from: :registration_user_gender
-          select "September", from: :registration_user_month
-          select "1992", from: :registration_user_year
+        select "City", from: :registration_user_living_area
+        select translated(city_residential_area.name), from: :registration_user_city_residential_area
+        select translated(city_work_area.name), from: :registration_user_city_work_area
+        select "Other", from: :registration_user_gender
+        select "September", from: :registration_user_month
+        select "1992", from: :registration_user_year
         find("*[type=submit]").click
       end
 
@@ -178,7 +178,7 @@ shared_examples "on/off registration hide nickname" do
           select "September", from: :registration_user_month
           select "1992", from: :registration_user_year
           check :registration_user_tos_agreement
-            check :registration_user_additional_tos
+          check :registration_user_additional_tos
 
           find("*[type=submit]").click
         end
