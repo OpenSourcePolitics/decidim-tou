@@ -19,6 +19,9 @@ end
 
 Rack::Attack.throttled_responder = lambda do |request|
   rack_logger = Logger.new(Rails.root.join("log/rack_attack.log"))
+  match_data = request.env["rack.attack.match_data"]
+  now = match_data[:epoch_time]
+  limit = now + (match_data[:period] - (now % match_data[:period]))
 
   request_uuid = request.env["action_dispatch.request_id"]
   params = {
@@ -31,7 +34,7 @@ Rack::Attack.throttled_responder = lambda do |request|
 
   rack_logger.warn("[#{request_uuid}] #{params}")
 
-  [429, { "Content-Type" => "text/html" }, [html_template(10, request.env["decidim.current_organization"]&.name)]]
+  [429, { "Content-Type" => "text/html" }, [html_template(limit - now, request.env["decidim.current_organization"]&.name)]]
 end
 
 Rack::Attack.throttle("req/ip",
@@ -48,13 +51,13 @@ if Rails.application.secrets.dig(:decidim, :rack_attack, :fail2ban, :enabled) ==
     # so the request is blocked
     Rack::Attack::Fail2Ban.filter("pentesters-#{req.ip}", maxretry: 0, findtime: 10.minutes, bantime: 1.hour) do
       # The count for the IP is incremented if the return value is truthy
-      req.path.include?("/etc/passwd") ||
-        req.path.include?("/wp-admin/") ||
-        req.path.include?("/wp-login/") ||
-        req.path.include?("SELECT") ||
-        req.path.include?("CONCAT") ||
-        req.path.include?("UNION%20SELECT") ||
-        req.path.include?("/.git/")
+      req.url.include?("etc/passwd") ||
+        req.url.include?("wp-admin") ||
+        req.url.include?("wp-login") ||
+        req.url.include?("SELECT") ||
+        req.url.include?("CONCAT") ||
+        req.url.include?("UNION%20SELECT") ||
+        req.url.include?(".git")
     end
   end
 end
@@ -76,13 +79,11 @@ def html_template(until_period, organization_name)
     font-family: arial, sans-serif;
     margin: 0;
   }
-
   .rails-default-error-page div.dialog {
     width: 95%;
     max-width: 33em;
     margin: 4em auto 0;
   }
-
   .rails-default-error-page div.dialog > div {
     border: 1px solid #CCC;
     border-right-color: #999;
@@ -95,13 +96,11 @@ def html_template(until_period, organization_name)
     padding: 7px 12% 0;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
-
   .rails-default-error-page h1 {
     font-size: 100%;
     color: #730E15;
     line-height: 1.5em;
   }
-
   .rails-default-error-page div.dialog > p {
     margin: 0 0 1em;
     padding: 1em;
@@ -118,7 +117,6 @@ def html_template(until_period, organization_name)
   }
   </style>
 </head>
-
 <body class='rails-default-error-page'>
   <div class='dialog'>
     <div>
@@ -126,20 +124,15 @@ def html_template(until_period, organization_name)
       <br>
       <h1>429 - Too many requests</h1>
       <p>#{I18n.t("rack_attack.too_many_requests.message")}</p>
-
       <b>#{I18n.t("rack_attack.too_many_requests.time")}</b>
-
       <br>
       <b class='counter'><span id='timer'>#{until_period}</span> #{I18n.t("rack_attack.too_many_requests.time_unit")}</b>
     </div>
   </div>
-
 <script>
     let timer = document.getElementById('timer')
     let total = timer.textContent
-
     const interval = setInterval(updateTimer, 1000)
-
     function updateTimer() {
         if (total <= 0) {
             clearInterval(interval)
@@ -153,6 +146,5 @@ def html_template(until_period, organization_name)
 </script>
 </body>
 </html>
-
 "
 end

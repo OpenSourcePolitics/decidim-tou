@@ -133,6 +133,10 @@ ignore_missing:
  - decidim.meetings.users.resend_invitation.error
  - decidim.meetings.users.resend_invitation.success
  - decidim.verifications.sms.authorizations.new.{title,send}
+ - decidim.assemblies.show.related_participatory_processes
+ - decidim.accountability.results.filters.scopes
+ - decidim.accountability.results.filters.all
+
 
 # Consider these keys used:
 ignore_unused:
@@ -312,4 +316,11 @@ ignore_unused:
   - layouts.decidim.process_navigation.process_menu_item
   - decidim.participatory_process_groups.content_blocks.*
   - decidim.admin.forms.file_help.emitter.*
+  - decidim.assemblies.show.active_assembly_participatory_processes
+  - decidim.assemblies.show.active_assembly_participatory_processes_mini
+  - decidim.assemblies.show.future_assembly_participatory_processes
+  - decidim.assemblies.show.future_assembly_participatory_processes_mini
+  - decidim.assemblies.show.past_assembly_participatory_processes
+  - decidim.assemblies.show.past_assembly_participatory_processes_mini
+
 

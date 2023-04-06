@@ -1,6 +1,27 @@
 # frozen_string_literal: true
 
 shared_examples "on/off registration passwords" do
+  let!(:city_residential_area) { create(:scope, parent: city_parent_scope) }
+  let!(:city_work_area) { create(:scope, parent: city_parent_scope) }
+
+  let!(:city_parent_scope) do
+    create(:scope,
+           id: 58,
+           name: {
+             fr: "Ville de Toulouse",
+             en: "Toulouse city"
+           },
+           organization: organization)
+  end
+  let!(:metropolis_parent_scope) do
+    create(:scope,
+           id: 59,
+           name: {
+             fr: "Métropole de Toulouse",
+             en: "Toulouse metropolis"
+           },
+           organization: organization)
+  end
   before do
     allow(Decidim::FriendlySignup).to receive(:hide_nickname).and_return(false)
     visit decidim.new_user_registration_path
@@ -13,7 +34,7 @@ shared_examples "on/off registration passwords" do
       expect(page).to have_field("registration_user_nickname", with: "")
       expect(page).to have_field("registration_user_email", with: "")
       expect(page).to have_field("registration_user_password", with: "")
-      expect(page).to have_field("registration_user_newsletter", checked: false)
+      expect(page).not_to have_field("registration_user_newsletter", checked: false)
     end
 
     it "creates a new User" do
@@ -24,8 +45,15 @@ shared_examples "on/off registration passwords" do
         fill_in :registration_user_name, with: "Responsible Citizen"
         fill_in :registration_user_nickname, with: "responsible"
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
+        select "City", from: :registration_user_living_area
+          select translated(city_residential_area.name), from: :registration_user_city_residential_area
+          select translated(city_work_area.name), from: :registration_user_city_work_area
+          select "Other", from: :registration_user_gender
+          select "September", from: :registration_user_month
+          select "1992", from: :registration_user_year
+
         check :registration_user_tos_agreement
-        check :registration_user_newsletter
+          check :registration_user_additional_tos
         find("*[type=submit]").click
       end
 
@@ -45,8 +73,17 @@ shared_examples "on/off registration passwords" do
           fill_in :registration_user_name, with: "Responsible Citizen"
           fill_in :registration_user_nickname, with: "responsible"
           fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
+          select "City", from: :registration_user_living_area
+          select translated(city_residential_area.name), from: :registration_user_city_residential_area
+          select translated(city_work_area.name), from: :registration_user_city_work_area
+          select "Other", from: :registration_user_gender
+          select "September", from: :registration_user_month
+          select "1992", from: :registration_user_year
+
           check :registration_user_tos_agreement
-          check :registration_user_newsletter
+            check :registration_user_additional_tos
+
+  check :registration_user_additional_tos
           find("*[type=submit]").click
         end
 
@@ -68,7 +105,7 @@ shared_examples "on/off registration passwords" do
       expect(page).to have_field("registration_user_email", with: "")
       expect(page).to have_field("registration_user_password", with: "")
       expect(page).to have_field("registration_user_password_confirmation", with: "")
-      expect(page).to have_field("registration_user_newsletter", checked: false)
+      expect(page).not_to have_field("registration_user_newsletter", checked: false)
     end
 
     it "creates a new User" do
@@ -79,14 +116,22 @@ shared_examples "on/off registration passwords" do
         fill_in :registration_user_name, with: "Responsible Citizen"
         fill_in :registration_user_nickname, with: "responsible"
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
+        select "City", from: :registration_user_living_area
+          select translated(city_residential_area.name), from: :registration_user_city_residential_area
+          select translated(city_work_area.name), from: :registration_user_city_work_area
+          select "Other", from: :registration_user_gender
+          select "September", from: :registration_user_month
+          select "1992", from: :registration_user_year
+
         fill_in :registration_user_password_confirmation, with: "nonsense"
         check :registration_user_tos_agreement
-        check :registration_user_newsletter
+          check :registration_user_additional_tos
         find("*[type=submit]").click
 
         expect(page).to have_content("doesn't match Password")
 
         fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
+
         fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
         find("*[type=submit]").click
       end
@@ -107,9 +152,18 @@ shared_examples "on/off registration passwords" do
           fill_in :registration_user_name, with: "Responsible Citizen"
           fill_in :registration_user_nickname, with: "responsible"
           fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
+          select "City", from: :registration_user_living_area
+          select translated(city_residential_area.name), from: :registration_user_city_residential_area
+          select translated(city_work_area.name), from: :registration_user_city_work_area
+          select "Other", from: :registration_user_gender
+          select "September", from: :registration_user_month
+          select "1992", from: :registration_user_year
+
           fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :registration_user_tos_agreement
-          check :registration_user_newsletter
+            check :registration_user_additional_tos
+
+  check :registration_user_additional_tos
           find("*[type=submit]").click
         end
 
