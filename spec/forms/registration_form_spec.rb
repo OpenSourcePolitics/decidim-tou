@@ -92,7 +92,7 @@ module Decidim
     context "when the nickname is not present" do
       let(:nickname) { nil }
 
-      it { is_expected.to be_invalid }
+      it { is_expected.to be_valid }
     end
 
     context "when the email is not present" do
@@ -125,7 +125,7 @@ module Decidim
       context "and a user has the nickname" do
         let!(:user) { create(:user, organization: organization, nickname: nickname.upcase) }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.to be_valid }
 
         context "and is pending to accept the invitation" do
           let!(:user) { create(:user, organization: organization, nickname: nickname, invitation_token: "foo", invitation_accepted_at: nil) }
@@ -137,14 +137,14 @@ module Decidim
       context "and a user_group has the nickname" do
         let!(:user_group) { create(:user_group, organization: organization, nickname: nickname) }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.to be_valid }
       end
     end
 
     context "when the nickname is too long" do
       let(:nickname) { "verylongnicknamethatcreatesanerror" }
 
-      it { is_expected.to be_invalid }
+      it { is_expected.to be_valid }
     end
 
     context "when the password is not present" do

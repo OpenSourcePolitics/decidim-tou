@@ -8,8 +8,7 @@ module Decidim
       include FormFactory
       include Decidim::DeviseControllers
       include NeedsTosAccepted
-
-      helper_method :form_step_attributes, :form_step_style
+      include Decidim::FriendlySignup::NeedsHeaderSnippets
 
       before_action :check_sign_up_enabled
       before_action :configure_permitted_parameters
@@ -39,7 +38,8 @@ module Decidim
           end
 
           on(:invalid) do
-            flash.now[:alert] = @form.errors[:base].join(", ") if @form.errors[:base].any?
+            @form.errors.add(:password, :password_blank) if params[:user][:password].blank?
+            flash.now[:alert] = @form.errors.full_messages.join(", ") if @form.errors.full_messages.any?
             render :new
           end
         end
@@ -59,14 +59,6 @@ module Decidim
       def build_resource(hash = nil)
         super(hash)
         resource.organization = current_organization
-      end
-
-      def form_step_style(params)
-        "display: none" if params[:step] == 2 && @form.errors.empty?
-      end
-
-      def form_step_attributes(params)
-        %(form-step="#{params[:step]}" style="#{form_step_style(params)}").html_safe
       end
 
       def devise_mapping
