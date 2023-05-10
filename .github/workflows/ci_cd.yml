@@ -27,7 +27,7 @@ jobs:
           node_version: ${{ env.NODE_VERSION }}
   tests:
     name: Tests
-    runs-on: windows-latest
+    runs-on: macos-latest
     if: "!startsWith(github.head_ref, 'chore/l10n')"
     services:
       postgres:
