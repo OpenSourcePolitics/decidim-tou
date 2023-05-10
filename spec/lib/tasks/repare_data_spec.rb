@@ -50,6 +50,7 @@ describe "rake decidim:repare:nickname", type: :task do
         expect(invalid_user_3.reload.nickname).to eq("Foo-Bar_fooo")
         expect(invalid_user_4.reload.nickname).to eq("foobarfoo")
         expect(invalid_user_5.reload.nickname).to eq("foobarfoo_bar")
+        expect(invalid_user_8.reload.nickname).to eq("Francois")
         expect(invalid_user_9.reload.nickname).to eq("Solene")
       end
 
