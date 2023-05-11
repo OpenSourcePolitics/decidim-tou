@@ -10,9 +10,10 @@ gem "decidim", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VE
 gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
 
 # Modules
-gem "decidim-cleaner", git: "https://github.com/OpenSourcePolitics/decidim-module-cleaner.git", branch: "fix/test_app_version"
+gem "decidim-cleaner"
 gem "decidim-decidim_awesome", "~> 0.8.3"
 gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: DECIDIM_VERSION
+gem "decidim-friendly_signup"
 gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: DECIDIM_VERSION
 gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "0.26/without-exports"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.26-stable"
@@ -57,6 +58,6 @@ group :production do
   gem "sentry-rails"
   gem "sentry-ruby"
   gem "sentry-sidekiq"
-  gem "sidekiq", "7.0.7"
-  gem "sidekiq-scheduler"
+  gem "sidekiq", "~> 6.0"
+  gem "sidekiq-scheduler", "~> 5.0"
 end

@@ -1,4 +1,4 @@
-# Decidim app by OSP
+# Decidim tou by OSP
 
 > **Note**
 >
@@ -15,7 +15,7 @@
 This repository contains the code of the **decidim-tou** application.
 
 ## 🚀 Getting started
-- See our [installation guide](./docs/GETTING_STARTED.md) to run a decidim-app by OSP locally
+- See our [installation guide](./docs/GETTING_STARTED.md) to run a decidim-tou by OSP locally
 
 ## 👋 Contributing
 - See our [contributing guide](./docs/CONTRIBUTING.md)
@@ -24,4 +24,4 @@ This repository contains the code of the **decidim-tou** application.
 Security is very important to us. If you have any issue regarding security, please disclose the information responsibly by sending an email to **security[at]opensourcepolitics[dot]eu** and not by creating a Github issue.
 
 ## License
-The decidim-app is licensed under the [AGPLv3](./LICENSE-AGPLV3.txt), same license as Decidim.
+The decidim-tou is licensed under the [AGPLv3](./LICENSE-AGPLV3.txt), same license as Decidim.

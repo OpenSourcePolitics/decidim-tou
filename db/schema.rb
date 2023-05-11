@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_27_180628) do
+ActiveRecord::Schema.define(version: 2023_04_25_132228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1188,6 +1188,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_180628) do
     t.jsonb "smtp_settings"
     t.string "deepl_api_key"
     t.boolean "force_users_to_authenticate_before_access_organization", default: false
+    t.integer "comments_max_length", default: 1000
     t.jsonb "omniauth_settings"
     t.boolean "rich_text_editor_in_public_views", default: false
     t.jsonb "admin_terms_of_use_body"
@@ -1195,7 +1196,6 @@ ActiveRecord::Schema.define(version: 2023_01_27_180628) do
     t.boolean "enable_machine_translations", default: false
     t.jsonb "file_upload_settings"
     t.string "machine_translation_display_priority", default: "original", null: false
-    t.integer "comments_max_length", default: 1000
     t.string "external_domain_whitelist", default: [], array: true
     t.boolean "enable_participatory_space_filters", default: true
     t.boolean "delete_admin_logs", default: false, null: false
@@ -1736,6 +1736,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_180628) do
     t.integer "block_id"
     t.boolean "email_on_moderations", default: true
     t.integer "follows_count", default: 0, null: false
+    t.datetime "warning_date"
     t.index ["confirmation_token"], name: "index_decidim_users_on_confirmation_token", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_users_on_decidim_organization_id"
     t.index ["email", "decidim_organization_id"], name: "index_decidim_users_on_email_and_decidim_organization_id", unique: true, where: "((deleted_at IS NULL) AND (managed = false) AND ((type)::text = 'Decidim::User'::text))"

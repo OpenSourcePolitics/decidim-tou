@@ -520,6 +520,7 @@ en:
       processes_count: Processes
     statutory_representative:
       inform:
+        body: Body
         subject: Registration on the platform
     surveys:
       admin:

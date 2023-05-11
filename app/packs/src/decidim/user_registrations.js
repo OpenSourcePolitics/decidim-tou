@@ -3,7 +3,6 @@ $(() => {
   const $userGroupFields = $userRegistrationForm.find(".user-group-fields");
   const inputSelector = "input[name='user[sign_up_as]']";
   const $formStepForwardButton = $(".form-step-forward-button");
-  const $formStepBackButton = $(".form-step-back-button");
   const $formFirstStepFields = $("[form-step='1'] input");
   const $tosAgreement = $("#registration_user_tos_agreement");
   const $mandatoryFormFirstStepFields = $formFirstStepFields.not("#registration_user_newsletter").not("input[type ='hidden']").add($tosAgreement);
@@ -64,11 +63,6 @@ $(() => {
     }
   };
 
-  const toggleFromSteps = () => {
-    $("[form-step]").toggle();
-    $("[form-active-step]").toggleClass("step--active");
-  };
-
   const scrollToTop = () => {
     $("html, body").animate({
       scrollTop: $("main").offset().top
@@ -82,29 +76,6 @@ $(() => {
     const value = event.target.value;
 
     setGroupFieldsVisibility(value);
-  });
-
-  $formStepForwardButton.on("click", (event) => {
-    event.preventDefault();
-
-    scrollToTop();
-
-    // validate only input elements from step 1
-    $formFirstStepFields.each((index, element) => {
-      $userRegistrationForm.foundation("validateInput", $(element));
-    });
-
-    if (!$userRegistrationForm.find("[data-invalid]:visible").length) {
-      toggleFromSteps();
-    }
-  });
-
-  $formStepBackButton.on("click", (event) => {
-    event.preventDefault();
-
-    scrollToTop();
-
-    toggleFromSteps();
   });
 
   let fieldEmptyOrFalse = (element) => {

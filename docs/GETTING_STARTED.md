@@ -37,11 +37,6 @@ bundle exec rake db:seed
 > **Warning**
 > If rake command returns an error, ensure your PostgreSQL service is running : `lsof -i:5432`
 
-4. Configure requirements from modules
-
-**Ludens** assistant requires an extra command to be configured.
-> bundle exec rake decidim_ludens:initialize
-
 5. Installing JS dependencies
 
 We use `yarn` to install dependencies
