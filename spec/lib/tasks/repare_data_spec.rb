@@ -80,7 +80,6 @@ describe "rake decidim:repare:nickname", type: :task do
     context "when env var is set to default (false)" do
       it "doesn't updates invalid nicknames" do
         task_cmd
-
         expect(invalid_user_1.reload.nickname).to eq("Foo bar")
         expect(invalid_user_2.reload.nickname).to eq("Foo M. bar")
         expect(invalid_user_3.reload.nickname).to eq("Foo-Bar_fooo$")
