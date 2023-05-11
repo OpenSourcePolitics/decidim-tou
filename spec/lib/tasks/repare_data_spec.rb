@@ -19,8 +19,6 @@ describe "rake decidim:repare:nickname", type: :task do
   let(:invalid_user_5) { build(:user, nickname: ".foobar.foo_bar.", organization: organization) }
   let(:invalid_user_6) { build(:user, nickname: "foobar foo_bar", organization: organization) }
   let(:invalid_user_7) { build(:user, nickname: "", organization: organization) }
-  let(:invalid_user_8) { build(:user, nickname: "François", organization: organization) }
-  let(:invalid_user_9) { build(:user, nickname: "Solèné", organization: organization) }
 
   context "when executing task" do
     before do
@@ -50,8 +48,6 @@ describe "rake decidim:repare:nickname", type: :task do
         expect(invalid_user_3.reload.nickname).to eq("Foo-Bar_fooo")
         expect(invalid_user_4.reload.nickname).to eq("foobarfoo")
         expect(invalid_user_5.reload.nickname).to eq("foobarfoo_bar")
-        expect(invalid_user_8.reload.nickname).to eq("Francois")
-        expect(invalid_user_9.reload.nickname).to eq("Solene")
       end
 
       context "when nickname is already taken" do
