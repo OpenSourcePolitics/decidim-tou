@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/OpenSourcePolitics/decidim-module-cleaner.git
-  revision: 79e7a1d657d46131f86c6cf7e82bfc429c9aca5d
-  branch: fix/test_app_version
-  specs:
-    decidim-cleaner (1.0.1)
-      decidim-core (~> 0.26)
-
-GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git
   revision: a55f268c8847f225d19e8c2b88997d95e2093aea
   branch: release/0.26-stable
@@ -298,7 +290,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     acts_as_list (0.9.19)
       activerecord (>= 3.0)
-    addressable (2.8.1)
+    addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     axe-core-api (4.6.0)
@@ -371,7 +363,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.2.2)
-    connection_pool (2.3.0)
+    connection_pool (2.4.0)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -385,6 +377,8 @@ GEM
     db-query-matchers (0.10.0)
       activesupport (>= 4.0, < 7)
       rspec (~> 3.0)
+    decidim-cleaner (2.1.0)
+      decidim-core (~> 0.26.0)
     decidim-decidim_awesome (0.8.3)
       decidim-admin (>= 0.25.0, < 0.27)
       decidim-core (>= 0.25.0, < 0.27)
@@ -396,7 +390,7 @@ GEM
     declarative-option (0.1.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.9.0)
+    devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -413,7 +407,7 @@ GEM
       nokogiri (>= 1.13.2, < 1.14.0)
       rubyzip (~> 2.3.0)
     docile (1.4.0)
-    doorkeeper (5.6.5)
+    doorkeeper (5.6.6)
       railties (>= 5)
     doorkeeper-i18n (4.0.1)
     dotenv (2.8.1)
@@ -579,7 +573,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     newrelic_rpm (9.0.0)
-    nio4r (2.5.8)
+    nio4r (2.5.9)
     nokogiri (1.13.10-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.10-x86_64-darwin)
@@ -636,7 +630,7 @@ GEM
     pg_search (2.3.6)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    premailer (1.19.0)
+    premailer (1.21.0)
       addressable
       css_parser (>= 1.12.0)
       htmlentities (>= 4.0.0)
@@ -649,16 +643,16 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.6.2)
-    rack (2.2.6.3)
+    rack (2.2.6.4)
     rack-attack (6.6.1)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-protection (3.0.5)
+    rack-protection (3.0.6)
       rack
     rack-proxy (0.7.6)
       rack
-    rack-test (2.0.2)
+    rack-test (2.1.0)
       rack (>= 1.3)
     rails (6.0.6.1)
       actioncable (= 6.0.6.1)
@@ -710,8 +704,6 @@ GEM
       wisper (>= 1.6.1)
     redcarpet (3.6.0)
     redis (4.8.1)
-    redis-client (0.14.0)
-      connection_pool
     redlock (1.3.2)
       redis (>= 3.0.0, < 6.0)
     regexp_parser (2.7.0)
@@ -804,11 +796,10 @@ GEM
       sentry-ruby (~> 5.8.0)
       sidekiq (>= 3.0)
     seven_zip_ruby (1.3.0)
-    sidekiq (7.0.7)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      rack (>= 2.2.4)
-      redis-client (>= 0.11.0)
+    sidekiq (6.5.8)
+      connection_pool (>= 2.2.5, < 3)
+      rack (~> 2.0)
+      redis (>= 4.5.0, < 5)
     sidekiq-scheduler (5.0.2)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
@@ -856,7 +847,7 @@ GEM
     valid_email2 (2.3.1)
       activemodel (>= 3.2)
       mail (~> 2.5)
-    version_gem (1.1.1)
+    version_gem (1.1.2)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -911,7 +902,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   dalli
   decidim!
-  decidim-cleaner!
+  decidim-cleaner
   decidim-conferences!
   decidim-decidim_awesome (~> 0.8.3)
   decidim-dev!
@@ -936,8 +927,8 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sentry-sidekiq
-  sidekiq (= 7.0.7)
-  sidekiq-scheduler
+  sidekiq (~> 6.0)
+  sidekiq-scheduler (~> 5.0)
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
   sys-filesystem
@@ -947,4 +938,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.4.6
+   2.4.9
