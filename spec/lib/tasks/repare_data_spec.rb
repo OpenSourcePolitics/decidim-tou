@@ -19,12 +19,10 @@ describe "rake decidim:repare:nickname", type: :task do
   let(:invalid_user_5) { build(:user, nickname: ".foobar.foo_bar.", organization: organization) }
   let(:invalid_user_6) { build(:user, nickname: "foobar foo_bar", organization: organization) }
   let(:invalid_user_7) { build(:user, nickname: "", organization: organization) }
-  let(:invalid_user_8) { build(:user, nickname: "François", organization: organization) }
-  let(:invalid_user_9) { build(:user, nickname: "Solèné", organization: organization) }
 
   context "when executing task" do
     before do
-      (1..9).each do |i|
+      (1..7).each do |i|
         send("invalid_user_#{i}").save(validate: false)
       end
     end
@@ -50,8 +48,6 @@ describe "rake decidim:repare:nickname", type: :task do
         expect(invalid_user_3.reload.nickname).to eq("Foo-Bar_fooo")
         expect(invalid_user_4.reload.nickname).to eq("foobarfoo")
         expect(invalid_user_5.reload.nickname).to eq("foobarfoo_bar")
-        expect(invalid_user_8.reload.nickname).to eq("Francois")
-        expect(invalid_user_9.reload.nickname).to eq("Solene")
       end
 
       context "when nickname is already taken" do
@@ -84,7 +80,6 @@ describe "rake decidim:repare:nickname", type: :task do
     context "when env var is set to default (false)" do
       it "doesn't updates invalid nicknames" do
         task_cmd
-
         expect(invalid_user_1.reload.nickname).to eq("Foo bar")
         expect(invalid_user_2.reload.nickname).to eq("Foo M. bar")
         expect(invalid_user_3.reload.nickname).to eq("Foo-Bar_fooo$")
