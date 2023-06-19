@@ -407,6 +407,32 @@ describe "Participatory Processes", type: :system do
           end
         end
 
+        context "when the process contains images" do
+          let(:base_process) do
+            create(
+              :participatory_process,
+              :active,
+              organization: organization,
+              description: {
+                "en" => "<p>Process's content</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>",
+                "ca" => "<p>Contingut de l'enquesta</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>",
+                "es" => "<p>Contenido de la encuesta</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>"
+              },
+              short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
+              show_metrics: show_metrics,
+              show_statistics: show_statistics,
+              display_linked_assemblies: display_linked_assemblies
+            )
+          end
+          let(:image_url) { "https://decidim.org/assets/decidim/logo-2x-1b6d1f7f7d3f5d7d3f5d7d3f5d7d3f5d7d3f5d7d3f5d7d3f5d7d3f5d7d3f5d.png" }
+
+          it "shows image" do
+            visit decidim_participatory_processes.participatory_process_path(participatory_process)
+            expect(page).to have_selector("img[src='#{image_url}']")
+            expect(page).to have_selector("iframe[src='#{image_url}']")
+          end
+        end
+
         it_behaves_like "has attachments" do
           let(:attached_to) { participatory_process }
         end
