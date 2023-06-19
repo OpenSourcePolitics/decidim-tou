@@ -414,9 +414,9 @@ describe "Participatory Processes", type: :system do
               :active,
               organization: organization,
               description: {
-                "en" => "<p>Process's content</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>",
-                "ca" => "<p>Contingut de l'enquesta</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>",
-                "es" => "<p>Contenido de la encuesta</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>"
+                "en" => "<p>Description</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>",
+                "ca" => "<p>Descripció</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>",
+                "es" => "<p>Descripción</p><img src=\"#{image_url}\" /><iframe src=\"#{image_url}\"></iframe>"
               },
               short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
               show_metrics: show_metrics,
