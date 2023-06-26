@@ -61,6 +61,11 @@ fr:
         email: Email
         name: Nom
         role: Rôle
+      user:
+        additional_tos: Traitement des données
+        living_area: Lieu de résidence
+        month: Mois de naissance
+        year: Année de naissance
     errors:
       models:
         participatory_process:
