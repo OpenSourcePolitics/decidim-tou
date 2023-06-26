@@ -322,5 +322,9 @@ ignore_unused:
   - decidim.assemblies.show.future_assembly_participatory_processes_mini
   - decidim.assemblies.show.past_assembly_participatory_processes
   - decidim.assemblies.show.past_assembly_participatory_processes_mini
+  - activemodel.attributes.user.additional_tos
+  - activemodel.attributes.user.living_area
+  - activemodel.attributes.user.month
+  - activemodel.attributes.user.year
 
 
