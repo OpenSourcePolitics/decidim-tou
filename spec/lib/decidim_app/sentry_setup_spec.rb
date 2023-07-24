@@ -2,6 +2,7 @@
 
 require "spec_helper"
 require "json"
+require "decidim_app/sentry_setup"
 
 describe SentrySetup do
   let(:secrets) do
