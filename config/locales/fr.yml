@@ -7,28 +7,215 @@ fr:
         document_number: Numéro unique
         postal_code: Code postal
       participatory_process:
+        announcement: Announcement
+        area_id: Area
+        banner_image: Banner image
+        copy_categories: Copy categories
+        copy_components: Copy components
+        copy_steps: Copy steps
+        decidim_area_id: Area
+        description: Description
+        developer_group: Promoter group
+        domain: Domain
+        end_date: End date
+        hashtag: Hashtag
+        hero_image: Home image
+        local_area: Organization area
+        meta_scope: Scope metadata
+        participatory_process_group_id: Processes group
+        participatory_scope: What is decided
+        participatory_structure: How is it decided
         private_space: Espace privé
+        promoted: Promoted
+        published_at: Published at
+        related_process_ids: Related processes
+        scope_id: Scope
+        scope_type_max_depth_id: Scope filter depth
+        scopes_enabled: Scopes enabled
+        short_description: Short description
+        show_metrics: Show metrics
+        show_statistics: Show statistics
+        slug: URL slug
+        start_date: Start date
+        subtitle: Subtitle
+        target: Who participates
+        title: Title
+        weight: Order position
+      participatory_process_group:
+        description: Description
+        developer_group: Promoter group
+        group_url: Website
+        hashtag: Hashtag
+        hero_image: Image
+        local_area: Organization area
+        meta_scope: Scope metadata
+        participatory_process_ids: Related processes
+        participatory_scope: What is decided
+        participatory_structure: How is it decided
+        target: Who participates
+        title: Title
+      participatory_process_step:
+        cta_path: Call to Action path
+        cta_text: Call to Action text
+        description: Description
+        end_date: End date
+        short_description: Short description
+        start_date: Start date
+        title: Title
+      participatory_process_user_role:
+        email: Email
+        name: Name
+        role: Role
+    errors:
+      models:
+        participatory_process:
+          attributes:
+            document:
+              invalid_document_type: 'Invalid document type. Accepted formats are: %{valid_mime_types}'
   decidim:
+    account:
+      show:
+        available_locales_helper: Available locales helper
+        change_password: Change password
+        update_account: Update account
     admin:
-      participatory_space_private_users:
-        create:
-          error: Erreur
-          success: Succès
-      reminders:
-        create:
-          error: Il y a eu un problème en créant le rappel.
-          success:
-            one: "%{count} utilisateur recevra le rappel"
-            other: "%{count} utilisateurs recevront le rappel"
+      actions:
+        activate: Activate
+        configure: Configure
+        confirm_destroy: Confirm delete
+        destroy: Delete
+        duplicate: Duplicate
+        edit: Edit
+        filter:
+          all_processes: Show all processes
+          process_groups: Process Groups
+        import_process: Import
+        new_process: New process
+        new_process_group: New process group
+        new_process_step: New phase
+        new_process_user_role: New process admin
+        preview: Preview
+        publish: Publish
+        resend_invitation: Resend invitation
+        unpublish: Unpublish
+      forms:
+        file_help:
+          emitter:
+            explanation: 'Guidance for logo:'
+            message_1: Preferrably a logo that will be seen on a white background.
+            message_2: The service reduce the image.
+      menu:
+        participatory_process_groups: Process groups
+        participatory_process_groups_submenu:
+          info: Info
+          landing_page: Landing page
+        participatory_processes: Processes
+        participatory_processes_submenu:
+          attachment_collections: Folders
+          attachment_files: Files
+          attachments: Attachments
+          categories: Categories
+          components: Components
+          info: Info
+          moderations: Moderations
+          private_users: Private participants
+          process_admins: Process admins
+          steps: Phases
+      models:
+        participatory_process:
+          fields:
+            created_at: Created at
+            private: Private
+            promoted: Highlighted
+            published: Published
+            title: Title
+          name: Participatory process
+        participatory_process_group:
+          fields:
+            title: Title
+          name: Process group
+        participatory_process_step:
+          fields:
+            end_date: End date
+            start_date: Start date
+            title: Title
+          name: Participatory process phase
+        participatory_process_user_role:
+          fields:
+            email: Email
+            name: Name
+            role: Role
+          name: Participatory process admin
+          roles:
+            admin: Administrator
+            collaborator: Collaborator
+            moderator: Moderator
+            valuator: Valuator
+        user:
+          fields:
+            invitation_accepted_at: Invitation accepted at
+            invitation_sent_at: Invitation sent at
+      participatory_process_copies:
         new:
-          submit: Send
+          copy: Copy
+          select: Select which data you would like to duplicate
+          title: Duplicate participatory process
+      participatory_process_group_landing_page:
+        edit:
+          active_content_blocks: Active content blocks
+          inactive_content_blocks: Inactive content blocks
+      participatory_process_group_landing_page_content_blocks:
+        edit:
+          update: Update
+      participatory_process_groups:
+        destroy:
+          error: There was an error while destroying the Participatory process group.
+          success: Participatory process group successfully deleted.
+        edit:
+          title: Edit process group
+          update: Update
+        new:
+          create: Create
+          title: New process group
+        update:
+          error: There was a problem updating this participatory process group.
+          success: Participatory process group successfully updated.
+      participatory_process_imports:
+        create:
+          error: Error
+          success: Success
+    admin_log:
+      participatory_process:
+        create: "%{user_name} created the %{resource_name} participatory process"
+        publish: "%{user_name} published the %{resource_name} participatory process"
+        unpublish: "%{user_name} unpublished the %{resource_name} participatory process"
+        update: "%{user_name} updated the %{resource_name} participatory process"
+      participatory_process_group:
+        create: "%{user_name} created the %{resource_name} participatory process group"
+        update: "%{user_name} updated the %{resource_name} participatory process group"
+      participatory_process_step:
+        activate: "%{user_name} activated the %{resource_name} phase in the %{space_name} participatory process"
+        create: "%{user_name} created the %{resource_name} phase in the %{space_name} participatory process"
+        delete: "%{user_name} deleted the %{resource_name} phase in the %{space_name} participatory process"
+        update: "%{user_name} updated the %{resource_name} phase in the %{space_name} participatory process"
+      participatory_process_user_role:
+        create: "%{user_name} invited the participant %{resource_name} to the %{space_name} participatory process"
+        delete: "%{user_name} removed the participant %{resource_name} from the %{space_name} participatory process"
+        update: "%{user_name} changed the role of the participant %{resource_name} in the %{space_name} participatory process"
     amendments:
       emendation:
         announcement:
           evaluating: |-
             Cet amendement pour le %{amendable_type} %{proposal_link}
             est en cours d’évaluation.
-    anonymous_user: Utilisateur anonyme
+    assemblies:
+      show:
+        active_assembly_participatory_processes: Active participatory processes
+        active_assembly_participatory_processes_mini: Active
+        future_assembly_participatory_processes: Future participatory processes
+        future_assembly_participatory_processes_mini: Future
+        past_assembly_participatory_processes: Past participatory processes
+        past_assembly_participatory_processes_mini: Past
     authorization_handlers:
       osp_authorization_handler:
         explanation: Vérifier votre identité en saisissant un numéro unique
@@ -40,55 +227,11 @@ fr:
       osp_authorization_workflow:
         name: Procédure d'autorisation
     budgets:
-      actions:
-        confirm_destroy: Êtes-vous certain de vouloir supprimer ce projet?
-        destroy: Supprimer
-        edit: Modifier
-        edit_projects: Gérer les projets
-        new: Nouveau %{name}
-        preview: Aperçu
-        title: Actions
-      admin:
-        budgets:
-          index:
-            finished_orders: Votes terminés
-            pending_orders: Votes en cours
-            title: Budgets
-            users_with_finished_orders: Utilisateurs ayant fini leur vote
-            users_with_pending_orders: Utilisateurs ayant des votes en attente
-        models:
-          budget:
-            name: Budget
-        reminders:
-          orders:
-            description: Les utilisateurs vont recevoir un mail avec les liens des budgets pour lesquels ils ont un vote en cours. Le rappel ne sera pas envoyé aux utilisateurs ayant commencé leur vote il y a moins de deux heures, ni à ceux ayant reçu un rappel dans les dernières 24 heures.
-            title:
-              one: Vous êtes sur le point d'envoyer un mail de rappel à %{count} utilisateur.
-              other: Vous êtes sur le point d'envoyer un mail de rappel à %{count} utilisateurs.
-      models:
-        budget:
-          fields:
-            name: Nom
-            projects_count: Nombre de projets
-            total_budget: Budget total
       projects:
         count:
           projects_count:
             one: 1 projet
             other: "%{count} projets"
-      vote_reminder_mailer:
-        vote_reminder:
-          email_budgets: 'Budget où vous avez un vote non terminé:'
-          email_intro: Vous avez commencé un vote de budget participatif, mais vous ne l'avez pas terminé.
-          email_link: Terminer mon vote
-          email_outro: Pensez à terminer votre vote. Pour voter, vous devez d'abord séléctionner le ou les projets pour lesquels vous voulez voter, puis confirmer votre vote avec le bouton "Voter".
-          email_subject:
-            one: Vous n'avez pas finalisé votre vote
-            other: Vous n'avez pas finalisé vos votes
-    devise:
-      sessions:
-        new:
-          sign_in_disabled: Vous pouvez accéder avec un compte externe
     events:
       budgets:
         pending_order:
@@ -96,6 +239,22 @@ fr:
           email_outro: Vous avez reçu cette notification parce que vous avez commencé à voter sur la concertation "%{participatory_space_title}"
           email_subject: Votre vote est toujours en attente sur la concertation %{participatory_space_title}
           notification_title: Votre vote pour le budget <a href="%{resource_path}">%{resource_title}</a> attend d'être finalisé sur la concertation %{participatory_space_title}
+      participatory_process:
+        role_assigned:
+          email_intro: You have been assigned as %{role} for participatory process "%{resource_title}".
+          email_outro: You have received this notification because you are %{role} of the "%{resource_title}" participatory process.
+          email_subject: You have been assigned as %{role} for "%{resource_title}".
+          notification_title: You have been assigned as %{role} for participatory process <a href="%{resource_url}">%{resource_title}</a>.
+        step_activated:
+          email_intro: 'The %{resource_title} phase is now active for %{participatory_space_title}. You can see it from this page:'
+          email_outro: You have received this notification because you are following %{participatory_space_title}. You can stop receiving notifications following the previous link.
+          email_subject: An update to %{participatory_space_title}
+          notification_title: The %{resource_title} phase is now active for <a href="%{resource_path}">%{participatory_space_title}</a>
+        step_changed:
+          email_intro: 'The dates for the %{resource_title} phase at %{participatory_space_title} have been updated. You can see it from this page:'
+          email_outro: You have received this notification because you are following %{participatory_space_title}. You can stop receiving notifications following the previous link.
+          email_subject: An update to %{participatory_space_title}
+          notification_title: The dates for the <a href="%{resource_path}">%{resource_title}</a> phase at <a href="%{participatory_space_url}">%{participatory_space_title}</a> have been updated.
       users:
         user_officialized:
           email_intro: Le participant %{name} (%{nickname}) a été officialisé.
@@ -108,6 +267,12 @@ fr:
           email_outro: Vérifiez la <a href="%{conflicts_path}">Liste de conflits des vérifications</a> et contactez les participants pour vérifier leurs renseignements et résoudre le problème.
           email_subject: Un utilisateur a tenté de se faire vérifier avec les données d'un utilisateur représenté
           notification_title: Le participant <a href="%{resource_path}">%{resource_title}</a> a tenté de se faire vérifier avec les données de l'utilisateur représenté <a href="%{managed_user_path}">%{managed_user_name}</a>.
+    help:
+      participatory_spaces:
+        participatory_processes:
+          contextual: "<p>A <strong>participatory process</strong> is a sequence of participatory activities (e.g. first filling out a survey, then making proposals, discussing them in face-to-face or virtual meetings, and finally prioritizing them) with the aim of defining and making a decision on a specific topic.</p> <p>Examples of participatory processes are: a process of electing committee members (where candidatures are first presented, then debated and finally a candidacy is chosen), participatory budgets (where proposals are made, valued economically and voted on with the money available), a strategic planning process, the collaborative drafting of a regulation or norm, the design of an urban space or the production of a public policy plan.</p>\n"
+          page: "<p>A <strong>participatory process</strong> is a sequence of participatory activities (e.g. first filling out a survey, then making proposals, discussing them in face-to-face or virtual meetings, and finally prioritizing them) with the aim of defining and making a decision on a specific topic.</p> <p>Examples of participatory processes are: a process of electing committee members (where candidatures are first presented, then debated and finally a candidacy is chosen), participatory budgets (where proposals are made, valued economically and voted on with the money available), a strategic planning process, the collaborative drafting of a regulation or norm, the design of an urban space or the production of a public policy plan.</p>\n"
+          title: What is a participatory process?
     meetings:
       directory:
         meetings:
@@ -122,54 +287,212 @@ fr:
         update:
           invalid: Il y a eu une erreur lors de la mise à jour de la rencontre.
           success: La rencontre a été mise à jour avec succès.
-    omniauth:
-      france_connect:
-        explanation: FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne.
-        external:
-          link: https://franceconnect.gouv.fr/
-          text: Qu'est-ce-que FranceConnect ?
-        forgot_password:
-          ok_text: Attention, ce mot de passe est celui de votre compte local et en aucun cas celui du compte que vous utilisez au travers de FranceConnect. Il vous servira uniquement lorsque vous vous connecterez avec votre adresse mail plutôt que via FranceConnect.
-    proposals:
-      collaborative_drafts:
-        collaborative_draft:
-          publish:
-            error: Il y a eu des erreurs lors de la publication du brouillon collaboratif.
-            success: Brouillon collaboratif publié avec succès en tant que proposition.
-          withdraw:
-            error: Il y a eu des erreurs en fermant le brouillon collaboratif.
-            success: Brouillon collaboratif retiré avec succès.
-        create:
-          error: Il y a eu un problème lors de la création de ces brouillons collaboratifs
-          success: Brouillon collaboratif créé avec succès.
-        edit:
-          attachment_legend: "(Facultatif) Ajouter une pièce jointe"
-          select_a_category: Veuillez sélectionner une catégorie
-        new:
-          add_file: Ajouter le fichier
-          edit_file: Editer le fichier
-        show:
-          back: Retour
-          edit: Modifier un brouillon collaboratif
-          info-message: Ceci est un <strong>projet collaboratif</strong> pour une proposition. Cela signifie que vous pouvez aider leurs auteurs à façonner la proposition en utilisant la section commentaire ci-dessous ou l'améliorer directement en demandant l'accès pour la modifier. Une fois que les auteurs vous accordent l'accès, vous pourrez apporter des modifications à ce brouillon.
-          publish_info: Publiez cette version du brouillon ou
-          requested_access: Accès demandé
-        update:
-          error: Il y a eu des erreurs lors de l'enregistrement du brouillon collaboratif.
-          success: Brouillon collaboratif mis à jour avec succès.
-        wizard_aside:
-          back_from_collaborative_draft: Retour aux brouillons collaboratifs
-          info: Vous créez un <strong>projet collaboratif</strong>.
+    menu:
+      processes: Processes
+    metrics:
+      participatory_processes:
+        description: Number of participatory processes in this organization
+        object: participatory processes
+        title: Participatory processes
+    participatory_process:
+      show:
+        related_assemblies: Related assemblies
+    participatory_process_groups:
+      content_blocks:
+        html_1:
+          name: First HTML block
+        html_2:
+          name: Second HTML block
+        html_3:
+          name: Third HTML block
+        metadata:
+          developer_group: Promoted by
+          name: Metadata
+          participatory_scope: What is decided
+          participatory_structure: How is it decided
+          target: Who participates
+        participatory_processes:
+          name: Participatory processes
+        stats:
+          name: Statistics
+        title:
+          meta_scope: Scope
+          name: Title, description and hashtag
+          participatory_processes:
+            one: 1 process
+            other: "%{count} processes"
+      show:
+        title: Participatory process groups
+    participatory_process_steps:
       index:
-        collaborative_drafts_list: Accéder aux brouillons collaboratifs
-        new_proposal: Nouvelle proposition
-        view_proposal: Voir la proposition
-      models:
-        collaborative_draft:
-          fields:
-            authors: Auteurs
-            comments: Commentaires
-            contributions: Contributions
+        process_steps: Process phases
+        title: Participatory process phases
+    participatory_processes:
+      admin:
+        content_blocks:
+          highlighted_processes:
+            max_results: Maximum amount of elements to show
+        new_import:
+          accepted_types:
+            json: JSON
+        participatory_process_copies:
+          form:
+            slug_help: 'URL slugs are used to generate the URLs that point to this process. Only accepts letters, numbers and dashes, and must start with a letter. Example: %{url}'
+        participatory_process_groups:
+          form:
+            metadata: Metadata
+            title: General Information
+            visibility: Visibility
+        participatory_process_imports:
+          form:
+            document_legend: Add a document
+            slug_help: 'URL slugs are used to generate the URLs that point to this process. Only accepts letters, numbers and dashes, and must start with a letter. Example: %{url}'
+        participatory_process_steps:
+          form:
+            cta_path_help: 'Use partial paths, not full URLs here. Accepts letters, numbers, dashes and slashes, and must start with a letter. If not set, the button will not be shown. Example: %{url}'
+            cta_text_help: If not set, the button will not be shown.
+        participatory_processes:
+          form:
+            address_help: Address help
+            announcement_help: The text you enter here will be shown to the user right below the process information.
+            duration: Duration
+            emitter: Emitter
+            emitter_logo: New logo
+            emitter_logo_select: Select an emitter logo that already exists on the platform
+            emitter_name: Name of the new logo
+            emitter_new: 'Or import a new emitter logo :'
+            emitter_now: Current logo name
+            filters: Filters
+            images: Images
+            metadata: Metadata
+            other: Other
+            related_processes: Related processes
+            scope_type_max_depth_help: Restrict the scope filter depth; The filter will show from general to the selected scope type.
+            select_an_area: Select an Area
+            select_process_group: Select a process group
+            slug_help: 'URL slugs are used to generate the URLs that point to this process. Only accepts letters, numbers and dashes, and must start with a letter. Example: %{url}'
+            title: General Information
+            visibility: Visibility
+      content_blocks:
+        highlighted_processes:
+          name: Highlighted processes
+      emitter:
+        emitter_text: Consultation published by %{developer_group}
+      index:
+        title: Participatory processes
+      last_activity:
+        new_participatory_process: New participatory process
+      pages:
+        home:
+          highlighted_processes:
+            active_processes: Active processes
+            active_step: Active phase
+            more_information: More information
+            participate: Participate
+            participate_in: Participate in process %{resource_name}
+            processes_button_title: Link to the Processes page displaying all the processes
+            see_all_processes: See all processes
+      participatory_process_steps:
+        index:
+          back_to_process: Back to the process page
+      participatory_processes:
+        filters:
+          counters:
+            active:
+              one: 1 active process
+              other: "%{count} active processes"
+            all:
+              one: 1 process
+              other: "%{count} processes"
+            past:
+              one: 1 past process
+              other: "%{count} past processes"
+            upcoming:
+              one: 1 upcoming process
+              other: "%{count} upcoming processes"
+          explanations:
+            no_active: No active processes
+            no_active_nor_upcoming: No active nor upcoming processes
+            no_active_nor_upcoming_callout: There are no active nor upcoming processes. Here is a list of the past ones.
+          names:
+            active: Active
+            all: All
+            past: Past
+            upcoming: Upcoming
+          see: See
+        index:
+          loading: Loading results...
+        show:
+          title: About this process
+      show:
+        area: Area
+        belongs_to_group: This process belongs to
+        dates: Dates
+        developer_group: Promoter group
+        end_date: End date
+        local_area: Organization Area
+        participatory_scope: What is decided
+        participatory_structure: How is it decided
+        private_space: This is a private process
+        related_processes: Related processes
+        scope: Scope
+        start_date: Start date
+        target: Who participates
+        unspecified: Not specified
+    proposals:
+      admin:
+        exports:
+          column_name:
+            proposal:
+              address: Address
+              answer: Answer
+              attachments: Attachments
+              body: Body
+              category:
+                category: Category
+                id: ID
+                name: Name
+              comments: Comments
+              component:
+                component: Component
+                id: ID
+              email: Email
+              endorsements:
+                endorsements: Endorsements
+                total_count: Total count
+                user_endorsements: User endorsements
+              followers: Followers
+              id: ID
+              is_amend: Is amend
+              latitude: Latitude
+              longitude: Longitude
+              meeting_urls: Meeting URLS
+              original_proposal:
+                original_proposal: Original proposal
+                title: Title
+                url: URL
+              participatory_space:
+                id: ID
+                participatory_space: Participatory space
+                url: URL
+              phone_number: Phone number
+              published_at: Published at
+              reference: Reference
+              related_proposals: Related proposals
+              scope:
+                id: ID
+                name: Name
+                scope: Scope
+              state: State
+              supports: Supports
+              title: Title
+              url: URL
+              username: Username
+      application_helper:
+        filter_category_values:
+          all: All
+        filter_scope_values:
+          all: All
     scopes:
       global: Portée générale
       picker:
@@ -177,11 +500,36 @@ fr:
         change: Modifier
         choose: Sélectionner
         currently_selected: Sélectionné
-    shared:
-      login_modal:
-        close_modal: Fermer
-        please_sign_in: Veuillez vous connecter
-        sign_up: Créer un compte
+    statistics:
+      processes_count: Processes
+    surveys:
+      admin:
+        exports:
+          column_name:
+            data:
+              answer_options: Answer options
+              body: Body
+              created_at: Created at
+              decidim_component_id: Component ID
+              decidim_question_id: Question ID
+              decidim_questionnaire_id: Questionnaire ID
+              description: Description
+              free_text: Free text
+              id: ID
+              mandatory: Mandatory
+              max_characters: Max characters
+              max_choices: Max choices
+              position: Position
+              published_at: Published at
+              question_type: Question type
+              questionnaire: Questionnaire
+              questionnaire_for_id: Questionnaire for ID
+              questionnaire_for_type: Questionnaire for type
+              questions: Questions
+              salt: Salt
+              title: Title
+              tos: Terms of service
+              updated_at: Updated at
     system:
       organizations:
         omniauth_settings:
@@ -217,18 +565,12 @@ fr:
           actions:
             osp_authorization_handler: Vérifier avec le formulaire de vérification de l'identité
             osp_authorization_workflow: Vérifier avec le formulaire de vérification de l'identité
-  devise:
-    passwords:
-      new:
-        forgot_your_password: Mot de passe oublié ?
-        send_me_reset_password_instructions: Envoyez-moi les instructions de réinitialisation du mot de passe
-    sessions:
-      new:
-        sign_in: S'identifier
-    shared:
-      links:
-        forgot_your_password: Mot de passe oublié ?
-        sign_in_with_france_connect: FranceConnect
+      sms:
+        authorizations:
+          new:
+            instructions: Enter your phone number and the verification code sent by SMS. This method allows us to ensure that you have voted only once.
+            instructions_helper: "<ul><li>Must contain only numbers</li><li>Must start with 0</li><li>Must contain 10 digits</li><li>Must not be used by another account on this platform</li></ul>"
+            mobile_phone_number: Mobile phone number
   faker:
     address:
       country_code:
@@ -247,9 +589,52 @@ fr:
     decidim:
       footer:
         made_with_open_source: Site réalisé par <a target="_blank" href="https://opensourcepolitics.eu">Open Source Politics</a> grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
+      header:
+        close_menu: Close menu
+        navigation: Navigation
+        sign_in: Sign in
+        sign_up: Sign up
+      participatory_process_groups:
+        participatory_process_group:
+          browse: Browse
+          browse_resource: Browse process group %{resource_name}
+          processes_count: 'Processes:'
+      participatory_process_widgets:
+        show:
+          active_step: Active phase
+          take_part: Take part
+      participatory_processes:
+        index:
+          promoted_processes: Highlighted processes
+        participatory_process:
+          active_step: 'Current phase:'
+          more_info: More info
+          more_info_about: More info about process %{resource_name}
+          take_part: Take part
+          take_part_in: Take part in process %{resource_name}
+        promoted_process:
+          active_step: 'Current phase:'
+          more_info: More info
+          more_info_about: More info about process %{resource_name}
+          take_part: Take part
+          take_part_in: Take part in process %{resource_name}
+        promoted_process_group:
+          more_info: More info
+      process_header_steps:
+        step: Phase %{current} of %{total}
+        view_steps: Process phases
+      process_navigation:
+        process_menu_item: The process
+      user_menu:
+        account: Account
+        conversations: Conversations
+        notifications: Notifications
+        profile: My account
   rack_attack:
     too_many_requests:
       message: Il semblerait que vous fassiez trop de requetes sur notre serveur, votre connexion a ete ralentie.
       time: 'Vous pourrez naviguer de nouveau sur notre plateforme dans :'
       time_unit: seconds
       title: Thank you for your participation on %{organization_name}
+  sms_verification_workflow:
+    message: 'Hello, here is the code to authenticate yourself on the jeparticipe.toulouse.fr platform: %{code}'

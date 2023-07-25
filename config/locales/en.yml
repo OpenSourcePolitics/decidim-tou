@@ -2,6 +2,10 @@
 en:
   activemodel:
     attributes:
+      osp_authorization_handler:
+        birthday: Date de naissance
+        document_number: Numéro unique
+        postal_code: Code postal
       participatory_process:
         announcement: Announcement
         area_id: Area
@@ -21,6 +25,7 @@ en:
         participatory_process_group_id: Processes group
         participatory_scope: What is decided
         participatory_structure: How is it decided
+        private_space: Espace privé
         promoted: Promoted
         published_at: Published at
         related_process_ids: Related processes
@@ -308,6 +313,14 @@ en:
           contextual: "<p>A <strong>participatory process</strong> is a sequence of participatory activities (e.g. first filling out a survey, then making proposals, discussing them in face-to-face or virtual meetings, and finally prioritizing them) with the aim of defining and making a decision on a specific topic.</p> <p>Examples of participatory processes are: a process of electing committee members (where candidatures are first presented, then debated and finally a candidacy is chosen), participatory budgets (where proposals are made, valued economically and voted on with the money available), a strategic planning process, the collaborative drafting of a regulation or norm, the design of an urban space or the production of a public policy plan.</p>\n"
           page: "<p>A <strong>participatory process</strong> is a sequence of participatory activities (e.g. first filling out a survey, then making proposals, discussing them in face-to-face or virtual meetings, and finally prioritizing them) with the aim of defining and making a decision on a specific topic.</p> <p>Examples of participatory processes are: a process of electing committee members (where candidatures are first presented, then debated and finally a candidacy is chosen), participatory budgets (where proposals are made, valued economically and voted on with the money available), a strategic planning process, the collaborative drafting of a regulation or norm, the design of an urban space or the production of a public policy plan.</p>\n"
           title: What is a participatory process?
+    meetings:
+      meetings:
+        create:
+          invalid: Il y a eu une erreur lors de la création de la rencontre.
+          success: La rencontre a été créée avec succès.
+        update:
+          invalid: Il y a eu une erreur lors de la mise à jour de la rencontre.
+          success: La rencontre a été mise à jour avec succès.
     menu:
       processes: Processes
     metrics:
@@ -516,6 +529,11 @@ en:
           all: All
     scopes:
       global: Global
+      picker:
+        cancel: Annuler
+        change: Modifier
+        choose: Sélectionner
+        currently_selected: Sélectionné
     statistics:
       processes_count: Processes
     statutory_representative:
@@ -550,7 +568,41 @@ en:
               title: Title
               tos: Terms of service
               updated_at: Updated at
+    system:
+      organizations:
+        omniauth_settings:
+          france_connect:
+            client_id: Client ID
+            client_secret: Client secret
+            provider: FranceConnect
+            provider_name: FranceConnect
+            scope: Périmètre de données
+            site_url: Site URL
+          france_connect_profile:
+            button_path: Chemin du bouton
+            client_id: Client ID
+            client_secret: Client secret
+            provider_name: Provider name
+            site: Site URL
+          france_connect_uid:
+            button_path: Chemin du bouton
+            client_id: Client ID
+            client_secret: Client secret
+            provider_name: Provider name
+            site: Site URL
+          publik:
+            client_id: Client ID
+            client_secret: Client secret
+            site_url: Site URL
     verifications:
+      authorizations:
+        create:
+          error: Il y a eu une erreur lors de votre vérification.
+          success: Vous avez été vérifié avec succès.
+        first_login:
+          actions:
+            osp_authorization_handler: Vérifier avec le formulaire de vérification de l'identité
+            osp_authorization_workflow: Vérifier avec le formulaire de vérification de l'identité
       sms:
         authorizations:
           edit:
@@ -610,11 +662,11 @@ en:
         conversations: Conversations
         notifications: Notifications
         profile: My account
-  sms_verification_workflow:
-    message: 'Hello, here is the code to authenticate yourself on the jeparticipe.toulouse.fr platform: %{code}'
   rack_attack:
     too_many_requests:
       message: Your connection has been slowed because server received too many requests.
       time: 'You will be able to navigate on our website in :'
       time_unit: seconds
       title: Thank you for your participation on %{organization_name}
+  sms_verification_workflow:
+    message: 'Hello, here is the code to authenticate yourself on the jeparticipe.toulouse.fr platform: %{code}'
