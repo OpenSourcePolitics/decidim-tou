@@ -167,7 +167,7 @@ describe DecidimApp::K8s::OrganizationExporter do
     it "returns the organization columns" do
       expect(subject.organization_columns).to eq({
                                                    "available_authorizations" => [],
-                                                   "available_locales" => %w(en fr),
+                                                   "available_locales" => Decidim.available_locales.map(&:to_s),
                                                    "default_locale" => "en",
                                                    "file_upload_settings" => {
                                                      "allowed_content_types" => {
