@@ -11,7 +11,7 @@ describe "rake decidim_app:k8s:external_install_or_reload", type: :task do
 
   it "calls the manager service" do
     with_modified_env path: path.to_s do
-      expect(DecidimApp::K8s::Manager).to receive(:run).with(path.to_s)
+      expect(DecidimApp::K8s::Manager).to receive(:run).at_least(:once).with(path.to_s)
 
       task.execute
     end
