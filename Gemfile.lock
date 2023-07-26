@@ -1,24 +1,26 @@
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git
-  revision: fbf147b5aae425130976807b5ed38f76393439aa
+  revision: 455543991dbf98936c1653dfcb04ac95b464e5a9
   specs:
-    decidim-friendly_signup (0.4.2)
+    decidim-friendly_signup (0.4.4)
       decidim-core (~> 0.26.0)
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git
-  revision: 3710b53715587bd67f0a20911972077bb074cb0d
+  revision: 4e6b7a1a5fcfa0661ba93d1bedb2e09da66d5326
   branch: release/0.26-stable
   specs:
     decidim-homepage_interactive_map (2.0.0)
       decidim-admin (>= 0.25.0, < 0.27)
       decidim-core (>= 0.25.0, < 0.27)
       decidim-dev (>= 0.25.0, < 0.27)
+      rgeo (~> 2.4)
+      rgeo-proj4 (~> 3.1)
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler
-  revision: 488cc8827845ec1c5266aa499df2ebf9b20e02a3
-  branch: release/0.26-stable
+  revision: f81cb7163cf60ca91bcb7889afb9e18d729d44e4
+  branch: 0.26/without-exports
   specs:
     decidim-phone_authorization_handler (1.0.0)
       decidim-core (~> 0.26)
@@ -329,9 +331,9 @@ GEM
     decidim-debates (0.26.7)
       decidim-comments (= 0.26.7)
       decidim-core (= 0.26.7)
-    decidim-decidim_awesome (0.8.3)
-      decidim-admin (>= 0.25.0, < 0.27)
-      decidim-core (>= 0.25.0, < 0.27)
+    decidim-decidim_awesome (0.9.1)
+      decidim-admin (>= 0.26.0, < 0.28)
+      decidim-core (>= 0.26.0, < 0.28)
       sassc (~> 2.3)
     decidim-dev (0.26.7)
       axe-core-rspec (~> 4.1.0)
@@ -385,8 +387,8 @@ GEM
       decidim-comments (= 0.26.7)
       decidim-core (= 0.26.7)
       decidim-proposals (= 0.26.7)
-    decidim-spam_detection (2.0.0)
-      decidim-core (~> 0.26)
+    decidim-spam_detection (3.1.0)
+      decidim-core (~> 0.26.0)
     decidim-surveys (0.26.7)
       decidim-core (= 0.26.7)
       decidim-forms (= 0.26.7)
@@ -570,7 +572,6 @@ GEM
     mime-types-data (3.2022.0105)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
     minitest (5.16.3)
     mixlib-cli (2.1.8)
     mixlib-config (3.0.27)
@@ -582,8 +583,7 @@ GEM
     multi_xml (0.6.0)
     mustache (1.1.1)
     nio4r (2.5.8)
-    nokogiri (1.13.4)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.13.4-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.4-x86_64-darwin)
       racc (~> 1.4)
@@ -720,6 +720,9 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    rgeo (2.4.0)
+    rgeo-proj4 (3.1.1)
+      rgeo (~> 2.0)
     rspec (3.11.0)
       rspec-core (~> 3.11.0)
       rspec-expectations (~> 3.11.0)
@@ -898,7 +901,7 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
-  ruby
+  arm64-darwin-22
   x86_64-darwin-21
   x86_64-linux
 
@@ -951,4 +954,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.3.13
+   2.4.9
