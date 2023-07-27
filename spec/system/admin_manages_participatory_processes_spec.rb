@@ -109,7 +109,7 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
           :participatory_process_short_description,
           "#participatory_process-short_description-tabs",
           en: "Short description",
-          fr: "Descripción corta",
+          fr: "Descripción corta"
         )
         fill_in_i18n_editor(
           :participatory_process_description,
