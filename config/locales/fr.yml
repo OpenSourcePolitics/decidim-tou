@@ -25,6 +25,7 @@ fr:
         participatory_process_group_id: Groupe de processus
         participatory_scope: Objectifs
         participatory_structure: Modalités de décision
+        private_space: Espace privé
         promoted: Mis en avant
         published_at: Publiée à
         related_process_ids: Concertations liées
@@ -320,12 +321,18 @@ fr:
       meeting:
         not_allowed: Vous n'êtes pas autorisé à vous inscrire à cette rencontre.
       meetings:
+        create:
+          invalid: Il y a eu une erreur lors de la création de la rencontre.
+          success: La rencontre a été créée avec succès.
         error: Une erreur s'est produite lors de l'import de cette concertation.
         new:
           import: Importer
           select: Sélectionnez les données que vous souhaitez importer
           title: Importer une concertation
         success: Concertation importée avec succès.
+        update:
+          invalid: Il y a eu une erreur lors de la mise à jour de la rencontre.
+          success: La rencontre a été mise à jour avec succès.
       participatory_process_publications:
         create:
           error: Une erreur s'est produite lors de la publication de cette concertation.
@@ -656,6 +663,32 @@ fr:
               title: Titre
               tos: Conditions d'utilisation
               updated_at: Date de mise à jour
+    system:
+      organizations:
+        omniauth_settings:
+          france_connect:
+            client_id: Client ID
+            client_secret: Client secret
+            provider: FranceConnect
+            provider_name: FranceConnect
+            scope: Périmètre de données
+            site_url: Site URL
+          france_connect_profile:
+            button_path: Chemin du bouton
+            client_id: Client ID
+            client_secret: Client secret
+            provider_name: Provider name
+            site: Site URL
+          france_connect_uid:
+            button_path: Chemin du bouton
+            client_id: Client ID
+            client_secret: Client secret
+            provider_name: Provider name
+            site: Site URL
+          publik:
+            client_id: Client ID
+            client_secret: Client secret
+            site_url: Site URL
     verifications:
       authorizations:
         create:
