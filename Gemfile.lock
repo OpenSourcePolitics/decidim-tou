@@ -917,7 +917,7 @@ DEPENDENCIES
   decidim-cache_cleaner
   decidim-cleaner
   decidim-conferences (~> 0.26.0)
-  decidim-decidim_awesome
+  decidim-decidim_awesome (~> 0.8.3)
   decidim-dev (~> 0.26.0)
   decidim-faceless!
   decidim-friendly_signup!
