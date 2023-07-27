@@ -40,29 +40,25 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
           :participatory_process_title,
           "#participatory_process-title-tabs",
           en: "My participatory process",
-          es: "Mi proceso participativo",
-          ca: "El meu procés participatiu"
+          fr: "Mi proceso participativo"
         )
         fill_in_i18n(
           :participatory_process_subtitle,
           "#participatory_process-subtitle-tabs",
           en: "Subtitle",
-          es: "Subtítulo",
-          ca: "Subtítol"
+          fr: "Subtítulo"
         )
         fill_in_i18n_editor(
           :participatory_process_short_description,
           "#participatory_process-short_description-tabs",
           en: "Short description",
-          es: "Descripción corta",
-          ca: "Descripció curta"
+          fr: "Descripción corta"
         )
         fill_in_i18n_editor(
           :participatory_process_description,
           "#participatory_process-description-tabs",
           en: "A longer description",
-          es: "Descripción más larga",
-          ca: "Descripció més llarga"
+          fr: "Descripción más larga"
         )
         fill_in "Address", with: address
         group_title = participatory_process_groups.first.title["en"]
@@ -101,29 +97,25 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
           :participatory_process_title,
           "#participatory_process-title-tabs",
           en: "My participatory process",
-          es: "Mi proceso participativo",
-          ca: "El meu procés participatiu"
+          fr: "Mi proceso participativo"
         )
         fill_in_i18n(
           :participatory_process_subtitle,
           "#participatory_process-subtitle-tabs",
           en: "Subtitle",
-          es: "Subtítulo",
-          ca: "Subtítol"
+          fr: "Subtítulo"
         )
         fill_in_i18n_editor(
           :participatory_process_short_description,
           "#participatory_process-short_description-tabs",
           en: "Short description",
-          es: "Descripción corta",
-          ca: "Descripció curta"
+          fr: "Descripción corta",
         )
         fill_in_i18n_editor(
           :participatory_process_description,
           "#participatory_process-description-tabs",
           en: "A longer description",
-          es: "Descripción más larga",
-          ca: "Descripció més llarga"
+          fr: "Descripción más larga"
         )
         fill_in :participatory_process_slug, with: "slug"
         fill_in :participatory_process_weight, with: 1
@@ -159,29 +151,25 @@ describe "Admin manages participatory processes", versioning: true, type: :syste
           :participatory_process_title,
           "#participatory_process-title-tabs",
           en: "My participatory process",
-          es: "Mi proceso participativo",
-          ca: "El meu procés participatiu"
+          fr: "Mi proceso participativo"
         )
         fill_in_i18n(
           :participatory_process_subtitle,
           "#participatory_process-subtitle-tabs",
           en: "Subtitle",
-          es: "Subtítulo",
-          ca: "Subtítol"
+          fr: "Subtítulo"
         )
         fill_in_i18n_editor(
           :participatory_process_short_description,
           "#participatory_process-short_description-tabs",
           en: "Short description",
-          es: "Descripción corta",
-          ca: "Descripció curta"
+          fr: "Descripción corta"
         )
         fill_in_i18n_editor(
           :participatory_process_description,
           "#participatory_process-description-tabs",
           en: "A longer description",
-          es: "Descripción más larga",
-          ca: "Descripció més llarga"
+          fr: "Descripción más larga"
         )
         fill_in :participatory_process_slug, with: "slug"
         fill_in :participatory_process_weight, with: 1
