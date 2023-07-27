@@ -29,8 +29,7 @@ describe "Admin copies participatory process", type: :system do
           :participatory_process_title,
           "#participatory_process-title-tabs",
           en: "Copy participatory process",
-          es: "Copia del proceso participativo",
-          ca: "Còpia del procés participatiu"
+          fr: "Copia del proceso participativo"
         )
         fill_in :participatory_process_slug, with: "pp-copy"
         click_button "Copy"
@@ -51,8 +50,7 @@ describe "Admin copies participatory process", type: :system do
           :participatory_process_title,
           "#participatory_process-title-tabs",
           en: "Copy participatory process",
-          es: "Copia del proceso participativo",
-          ca: "Còpia del procés participatiu"
+          fr: "Copia del proceso participativo"
         )
         fill_in :participatory_process_slug, with: "pp-copy-with-steps"
       end
