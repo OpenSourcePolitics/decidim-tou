@@ -42,7 +42,7 @@
       <% if related_processes.any? %>
         <div class="section row collapse related_processes">
           <h4 class="section-heading"><%= t "related_processes", scope: "decidim.participatory_processes.show" %></h4>
-          <div class="collapsible-list row small-up-1 medium-up-2 card-grid">
+          <div class="row small-up-1 medium-up-2 card-grid">
             <% related_processes.each do |related_process| %>
               <%= card_for(related_process) %>
             <% end %>
