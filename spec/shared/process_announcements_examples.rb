@@ -10,8 +10,7 @@ shared_examples "manage processes announcements" do
       :participatory_process_announcement,
       "#participatory_process-announcement-tabs",
       en: "An important announcement",
-      es: "Un aviso muy importante",
-      ca: "Un avís molt important"
+      fr: "Un aviso muy importante"
     )
 
     within ".edit_participatory_process" do

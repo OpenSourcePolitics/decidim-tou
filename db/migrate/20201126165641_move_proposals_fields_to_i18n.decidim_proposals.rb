@@ -34,10 +34,8 @@ class MoveProposalsFieldsToI18n < ActiveRecord::Migration[5.2]
                               proposal.body
                             end
 
-        # rubocop:disable Rails/SkipsModelValidations
         proposal.update_column("new_title", proposal.new_title)
         proposal.update_column("new_body", proposal.new_body)
-        # rubocop:enable Rails/SkipsModelValidations
       end
     end
 

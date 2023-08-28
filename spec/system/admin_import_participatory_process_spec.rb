@@ -20,8 +20,7 @@ describe "Admin imports participatory process", type: :system do
           :participatory_process_title,
           "#participatory_process-title-tabs",
           en: "Import participatory process",
-          es: "Importación del proceso participativo",
-          ca: "Importació del procés participatiu"
+          fr: "Importación del proceso participativo"
         )
         fill_in :participatory_process_slug, with: "pp-import"
         attach_file :participatory_process_document, Decidim::Dev.asset("participatory_processes.json")

@@ -241,7 +241,7 @@ describe "Participatory Processes", type: :system do
 
         context "when the active step has CTA text and url set" do
           let(:cta_path) { "my_path" }
-          let(:cta_text) { { en: "Take action!", ca: "Take action!", es: "Take action!" } }
+          let(:cta_text) { { en: "Take action!", fr: "Take action!" } }
 
           before do
             active_step.update!(cta_path: cta_path, cta_text: cta_text)
@@ -290,7 +290,7 @@ describe "Participatory Processes", type: :system do
             before do
               visit decidim_participatory_processes.participatory_processes_path
               within_language_menu do
-                click_link "Català"
+                click_link "Français"
               end
             end
 
