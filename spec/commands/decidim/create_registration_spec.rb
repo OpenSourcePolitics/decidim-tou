@@ -40,7 +40,7 @@ module Decidim
         let(:tos_agreement) { "1" }
         let(:additional_tos) { true }
         let(:newsletter) { "1" }
-        let(:current_locale) { "es" }
+        let(:current_locale) { "en" }
 
         let(:living_area) { "city" }
         let(:city_residential_area) { city_residential_scope.id }

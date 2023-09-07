@@ -98,8 +98,7 @@ shared_examples "manage processes examples" do
         :participatory_process_title,
         "#participatory_process-title-tabs",
         en: "My new title",
-        es: "Mi nuevo título",
-        ca: "El meu nou títol"
+        fr: "Mi nuevo título"
       )
       attach_file :participatory_process_banner_image, image3_path
 
