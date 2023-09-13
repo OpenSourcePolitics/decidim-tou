@@ -17,7 +17,7 @@
       <%= render :tags %>
     </div>
 
-    <%= render :data %>
+    <%= render :data if has_data? %>
     <%= render :status %>
     <%= render :footer %>
   </div>
