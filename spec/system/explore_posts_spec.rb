@@ -5,6 +5,7 @@ require "spec_helper"
 describe "Explore posts", type: :system do
   include_context "with a component"
   let(:manifest_name) { "blogs" }
+  Time.zone = "UTC"
 
   let!(:old_post) { create(:post, component: component, created_at: Time.current - 2.days) }
   let!(:new_post) { create(:post, component: component, created_at: Time.current) }
