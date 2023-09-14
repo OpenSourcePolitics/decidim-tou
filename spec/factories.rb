@@ -22,7 +22,7 @@ FactoryBot.modify do
 
     name { Faker::Company.unique.name }
     reference_prefix { Faker::Name.suffix }
-    time_zone { "UTC" }
+    time_zone { "Europe/Paris" }
     twitter_handler { Faker::Hipster.word }
     facebook_handler { Faker::Hipster.word }
     instagram_handler { Faker::Hipster.word }
@@ -40,8 +40,6 @@ FactoryBot.modify do
     highlighted_content_banner_enabled { false }
     enable_omnipresent_banner { false }
     badges_enabled { true }
-    # time_zone from france (gmt+2)
-    time_zone { "Europe/Paris" }
     user_groups_enabled { true }
     send_welcome_notification { true }
     comments_max_length { 1000 }
@@ -60,10 +58,6 @@ FactoryBot.modify do
     end
     file_upload_settings { Decidim::OrganizationSettings.default(:upload) }
     enable_participatory_space_filters { true }
-
-    trait :secure_context do
-      host { "localhost" }
-    end
 
     after(:create) do |organization, evaluator|
       if evaluator.create_static_pages
