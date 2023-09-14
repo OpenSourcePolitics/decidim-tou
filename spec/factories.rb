@@ -4,6 +4,7 @@
   core
   proposals
   budgets
+  blogs
   debates
   meetings
   accountability
