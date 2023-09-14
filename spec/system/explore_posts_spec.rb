@@ -9,8 +9,6 @@ describe "Explore posts", type: :system do
   let!(:new_post) { create(:post, component: component, created_at: Time.current) }
   let!(:image) { create(:attachment, attached_to: old_post) }
 
-  Time.zone = "UTC"
-
   describe "index" do
     it "shows all posts for the given process" do
       visit_component
