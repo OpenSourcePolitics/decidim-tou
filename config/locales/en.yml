@@ -66,6 +66,11 @@ en:
         email: Email
         name: Name
         role: Role
+      user:
+        additional_tos: Additional Terms of use
+        living_area: Living area
+        month: Month
+        year: Year
     errors:
       models:
         participatory_process:
