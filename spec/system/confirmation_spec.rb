@@ -92,7 +92,7 @@ describe "Registration", type: :system do
     end
 
     it "throttles after 5 attempts per minute" do
-      expect(page).to have_content("Your connection has been slowed because server received too many requests.")
+      expect(page).to have_content("Retry later")
     end
   end
 end
