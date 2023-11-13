@@ -2,13 +2,16 @@
 
 .main-footer,
 .mini-footer{
-  color: $medium-gray;
+  // TODO: Undefined variable.
+  //color: $medium-gray;
 
   a{
-    color: darken($medium-gray, 40%);
+    // TODO: Undefined variable.
+    //color: darken($medium-gray, 40%);
 
     &:hover{
-      color: darken($medium-gray, 20%);
+      // TODO: Undefined variable.
+      //color: darken($medium-gray, 20%);
       text-decoration: underline;
     }
 
@@ -31,9 +34,10 @@
   width: 140px;
   text-align: center;
 
-  @include breakpoint(large){
-    position: absolute;
-  }
+  // TODO: Undefined mixin.
+  //@include breakpoint(large){
+  //  position: absolute;
+  //}
 }
 
 @media print, screen and (min-width: 64em) {
@@ -46,13 +50,14 @@
 .main__footer__nav{
   text-align: center;
 
-  @include breakpoint(medium){
-    text-align: left;
-  }
-
-  @include breakpoint(large){
-    text-align: center;
-  }
+  // TODO: Undefined mixin.
+  //@include breakpoint(medium){
+  //  text-align: left;
+  //}
+  //
+  //@include breakpoint(large){
+  //  text-align: center;
+  //}
 }
 
 .footer-nav{
@@ -65,17 +70,19 @@
     padding: 0 1rem;
   }
 
-  @include breakpoint(large){
-    margin-left: 0;
-  }
+  // TODO: Undefined mixin.
+  //@include breakpoint(large){
+  //  margin-left: 0;
+  //}
 }
 
 .main__footer__social{
   text-align: center;
 
-  @include breakpoint(medium){
-    text-align: right;
-  }
+  // TODO: Undefined mixin.
+  //@include breakpoint(medium){
+  //  text-align: right;
+  //}
 }
 
 .footer-social{

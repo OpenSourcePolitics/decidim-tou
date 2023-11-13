@@ -17,7 +17,7 @@ gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch
 # External Decidim gems
 # gem "decidim-cache_cleaner"
 # gem "decidim-cleaner"
-gem "decidim-decidim_awesome"
+# gem "decidim-decidim_awesome"
 # gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: DECIDIM_BRANCH
 # gem "decidim-friendly_signup", git: "https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git"
 # gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: DECIDIM_BRANCH
@@ -30,6 +30,7 @@ gem "decidim-decidim_awesome"
 # gem "aws-sdk-s3", require: false
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 6.3.1"
+gem "shakapacker", "~> 7.1"
 # gem "faker", "~> 3.2"
 # gem "fog-aws"
 # gem "foundation_rails_helper", git: "https://github.com/sgruhier/foundation_rails_helper.git"

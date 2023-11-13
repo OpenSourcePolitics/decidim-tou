@@ -1,7 +1,8 @@
 .horizontal__steps{
   display: flex;
   justify-content: space-between;
-  margin: 0 0 $margin-s;
+  // TODO: Undefined variable.
+  //margin: 0 0 $margin-s;
   list-style-type: none;
 
   li{
@@ -11,7 +12,8 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
-    color: $muted;
+    // TODO: Undefined variable.
+    //color: $muted;
     font-weight: 600;
     font-size: rem-calc(18);
   }
@@ -26,7 +28,8 @@
     position: absolute;
     height: $line-height;
     width: 100%;
-    background-color: $muted;
+    // TODO: Undefined variable.
+    //background-color: $muted;
     bottom: 0;
     transform: translateY($center-line);
   }
@@ -47,7 +50,8 @@
     border-radius: 50%;
     height: calc(2 * #{$radius});
     width: calc(2 * #{$radius});
-    background-color: $muted;
+    // TODO: Undefined variable.
+    //background-color: $muted;
   }
 
   li.step--active{

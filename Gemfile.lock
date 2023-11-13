@@ -309,10 +309,6 @@ GEM
     date_validator (0.12.0)
       activemodel (>= 3)
       activesupport (>= 3)
-    decidim-decidim_awesome (0.9.3)
-      decidim-admin (>= 0.26.0, < 0.28)
-      decidim-core (>= 0.26.0, < 0.28)
-      sassc (~> 2.3)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
@@ -697,8 +693,6 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    sassc (2.4.0)
-      ffi (~> 1.9)
     selenium-webdriver (4.15.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -812,7 +806,6 @@ DEPENDENCIES
   byebug (~> 11.0)
   decidim!
   decidim-conferences!
-  decidim-decidim_awesome
   decidim-dev!
   dotenv-rails
   flamegraph
@@ -825,6 +818,7 @@ DEPENDENCIES
   parallel_tests (~> 4.2)
   puma (>= 6.3.1)
   rack-mini-profiler
+  shakapacker (~> 7.1)
   sidekiq (~> 6.0)
   sidekiq-scheduler (~> 5.0)
   sidekiq_alive (~> 2.2)
