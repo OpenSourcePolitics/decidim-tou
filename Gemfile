@@ -43,7 +43,6 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 4.2"
   gem "listen", "~> 3.1"
-  # gem "rubocop-faker"
 end
 
 group :development, :test do
@@ -54,14 +53,14 @@ group :development, :test do
   gem "net-pop", "~> 0.1.1"
   gem "net-smtp", "~> 0.3.1"
   gem "parallel_tests", "~> 4.2"
-end
-
-group :production do
   gem "bullet"
   gem "flamegraph"
   gem "memory_profiler"
   gem "rack-mini-profiler", require: false
   gem "stackprof"
+end
+
+group :production do
   # gem "dalli"
   # gem "health_check", "~> 3.1"
   # gem "lograge"
