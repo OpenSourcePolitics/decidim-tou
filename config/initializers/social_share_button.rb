@@ -2,7 +2,9 @@
 
 # Further information on how to configure the SocialShareButton gem can be
 # found here: https://github.com/huacnlee/social-share-button#configure
-#
+
+return unless defined?(SocialShareButton)
+
 SocialShareButton.configure do |config|
   config.allow_sites = %w(twitter facebook google_plus)
 end
