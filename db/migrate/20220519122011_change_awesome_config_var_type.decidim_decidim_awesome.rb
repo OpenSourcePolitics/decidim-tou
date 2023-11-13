@@ -6,9 +6,10 @@ class ChangeAwesomeConfigVarType < ActiveRecord::Migration[5.2]
   def change
     change_column :decidim_awesome_config, :var, :string
 
-    Decidim::DecidimAwesome::AwesomeConfig.find_each do |config|
-      config.var.gsub!('"', "")
-      config.save!
-    end
+    # Move to rake task if needed
+    # Decidim::DecidimAwesome::AwesomeConfig.find_each do |config|
+    #   config.var.gsub!('"', "")
+    #   config.save!
+    # end
   end
 end
