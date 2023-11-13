@@ -818,7 +818,6 @@ DEPENDENCIES
   parallel_tests (~> 4.2)
   puma (>= 6.3.1)
   rack-mini-profiler
-  shakapacker (~> 7.1)
   sidekiq (~> 6.0)
   sidekiq-scheduler (~> 5.0)
   sidekiq_alive (~> 2.2)

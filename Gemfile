@@ -30,7 +30,6 @@ gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch
 # gem "aws-sdk-s3", require: false
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 6.3.1"
-gem "shakapacker", "~> 7.1"
 # gem "faker", "~> 3.2"
 # gem "fog-aws"
 # gem "foundation_rails_helper", git: "https://github.com/sgruhier/foundation_rails_helper.git"
