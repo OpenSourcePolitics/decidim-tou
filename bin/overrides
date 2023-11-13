@@ -6,32 +6,13 @@ require 'bundler'
 def list_gem_files
   decidims = Bundler.load.specs.select { |dep| dep.name.include?("decidim") }
   decidims.map do |spec|
-    Dir.glob("#{spec.full_gem_path}/{app,lib}/**/*").select { |file| File.file?(file) }
+    Dir.glob("#{spec.full_gem_path}/{app,lib,spec}/**/*").select { |file| File.file?(file) }
   end.flatten
 end
 
 def current_files
-    Dir.glob("{app,lib}/**/*").select { |file| File.file?(file) }.flatten
+    Dir.glob("{app,lib,spec}/**/*").select { |file| File.file?(file) }.flatten
 end
-
-def find_overrides(app_path, gem_files)
-  overrides = []
-
-  Dir.glob("#{app_path}/**/*").each do |file|
-    next unless File.file?(file)
-
-    relative_path = Pathname.new(file).relative_path_from(Pathname.new(app_path)).to_s
-    gem_files.each do |gem_file|
-      if gem_file.end_with?(relative_path)
-        overrides << { app_file: file, gem_file: gem_file }
-        break
-      end
-    end
-  end
-
-  overrides
-end
-
 
 overrides = {}
 current_files.each do |file|
