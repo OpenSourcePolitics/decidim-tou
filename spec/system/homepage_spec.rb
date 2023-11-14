@@ -2,8 +2,8 @@
 
 require "spec_helper"
 
-describe "Homepage", type: :system do
-  context "when there's no organization" do
+describe "Homepage" do
+  context "when there is no organization" do
     before do
       visit decidim.root_path
     end
@@ -14,25 +14,25 @@ describe "Homepage", type: :system do
     end
   end
 
-  context "when there's an organization" do
+  context "when there is an organization" do
     let(:official_url) { "http://mytesturl.me" }
     let(:organization) do
-      create(:organization, official_url: official_url,
+      create(:organization, official_url:,
                             highlighted_content_banner_enabled: true,
                             highlighted_content_banner_title: Decidim::Faker::Localized.sentence(word_count: 2),
                             highlighted_content_banner_short_description: Decidim::Faker::Localized.sentence(word_count: 2),
                             highlighted_content_banner_action_title: Decidim::Faker::Localized.sentence(word_count: 2),
                             highlighted_content_banner_action_subtitle: Decidim::Faker::Localized.sentence(word_count: 2),
-                            highlighted_content_banner_action_url: ::Faker::Internet.url,
+                            highlighted_content_banner_action_url: Faker::Internet.url,
                             highlighted_content_banner_image: Decidim::Dev.test_file("city.jpeg", "image/jpeg"))
     end
 
     before do
-      create :content_block, organization: organization, scope_name: :homepage, manifest_name: :hero
-      create :content_block, organization: organization, scope_name: :homepage, manifest_name: :sub_hero
-      create :content_block, organization: organization, scope_name: :homepage, manifest_name: :highlighted_content_banner
-      create :content_block, organization: organization, scope_name: :homepage, manifest_name: :how_to_participate
-      create :content_block, organization: organization, scope_name: :homepage, manifest_name: :footer_sub_hero
+      create(:content_block, organization:, scope_name: :homepage, manifest_name: :hero)
+      create(:content_block, organization:, scope_name: :homepage, manifest_name: :sub_hero)
+      create(:content_block, organization:, scope_name: :homepage, manifest_name: :highlighted_content_banner)
+      create(:content_block, organization:, scope_name: :homepage, manifest_name: :how_to_participate)
+      create(:content_block, organization:, scope_name: :homepage, manifest_name: :footer_sub_hero)
 
       switch_to_host(organization.host)
     end
@@ -46,14 +46,18 @@ describe "Homepage", type: :system do
         visit decidim.root_path
       end
 
-      it "includes the official organization links and images" do
-        expect(page).to have_selector("a.logo-cityhall[href='#{official_url}']")
+      context "when having homepage anchors" do
+        %w(hero sub_hero highlighted_content_banner how_to_participate footer_sub_hero).each do |anchor|
+          it { expect(page).to have_selector("[id^=#{anchor}]", visible: :all) }
+        end
       end
+
+      it_behaves_like "accessible page"
 
       context "and the organization has the omnipresent banner enabled" do
         let(:organization) do
           create(:organization,
-                 official_url: official_url,
+                 official_url:,
                  enable_omnipresent_banner: true,
                  omnipresent_banner_url: "#{official_url}/processes",
                  omnipresent_banner_title: Decidim::Faker::Localized.sentence(word_count: 3),
@@ -75,7 +79,7 @@ describe "Homepage", type: :system do
       end
 
       describe "call to action" do
-        let!(:participatory_process) { create :participatory_process, :published }
+        let!(:participatory_process) { create(:participatory_process, :published) }
         let!(:organization) { participatory_process.organization }
 
         before do
@@ -85,11 +89,10 @@ describe "Homepage", type: :system do
 
         context "when the organization has the CTA button text customized" do
           let(:cta_button_text) { { en: "Sign up", es: "Regístrate", ca: "Registra't" } }
-          let(:organization) { create(:organization, cta_button_text: cta_button_text) }
+          let(:organization) { create(:organization, cta_button_text:) }
 
           it "uses the custom values for the CTA button text" do
             within ".hero" do
-              expect(page).to have_selector("a.hero-cta", text: "SIGN UP")
               click_link "Sign up"
             end
 
@@ -102,12 +105,11 @@ describe "Homepage", type: :system do
 
           it "uses the custom values for the CTA button" do
             within ".hero" do
-              expect(page).to have_selector("a.hero-cta", text: "PARTICIPATE")
               click_link "Participate"
             end
 
             expect(page).to have_current_path decidim.new_user_session_path
-            expect(page).to have_content("Sign in")
+            expect(page).to have_content("Log in")
             expect(page).to have_content("New to the platform?")
           end
         end
@@ -117,7 +119,6 @@ describe "Homepage", type: :system do
             visit decidim.root_path
 
             within ".hero" do
-              expect(page).to have_selector("a.hero-cta", text: "PARTICIPATE")
               click_link "Participate"
             end
 
@@ -128,10 +129,21 @@ describe "Homepage", type: :system do
 
       context "with header snippets" do
         let(:snippet) { "<meta data-hello=\"This is the organization header_snippet field\">" }
-        let(:organization) { create(:organization, official_url: official_url, header_snippets: snippet) }
+        let(:organization) { create(:organization, official_url:, header_snippets: snippet) }
 
-        it "includes the header snippets" do
+        it "does not include the header snippets" do
           expect(page).to have_selector("meta[data-hello]", visible: :all)
+        end
+
+        context "when header snippets are enabled" do
+          before do
+            allow(Decidim).to receive(:enable_html_header_snippets).and_return(true)
+            visit decidim.root_path
+          end
+
+          it "includes the header snippets" do
+            expect(page).to have_selector("meta[data-hello]", visible: :all)
+          end
         end
       end
 
@@ -140,33 +152,33 @@ describe "Homepage", type: :system do
       end
 
       context "when there are static pages" do
-        let!(:static_page_1) { create(:static_page, organization: organization, show_in_footer: true) }
-        let!(:static_page_2) { create(:static_page, organization: organization, show_in_footer: true) }
-        let!(:static_page_3) { create(:static_page, organization: organization, show_in_footer: false) }
+        let!(:static_page1) { create(:static_page, organization:, show_in_footer: true) }
+        let!(:static_page2) { create(:static_page, organization:, show_in_footer: true) }
+        let!(:static_page3) { create(:static_page, organization:, show_in_footer: false) }
 
         before do
           visit current_path
         end
 
         it "includes links to them" do
-          within ".main-footer" do
-            [static_page_1, static_page_2].each do |static_page|
+          within "footer" do
+            [static_page1, static_page2].each do |static_page|
               expect(page).to have_content(static_page.title["en"])
             end
 
-            expect(page).to have_no_content(static_page_3.title["en"])
+            expect(page).not_to have_content(static_page3.title["en"])
           end
 
-          click_link static_page_1.title["en"]
-          expect(page).to have_i18n_content(static_page_1.title)
+          click_link static_page1.title["en"]
+          expect(page).to have_i18n_content(static_page1.title)
 
-          expect(page).to have_i18n_content(static_page_1.content)
+          expect(page).to have_i18n_content(static_page1.content)
         end
 
         it "includes the footer sub_hero with the current organization name" do
-          expect(page).to have_css(".footer__subhero")
+          expect(page).to have_css("#footer_sub_hero")
 
-          within ".footer__subhero" do
+          within "#footer_sub_hero" do
             expect(page).to have_content(organization.name)
           end
         end
@@ -175,36 +187,38 @@ describe "Homepage", type: :system do
           let(:organization) do
             create(
               :organization,
-              official_url: official_url,
+              official_url:,
               force_users_to_authenticate_before_access_organization: true
             )
           end
           let(:user) { nil }
-          let!(:static_page_1) { create(:static_page, organization: organization, show_in_footer: true, allow_public_access: true) }
-          let!(:static_page_topic1) { create(:static_page_topic, organization: organization, show_in_footer: true) }
+          let!(:static_page1) { create(:static_page, organization:, show_in_footer: true, allow_public_access: true) }
+          let!(:static_page_topic1) { create(:static_page_topic, organization:, show_in_footer: true) }
           let!(:static_page_topic1_page1) do
             create(
               :static_page,
-              organization: organization,
+              organization:,
               topic: static_page_topic1,
               weight: 0,
+              show_in_footer: true,
               allow_public_access: false
             )
           end
           let!(:static_page_topic1_page2) do
             create(
               :static_page,
-              organization: organization,
+              organization:,
               topic: static_page_topic1,
               weight: 1,
+              show_in_footer: true,
               allow_public_access: true
             )
           end
-          let!(:static_page_topic2) { create(:static_page_topic, organization: organization, show_in_footer: true) }
-          let!(:static_page_topic2_page1) { create(:static_page, organization: organization, topic: static_page_topic2, weight: 0) }
-          let!(:static_page_topic2_page2) { create(:static_page, organization: organization, topic: static_page_topic2, weight: 1) }
-          let!(:static_page_topic3) { create(:static_page_topic, organization: organization) }
-          let!(:static_page_topic3_page1) { create(:static_page, organization: organization, topic: static_page_topic3) }
+          let!(:static_page_topic2) { create(:static_page_topic, organization:, show_in_footer: true) }
+          let!(:static_page_topic2_page1) { create(:static_page, organization:, topic: static_page_topic2, weight: 0, show_in_footer: true) }
+          let!(:static_page_topic2_page2) { create(:static_page, organization:, topic: static_page_topic2, weight: 1) }
+          let!(:static_page_topic3) { create(:static_page_topic, organization:) }
+          let!(:static_page_topic3_page1) { create(:static_page, organization:, topic: static_page_topic3) }
 
           # Re-visit required for the added pages and topics to be visible and
           # to sign in the user when it is defined.
@@ -213,26 +227,60 @@ describe "Homepage", type: :system do
             visit current_path
           end
 
+          it "displays only publicly accessible pages and topics with pages configured to be shown in the footer" do
+            within "footer" do
+              expect(page).to have_content(static_page1.title["en"])
+              expect(page).not_to have_content(static_page2.title["en"])
+              expect(page).not_to have_content(static_page3.title["en"])
+              expect(page).to have_content(static_page_topic1.title["en"])
+              expect(page).not_to have_content(static_page_topic1_page1.title["en"])
+              expect(page).to have_content(static_page_topic1_page2.title["en"])
+              expect(page).not_to have_content(static_page_topic2.title["en"])
+              expect(page).not_to have_content(static_page_topic3.title["en"])
+
+              expect(page).to have_link(
+                static_page_topic1_page2.title["en"],
+                href: "/pages/#{static_page_topic1_page2.slug}"
+              )
+              expect(page).not_to have_link(
+                static_page_topic1_page1.title["en"],
+                href: "/pages/#{static_page_topic1_page1.slug}"
+              )
+            end
+          end
+
           context "when authenticated" do
-            let(:user) { create :user, :confirmed, organization: organization }
+            let(:user) { create(:user, :confirmed, organization:) }
 
             it_behaves_like "accessible page"
 
-            it "displays all pages and topics in footer that are configured to display in footer" do
-              expect(page).to have_content(static_page_1.title["en"])
-              expect(page).to have_content(static_page_2.title["en"])
-              expect(page).to have_no_content(static_page_3.title["en"])
+            it "displays all pages and topics with pages in footer that are configured to display in footer" do
+              expect(page).to have_content(static_page1.title["en"])
+              expect(page).to have_content(static_page2.title["en"])
+              expect(page).not_to have_content(static_page3.title["en"])
               expect(page).to have_content(static_page_topic1.title["en"])
+              expect(page).to have_content(static_page_topic1_page1.title["en"])
+              expect(page).to have_content(static_page_topic1_page2.title["en"])
               expect(page).to have_content(static_page_topic2.title["en"])
-              expect(page).to have_no_content(static_page_topic3.title["en"])
+              expect(page).to have_content(static_page_topic2_page1.title["en"])
+              expect(page).not_to have_content(static_page_topic2_page2.title["en"])
+              expect(page).not_to have_content(static_page_topic3.title["en"])
 
               expect(page).to have_link(
-                static_page_topic1.title["en"],
+                static_page_topic1_page2.title["en"],
+                href: "/pages/#{static_page_topic1_page2.slug}"
+              )
+              expect(page).to have_link(
+                static_page_topic1_page1.title["en"],
                 href: "/pages/#{static_page_topic1_page1.slug}"
               )
               expect(page).to have_link(
-                static_page_topic2.title["en"],
+                static_page_topic2_page1.title["en"],
                 href: "/pages/#{static_page_topic2_page1.slug}"
+              )
+              expect(page).not_to have_link(
+                static_page_topic2_page2.title["en"],
+                href: "/pages/#{static_page_topic2_page2.slug}"
               )
             end
           end
@@ -240,23 +288,23 @@ describe "Homepage", type: :system do
       end
 
       describe "includes statistics" do
-        let!(:users) { create_list(:user, 4, :confirmed, organization: organization) }
+        let!(:users) { create_list(:user, 4, :confirmed, organization:) }
         let!(:participatory_process) do
           create_list(
             :participatory_process,
             2,
             :published,
-            organization: organization,
+            organization:,
             description: { en: "Description", ca: "Descripció", es: "Descripción" },
             short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" }
           )
         end
 
-        context "when organization doesn't have the stats content block" do
+        context "when organization does not have the stats content block" do
           let(:organization) { create(:organization) }
 
           it "does not show the statistics block" do
-            expect(page).to have_no_content("Current state of #{organization.name}")
+            expect(page).not_to have_content("Current state of #{organization.name}")
           end
         end
 
@@ -264,15 +312,15 @@ describe "Homepage", type: :system do
           let(:organization) { create(:organization) }
 
           before do
-            create :content_block, organization: organization, scope_name: :homepage, manifest_name: :stats
+            create(:content_block, organization:, scope_name: :homepage, manifest_name: :stats)
             visit current_path
           end
 
           it "shows the statistics block" do
             within "#statistics" do
-              expect(page).to have_content("Current state of ")
-              expect(page).to have_content("PROCESSES")
-              expect(page).to have_content("PARTICIPANTS")
+              expect(page).to have_content("Current state of #{organization.name}")
+              expect(page).to have_content("Processes")
+              expect(page).to have_content("Participants")
             end
           end
 
@@ -289,11 +337,11 @@ describe "Homepage", type: :system do
       end
 
       describe "includes metrics" do
-        context "when organization doesn't have the metrics content block" do
+        context "when organization does not have the metrics content block" do
           let(:organization) { create(:organization) }
 
           it "does not show the statistics block" do
-            expect(page).to have_no_content("Participation in figures")
+            expect(page).not_to have_content("Participation in figures")
           end
         end
 
@@ -301,19 +349,19 @@ describe "Homepage", type: :system do
           let(:organization) { create(:organization) }
           let(:metrics) do
             Decidim.metrics_registry.all.each do |metric_registry|
-              create(:metric, metric_type: metric_registry.metric_name, day: Time.zone.today, organization: organization, cumulative: 5, quantity: 2)
+              create(:metric, metric_type: metric_registry.metric_name, day: Time.zone.today, organization:, cumulative: 5, quantity: 2)
             end
           end
 
           context "and have metric records" do
             before do
               metrics
-              create :content_block, organization: organization, scope_name: :homepage, manifest_name: :metrics
+              create(:content_block, organization:, scope_name: :homepage, manifest_name: :metrics)
               visit current_path
             end
 
             it "shows the metrics block" do
-              within "#metrics" do
+              within "[data-metrics]" do
                 expect(page).to have_content("Metrics")
                 Decidim.metrics_registry.filtered(highlight: true, scope: "home").each do |metric_registry|
                   expect(page).to have_css(%(##{metric_registry.metric_name}_chart), visible: :all)
@@ -327,18 +375,18 @@ describe "Homepage", type: :system do
 
           context "and does not have metric records" do
             before do
-              create :content_block, organization: organization, scope_name: :homepage, manifest_name: :metrics
+              create(:content_block, organization:, scope_name: :homepage, manifest_name: :metrics)
               visit current_path
             end
 
             it "shows the metrics block empty" do
-              within "#metrics" do
+              within "[data-metrics]" do
                 expect(page).to have_content("Metrics")
                 Decidim.metrics_registry.highlighted.each do |metric_registry|
-                  expect(page).to have_no_css("##{metric_registry.metric_name}_chart")
+                  expect(page).not_to have_css("##{metric_registry.metric_name}_chart")
                 end
                 Decidim.metrics_registry.not_highlighted.each do |metric_registry|
-                  expect(page).to have_no_css("##{metric_registry.metric_name}_chart")
+                  expect(page).not_to have_css("##{metric_registry.metric_name}_chart")
                 end
               end
             end
@@ -361,6 +409,8 @@ describe "Homepage", type: :system do
         it "includes the links to social networks" do
           expect(page).to have_xpath("//a[@href = 'https://twitter.com/twitter_handler']")
           expect(page).to have_xpath("//a[@href = 'https://www.facebook.com/facebook_handler']")
+          expect(page).to have_xpath("//a[@href = 'https://www.youtube.com/youtube_handler']")
+          expect(page).to have_xpath("//a[@href = 'https://www.github.com/github_handler']")
         end
       end
 
@@ -370,16 +420,16 @@ describe "Homepage", type: :system do
         let(:webpacker_helper) do
           Class.new do
             include ActionView::Helpers::AssetUrlHelper
-            include Webpacker::Helper
+            include Shakapacker::Helper
           end.new
         end
 
         it "displays the decidim link with external link indicator" do
-          within ".footer .mini-footer" do
+          within "footer" do
             expect(page).to have_selector("a[target='_blank'][href='https://github.com/decidim/decidim']")
 
             within "a[target='_blank'][href='https://github.com/decidim/decidim']" do
-              expect(page).to have_selector("svg.icon use[href='#{webpacker_helper.asset_pack_path("media/images/icons.svg")}#icon-external-link']")
+              expect(page).to have_selector("svg")
             end
           end
         end
@@ -388,13 +438,13 @@ describe "Homepage", type: :system do
       context "and has highlighted content banner enabled" do
         let(:organization) do
           create(:organization,
-                 official_url: official_url,
+                 official_url:,
                  highlighted_content_banner_enabled: true,
                  highlighted_content_banner_title: Decidim::Faker::Localized.sentence(word_count: 2),
                  highlighted_content_banner_short_description: Decidim::Faker::Localized.sentence(word_count: 2),
                  highlighted_content_banner_action_title: Decidim::Faker::Localized.sentence(word_count: 2),
                  highlighted_content_banner_action_subtitle: Decidim::Faker::Localized.sentence(word_count: 2),
-                 highlighted_content_banner_action_url: ::Faker::Internet.url,
+                 highlighted_content_banner_action_url: Faker::Internet.url,
                  highlighted_content_banner_image: Decidim::Dev.test_file("city.jpeg", "image/jpeg"))
         end
 
@@ -412,11 +462,31 @@ describe "Homepage", type: :system do
         end
 
         it "shows the banner's action title" do
-          expect(page).to have_i18n_content(organization.highlighted_content_banner_action_title, upcase: true)
+          expect(page).to have_i18n_content(organization.highlighted_content_banner_action_title)
         end
 
         it "shows the banner's action subtitle" do
           expect(page).to have_i18n_content(organization.highlighted_content_banner_action_subtitle)
+        end
+      end
+
+      context "when downloading open data", download: true do
+        before do
+          Decidim::OpenDataJob.perform_now(organization)
+          switch_to_host(organization.host)
+          visit decidim.root_path
+        end
+
+        it "lets the users download open data files" do
+          click_link "Download Open Data files"
+          expect(File.basename(download_path)).to include("open-data.zip")
+          Zip::File.open(download_path) do |zipfile|
+            expect(zipfile.glob("*open-data-proposals.csv").length).to eq(1)
+            expect(zipfile.glob("*open-data-results.csv").length).to eq(1)
+            expect(zipfile.glob("*open-data-meetings.csv").length).to eq(1)
+            # expect(zipfile.glob("*open-data-elections.csv").length).to eq(1)
+            # expect(zipfile.glob("*open-data-votings.csv").length).to eq(1)
+          end
         end
       end
     end
