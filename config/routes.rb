@@ -8,11 +8,9 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "/sidekiq"
   end
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development? || ENV.fetch("ENABLE_LETTER_OPENER", "0") == "1"
 
   get "/open-data/download", to: redirect("/404")
 
   mount Decidim::Core::Engine => "/"
-  # mount Decidim::Map::Engine => '/map'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
