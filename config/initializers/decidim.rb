@@ -12,7 +12,7 @@ Decidim.configure do |config|
     config.available_locales = ENV.fetch("AVAILABLE_LOCALES", "fr").split(",").map(&:to_sym)
   else
     config.default_locale = ENV.fetch("DEFAULT_LOCALE", "en").to_sym
-    config.available_locales = ENV.fetch("AVAILABLE_LOCALES", "en,fr").split(",").map(&:to_sym)
+    config.available_locales = ENV.fetch("AVAILABLE_LOCALES", "en,ca,fr").split(",").map(&:to_sym)
   end
 
   # Timeout session
@@ -32,12 +32,6 @@ Decidim.configure do |config|
       address_format: [%w(houseNumber street), "city", "country"]
     }
   }
-
-  # Custom resource reference generator method
-  # config.resource_reference_generator = lambda do |resource, feature|
-  #   # Implement your custom method to generate resources references
-  #   "1234-#{resource.id}"
-  # end
 
   # Currency unit
   config.currency_unit = Rails.application.secrets.decidim[:currency]
@@ -64,30 +58,12 @@ Decidim.configure do |config|
   #
   # If you want to verify your users by sending a verification code via
   # SMS you need to provide a SMS gateway service class.
-  #
-  # An example class would be something like:
-  #
-  # class MySMSGatewayService
-  #   attr_reader :mobile_phone_number, :code
-  #
-  #   def initialize(mobile_phone_number, code)
-  #     @mobile_phone_number = mobile_phone_number
-  #     @code = code
-  #   end
-  #
-  #   def deliver_code
-  #     # Actual code to deliver the code
-  #     true
-  #   end
-  # end
-  #
   config.sms_gateway_service = "SMSGatewayService"
 
   # Etherpad configuration
   #
   # Only needed if you want to have Etherpad integration with Decidim. See
   # Decidim docs at docs/services/etherpad.md in order to set it up.
-  #
 
   if Rails.application.secrets.etherpad[:server].present?
     config.etherpad = {
