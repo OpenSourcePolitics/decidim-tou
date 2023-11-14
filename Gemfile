@@ -66,7 +66,7 @@ group :production do
   # gem "lograge"
   # gem "sendgrid-ruby"
   # gem "sentry-rails"
-  # gem "sentry-ruby"
+  gem "sentry-ruby"
   # gem "sentry-sidekiq"
   gem "sidekiq", "~> 6.0"
   gem "sidekiq_alive", "~> 2.2"
