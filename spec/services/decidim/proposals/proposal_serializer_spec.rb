@@ -9,7 +9,7 @@ module Decidim
         described_class.new(proposal)
       end
 
-      let!(:proposal) { create(:proposal, :accepted) }
+      let!(:proposal) { create(:proposal, :accepted, body:) }
       let!(:category) { create(:category, participatory_space: component.participatory_space) }
       let!(:scope) { create(:scope, organization: component.participatory_space.organization) }
       let(:participatory_process) { component.participatory_space }
@@ -20,7 +20,7 @@ module Decidim
 
       let!(:proposals_component) { create(:component, manifest_name: "proposals", participatory_space: participatory_process) }
       let(:other_proposals) { create_list(:proposal, 2, component: proposals_component) }
-      let(:phone_number) { "0000000000" }
+      let(:body) { Decidim::Faker::Localized.localized { ::Faker::Lorem.sentences(number: 3).join("\n") } }
 
       let(:expected_answer) do
         answer = proposal.answer
@@ -34,8 +34,8 @@ module Decidim
       end
 
       before do
-        proposal.update!(category: category)
-        proposal.update!(scope: scope)
+        proposal.update!(category:)
+        proposal.update!(scope:)
         proposal.link_resources(meetings, "proposals_from_meeting")
         proposal.link_resources(other_proposals, "copied_from_component")
       end
@@ -43,147 +43,183 @@ module Decidim
       describe "#serialize" do
         let(:serialized) { subject.serialize }
 
-        context "when user is a Decidim::User" do
-          let!(:authorization) do
-            create(
-              :authorization,
-              name: "phone_authorization_handler",
-              user: proposal.creator_identity,
-              metadata: { "phone_number": phone_number }
-            )
-          end
+        it "serializes the id" do
+          expect(serialized).to include(id: proposal.id)
+        end
 
-          it "serializes the id" do
-            expect(serialized).to include("ID" => proposal.id)
-          end
+        it "serializes the category" do
+          expect(serialized[:category]).to include(id: category.id)
+          expect(serialized[:category]).to include(name: category.name)
+        end
 
-          it "serializes the author data" do
-            expect(serialized).to include("Username" => proposal.creator_identity&.user_name)
-            expect(serialized).to include("Email" => proposal.creator_identity&.email)
-            expect(serialized).to include("Phone number" => phone_number)
-          end
+        it "serializes the scope" do
+          expect(serialized[:scope]).to include(id: scope.id)
+          expect(serialized[:scope]).to include(name: scope.name)
+        end
 
-          it "serializes the category" do
-            expect(serialized["Category"]).to include("ID" => category.id)
-            expect(serialized["Category"]).to include("Name" => category.name)
-          end
+        it "serializes the title" do
+          expect(serialized).to include(title: proposal.title)
+        end
 
-          it "serializes the scope" do
-            expect(serialized["Scope"]).to include("ID" => scope.id)
-            expect(serialized["Scope"]).to include("Name" => scope.name)
-          end
+        it "serializes the body" do
+          expect(serialized).to include(body: proposal.body)
+        end
 
-          it "serializes the title" do
-            expect(serialized).to include("Title" => proposal.title)
-          end
+        it "serializes the address" do
+          expect(serialized).to include(address: proposal.address)
+        end
 
-          it "serializes the body" do
-            expect(serialized).to include("Body" => proposal.body)
-          end
+        it "serializes the latitude" do
+          expect(serialized).to include(latitude: proposal.latitude)
+        end
 
-          it "serializes the address" do
-            expect(serialized).to include("Address" => proposal.address)
-          end
+        it "serializes the longitude" do
+          expect(serialized).to include(longitude: proposal.longitude)
+        end
 
-          it "serializes the latitude" do
-            expect(serialized).to include("Latitude" => proposal.latitude)
-          end
+        it "serializes the amount of supports" do
+          expect(serialized).to include(supports: proposal.proposal_votes_count)
+        end
 
-          it "serializes the longitude" do
-            expect(serialized).to include("Longitude" => proposal.longitude)
-          end
+        it "serializes the amount of comments" do
+          expect(serialized).to include(comments: proposal.comments_count)
+        end
 
-          it "serializes the amount of supports" do
-            expect(serialized).to include("Supports" => proposal.proposal_votes_count)
-          end
+        it "serializes the date of creation" do
+          expect(serialized).to include(published_at: proposal.published_at)
+        end
 
-          it "serializes the amount of comments" do
-            expect(serialized).to include("Comments" => proposal.comments_count)
-          end
+        it "serializes the url" do
+          expect(serialized[:url]).to include("http", proposal.id.to_s)
+        end
 
-          it "serializes the date of creation" do
-            expect(serialized).to include("Published at" => proposal.published_at)
-          end
+        it "serializes the component" do
+          expect(serialized[:component]).to include(id: proposal.component.id)
+        end
 
-          it "serializes the url" do
-            expect(serialized["URL"]).to include("http", proposal.id.to_s)
-          end
+        it "serializes the meetings" do
+          expect(serialized[:meeting_urls].length).to eq(2)
+          expect(serialized[:meeting_urls].first).to match(%r{http.*/meetings})
+        end
 
-          it "serializes the component" do
-            expect(serialized["Component"]).to include("ID" => proposal.component.id)
-          end
+        it "serializes the participatory space" do
+          expect(serialized[:participatory_space]).to include(id: participatory_process.id)
+          expect(serialized[:participatory_space][:url]).to include("http", participatory_process.slug)
+        end
 
-          it "serializes the meetings" do
-            expect(serialized["Meeting URLS"].length).to eq(2)
-            expect(serialized["Meeting URLS"].first).to match(%r{http.*/meetings})
-          end
+        it "serializes the state" do
+          expect(serialized).to include(state: proposal.state)
+        end
 
-          it "serializes the participatory space" do
-            expect(serialized["Participatory space"]).to include("ID" => participatory_process.id)
-            expect(serialized["Participatory space"]["URL"]).to include("http", participatory_process.slug)
-          end
+        it "serializes the reference" do
+          expect(serialized).to include(reference: proposal.reference)
+        end
 
-          it "serializes the state" do
-            expect(serialized).to include("State" => proposal.state)
-          end
+        it "serializes the answer" do
+          expect(serialized).to include(answer: expected_answer)
+        end
 
-          it "serializes the reference" do
-            expect(serialized).to include("Reference" => proposal.reference)
-          end
+        it "serializes the amount of attachments" do
+          expect(serialized).to include(attachments: proposal.attachments.count)
+        end
+
+        it "serializes the endorsements" do
+          expect(serialized[:endorsements]).to include(total_count: proposal.endorsements.count)
+          expect(serialized[:endorsements]).to include(user_endorsements: proposal.endorsements.for_listing.map { |identity| identity.normalized_author&.name })
+        end
+
+        it "serializes related proposals" do
+          expect(serialized[:related_proposals].length).to eq(2)
+          expect(serialized[:related_proposals].first).to match(%r{http.*/proposals})
+        end
+
+        it "serializes if proposal is_amend" do
+          expect(serialized).to include(is_amend: proposal.emendation?)
+        end
+
+        it "serializes the original proposal" do
+          expect(serialized[:original_proposal]).to include(title: proposal&.amendable&.title)
+          expect(serialized[:original_proposal][:url]).to be_nil || include("http", proposal.id.to_s)
+        end
+
+        context "with proposal having an answer" do
+          let!(:proposal) { create(:proposal, :with_answer) }
 
           it "serializes the answer" do
-            expect(serialized).to include("Answer" => expected_answer)
+            expect(serialized).to include(answer: expected_answer)
+          end
+        end
+
+        context "with rich text proposal body" do
+          let(:image) { "<img src=\"logo.png\" #{alt_attribute} width=\"407\">" }
+          let(:alt_attribute) { "alt=\"Logo alt attribute\"" }
+          let(:body_content) do
+            <<~TEXT
+              <h2>This is my "heading 2" title</h2>
+              <p>A "normal" description below Heading 2</p>
+              <p><br></p>
+              <h3>Now this is my "heading 3"</h3>
+              <p><br></p>
+              <ul>
+              <li>This is my first option</li>
+              <li>This is my second option</li>
+              <li>This is my third option</li>
+              </ul>
+              <p><br></p>
+              <p>And below an uploaded image</p>
+              <p>#{image}</p>
+              <p><br></p>
+              <p><code>Here is code block</code></p>
+            TEXT
+          end
+          let(:body) do
+            {
+              "en" => body_content,
+              "machine_translation" => {
+                "es" => body_content,
+                "ca" => body_content
+              }
+            }
           end
 
-          it "serializes the amount of attachments" do
-            expect(serialized).to include("Attachments" => proposal.attachments.count)
+          it "serializes the body without HTML tags" do
+            expected_body = <<~TEXT.chomp
+              ----------------------------
+              This is my "heading 2" title
+              ----------------------------
+
+              A "normal" description below Heading 2
+
+              Now this is my "heading 3"
+              --------------------------
+
+              * This is my first option
+              * This is my second option
+              * This is my third option
+
+              And below an uploaded image
+
+              Logo alt attribute
+
+              Here is code block
+            TEXT
+
+            expect(serialized[:body]["en"]).to eq(expected_body)
+            expect(serialized[:body]["en"]).to include("Logo alt attribute")
+            expect(serialized[:body]["machine_translation"]["es"]).to eq(expected_body)
+            expect(serialized[:body]["machine_translation"]["es"]).to include("Logo alt attribute")
+            expect(serialized[:body]["machine_translation"]["ca"]).to eq(expected_body)
+            expect(serialized[:body]["machine_translation"]["ca"]).to include("Logo alt attribute")
           end
 
-          it "serializes the endorsements" do
-            expect(serialized["Endorsements"]).to include("Total count" => proposal.endorsements.count)
-            expect(serialized["Endorsements"]).to include("User endorsements" => proposal.endorsements.for_listing.map { |identity| identity.normalized_author&.name })
-          end
+          context "and image is uploaded without 'alt' attribute" do
+            let(:alt_attribute) { "" }
 
-          it "serializes related proposals" do
-            expect(serialized["Related proposals"].length).to eq(2)
-            expect(serialized["Related proposals"].first).to match(%r{http.*/proposals})
-          end
-
-          it "serializes if proposal is_amend" do
-            expect(serialized).to include("Is amend" => proposal.emendation?)
-          end
-
-          it "serializes the original proposal" do
-            expect(serialized["Original proposal"]).to include("Title" => proposal&.amendable&.title)
-            expect(serialized["Original proposal"]["URL"]).to be_nil || include("http", proposal.id.to_s)
-          end
-
-          context "with proposal having an answer" do
-            let!(:proposal) { create(:proposal, :with_answer) }
-
-            it "serializes the answer" do
-              expect(serialized).to include("Answer" => expected_answer)
+            it "serializes the body without image" do
+              expect(serialized[:body]["en"]).not_to include("Logo alt attribute")
+              expect(serialized[:body]["machine_translation"]["es"]).not_to include("Logo alt attribute")
+              expect(serialized[:body]["machine_translation"]["ca"]).not_to include("Logo alt attribute")
             end
-          end
-        end
-
-        context "when creator is a user_group" do
-          let!(:proposal) { create(:proposal, :user_group_author) }
-
-          it "serializes the author data" do
-            expect(serialized).to include("Username" => proposal.creator_identity&.name)
-            expect(serialized).to include("Email" => proposal.creator_identity&.email)
-            expect(serialized).to include("Phone number" => "")
-          end
-        end
-
-        context "when author is an organization" do
-          let!(:proposal) { create(:proposal, :accepted, :official) }
-
-          it "serializes the author data" do
-            expect(serialized).to include("Username" => proposal.creator_identity&.name)
-            expect(serialized).to include("Email" => "")
-            expect(serialized).to include("Phone number" => "")
           end
         end
       end

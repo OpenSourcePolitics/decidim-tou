@@ -8,7 +8,7 @@ module Decidim
       describe ParticipatoryProcessForm do
         subject { described_class.from_params(attributes).with_context(current_organization: organization) }
 
-        let(:organization) { create :organization }
+        let(:organization) { create(:organization) }
         let(:title) do
           {
             en: "Title",
@@ -39,27 +39,30 @@ module Decidim
           }
         end
         let(:slug) { "slug" }
-        let(:attachment) { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
-        let(:emitter_name) { "city" }
+        let(:attachment) { upload_test_file(Decidim::Dev.test_file("city.jpeg", "image/jpeg")) }
         let(:show_metrics) { true }
         let(:show_statistics) { true }
-        let(:address) { nil }
         let(:attributes) do
           {
             "participatory_process" => {
-              "title" => title,
-              "subtitle" => subtitle,
+              "title_en" => title[:en],
+              "title_es" => title[:es],
+              "title_ca" => title[:ca],
+              "subtitle_en" => subtitle[:en],
+              "subtitle_es" => subtitle[:es],
+              "subtitle_ca" => subtitle[:ca],
               "weight" => weight,
-              "description" => description,
-              "short_description" => short_description,
+              "description_en" => description[:en],
+              "description_es" => description[:es],
+              "description_ca" => description[:ca],
+              "short_description_en" => short_description[:en],
+              "short_description_es" => short_description[:es],
+              "short_description_ca" => short_description[:ca],
               "hero_image" => attachment,
               "banner_image" => attachment,
-              "emitter" => attachment,
-              "emitter_name" => emitter_name,
               "slug" => slug,
               "show_metrics" => show_metrics,
-              "show_statistics" => show_statistics,
-              "address" => address
+              "show_statistics" => show_statistics
             }
           }
         end
@@ -68,41 +71,19 @@ module Decidim
           it { is_expected.to be_valid }
         end
 
-        context "when hero_image is too big" do
-          before do
-            organization.settings.tap do |settings|
-              settings.upload.maximum_file_size.default = 5
-            end
-            expect(subject.hero_image).to receive(:size).exactly(3).times.and_return(6.megabytes)
-          end
-
-          it { is_expected.not_to be_valid }
-        end
-
         context "when banner_image is too big" do
           before do
             organization.settings.tap do |settings|
               settings.upload.maximum_file_size.default = 5
             end
-            expect(subject.banner_image).to receive(:size).exactly(3).times.and_return(6.megabytes)
-          end
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when emitter is too big" do
-          before do
-            organization.settings.tap do |settings|
-              settings.upload.maximum_file_size.default = 5
-            end
-            expect(subject.emitter).to receive(:size).exactly(3).times.and_return(6.megabytes)
+            ActiveStorage::Blob.find_signed(attachment).update(byte_size: 6.megabytes)
           end
 
           it { is_expected.not_to be_valid }
         end
 
         context "when images are not the expected type" do
-          let(:attachment) { Decidim::Dev.test_file("Exampledocument.pdf", "application/pdf") }
+          let(:attachment) { upload_test_file(Decidim::Dev.test_file("Exampledocument.pdf", "application/pdf")) }
 
           it { is_expected.not_to be_valid }
         end
@@ -162,7 +143,7 @@ module Decidim
         context "when slug is not unique" do
           context "and process in the same organization" do
             before do
-              create(:participatory_process, slug: slug, organization: organization)
+              create(:participatory_process, slug:, organization:)
             end
 
             it "is not valid" do
@@ -173,28 +154,12 @@ module Decidim
 
           context "and process in another organization" do
             before do
-              create(:participatory_process, slug: slug)
+              create(:participatory_process, slug:)
             end
 
             it "is valid" do
               expect(subject).to be_valid
             end
-          end
-        end
-
-        context "when address is present" do
-          let(:latitude) { 40.1234 }
-          let(:longitude) { 2.1234 }
-          let(:address) { "Carrer Pare Llaurador 113, baixos, 08224 Terrassa" }
-
-          before do
-            stub_geocoding(address, [latitude, longitude])
-          end
-
-          it "is valid" do
-            expect(subject).to be_valid
-            expect(subject.latitude).to eq(latitude)
-            expect(subject.longitude).to eq(longitude)
           end
         end
       end

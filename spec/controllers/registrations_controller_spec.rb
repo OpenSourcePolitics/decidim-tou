@@ -3,32 +3,11 @@
 require "spec_helper"
 
 module Decidim
-  describe Decidim::Devise::RegistrationsController, type: :controller do
+  describe Decidim::Devise::RegistrationsController do
     routes { Decidim::Core::Engine.routes }
 
     let(:organization) { create(:organization) }
     let(:email) { "test@example.org" }
-    let!(:city_parent_scope) do
-      create(:scope,
-             id: 58,
-             name: {
-               fr: "Ville de Toulouse",
-               en: "Toulouse city"
-             },
-             organization: organization)
-    end
-    let!(:metropolis_parent_scope) do
-      create(:scope,
-             id: 59,
-             name: {
-               fr: "Métropole de Toulouse",
-               en: "Toulouse metropolis"
-             },
-             organization: organization)
-    end
-
-    let!(:city_residential_area) { create(:scope, parent: city_parent_scope) }
-    let!(:city_work_area) { create(:scope, parent: city_parent_scope) }
 
     before do
       request.env["devise.mapping"] = ::Devise.mappings[:user]
@@ -42,23 +21,16 @@ module Decidim
             sign_up_as: "user",
             name: "User",
             nickname: "nickname",
-            email: email,
+            email:,
             password: "rPYWYKQJrXm97b4ytswc",
-            password_confirmation: "rPYWYKQJrXm97b4ytswc",
             tos_agreement: "1",
-            newsletter: "0",
-            living_area: "city",
-            city_residential_area: city_residential_area.id.to_s,
-            city_work_area: city_work_area.id.to_s,
-            additional_tos: true,
-            month: "June",
-            year: "1997"
+            newsletter: "0"
           }
         }
       end
 
       def send_form_and_expect_rendering_the_new_template_again
-        post :create, params: params
+        post(:create, params:)
         expect(controller).to render_template "new"
       end
 
@@ -71,8 +43,8 @@ module Decidim
           expect(controller).to receive(:sign_up).and_call_original
         end
 
-        it "doesn't ask the user to confirm the email" do
-          post :create, params: params
+        it "does not ask the user to confirm the email" do
+          post(:create, params:)
           expect(controller.flash.notice).not_to have_content("confirmation")
         end
       end
@@ -83,10 +55,36 @@ module Decidim
         it "renders the new template" do
           send_form_and_expect_rendering_the_new_template_again
         end
+
+        it "adds the flash message" do
+          post(:create, params:)
+          expect(controller.flash.now[:alert]).to have_content("There was a problem creating your account.")
+        end
+
+        context "when all params are invalid" do
+          let(:params) do
+            {
+              user: {
+                sign_up_as: "",
+                name: "",
+                nickname: "",
+                email:,
+                password: "123",
+                tos_agreement: "0",
+                newsletter: "0"
+              }
+            }
+          end
+
+          it "adds the flash message" do
+            post(:create, params:)
+            expect(controller.flash.now[:alert]).to have_content("There was a problem creating your account.")
+          end
+        end
       end
 
       context "when the registering user has pending invitations" do
-        let(:user) { create(:user, organization: organization, email: email) }
+        let(:user) { create(:user, organization:, email:) }
 
         before do
           user.invite!
@@ -94,7 +92,7 @@ module Decidim
 
         it "informs the user she must accept the pending invitation" do
           send_form_and_expect_rendering_the_new_template_again
-          expect(controller.flash.now[:alert]).to have_content("You have a pending invitation, accept it to finish creating your account")
+          expect(controller.flash.now[:alert]).to have_content("There was a problem creating your account.")
         end
       end
     end

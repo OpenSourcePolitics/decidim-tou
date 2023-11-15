@@ -4,32 +4,19 @@ require "spec_helper"
 
 module Decidim
   describe UserInterestsForm do
-    subject do
-      described_class.from_model(user)
-    end
+    subject { described_class.new(scopes:) }
+    let(:scopes) { [] }
 
-    let!(:organization) { create(:organization) }
-    let!(:user) { create(:user, organization: organization) }
-    let!(:scope_0) { create(:scope, name: { en: "3.1 Scope", fr: "0 Scope" }, organization: organization) }
-    let!(:scope_1) { create(:scope, name: { en: "1.1 A Scope", fr: "1 Scope" }, organization: organization) }
-    let!(:scope_2) { create(:scope, name: { en: "1 Scope", fr: "1.1 A Scope" }, organization: organization) }
-    let!(:scope_3) { create(:scope, name: { en: "1.1 B Scope", fr: "1.1 B Scope" }, organization: organization) }
-    let!(:scope_4) { create(:scope, name: { en: "0 Scope", fr: "3.1 Scope" }, organization: organization) }
-    let!(:scope_5) { create(:scope, name: { en: "3.2 Scope", fr: "3.2 Scope" }, organization: organization) }
+    describe ".from_model" do
+      subject { described_class.from_model(user) }
 
-    describe "#map_model" do
-      it "returns an array of UserInterestScopeForm" do
-        expect(subject.scopes.collect(&:id)).to eq([scope_4.id, scope_2.id, scope_1.id, scope_3.id, scope_0.id, scope_5.id])
-      end
+      let(:organization) { create(:organization) }
+      let(:user) { create(:user, organization:, extended_data: { "interested_scopes" => scopes[0..1].map(&:id) }) }
+      let(:scopes) { create_list(:scope, 5, organization:) }
 
-      context "when locale change" do
-        before do
-          allow(I18n).to receive(:locale).and_return(:fr)
-        end
-
-        it "returns an array of UserInterestScopeForm" do
-          expect(subject.scopes.collect(&:id)).to eq([scope_0.id, scope_1.id, scope_2.id, scope_3.id, scope_4.id, scope_5.id])
-        end
+      it "sets the organization scopes for the form" do
+        expect(subject.scopes.count).to eq(5)
+        expect(subject.scopes.select(&:checked).map(&:id).sort).to eq(user.interested_scopes_ids.sort)
       end
     end
   end

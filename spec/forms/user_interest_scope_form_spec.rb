@@ -6,16 +6,16 @@ module Decidim
   describe UserInterestScopeForm do
     subject do
       described_class.new(
-        name: name,
-        checked: checked,
-        children: children
+        name:,
+        checked:,
+        children:
       )
     end
 
     let(:organization) { create(:organization) }
-    let(:user) { create(:user, organization: organization, extended_data: extended_data) }
+    let(:user) { create(:user, organization:, extended_data:) }
 
-    let!(:scope) { create(:scope, organization: organization) }
+    let!(:scope) { create(:scope, organization:) }
     let(:name) { scope.name }
     let(:checked) { true }
     let(:children) { [] }
@@ -32,7 +32,7 @@ module Decidim
         described_class.from_model(model_hash)
       end
 
-      let(:model_hash) { { scope: scope, user: user } }
+      let(:model_hash) { { scope:, user: } }
 
       it "creates form" do
         expect(subject.id).to eq(scope.id)
@@ -46,24 +46,6 @@ module Decidim
 
         it "checks the scope" do
           expect(subject.checked).to be(true)
-        end
-      end
-
-      context "when there is children" do
-        let(:subscope_name_1) { { "en" => "2.9 - Example" } }
-        let(:subscope_name_2) { { "en" => "1.1 - Example 2" } }
-        let(:subscope_name_3) { { "en" => "2.7 - Example 3" } }
-        let(:subscope_name_4) { { "en" => "0.1 - Example 4" } }
-
-        before do
-          create(:subscope, name: subscope_name_1, parent: scope)
-          create(:subscope, name: subscope_name_2, parent: scope)
-          create(:subscope, name: subscope_name_3, parent: scope)
-          create(:subscope, name: subscope_name_4, parent: scope)
-        end
-
-        it "sort by alpha numeric order" do
-          expect(subject.children.map(&:name)).to eq([subscope_name_4, subscope_name_2, subscope_name_3, subscope_name_1])
         end
       end
     end

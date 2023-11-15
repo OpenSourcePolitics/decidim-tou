@@ -6,18 +6,14 @@ module Decidim::ParticipatoryProcesses
   describe Admin::CreateParticipatoryProcess, versioning: true do
     subject { described_class.new(form) }
 
-    let(:organization) { create :organization }
-    let(:participatory_process_group) { create :participatory_process_group, organization: organization }
-    let(:scope) { create :scope, organization: organization }
-    let(:area) { create :area, organization: organization }
-    let(:current_user) { create :user, :admin, organization: organization }
+    let(:organization) { create(:organization) }
+    let(:participatory_process_group) { create(:participatory_process_group, organization:) }
+    let(:participatory_process_type) { create(:participatory_process_type, organization:) }
+    let(:scope) { create(:scope, organization:) }
+    let(:area) { create(:area, organization:) }
+    let(:current_user) { create(:user, :admin, organization:) }
     let(:errors) { double.as_null_object }
-    let(:emitter) { nil }
-    let(:emitter_name) { nil }
     let(:related_process_ids) { [] }
-    let(:address) { "Carrer Pare Llaurador 113, baixos, 08224 Terrassa" }
-    let(:latitude) { 40.1234 }
-    let(:longitude) { 2.1234 }
     let(:weight) { 1 }
     let(:form) do
       instance_double(
@@ -25,7 +21,7 @@ module Decidim::ParticipatoryProcesses
         invalid?: invalid,
         title: { en: "title" },
         subtitle: { en: "subtitle" },
-        weight: weight,
+        weight:,
         slug: "slug",
         hashtag: "hashtag",
         meta_scope: { en: "meta scope" },
@@ -41,32 +37,23 @@ module Decidim::ParticipatoryProcesses
         end_date: nil,
         description: { en: "description" },
         short_description: { en: "short_description" },
-        current_user: current_user,
+        current_user:,
         current_organization: organization,
-        emitter: emitter,
-        emitter_name: emitter_name,
         scopes_enabled: true,
         private_space: false,
-        scope: scope,
+        scope:,
         scope_type_max_depth: nil,
-        area: area,
-        errors: errors,
-        related_process_ids: related_process_ids,
-        participatory_process_group: participatory_process_group,
+        area:,
+        errors:,
+        related_process_ids:,
+        participatory_process_group:,
+        participatory_process_type:,
         show_statistics: false,
         show_metrics: false,
-        announcement: { en: "message" },
-        address: address,
-        latitude: latitude,
-        longitude: longitude,
-        display_linked_assemblies: false
+        announcement: { en: "message" }
       )
     end
     let(:invalid) { false }
-
-    before do
-      stub_geocoding(address, [latitude, longitude])
-    end
 
     context "when the form is not valid" do
       let(:invalid) { true }
@@ -83,8 +70,8 @@ module Decidim::ParticipatoryProcesses
           persisted?: false,
           valid?: false,
           errors: {
-            hero_image: "Image too big",
-            banner_image: "Image too big"
+            hero_image: "File resolution is too large",
+            banner_image: "File resolution is too large"
           }
         ).as_null_object
       end
@@ -98,8 +85,8 @@ module Decidim::ParticipatoryProcesses
       end
 
       it "adds errors to the form" do
-        expect(errors).to receive(:add).with(:hero_image, "Image too big")
-        expect(errors).to receive(:add).with(:banner_image, "Image too big")
+        expect(errors).to receive(:add).with(:hero_image, "File resolution is too large")
+        expect(errors).to receive(:add).with(:banner_image, "File resolution is too large")
         subject.call
       end
     end
@@ -108,14 +95,14 @@ module Decidim::ParticipatoryProcesses
       let(:process) { Decidim::ParticipatoryProcess.last }
 
       it "creates a participatory process" do
-        expect { subject.call }.to change { Decidim::ParticipatoryProcess.count }.by(1)
+        expect { subject.call }.to change(Decidim::ParticipatoryProcess, :count).by(1)
       end
 
       it "traces the creation", versioning: true do
         expect(Decidim::ActionLogger)
           .to receive(:log)
-          .with("create", current_user, a_kind_of(Decidim::ParticipatoryProcess), a_kind_of(Integer))
-          .and_call_original
+                .with("create", current_user, a_kind_of(Decidim::ParticipatoryProcess), a_kind_of(Integer))
+                .and_call_original
 
         expect { subject.call }.to change(Decidim::ActionLog, :count)
 
@@ -134,10 +121,10 @@ module Decidim::ParticipatoryProcesses
         expect(process.steps.first).to be_active
       end
 
-      it "doesn't enable by default stats and metrics" do
+      it "does not enable by default stats and metrics" do
         subject.call
-        expect(process.show_statistics).to eq(false)
-        expect(process.show_metrics).to eq(false)
+        expect(process.show_statistics).to be(false)
+        expect(process.show_metrics).to be(false)
       end
 
       it "adds the admins as followers" do
@@ -146,14 +133,27 @@ module Decidim::ParticipatoryProcesses
       end
 
       context "with related processes" do
-        let!(:another_process) { create :participatory_process, organization: organization }
+        let!(:another_process) { create(:participatory_process, organization:) }
         let(:related_process_ids) { [another_process.id] }
 
         it "links related processes" do
           subject.call
 
           linked_processes = process.linked_participatory_space_resources(:participatory_process, "related_processes")
-          expect(linked_processes).to match_array([another_process])
+          expect(linked_processes).to contain_exactly(another_process)
+        end
+
+        context "when sorting by weight" do
+          let!(:process_one) { create(:participatory_process, organization:, weight: 2) }
+          let!(:process_two) { create(:participatory_process, organization:, weight: 1) }
+          let(:related_process_ids) { [process_one.id, process_two.id] }
+
+          it "links processes in right way" do
+            subject.call
+
+            linked_processes = process.linked_participatory_space_resources(:participatory_process, "related_processes")
+            expect(linked_processes.first).to eq(process_two)
+          end
         end
       end
     end

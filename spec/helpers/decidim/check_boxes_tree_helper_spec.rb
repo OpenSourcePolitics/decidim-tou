@@ -8,16 +8,17 @@ module Decidim
       Class.new(ActionView::Base) do
         include CheckBoxesTreeHelper
         include TranslatableAttributes
-      end.new(ActionView::LookupContext.new(nil))
+      end.new(ActionView::LookupContext.new(ActionController::Base.view_paths), {}, [])
     end
 
     let!(:organization) { create(:organization) }
-    let!(:participatory_space) { create(:participatory_process, organization: organization) }
-    let!(:component) { create(:component, participatory_space: participatory_space) }
+    let!(:participatory_space) { create(:participatory_process, organization:) }
+    let!(:component) { create(:component, participatory_space:) }
 
     before do
       allow(helper).to receive(:current_participatory_space).and_return(participatory_space)
       allow(helper).to receive(:current_component).and_return(component)
+      allow(helper).to receive(:current_organization).and_return(organization)
     end
 
     describe "#filter_scopes_values" do
@@ -35,8 +36,8 @@ module Decidim
       end
 
       context "when the participatory space has a scope with subscopes" do
-        let(:participatory_space) { create(:participatory_process, :with_scope, organization: organization) }
-        let!(:subscopes) { create_list :subscope, 5, parent: participatory_space.scope }
+        let(:participatory_space) { create(:participatory_process, :with_scope, organization:) }
+        let!(:subscopes) { create_list(:subscope, 5, parent: participatory_space.scope) }
 
         it "returns all the subscopes" do
           expect(leaf.value).to eq("")
@@ -59,8 +60,8 @@ module Decidim
       end
 
       context "when the component has a scope with subscopes" do
-        let(:participatory_space) { create(:participatory_process, :with_scope, organization: organization) }
-        let!(:subscopes) { create_list :subscope, 5, parent: participatory_space.scope }
+        let(:participatory_space) { create(:participatory_process, :with_scope, organization:) }
+        let!(:subscopes) { create_list(:subscope, 5, parent: participatory_space.scope) }
 
         before do
           component.update!(settings: { scopes_enabled: true, scope_id: participatory_space.scope.id })
@@ -74,42 +75,31 @@ module Decidim
       end
     end
 
-    describe "#filter_scopes_values_from_parent" do
-      let!(:participatory_space) { create(:participatory_process, organization: organization, scopes_enabled: true, scope: scope) }
-      let!(:scope) { create(:scope, name: { fr: "Quartiers de Toulouse" }, organization: organization) }
-      let!(:scope_1) { create(:scope, name: { fr: "4.1 - Lapujade / Bonnefoy / Périole" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_2) { create(:scope, name: { fr: "1.3\t- Les Chalets / Bayard / Belfort" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_3) { create(:scope, name: { fr: "1.2\t- Amidonniers / Compans-Caffarelli" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_4) { create(:scope, name: { fr: "3.2 - Sept-Deniers" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_5) { create(:scope, name: { fr: "1.1\t- Capitole / Arnaud Bernard / Carmes" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_6) { create(:scope, name: { fr: "Hors Toulouse" }, organization: organization, parent_id: scope.id) }
+    describe "#filter_global_scopes_values" do
+      let(:root) { helper.filter_global_scopes_values }
+      let(:leaf) { helper.filter_global_scopes_values.leaf }
+      let(:nodes) { helper.filter_global_scopes_values.node }
 
-      it "returns sorted children scopes" do
-        expectation = helper.filter_scopes_values_from_parent(participatory_space.scope)
-
-        expect(expectation.node[0].leaf.label).to eq(scope_5.name["fr"])
-        expect(expectation.node[1].leaf.label).to eq(scope_3.name["fr"])
-        expect(expectation.node[2].leaf.label).to eq(scope_2.name["fr"])
-        expect(expectation.node[3].leaf.label).to eq(scope_4.name["fr"])
-        expect(expectation.node[4].leaf.label).to eq(scope_1.name["fr"])
-        expect(expectation.node[5].leaf.label).to eq(scope_6.name["fr"])
+      it "returns the global scope" do
+        expect(leaf.value).to eq("")
+        expect(nodes.count).to eq(1)
+        expect(nodes.first).to be_a(Decidim::CheckBoxesTreeHelper::TreePoint)
+        expect(nodes.first.value).to eq("global")
       end
-    end
 
-    describe "#scope_children_to_tree" do
-      let!(:participatory_space) { create(:participatory_process, organization: organization, scopes_enabled: true, scope: scope) }
-      let!(:scope) { create(:scope, name: { fr: "0. Scope" }, organization: organization) }
-      let!(:scope_1) { create(:scope, name: { fr: "1 Scope" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_2) { create(:scope, name: { fr: "1.1 A Scope" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_3) { create(:scope, name: { fr: "3.2 Scope" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_4) { create(:scope, name: { fr: "3.1 Scope" }, organization: organization, parent_id: scope.id) }
-      let!(:scope_5) { create(:scope, name: { fr: "1.1 B Scope" }, organization: organization, parent_id: scope.id) }
+      context "when there is a scope with subscopes" do
+        let!(:scope) { create(:scope, organization:) }
+        let!(:subscopes) { create_list(:subscope, 5, parent: scope) }
 
-      it "returns sorted children scopes" do
-        expectation = helper.scope_children_to_tree(participatory_space.scope)
-        expect(expectation.first.leaf.label).to eq("1 Scope")
-        expect(expectation.second.leaf.label).to eq("1.1 A Scope")
-        expect(expectation.last.leaf.label).to eq("3.2 Scope")
+        it "returns the global scope, the scope and subscopes" do
+          expect(leaf.value).to eq("")
+          expect(nodes.count).to eq(2)
+          expect(nodes.first).to be_a(Decidim::CheckBoxesTreeHelper::TreePoint)
+          expect(nodes.first.value).to eq("global")
+          expect(nodes[1]).to be_a(Decidim::CheckBoxesTreeHelper::TreeNode)
+          expect(nodes[1].leaf.value).to eq(scope.id.to_s)
+          expect(nodes[1].node.count).to eq(5)
+        end
       end
     end
   end

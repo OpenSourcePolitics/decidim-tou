@@ -10,7 +10,6 @@ Bundler.require(*Rails.groups)
 module DevelopmentApp
   class Application < Rails::Application
     config.load_defaults 6.1
-    config.time_zone = "Europe/Paris"
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml").to_s]
 
     # This needs to be set for correct images URLs in emails

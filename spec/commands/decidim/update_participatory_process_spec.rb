@@ -5,13 +5,17 @@ require "spec_helper"
 module Decidim::ParticipatoryProcesses
   describe Admin::UpdateParticipatoryProcess do
     describe "call" do
-      let(:my_process) { create :participatory_process }
+      let(:my_process) { create(:participatory_process) }
       let(:params) do
         {
           participatory_process: {
             id: my_process.id,
-            title: { en: "Foo title", ca: "Foo title", es: "Foo title" },
-            subtitle: my_process.subtitle,
+            title_en: "Foo title",
+            title_ca: "Foo title",
+            title_es: "Foo title",
+            subtitle_en: my_process.subtitle,
+            subtitle_ca: my_process.subtitle,
+            subtitle_es: my_process.subtitle,
             weight: my_process.weight,
             slug: my_process.slug,
             hashtag: my_process.hashtag,
@@ -31,19 +35,17 @@ module Decidim::ParticipatoryProcesses
             participatory_process_group: my_process.participatory_process_group,
             show_metrics: my_process.show_metrics,
             show_statistics: my_process.show_statistics,
-            private_space: my_process.private_space,
-            emitter_name: my_process.emitter_name
+            private_space: my_process.private_space
           }.merge(attachment_params)
         }
       end
       let(:attachment_params) do
         {
           hero_image: my_process.hero_image.blob,
-          banner_image: my_process.banner_image.blob,
-          emitter: my_process.banner_image.blob
+          banner_image: my_process.banner_image.blob
         }
       end
-      let(:user) { create :user, :admin, :confirmed, organization: my_process.organization }
+      let(:user) { create(:user, :admin, :confirmed, organization: my_process.organization) }
       let(:context) do
         {
           current_organization: my_process.organization,
@@ -65,7 +67,7 @@ module Decidim::ParticipatoryProcesses
           expect { command.call }.to broadcast(:invalid)
         end
 
-        it "doesn't update the participatory process" do
+        it "does not update the participatory process" do
           command.call
           my_process.reload
 
@@ -77,8 +79,8 @@ module Decidim::ParticipatoryProcesses
         before do
           allow(form).to receive(:invalid?).and_return(false)
           expect(my_process).to receive(:valid?).at_least(:once).and_return(false)
-          my_process.errors.add(:hero_image, "Image too big")
-          my_process.errors.add(:banner_image, "Image too big")
+          my_process.errors.add(:hero_image, "File resolution is too large")
+          my_process.errors.add(:banner_image, "File resolution is too large")
         end
 
         it "broadcasts invalid" do
@@ -108,8 +110,8 @@ module Decidim::ParticipatoryProcesses
         it "tracks the action", versioning: true do
           expect(Decidim.traceability)
             .to receive(:perform_action!)
-            .with(:update, my_process, user)
-            .and_call_original
+                  .with(:update, my_process, user)
+                  .and_call_original
 
           expect { command.call }.to change(Decidim::ActionLog, :count)
 
@@ -118,22 +120,21 @@ module Decidim::ParticipatoryProcesses
         end
 
         context "with related processes" do
-          let!(:another_process) { create :participatory_process, organization: my_process.organization }
+          let!(:another_process) { create(:participatory_process, organization: my_process.organization) }
 
           it "links related processes" do
             allow(form).to receive(:related_process_ids).and_return([another_process.id])
             command.call
 
             linked_processes = my_process.linked_participatory_space_resources(:participatory_process, "related_processes")
-            expect(linked_processes).to match_array([another_process])
+            expect(linked_processes).to contain_exactly(another_process)
           end
         end
 
         context "when no homepage image is set" do
           let(:attachment_params) do
             {
-              banner_image: my_process.banner_image.blob,
-              emitter: my_process.banner_image.blob
+              banner_image: my_process.banner_image.blob
             }
           end
 
@@ -150,9 +151,7 @@ module Decidim::ParticipatoryProcesses
         context "when no banner image is set" do
           let(:attachment_params) do
             {
-              hero_image: my_process.hero_image.blob,
-              emitter: my_process.banner_image.blob
-
+              hero_image: my_process.hero_image.blob
             }
           end
 

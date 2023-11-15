@@ -31,11 +31,11 @@ module Decidim
     let(:collection) do
       [
         OpenStruct.new(id: 1, name: { ca: "foocat", es: "fooes" }, ids: [1, 2, 3], float: 1.66, date: Time.zone.local(2017, 10, 1, 5, 0)),
-        OpenStruct.new(id: 2, name: { ca: "barcat", es: "bares" }, ids: [2, 3, 4], float: 0.55, date: Time.zone.local(2017, 9, 20, 0, 0, 1)),
-        OpenStruct.new(id: 3, name: { ca: "@atcat", es: "@ates" }, ids: [1, 2, 3], float: 0.35, date: Time.zone.local(2020, 7, 20, 0, 0, 1)),
-        OpenStruct.new(id: 4, name: { ca: "=equalcat", es: "=equales" }, ids: [1, 2, 3], float: 0.45, date: Time.zone.local(2020, 6, 24, 0, 0, 1)),
-        OpenStruct.new(id: 5, name: { ca: "+pluscat", es: "+pluses" }, ids: [1, 2, 3], float: 0.65, date: Time.zone.local(2020, 7, 15, 0, 0, 1)),
-        OpenStruct.new(id: 6, name: { ca: "-minuscat", es: "-minuses" }, ids: [1, 2, 3], float: 0.75, date: Time.zone.local(2020, 6, 27, 0, 0, 1))
+        OpenStruct.new(id: 2, name: { ca: "barcat", es: "bares" }, ids: [2, 3, 4], float: 0.55, date: Time.zone.local(2017, 9, 20)),
+        OpenStruct.new(id: 3, name: { ca: "@atcat", es: "@ates" }, ids: [1, 2, 3], float: 0.35, date: Time.zone.local(2020, 7, 20)),
+        OpenStruct.new(id: 4, name: { ca: "=equalcat", es: "=equales" }, ids: [1, 2, 3], float: 0.45, date: Time.zone.local(2020, 6, 24)),
+        OpenStruct.new(id: 5, name: { ca: "+pluscat", es: "+pluses" }, ids: [1, 2, 3], float: 0.65, date: Time.zone.local(2020, 7, 15)),
+        OpenStruct.new(id: 6, name: { ca: "-minuscat", es: "-minuses" }, ids: [1, 2, 3], float: 0.75, date: Time.zone.local(2020, 6, 27))
       ]
     end
 
@@ -54,7 +54,7 @@ module Decidim
         expect(Time.zone.parse(worksheet[1][5].value.to_s)).to eq(Time.zone.local(2017, 10, 1, 5, 0))
 
         expect(worksheet[2][0..4].map(&:value)).to eq([2, "barcat", "bares", "2, 3, 4", 0.55])
-        expect(Time.zone.parse(worksheet[2][5].value.to_s)).to eq(Time.zone.local(2017, 9, 20, 0, 0, 1))
+        expect(Time.zone.parse(worksheet[2][5].value.to_s)).to eq(Time.zone.local(2017, 9, 20))
       end
     end
 
@@ -71,19 +71,19 @@ module Decidim
         expect(Time.zone.parse(worksheet[1][5].value.to_s)).to eq(Time.zone.local(2017, 10, 1, 5, 0))
 
         expect(worksheet[2][0..4].map(&:value)).to eq([2, "barcat", "bares", "2, 3, 4", 0.55])
-        expect(Time.zone.parse(worksheet[2][5].value.to_s)).to eq(Time.zone.local(2017, 9, 20, 0, 0, 1))
+        expect(Time.zone.parse(worksheet[2][5].value.to_s)).to eq(Time.zone.local(2017, 9, 20))
 
         expect(worksheet[3][0..4].map(&:value)).to eq([3, "'@atcat", "'@ates", "1, 2, 3", 0.35])
-        expect(Time.zone.parse(worksheet[3][5].value.to_s)).to eq(Time.zone.local(2020, 7, 20, 0, 0, 1))
+        expect(Time.zone.parse(worksheet[3][5].value.to_s)).to eq(Time.zone.local(2020, 7, 20))
 
         expect(worksheet[4][0..4].map(&:value)).to eq([4, "'=equalcat", "'=equales", "1, 2, 3", 0.45])
-        expect(Time.zone.parse(worksheet[4][5].value.to_s)).to eq(Time.zone.local(2020, 6, 24, 0, 0, 1))
+        expect(Time.zone.parse(worksheet[4][5].value.to_s)).to eq(Time.zone.local(2020, 6, 24))
 
         expect(worksheet[5][0..4].map(&:value)).to eq([5, "'+pluscat", "'+pluses", "1, 2, 3", 0.65])
-        expect(Time.zone.parse(worksheet[5][5].value.to_s)).to eq(Time.zone.local(2020, 7, 15, 0, 0, 1))
+        expect(Time.zone.parse(worksheet[5][5].value.to_s)).to eq(Time.zone.local(2020, 7, 15))
 
         expect(worksheet[6][0..4].map(&:value)).to eq([6, "'-minuscat", "'-minuses", "1, 2, 3", 0.75])
-        expect(Time.zone.parse(worksheet[6][5].value.to_s)).to eq(Time.zone.local(2020, 6, 27, 0, 0, 1))
+        expect(Time.zone.parse(worksheet[6][5].value.to_s)).to eq(Time.zone.local(2020, 6, 27))
       end
     end
 
