@@ -12,6 +12,8 @@ $(() => {
   const $cityLivingArea = $(".city_living_area");
   const $metropolisLivingArea = $(".metropolis_living_area");
   const $railsValidationAsterisk = $("[for=\"registration_user_living_area\"]").children("span.label-required").clone()
+  const newsletterSelector    = 'input[type="checkbox"][name="user[newsletter]"]';
+  const $newsletterModal      = $("#sign-up-newsletter-modal");
 
   const $underageSelector = $("#registration_underage_registration");
   const $statutoryRepresentativeEmailSelector = $("#statutory_representative_email");
@@ -23,6 +25,13 @@ $(() => {
       $statutoryRepresentativeEmailSelector.addClass("hide");
     }
   };
+
+  const checkNewsletter = (check) => {
+    $userRegistrationForm.find(newsletterSelector).prop("checked", check);
+    $newsletterModal.data("continue", true);
+    $newsletterModal.foundation("close");
+    $userRegistrationForm.submit();
+  }
 
   if ($underageSelector.is(":checked")) {
     emailSelectorToggle();
@@ -119,5 +128,19 @@ $(() => {
     userLivingAreaToggle();
 
     $formStepForwardButton.attr("disabled", (checkMandatoryFormField().length > 0));
+  });
+
+  $newsletterModal.find(".check-newsletter").on("click", (event) => {
+    checkNewsletter($(event.target).data("check"));
+  });
+
+  $userRegistrationForm.on("submit", (event) => {
+    const newsletterChecked = $userRegistrationForm.find(newsletterSelector);
+    if (!$newsletterModal.data("continue")) {
+      if (!newsletterChecked.prop("checked")) {
+        event.preventDefault();
+        $newsletterModal.foundation("open");
+      }
+    }
   });
 });
