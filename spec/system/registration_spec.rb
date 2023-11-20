@@ -7,6 +7,7 @@ require_relative "examples/registration_hide_nickname_examples"
 
 describe "Registration", type: :system do
   let(:organization) { create(:organization) }
+
   before do
     switch_to_host(organization.host)
   end
