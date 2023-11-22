@@ -54,6 +54,8 @@ shared_examples "on/off registration passwords" do
 
         check :registration_user_tos_agreement
         check :registration_user_additional_tos
+        check :registration_user_newsletter
+
         find("*[type=submit]").click
       end
 
@@ -165,6 +167,7 @@ shared_examples "on/off registration passwords" do
           check :registration_user_newsletter
           check :registration_user_tos_agreement
           check :registration_user_additional_tos
+          check :registration_user_newsletter
 
           check :registration_user_additional_tos
           find("*[type=submit]").click
