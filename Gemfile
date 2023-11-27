@@ -16,7 +16,7 @@ gem "decidim-conferences", "~> #{DECIDIM_VERSION}.0"
 
 # External Decidim gems
 gem "decidim-cache_cleaner"
-gem "decidim-cleaner", git: "https://github.com/OpenSourcePolitics/decidim-module-cleaner.git", branch: "fix/active_record_validations"
+gem "decidim-cleaner", git: "https://github.com/OpenSourcePolitics/decidim-module-cleaner.git", branch: "rc/2.1.2"
 gem "decidim-decidim_awesome", "~> 0.8.3"
 gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: DECIDIM_BRANCH
 gem "decidim-friendly_signup", git: "https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git", branch: "release/0.26-stable"
