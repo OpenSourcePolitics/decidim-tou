@@ -136,7 +136,8 @@ ignore_missing:
  - decidim.assemblies.show.related_participatory_processes
  - decidim.accountability.results.filters.scopes
  - decidim.accountability.results.filters.all
-
+ - decidim.cleaner.inactive_users_mailer.warning_deletion.*
+ - decidim.cleaner.inactive_users_mailer.warning_inactive.*
 
 # Consider these keys used:
 ignore_unused:
@@ -326,5 +327,6 @@ ignore_unused:
   - activemodel.attributes.user.living_area
   - activemodel.attributes.user.month
   - activemodel.attributes.user.year
-
+  - decidim.cleaner.inactive_users_mailer.warning_deletion.*
+  - decidim.cleaner.inactive_users_mailer.warning_inactive.*
 
