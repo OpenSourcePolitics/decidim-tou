@@ -45,6 +45,7 @@ module DevelopmentApp
     end
 
     config.after_initialize do
+      require "extends/lib/decidim/dependency_resolver_extends"
       require "extends/controllers/decidim/devise/sessions_controller_extends"
     end
   end
