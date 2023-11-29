@@ -1,0 +1,7 @@
+inherit_from:
+  - https://raw.githubusercontent.com/decidim/decidim/develop/decidim-dev/config/rubocop/ruby.yml
+  - https://raw.githubusercontent.com/decidim/decidim/develop/decidim-dev/config/rubocop/rails.yml
+  - https://raw.githubusercontent.com/decidim/decidim/develop/decidim-dev/config/rubocop/rspec.yml
+  - https://raw.githubusercontent.com/decidim/decidim/develop/decidim-dev/config/rubocop/faker.yml
+  - https://raw.githubusercontent.com/decidim/decidim/develop/decidim-dev/config/rubocop/disabled.yml
+

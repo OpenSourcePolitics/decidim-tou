@@ -1,3 +1,96 @@
 inherit_from:
-  - .rubocop_ruby.yml
-  - .rubocop_rails.yml
+  - .rubocop-dev.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+RSpec/NoExpectationExample:
+  Exclude:
+    - spec/system/participatory_space_private_user_spec.rb
+    - spec/services/decidim/comments/comment_creation_spec.rb
+    - spec/cells/decidim/conferences/conference_speaker_cell_spec.rb
+    - spec/cells/decidim/date_range_cell_spec.rb
+    - spec/commands/decidim/unsubscribe_settings_spec.rb
+    - spec/controllers/registrations_controller_spec.rb
+    - spec/lib/importers/import_manifest_spec.rb
+    - spec/lib/map/geocoding_spec.rb
+    - spec/lib/participatory_space_manifest_spec.rb
+    - spec/services/decidim/events_manager_spec.rb
+    - spec/services/decidim/settings_change_spec.rb
+    - spec/services/decidim/zip_stream/zip_stream_writer_spec.rb
+    - spec/tasks/decidim_tasks_right_to_be_forgotten_spec.rb
+    - spec/lib/tasks/decidim_election_generate_identification_keys_spec.rb
+    - spec/lib/tasks/decidim_election_scheduled_tasks_spec.rb
+    - spec/shared/vote_examples.rb
+    - spec/system/key_ceremony_spec.rb
+    - spec/system/vote_online_inside_a_voting_spec.rb
+    - spec/system/admin/update_initiative_spec.rb
+    - spec/system/initiative_signing_spec.rb
+    - spec/commands/admin/export_meeting_registrations_spec.rb
+    - spec/system/explore_meeting_directory_spec.rb
+    - spec/system/explore_meetings_spec.rb
+    - spec/lib/decidim/proposals/markdown_to_proposals_spec.rb
+    - spec/shared/import_proposals_examples.rb
+    - spec/shared/proposals_wizards_examples.rb
+    - spec/system/admin/admin_manages_participatory_texts_spec.rb
+    - spec/system/participatory_texts_spec.rb
+    - spec/system/participatory_processes_spec.rb
+
+# fix these rules later
+Capybara/SpecificFinders:
+  Enabled: false
+
+RSpec/IndexedLet:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+# EOF fix these rules later
+
+# Customization OSP
+
+Style/HashSyntax:
+  Enabled: false
+
+Layout/TrailingEmptyLines:
+  Enabled: false
+
+FactoryBot/ConsistentParenthesesStyle:
+  Enabled: false
+
+Capybara/RSpec/HaveSelector:
+  Enabled: false
+
+Naming/BlockForwarding:
+  Enabled: false
+
+RSpec/BeEq:
+  Enabled: false
+
+RSpec/MatchArray:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+RSpec/Rails/NegationBeValid:
+  Enabled: false
+
+RSpec/MetadataStyle:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+    Enabled: false
+
+Rails/BulkChangeTable:
+    Enabled: false
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - db/migrate/*
+
+Rails/ThreeStateBooleanColumn:
+  Exclude:
+    - db/migrate/*
