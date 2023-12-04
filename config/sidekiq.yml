@@ -21,10 +21,6 @@
       cron: '0 9 0 * * *' # Run at 00:09
       class: CalculateAllMetricsJob
       queue: scheduled
-    PreloadOpenData:
-      cron: '0 0 1 * * *' # Run at 01:00
-      class: PreloadOpenDataJob
-      queue: scheduled
     DetectSpamUsers:
       cron: '0 <%= Random.rand(0..59) %> <%= Random.rand(6..8) %> * * *' # Run randomly between 06:00 and 08:59
       class: Decidim::SpamDetection::MarkUsersJob
