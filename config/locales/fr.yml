@@ -238,13 +238,13 @@ fr:
     cleaner:
       inactive_users_mailer:
         warning_deletion:
-          body_1: Cela fait %{days} jours que vous ne vous êtes pas connecté à votre compte sur <a href="%{organization_url}"> %{organization_name} </a>
-          body_2: Suite à notre rappel il y a %{days} jours, et en raison du Règlement Général sur la Protection des Données, votre compte est supprimé. + d'infos en contactant jeparticipe@toulouse-metropole.fr
+          body_1: Cela fait 2 ans que vous ne vous êtes pas connecté à votre compte sur <a href="%{organization_url}"> %{organization_name} </a>
+          body_2: Suite à notre rappel il y a deux mois, et en raison du Règlement Général sur la Protection des Données, votre compte est supprimé. + d'infos en contactant jeparticipe@toulouse-metropole.fr
           greetings: Cordialement,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
           hello: Bonjour,
           subject: Suppression de votre compte
         warning_inactive:
-          body_1: Vous avez un compte sur la plateforme %{organization_name}. Vous ne vous êtes pas connecté depuis %{days} jours. Nous vous informons que d'ici %{remaining_days} jours, nous procéderons à la suppression automatique de votre compte en raison du Règlement Général sur la Protection des Données. En effet, un profil inactif pendant %{days} jours est supprimé afin de ne pas garder vos données personnelles.
+          body_1: Vous avez un compte sur la plateforme %{organization_name}. Vous ne vous êtes pas connecté depuis %{days} jours. Nous vous informons que d'ici 60 jours, nous procéderons à la suppression automatique de votre compte en raison du Règlement Général sur la Protection des Données. En effet, un profil inactif pendant 2 ans est supprimé afin de ne pas garder vos données personnelles.
           body_2: Vous souhaitez conserver votre compte ? Il vous suffit simplement de vous reconnecter sur %{organization_url}. + d'infos en contactant jeparticipe@toulouse-metropole.fr
           greetings: Cordialement,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
           hello: Bonjour,
