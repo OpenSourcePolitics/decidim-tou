@@ -13,6 +13,7 @@
   - metrics
   - vote_reminder
   - reminders
+  - low
 
 :scheduler:
   :schedule:
@@ -35,8 +36,8 @@
     CleanAdminLogs:
       cron: "0 9 0 * * *"
       class: Decidim::Cleaner::CleanAdminLogsJob
-      queue: scheduled
+      queue: mailers
     CleanInactiveUsers:
       cron: "0 9 0 * * *"
       class: Decidim::Cleaner::CleanInactiveUsersJob
-      queue: scheduled
+      queue: mailers
