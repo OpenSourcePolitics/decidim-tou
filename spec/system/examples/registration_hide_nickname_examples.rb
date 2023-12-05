@@ -50,6 +50,7 @@ shared_examples "on/off registration hide nickname" do
         select "1992", from: :registration_user_year
         check :registration_user_tos_agreement
         check :registration_user_additional_tos
+        check :registration_user_newsletter
 
         find("*[type=submit]").click
       end
@@ -80,6 +81,7 @@ shared_examples "on/off registration hide nickname" do
           select "1992", from: :registration_user_year
           check :registration_user_tos_agreement
           check :registration_user_additional_tos
+          check :registration_user_newsletter
 
           find("*[type=submit]").click
         end
@@ -118,6 +120,7 @@ shared_examples "on/off registration hide nickname" do
         select "1992", from: :registration_user_year
         check :registration_user_tos_agreement
         check :registration_user_additional_tos
+        check :registration_user_newsletter
 
         find("*[type=submit]").click
       end
@@ -179,6 +182,7 @@ shared_examples "on/off registration hide nickname" do
           select "1992", from: :registration_user_year
           check :registration_user_tos_agreement
           check :registration_user_additional_tos
+          check :registration_user_newsletter
 
           find("*[type=submit]").click
         end

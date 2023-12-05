@@ -24,6 +24,7 @@ module Decidim
     attribute :metropolis_residential_area, String
     attribute :metropolis_work_area, String
     attribute :gender, String
+    attribute :newsletter, Boolean
     attribute :tos_agreement, Boolean
     attribute :additional_tos, Boolean
     attribute :current_locale, String
