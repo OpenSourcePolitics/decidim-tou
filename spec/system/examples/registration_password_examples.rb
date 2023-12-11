@@ -34,7 +34,7 @@ shared_examples "on/off registration passwords" do
       expect(page).to have_field("registration_user_nickname", with: "")
       expect(page).to have_field("registration_user_email", with: "")
       expect(page).to have_field("registration_user_password", with: "")
-      expect(page).to have_field("registration_user_newsletter", checked: false)
+      expect(page).not_to have_field("registration_user_newsletter", checked: false)
     end
 
     it "creates a new User" do
@@ -84,7 +84,6 @@ shared_examples "on/off registration passwords" do
 
           check :registration_user_tos_agreement
           check :registration_user_additional_tos
-          check :registration_user_newsletter
 
           check :registration_user_additional_tos
           find("*[type=submit]").click
@@ -108,7 +107,7 @@ shared_examples "on/off registration passwords" do
       expect(page).to have_field("registration_user_email", with: "")
       expect(page).to have_field("registration_user_password", with: "")
       expect(page).to have_field("registration_user_password_confirmation", with: "")
-      expect(page).to have_field("registration_user_newsletter", checked: false)
+      expect(page).not_to have_field("registration_user_newsletter", checked: false)
     end
 
     it "creates a new User" do
@@ -127,7 +126,6 @@ shared_examples "on/off registration passwords" do
         select "1992", from: :registration_user_year
 
         fill_in :registration_user_password_confirmation, with: "nonsense"
-        check :registration_user_newsletter
         check :registration_user_tos_agreement
         check :registration_user_additional_tos
         find("*[type=submit]").click
@@ -164,7 +162,6 @@ shared_examples "on/off registration passwords" do
           select "1992", from: :registration_user_year
 
           fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
-          check :registration_user_newsletter
           check :registration_user_tos_agreement
           check :registration_user_additional_tos
           check :registration_user_newsletter
