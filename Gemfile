@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 DECIDIM_VERSION = "0.28"
-DECIDIM_BRANCH = "develop"
+DECIDIM_BRANCH = "release/0.28-stable"
 
 ruby RUBY_VERSION
 
