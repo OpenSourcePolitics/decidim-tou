@@ -134,13 +134,13 @@ $(() => {
     checkNewsletter($(event.target).data("check"));
   });
 
-  $userRegistrationForm.on("submit", (event) => {
-    const newsletterChecked = $userRegistrationForm.find(newsletterSelector);
-    if (!$newsletterModal.data("continue")) {
-      if (!newsletterChecked.prop("checked")) {
-        event.preventDefault();
-        $newsletterModal.foundation("open");
-      }
-    }
-  });
+  // $userRegistrationForm.on("submit", (event) => {
+  //   const newsletterChecked = $userRegistrationForm.find(newsletterSelector);
+  //   if (!$newsletterModal.data("continue")) {
+  //     if (!newsletterChecked.prop("checked")) {
+  //       event.preventDefault();
+  //       $newsletterModal.foundation("open");
+  //     }
+  //   }
+  // });
 });
