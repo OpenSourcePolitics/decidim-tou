@@ -8,6 +8,7 @@ env:
   RUBY_VERSION: 3.1.1
   RAILS_ENV: test
   NODE_VERSION: 18
+  TEST_SSL: "true"
   RUBYOPT: '-W:no-deprecated'
   # Set locales available for i18n tasks
   ENFORCED_LOCALES: "en,fr"
