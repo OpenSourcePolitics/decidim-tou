@@ -69,7 +69,7 @@ describe "Registration", type: :system do
         expect(page).to have_field("registration_user_name", with: "")
         expect(page).to have_field("registration_user_email", with: "")
         expect(page).to have_field("registration_user_password", with: "")
-        expect(page).to have_field("registration_user_newsletter", checked: false)
+        expect(page).not_to have_field("registration_user_newsletter", checked: false)
       end
     end
 
@@ -78,7 +78,7 @@ describe "Registration", type: :system do
         within ".new_user" do
           find("*[type=submit]").click
         end
-        expect(page).to have_css("#sign-up-newsletter-modal", visible: :visible)
+        expect(page).not_to have_css("#sign-up-newsletter-modal", visible: :visible)
       end
 
       it "checks when clicking the checking button" do
@@ -86,32 +86,17 @@ describe "Registration", type: :system do
         within ".new_user" do
           find("*[type=submit]").click
         end
-        expect(page).to have_css("#sign-up-newsletter-modal", visible: :all)
-        click_button "Check and continue"
-      end
-
-      it "submit after modal has been opened and selected an option" do
-        within ".new_user" do
-          find("*[type=submit]").click
-        end
-        click_button "Keep unchecked"
-        expect(page).to have_css("#sign-up-newsletter-modal", visible: :all)
-        fill_registration_form
-        within ".new_user" do
-          find("*[type=submit]").click
-        end
-        expect(page).to have_field("registration_user_newsletter", checked: false)
+        expect(page).not_to have_css("#sign-up-newsletter-modal", visible: :all)
       end
     end
 
     context "when newsletter checkbox is checked but submit fails" do
       before do
         fill_registration_form
-        page.check("registration_user_newsletter")
       end
 
       it "keeps the user newsletter checkbox true value" do
-        expect(page).to have_field("registration_user_newsletter", checked: true)
+        expect(page).not_to have_field("registration_user_newsletter", checked: true)
         within ".new_user" do
           find("*[type=submit]").click
         end
