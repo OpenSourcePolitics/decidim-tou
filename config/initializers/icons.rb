@@ -1,0 +1,1 @@
+Decidim.icons.register(name: "publik-fill", icon: "publik-fill", category: "system", description: "", engine: :core)
