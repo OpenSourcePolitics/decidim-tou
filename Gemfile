@@ -18,7 +18,7 @@ gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch
 # gem "decidim-cache_cleaner"
 # gem "decidim-cleaner"
 # gem "decidim-decidim_awesome"
-gem "decidim-faceless", git: "https://github.com/OpenSourcePolitics/decidim-module-slider", branch: DECIDIM_BRANCH
+# gem "decidim-faceless", git: "https://github.com/OpenSourcePolitics/decidim-module-slider", branch: DECIDIM_BRANCH
 # gem "decidim-friendly_signup", git: "https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git"
 # gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: DECIDIM_BRANCH
 # gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "0.26/without-exports"
