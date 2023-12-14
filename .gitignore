@@ -29,9 +29,7 @@ public/assets
 # Ignore webpack packs and related files
 public/decidim-packs
 public/packs-test
-public/sw.js
-public/sw.js.map
-public/sw.js.map*
+public/sw.js*
 
 # Ignore NPM/yarn logs and temp files
 .yarn-integrity
