@@ -18,7 +18,7 @@ gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch
 # gem "decidim-cache_cleaner"
 # gem "decidim-cleaner"
 # gem "decidim-decidim_awesome"
-# gem "decidim-faceless", git: "https://github.com/digidemlab/decidim-module-faceless", branch: DECIDIM_BRANCH
+gem "decidim-faceless", git: "https://github.com/OpenSourcePolitics/decidim-module-slider", branch: DECIDIM_BRANCH
 # gem "decidim-friendly_signup", git: "https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git"
 # gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: DECIDIM_BRANCH
 # gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "0.26/without-exports"
@@ -27,14 +27,14 @@ gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch
 
 # Default
 # gem "activejob-uniqueness", require: "active_job/uniqueness/sidekiq_patch"
-# gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3", require: false
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 6.3.1"
+gem "sys-filesystem"
+gem "fog-aws"
 # gem "faker", "~> 3.2"
-# gem "fog-aws"
 # gem "foundation_rails_helper", git: "https://github.com/sgruhier/foundation_rails_helper.git"
 # gem "rack-attack", "~> 6.6"
-# gem "sys-filesystem"
 
 group :development do
   gem "letter_opener_web", "~> 2.0"
