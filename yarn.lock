@@ -7480,7 +7480,7 @@ performance-now@^2.1.0:
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-picmo@^5.8.0:
+picmo@^5.8.0, picmo@^5.8.5:
   version "5.8.5"
   resolved "https://registry.npmjs.org/picmo/-/picmo-5.8.5.tgz"
   integrity sha512-7I8jfuHALF9lkt3d+XCZGP+IwH7g91vYZv6XtRnJ99IDjnm92zel0L5DEo2FX0oaHUwRMBD/kn2knTZqwItudQ==
