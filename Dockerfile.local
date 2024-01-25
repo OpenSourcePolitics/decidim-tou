@@ -18,10 +18,8 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 COPY Gemfile* ./
 
-RUN bundle config set --local without 'development test' && bundle install
 RUN bundle config set build.rgeo-proj4 --with-proj-dir="/usr/bin/"
-RUN bundle pristine rgeo-proj4
-RUN gem install rgeo-proj4 -- --with-proj-dir=/usr/bin
+RUN bundle config set --local without 'development test' && bundle install
 
 COPY package* ./
 COPY yarn.lock .
@@ -55,8 +53,6 @@ RUN apt-get update -q && \
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 COPY --from=builder /usr/bin/proj /usr/bin
 COPY --from=builder /app /app
-
-RUN bundle config set build.rgeo-proj4 --with-proj-dir="/usr/bin/"
 
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "server", "-b", "ssl://0.0.0.0:3000?key=/app/certificate-https-local/key.pem&cert=/app/certificate-https-local/cert.pem"]
