@@ -7,7 +7,7 @@ env:
   RSPEC_FORMAT: "documentation"
   RUBY_VERSION: 2.7.7
   RAILS_ENV: test
-  NODE_VERSION: 16.9.1
+  NODE_VERSION: 16.18.1
   RUBYOPT: '-W:no-deprecated'
   # Set locales available for i18n tasks
   ENFORCED_LOCALES: "en,fr"
