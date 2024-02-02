@@ -1,4 +1,4 @@
-FROM ruby:2.7.5
+FROM ruby:2.7.7
 
 ENV RAILS_ENV=production \
     SECRET_KEY_BASE=dummy
@@ -12,11 +12,13 @@ RUN --mount=type=cache,target=/var/cache/apt \
     apt update && \
     npm install -g npm@8.19.2 && \
     npm install --global yarn && \
-    apt install -y libicu-dev postgresql-client && \
+    apt install -y libicu-dev postgresql-client libproj-dev proj-bin && \
     gem install bundler:2.2.17 && \
     rm -rf /var/lib/apt/lists/*
 
 COPY Gemfile* ./
+
+RUN bundle config set build.rgeo-proj4 --with-proj-dir="/usr/bin/"
 RUN bundle config set --local without 'development test' && bundle install
 
 COPY package* ./

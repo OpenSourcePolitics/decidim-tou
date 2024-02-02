@@ -1,0 +1,58 @@
+FROM ruby:2.7.7 as builder
+
+ENV RAILS_ENV=production \
+    SECRET_KEY_BASE=dummy
+
+WORKDIR /app
+
+# Install NodeJS
+RUN --mount=type=cache,target=/var/cache/apt \
+    curl https://deb.nodesource.com/setup_16.x | bash && \
+    apt install -y nodejs && \
+    apt update && \
+    npm install -g npm@8.19.2 && \
+    npm install --global yarn && \
+    apt install -y libicu-dev postgresql-client libproj-dev proj-bin && \
+    gem install bundler:2.4.21 && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY Gemfile* ./
+
+RUN bundle config set build.rgeo-proj4 --with-proj-dir="/usr/bin/"
+RUN bundle config set --local without 'development test' && bundle install
+
+COPY package* ./
+COPY yarn.lock .
+COPY packages packages
+RUN yarn install
+
+COPY . .
+
+RUN bundle exec bootsnap precompile --gemfile app/ lib/ config/ bin/ db/ && bundle exec rails assets:precompile
+
+run mkdir certificate-https-local
+RUN openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=FR/ST=France/L=Paris/O=decidim/CN=decidim.eu" -keyout ./certificate-https-local/key.pem -out ./certificate-https-local/cert.pem;
+
+# Runner Stage
+FROM ruby:2.7.7 as runner
+
+ENV RAILS_ENV=production \
+    SECRET_KEY_BASE=dummy \
+    RAILS_LOG_TO_STDOUT=true \
+    LD_PRELOAD="libjemalloc.so.2" \
+    MALLOC_CONF="background_thread:true,metadata_thp:auto,dirty_decay_ms:5000,muzzy_decay_ms:5000,narenas:2"
+
+WORKDIR /app
+
+RUN apt-get update -q && \
+    apt-get install -yq postgresql-client imagemagick libproj-dev proj-bin libjemalloc2 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    gem install bundler:2.4.9
+
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY --from=builder /usr/bin/proj /usr/bin
+COPY --from=builder /app /app
+
+EXPOSE 3000
+CMD ["bundle", "exec", "rails", "server", "-b", "ssl://0.0.0.0:3000?key=/app/certificate-https-local/key.pem&cert=/app/certificate-https-local/cert.pem"]

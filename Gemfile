@@ -36,6 +36,7 @@ gem "nokogiri", "1.13.4"
 gem "puma", ">= 5.5.1"
 gem "rack-attack", "~> 6.6"
 gem "sys-filesystem"
+gem "wicked_pdf", "~> 2.6.3"
 
 group :development do
   gem "letter_opener_web", "~> 1.3"
