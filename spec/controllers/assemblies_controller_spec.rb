@@ -61,22 +61,22 @@ module Decidim
         it "includes only published assemblies with their children (two levels)" do
           get :index, format: :json
           expect(parsed_response).to match_array(
-                                       [
-                                         {
-                                           name: translated(promoted.title),
-                                           children: []
-                                         },
-                                         {
-                                           name: translated(published.title),
-                                           children: [
-                                             {
-                                               name: translated(first_level.title),
-                                               children: [{ name: translated(second_level.title) }]
-                                             }
-                                           ]
-                                         }
-                                       ]
-                                     )
+            [
+              {
+                name: translated(promoted.title),
+                children: []
+              },
+              {
+                name: translated(published.title),
+                children: [
+                  {
+                    name: translated(first_level.title),
+                    children: [{ name: translated(second_level.title) }]
+                  }
+                ]
+              }
+            ]
+          )
         end
       end
 
@@ -92,6 +92,33 @@ module Decidim
         it "includes only parent assemblies, with promoted listed first" do
           expect(controller.helpers.parent_assemblies.first).to eq(promoted)
           expect(controller.helpers.parent_assemblies.second).to eq(published)
+        end
+      end
+
+      describe "assembly_participatory_processes" do
+        let!(:participatory_processes) do
+          5.times.map do
+            create(
+              :participatory_process,
+              :published,
+              organization: organization,
+              start_date: Time.zone.now - rand(1..3).days,
+              end_date: Time.zone.now + rand(1..3).days
+            )
+          end
+        end
+
+        before do
+          published.link_participatory_space_resources(participatory_processes, "included_participatory_processes")
+          current_participatory_space = published
+          controller.instance_variable_set(:@current_participatory_space, current_participatory_space)
+        end
+
+        it "includes only participatory processes related to the assembly, first those which are active by end_date :asc, then inactive ones by end_date :desc" do
+          sorted_participatory_processes = participatory_processes.select(&:active?).sort_by(&:end_date)
+          sorted_participatory_processes += participatory_processes.select(&:past?).sort_by(&:end_date).reverse
+
+          expect(controller.helpers.assembly_participatory_processes.map(&:id)).to eq(sorted_participatory_processes.map(&:id))
         end
       end
 
