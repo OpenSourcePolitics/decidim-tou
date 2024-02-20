@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development? || ENV.fetch("ENABLE_LETTER_OPENER", "0") == "1"
+  get "/open-data/download", to: redirect("/404")
 
   mount Decidim::Core::Engine => "/"
   # mount Decidim::Map::Engine => '/map'
