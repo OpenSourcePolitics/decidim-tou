@@ -22,7 +22,7 @@ class MigrationsFixer
 
   # Build osp-app path and returns osp-app path ending with '/*'
   def osp_app_path
-    filepath = ENV.fetch("MIGRATIONS_PATH", nil).presence || File.join(Rails.root, 'db/migrate/')
+    filepath = ENV.fetch("MIGRATIONS_PATH", nil).presence || Rails.root.join("db/migrate/")
     osp_app_path ||= File.expand_path(filepath)
     if osp_app_path.end_with?("/")
       osp_app_path
@@ -32,7 +32,6 @@ class MigrationsFixer
   end
 
   private
-
 
   # Ensure osp_app path exists
   def validate_osp_app_path
