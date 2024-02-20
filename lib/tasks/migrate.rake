@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative "../migrations_fixer"
+require_relative "../rails_migrations"
+
 # :nocov:
 namespace :decidim do
   namespace :db do
