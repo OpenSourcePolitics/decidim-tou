@@ -85,10 +85,15 @@ module Decidim
       end
 
       def assembly_participatory_processes
-        related_pps = @current_participatory_space.linked_participatory_space_resources(:participatory_processes, "included_participatory_processes")
-                                                  .order(end_date: :desc, start_date: :asc)
+        assembly_participatory_processes = @current_participatory_space.linked_participatory_space_resources(:participatory_processes, "included_participatory_processes")
 
-        @assembly_participatory_processes ||= sort_related_pp(related_pps)
+        sorted_by_date = {
+          active: assembly_participatory_processes.active_spaces.order(start_date: :desc),
+          future: assembly_participatory_processes.future_spaces.order(start_date: :asc),
+          past: assembly_participatory_processes.past_spaces.order(end_date: :desc)
+        }
+
+        @assembly_participatory_processes ||= sorted_by_date
       end
 
       # Sort PPs by active state
