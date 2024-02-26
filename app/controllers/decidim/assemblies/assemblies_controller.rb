@@ -91,14 +91,6 @@ module Decidim
         @assembly_participatory_processes ||= sort_related_pp(related_pps)
       end
 
-      # Sort PPs by active state
-      # Param : participatory_processes : Decidim::ParticipatoryProcess::ActiveRecord_Relation
-      # Returns : Array || Decidim::ParticipatoryProcess::ActiveRecord_Relation
-      def sort_related_pp(participatory_processes)
-        active_pps, closed_pps = participatory_processes&.partition(&:active?)
-        (active_pps + closed_pps).uniq.presence || participatory_processes
-      end
-
       def current_assemblies_settings
         @current_assemblies_settings ||= Decidim::AssembliesSetting.find_or_create_by(decidim_organization_id: current_organization.id)
       end
