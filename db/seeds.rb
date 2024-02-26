@@ -1,4 +1,4 @@
-frozen_string_literal: true
+# frozen_string_literal: true
 
 require "decidim/translator_configuration_helper"
 # This file should contain all the record creation needed to seed the database with its default values.
