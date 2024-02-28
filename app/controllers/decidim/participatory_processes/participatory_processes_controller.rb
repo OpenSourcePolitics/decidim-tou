@@ -92,10 +92,14 @@ module Decidim
       def participatory_processes
         @participatory_processes ||= filtered_processes.groupless.includes(attachments: :file_attachment)
         case search.with_date
-        when "active", "past", "all"
+        when "active"
+          @participatory_processes.sort_by(&:end_date)
+        when "past"
           @participatory_processes.sort_by(&:end_date).reverse
         when "upcoming"
           @participatory_processes.sort_by(&:start_date)
+        when "all"
+          @participatory_processes = sort_all_processes
         else
           @participatory_processes
         end
@@ -136,6 +140,13 @@ module Decidim
 
       def linked_assemblies
         @linked_assemblies ||= current_participatory_space.linked_participatory_space_resources(:assembly, "included_participatory_processes").public_spaces
+      end
+
+      def sort_all_processes
+        actives = @participatory_processes.select(&:active?).sort_by(&:end_date)
+        pasts = @participatory_processes.select(&:past?).sort_by(&:end_date).reverse
+        upcomings = @participatory_processes.select(&:upcoming?).sort_by(&:start_date)
+        (actives + upcomings + pasts)
       end
     end
   end
