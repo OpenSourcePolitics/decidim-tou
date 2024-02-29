@@ -3,7 +3,6 @@
 require "spec_helper"
 
 module Decidim
-  module Comments
     describe CreateRegistration do
       describe "call" do
         let(:organization) { create(:organization) }
@@ -16,6 +15,7 @@ module Decidim
         let(:tos_agreement) { "1" }
         let(:newsletter) { "1" }
         let(:current_locale) { "fr" }
+        let(:notifications_sending_frequency) { "none" }
 
         let(:form_params) do
           {
@@ -95,6 +95,7 @@ module Decidim
               accepted_tos_version: organization.tos_version,
               locale: form.current_locale,
               password_updated_at: an_instance_of(ActiveSupport::TimeWithZone),
+              notifications_sending_frequency: "none",
               extended_data: {
                 country: nil,
                 date_of_birth: nil,
@@ -121,5 +122,4 @@ module Decidim
         end
       end
     end
-  end
 end
