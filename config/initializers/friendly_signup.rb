@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 return unless defined?(Decidim::FriendlySignup)
 
 Decidim::FriendlySignup.configure do |config|
