@@ -78,6 +78,10 @@ module Decidim
       end
 
       describe "when the form is valid" do
+        before do
+          Decidim::ExtraUserFields.notifications_sending_frequency = "none"
+        end
+
         it "broadcasts ok" do
           expect { command.call }.to broadcast(:ok)
         end
