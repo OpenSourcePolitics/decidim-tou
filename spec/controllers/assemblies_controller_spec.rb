@@ -95,6 +95,77 @@ module Decidim
         end
       end
 
+      describe "assembly_participatory_processes" do
+        let!(:organization) { create(:organization) }
+        let!(:past_processes) do
+          5.times.map do |i|
+            create(
+              :participatory_process,
+              :published,
+              organization: organization,
+              start_date: Time.zone.now - (i + 10).days,
+              end_date: Time.zone.now - (i + 5).days
+            )
+          end
+        end
+
+        let!(:active_processes) do
+          5.times.map do |i|
+            create(
+              :participatory_process,
+              :published,
+              organization: organization,
+              start_date: Time.zone.now - (i + 5).days,
+              end_date: Time.zone.now + (i + 5).days
+            )
+          end
+        end
+
+        let!(:upcoming_processes) do
+          5.times.map do |i|
+            create(
+              :participatory_process,
+              :published,
+              organization: organization,
+              start_date: Time.zone.now + (i + 5).days,
+              end_date: Time.zone.now + (i + 10).days
+            )
+          end
+        end
+
+        let(:participatory_processes) do
+          past_processes + active_processes + upcoming_processes
+        end
+
+        before do
+          published.link_participatory_space_resources(participatory_processes, "included_participatory_processes")
+          current_participatory_space = published
+          controller.instance_variable_set(:@current_participatory_space, current_participatory_space)
+        end
+
+        it "includes only participatory processes related to the assembly, actives one by end_date then upcoming ones by start_date then past ones by end_date reversed" do
+          sorted_participatory_processes = {
+            active: participatory_processes.select(&:active?).sort_by(&:end_date),
+            future: participatory_processes.select(&:upcoming?).sort_by(&:start_date),
+            past: participatory_processes.select(&:past?).sort_by(&:end_date).reverse
+          }
+
+          expect(controller.helpers.assembly_participatory_processes).to eq(sorted_participatory_processes)
+        end
+
+        it "includes only active participatory processes" do
+          expect(controller.helpers.assembly_participatory_processes[:active].all?(&:active?)).to be true
+        end
+
+        it "includes only upcoming participatory processes" do
+          expect(controller.helpers.assembly_participatory_processes[:future].all?(&:upcoming?)).to be true
+        end
+
+        it "includes only past participatory processes" do
+          expect(controller.helpers.assembly_participatory_processes[:past].all?(&:past?)).to be true
+        end
+      end
+
       describe "GET show" do
         context "when the assembly is unpublished" do
           it "redirects to sign in path" do

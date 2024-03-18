@@ -27,6 +27,12 @@ en:
             This amendment for %{amendable_type} %{proposal_link}
             is in evaluation state.
     anonymous_user: Anonymous user
+    assemblies:
+      show:
+        private_space: This is a private assembly
+        related_participatory_processes: Related participatory processes
+        social_networks: Social Networks
+        social_networks_title: Visit assembly on
     authorization_handlers:
       osp_authorization_handler:
         explanation: Verify your identity by entering a unique number

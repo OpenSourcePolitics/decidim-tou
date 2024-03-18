@@ -29,6 +29,12 @@ fr:
             Cet amendement pour le %{amendable_type} %{proposal_link}
             est en cours d’évaluation.
     anonymous_user: Utilisateur anonyme
+    assemblies:
+      show:
+        private_space: Ceci est une assemblée privée
+        related_participatory_processes: Concertations associées
+        social_networks: Réseaux sociaux
+        social_networks_title: Visiter l'assemblée sur
     authorization_handlers:
       osp_authorization_handler:
         explanation: Vérifier votre identité en saisissant un numéro unique
