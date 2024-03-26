@@ -48,8 +48,6 @@ namespace :decidim_app do
       Rake::Task["decidim:repair:url_in_content"].invoke
       puts "Running decidim:repair:translations"
       Rake::Task["decidim:repair:translations"].invoke
-      puts "Running decidim:db:migrate"
-      Rake::Task["decidim:db:migrate"].invoke
     end
 
     desc "usage: bundle exec rails k8s:dump_db"
