@@ -16,8 +16,8 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-extra_user_fields.git
-  revision: 9517905551332c4145796bc21ef5e035f99176b4
-  branch: feat/notifications_sending_frequency
+  revision: 0716b8d9e89db89ff3b182ad1bb63e92b952d39c
+  branch: release/0.27-stable
   specs:
     decidim-extra_user_fields (0.27.2)
       country_select (~> 4.0)
