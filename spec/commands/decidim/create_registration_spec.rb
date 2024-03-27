@@ -15,7 +15,6 @@ module Decidim
       let(:tos_agreement) { "1" }
       let(:newsletter) { "1" }
       let(:current_locale) { "fr" }
-      let(:notifications_sending_frequency) { "none" }
 
       let(:form_params) do
         {
@@ -78,10 +77,6 @@ module Decidim
       end
 
       describe "when the form is valid" do
-        before do
-          Decidim::ExtraUserFields.notifications_sending_frequency = "none"
-        end
-
         it "broadcasts ok" do
           expect { command.call }.to broadcast(:ok)
         end
@@ -90,6 +85,7 @@ module Decidim
           expect(User).to receive(:create!).with(
             name: form.name,
             nickname: form.nickname,
+            notifications_sending_frequency: "daily",
             email: form.email,
             password: form.password,
             password_confirmation: form.password_confirmation,
@@ -99,7 +95,6 @@ module Decidim
             accepted_tos_version: organization.tos_version,
             locale: form.current_locale,
             password_updated_at: an_instance_of(ActiveSupport::TimeWithZone),
-            notifications_sending_frequency: "daily",
             extended_data: {
               country: nil,
               date_of_birth: nil,
