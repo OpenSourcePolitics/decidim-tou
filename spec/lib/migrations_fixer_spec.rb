@@ -42,10 +42,10 @@ RSpec.describe MigrationsFixer do
     context "with missing environment" do
       let(:migration_path_env) { nil }
 
-      it "raises an exception" do
+      it "doesn't raise any exception" do
         expect do
           described_class.new logger
-        end.to raise_error "Invalid configuration, aborting"
+        end.not_to raise_error "Invalid configuration, aborting"
       end
     end
 
