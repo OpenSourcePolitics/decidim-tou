@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "byebug"
 # MigrationsFixer allows to ensure rake task has needed information to success.
 class MigrationsFixer
   attr_accessor :migrations_path, :logger
