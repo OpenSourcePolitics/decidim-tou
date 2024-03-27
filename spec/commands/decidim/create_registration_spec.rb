@@ -99,7 +99,7 @@ module Decidim
             accepted_tos_version: organization.tos_version,
             locale: form.current_locale,
             password_updated_at: an_instance_of(ActiveSupport::TimeWithZone),
-            notifications_sending_frequency: "none",
+            notifications_sending_frequency: "daily",
             extended_data: {
               country: nil,
               date_of_birth: nil,
