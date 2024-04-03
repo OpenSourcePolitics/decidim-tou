@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-extra_user_fields.git
-  revision: 7c993b49b35115e01ccbba725dccc1ae6e2a4b20
+  revision: bc26f39233d3216d80fd62d23cbc2e9831173be4
   branch: release/0.27-stable
   specs:
     decidim-extra_user_fields (0.27.2)
