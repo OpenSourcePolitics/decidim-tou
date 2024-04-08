@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_04_092311) do
+ActiveRecord::Schema.define(version: 2024_04_08_185643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1764,6 +1764,16 @@ ActiveRecord::Schema.define(version: 2024_04_04_092311) do
     t.index ["mounted_engine_name"], name: "index_decidim_short_links_on_mounted_engine_name"
     t.index ["route_name"], name: "index_decidim_short_links_on_route_name"
     t.index ["target_type", "target_id"], name: "index_decidim_short_links_on_target"
+  end
+
+  create_table "decidim_sms_twilio_deliveries", force: :cascade do |t|
+    t.string "from"
+    t.string "to"
+    t.string "body"
+    t.string "sid"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "decidim_sortitions_sortitions", force: :cascade do |t|
