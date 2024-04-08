@@ -16,8 +16,8 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-extra_user_fields.git
-  revision: 25f5a7843a38a5f9360f9bd42eb7e246d997bc7b
-  branch: release/0.27-stable
+  revision: ce52252129fe2dc13c0cdf91a517e43790fff97f
+  branch: temp/twilio-compatibility-0.27
   specs:
     decidim-extra_user_fields (0.27.2)
       country_select (~> 9.0)
@@ -101,6 +101,9 @@ GIT
     decidim-budgets_booth (0.27.0)
       decidim-budgets (~> 0.27.0)
       decidim-core (~> 0.27.0)
+    decidim-sms-twilio (0.27.0)
+      decidim-core (~> 0.27.0)
+      twilio-ruby (~> 5.72.0)
 
 GIT
   remote: https://github.com/alecslupu-pfa/decidim-module-survey_multiple_answers
@@ -655,7 +658,7 @@ GEM
       bindata
       faraday (~> 2.0)
       faraday-follow_redirects
-    jwt (2.7.1)
+    jwt (2.5.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -1029,6 +1032,10 @@ GEM
     tilt (2.3.0)
     timeout (0.4.1)
     tomlrb (2.0.3)
+    twilio-ruby (5.72.1)
+      faraday (>= 0.9, < 3.0)
+      jwt (>= 1.5, <= 2.5)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
@@ -1122,6 +1129,7 @@ DEPENDENCIES
   decidim-initiatives (~> 0.27.0)
   decidim-ludens!
   decidim-phone_authorization_handler!
+  decidim-sms-twilio!
   decidim-spam_detection
   decidim-survey_multiple_answers!
   decidim-templates (~> 0.27.0)
