@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Decidim::HalfSignup.configure do |config|
-  config.show_tos_page_after_signup = true
+  config.show_tos_page_after_signup = false
   # change this to false, if you don't want to redirect the user to the tos agreement page
 
   config.auth_code_length = 4
