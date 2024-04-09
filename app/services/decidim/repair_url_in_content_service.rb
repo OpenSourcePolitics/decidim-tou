@@ -118,6 +118,7 @@ module Decidim
     def records_for(model)
       model.columns.map do |col|
         next unless col.type.in?(COLUMN_TYPES)
+        next if %w(from to).include?(col.name)
 
         model.where("#{col.name}::text LIKE ?", "%#{@deprecated_endpoint}%")
       end.compact.reduce(&:or)
