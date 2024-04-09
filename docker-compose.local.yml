@@ -41,6 +41,7 @@ services:
       - PUMA_WORKERS=4
       - PUMA_PRELOAD_APP=true
       - RAILS_SESSION_STORE=active_record
+      - NOTIFICATIONS_SENDING_FREQUENCY=none
     depends_on:
       - app
     volumes:
@@ -72,6 +73,7 @@ services:
       - PUMA_WORKERS=4
       - PUMA_PRELOAD_APP=true
       - RAILS_SESSION_STORE=active_record
+      - NOTIFICATIONS_SENDING_FREQUENCY=none
     volumes:
       - shared-volume:/app
     ports:
