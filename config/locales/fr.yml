@@ -16,12 +16,27 @@ fr:
         file: importer un fichier d'utilisateurs
   decidim:
     admin:
+      actions:
+        add: Add
+        browse: Browse
+        confirm_destroy: Confirm destroy
+        destroy: Destroy
+        edit: Edit
       menu:
         admin_accountability: Admin accountability
+      models:
+        scope:
+          fields:
+            name: Name
+            scope_type: Scope type
       participatory_space_private_users:
         create:
           error: Erreur
           success: Succès
+      scopes:
+        no_scopes: No scopes at this level.
+      titles:
+        scopes: Scopes
     amendments:
       emendation:
         announcement:

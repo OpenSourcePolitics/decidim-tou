@@ -16,10 +16,25 @@ en:
         file: importing file
   decidim:
     admin:
+      actions:
+        add: Add
+        browse: Browse
+        confirm_destroy: Confirm destroy
+        destroy: Destroy
+        edit: Edit
+      models:
+        scope:
+          fields:
+            name: Name
+            scope_type: Scope type
       participatory_space_private_users:
         create:
           error: Error
           success: Success
+      scopes:
+        no_scopes: No scopes at this level.
+      titles:
+        scopes: Scopes
     amendments:
       emendation:
         announcement:
