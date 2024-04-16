@@ -11,8 +11,8 @@ module Decidim
       @mobile_phone_number = mobile_phone_number
       @code = code
       @url = "https://ssl.etoilediese.fr/envoi/sms/envoi.php"
-      @username = ENV["SMS_GATEWAY_USERNAME"]
-      @password = ENV["SMS_GATEWAY_PASSWORD"]
+      @username = ENV.fetch("SMS_GATEWAY_USERNAME", nil)
+      @password = ENV.fetch("SMS_GATEWAY_PASSWORD", nil)
       @message = I18n.t("sms_verification_workflow.message", code: code)
       @type = "sms"
     end
