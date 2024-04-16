@@ -101,9 +101,6 @@ GIT
     decidim-budgets_booth (0.27.0)
       decidim-budgets (~> 0.27.0)
       decidim-core (~> 0.27.0)
-    decidim-sms-twilio (0.27.0)
-      decidim-core (~> 0.27.0)
-      twilio-ruby (~> 5.72.0)
 
 GIT
   remote: https://github.com/alecslupu-pfa/decidim-module-survey_multiple_answers
@@ -1032,10 +1029,6 @@ GEM
     tilt (2.3.0)
     timeout (0.4.1)
     tomlrb (2.0.3)
-    twilio-ruby (5.72.1)
-      faraday (>= 0.9, < 3.0)
-      jwt (>= 1.5, <= 2.5)
-      nokogiri (>= 1.6, < 2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
@@ -1129,7 +1122,6 @@ DEPENDENCIES
   decidim-initiatives (~> 0.27.0)
   decidim-ludens!
   decidim-phone_authorization_handler!
-  decidim-sms-twilio!
   decidim-spam_detection
   decidim-survey_multiple_answers!
   decidim-templates (~> 0.27.0)
