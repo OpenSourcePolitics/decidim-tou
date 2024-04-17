@@ -34,11 +34,6 @@ fr:
           error: Erreur
           success: Succès
       scopes:
-        create:
-          error: Il y a eu une erreur lors de la création du secteur.
-          success: Secteur créé avec succès.
-        destroy:
-          success: Secteur supprimé avec succès.
         no_scopes: Aucun secteur à ce niveau.
         update:
           error: Il y a eu une erreur lors de la mise à jour du secteur.
