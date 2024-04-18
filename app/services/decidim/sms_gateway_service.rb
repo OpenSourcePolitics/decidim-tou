@@ -22,13 +22,8 @@ module Decidim
       https = Net::HTTP.new(url.host, url.port)
       https.use_ssl = true
       request = Net::HTTP::Get.new(url)
-      response = https.request(request)
-      response = response.read_body
+      https.request(request)
 
-      Rails.logger.info("#########################################################")
-      Rails.logger.info("SMS Verification code delivered to #{mobile_phone_number}")
-      Rails.logger.info("SMS Verification API response #{response}")
-      Rails.logger.info("#########################################################")
       true
     end
   end
