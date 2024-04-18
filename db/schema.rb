@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_08_185643) do
+ActiveRecord::Schema.define(version: 2024_04_12_112810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1706,6 +1706,7 @@ ActiveRecord::Schema.define(version: 2024_04_08_185643) do
     t.string "code", null: false
     t.integer "part_of", default: [], null: false, array: true
     t.jsonb "geojson"
+    t.integer "weight", default: 0
     t.index ["decidim_organization_id", "code"], name: "index_decidim_scopes_on_decidim_organization_id_and_code", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_scopes_on_decidim_organization_id"
     t.index ["parent_id"], name: "index_decidim_scopes_on_parent_id"

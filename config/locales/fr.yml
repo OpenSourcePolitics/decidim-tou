@@ -16,12 +16,30 @@ fr:
         file: importer un fichier d'utilisateurs
   decidim:
     admin:
+      actions:
+        add: Add
+        browse: Browse
+        confirm_destroy: Confirm destroy
+        destroy: Destroy
+        edit: Edit
       menu:
         admin_accountability: Admin accountability
+      models:
+        scope:
+          fields:
+            name: Name
+            scope_type: Scope type
       participatory_space_private_users:
         create:
           error: Erreur
           success: Succès
+      scopes:
+        no_scopes: Aucun secteur à ce niveau.
+        update:
+          error: Il y a eu une erreur lors de la mise à jour du secteur.
+          success: Secteur mis à jour avec succès.
+      titles:
+        scopes: Scopes
     amendments:
       emendation:
         announcement:
