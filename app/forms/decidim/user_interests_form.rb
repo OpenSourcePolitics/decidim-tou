@@ -9,7 +9,7 @@ module Decidim
     attribute :scopes, Array[UserInterestScopeForm]
 
     def newsletter_notifications_at
-      return nil unless newsletter_notifications
+      return unless newsletter_notifications
 
       Time.current
     end
