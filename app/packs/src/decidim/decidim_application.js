@@ -7,6 +7,7 @@ require.context("../../images", true)
 import $ from "jquery"
 import "jquery-validation"
 
+
 $(() => {
     if($(".submit_survey").length) {
         $("body").on('DOMNodeInserted', '.confirm-reveal', function () {

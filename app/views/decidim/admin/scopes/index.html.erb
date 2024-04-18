@@ -62,19 +62,4 @@
 </div>
 
 <%= stylesheet_pack_tag "decidim_custom_scopes", media: "all" %>
-
-
-<script>
-    document.addEventListener("dragend", function (event) {
-        var activeBlocks = Array.prototype.slice.call(document.querySelectorAll(".js-list-scopes li"));
-        var activeBlocksManifestName = activeBlocks.map(block => block.dataset.scopeId);
-        var sortUrl = document.querySelector(".js-list-scopes").dataset.sortUrl;
-
-        $.ajax({
-            method: "PUT",
-            url: sortUrl,
-            contentType: "application/json",
-            data: JSON.stringify({ manifests: activeBlocksManifestName })
-        });
-    })
-</script>
+<%= javascript_pack_tag 'application' %>
