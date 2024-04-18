@@ -34,7 +34,7 @@ module Decidim
         private
 
         def update_scopes
-          ReorderScopes.call(current_organization, :scopes, params[:manifests]) do
+          ::Admin::ReorderScopes.call(current_organization, :scopes, params[:manifests]) do
             on(:ok) do
               flash[:notice] = I18n.t("scopes.update.success", scope: "decidim.admin")
             end
