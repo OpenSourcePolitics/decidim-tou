@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-half_sign_up.git
-  revision: 01ee86188ca2498d924b134bac6f3be64e447d16
+  revision: 86999b0c45e9ecf8292970d2f1199d763f09554d
   branch: feature/half_signup_and_budgets_booth
   specs:
     decidim-half_signup (0.27.0)
