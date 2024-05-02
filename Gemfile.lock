@@ -7,6 +7,14 @@ GIT
       decidim-core (~> 0.27.0)
 
 GIT
+  remote: https://github.com/OpenSourcePolitics/decidim-module-emitter.git
+  revision: da99f003695a912fd12532d602894effee177786
+  specs:
+    decidim-emitter (0.1.0)
+      decidim-core (~> 0.27.0)
+      decidim-participatory_processes (~> 0.27.0)
+
+GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-extended_socio_demographic_authorization_handler.git
   revision: adec5e66cd07b5e5fdce5562453a7e8d6de88013
   branch: release/0.27-stable
@@ -26,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git
-  revision: 1a054faf964cc6ed07f1bec47cb92f0083a5bcb4
+  revision: fdf312eeb94535364c8cdf98da1cccab88861746
   specs:
     decidim-friendly_signup (0.4.5)
       decidim-core (~> 0.27)
@@ -42,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-half_sign_up.git
-  revision: 7d85d8fe69f8b65eca62d5741077283464dc8add
+  revision: cec7c1f329777a1a011214346c7a957475fa7679
   branch: feature/half_signup_and_budgets_booth
   specs:
     decidim-half_signup (0.27.0)
@@ -72,7 +80,7 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler
-  revision: 79f2a5f6c3357d63f92423a2b173893f4c4d06d8
+  revision: a3e77fb29e9a19793b3ff8b5d2273d41fac0919b
   branch: release/0.27-stable
   specs:
     decidim-phone_authorization_handler (1.0.0)
@@ -1113,6 +1121,7 @@ DEPENDENCIES
   decidim-conferences (~> 0.27.0)
   decidim-decidim_awesome
   decidim-dev (~> 0.27.0)
+  decidim-emitter!
   decidim-extended_socio_demographic_authorization_handler!
   decidim-extra_user_fields!
   decidim-friendly_signup!
