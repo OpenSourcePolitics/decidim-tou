@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-emitter.git
-  revision: da99f003695a912fd12532d602894effee177786
+  revision: b0f16d50f2da254dc214921421b4f4e8d7cf53fd
   specs:
     decidim-emitter (0.1.0)
       decidim-core (~> 0.27.0)
