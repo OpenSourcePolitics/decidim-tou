@@ -366,7 +366,6 @@ ActiveRecord::Schema.define(version: 2024_04_12_112810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "decidim_scope_id"
-    t.json "category_budget_rules", default: []
     t.string "main_image"
     t.index ["decidim_component_id"], name: "index_decidim_budgets_budgets_on_decidim_component_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_budgets_on_decidim_scope_id"
@@ -440,8 +439,6 @@ ActiveRecord::Schema.define(version: 2024_04_12_112810) do
     t.integer "decidim_participatory_space_id"
     t.string "decidim_participatory_space_type"
     t.integer "weight", default: 0, null: false
-    t.string "text_color"
-    t.string "background_color"
     t.index ["decidim_participatory_space_id", "decidim_participatory_space_type"], name: "index_decidim_categories_on_decidim_participatory_space"
     t.index ["parent_id"], name: "index_decidim_categories_on_parent_id"
   end
@@ -1476,13 +1473,13 @@ ActiveRecord::Schema.define(version: 2024_04_12_112810) do
     t.boolean "show_metrics", default: true
     t.integer "weight", default: 1, null: false
     t.integer "follows_count", default: 0, null: false
+    t.string "emitter", default: "0"
     t.string "address"
     t.float "latitude"
     t.float "longitude"
     t.boolean "display_linked_assemblies", default: false
-    t.bigint "decidim_participatory_process_type_id"
-    t.string "emitter", default: "0"
     t.text "emitter_name"
+    t.bigint "decidim_participatory_process_type_id"
     t.index ["decidim_area_id"], name: "index_decidim_participatory_processes_on_decidim_area_id"
     t.index ["decidim_organization_id", "slug"], name: "index_unique_process_slug_and_organization", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_processes_on_decidim_organization_id"
@@ -1974,6 +1971,7 @@ ActiveRecord::Schema.define(version: 2024_04_12_112810) do
     t.integer "following_count", default: 0, null: false
     t.integer "followers_count", default: 0, null: false
     t.string "notification_types", default: "all", null: false
+    t.jsonb "registration_metadata"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
@@ -1986,13 +1984,12 @@ ActiveRecord::Schema.define(version: 2024_04_12_112810) do
     t.boolean "email_on_moderations", default: true
     t.integer "follows_count", default: 0, null: false
     t.boolean "enable_ludens"
+    t.datetime "warning_date"
     t.jsonb "notification_settings", default: {}
     t.string "notifications_sending_frequency", default: "daily"
     t.datetime "digest_sent_at"
     t.datetime "password_updated_at"
     t.string "previous_passwords", default: [], array: true
-    t.jsonb "registration_metadata"
-    t.datetime "warning_date"
     t.string "phone_number"
     t.string "phone_country"
     t.index ["confirmation_token"], name: "index_decidim_users_on_confirmation_token", unique: true
