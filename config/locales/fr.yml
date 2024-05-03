@@ -123,6 +123,9 @@ fr:
             active_initiatives: Pétitions actives
             see_all_initiatives: Voir toutes les pétitions
     meetings:
+      application_helper:
+        filter_scope_values:
+          all: All
       directory:
         meetings:
           index:
