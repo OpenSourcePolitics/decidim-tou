@@ -6,7 +6,7 @@ require "decidim/dev/dummy_translator"
 Decidim.configure do |config|
   config.application_name = "OSP Agora"
   config.mailer_sender = "OSP Agora <ne-pas-repondre@opensourcepolitics.eu>"
-  config.sms_gateway_service = "Decidim::Verifications::Sms::ExampleGateway"
+  config.sms_gateway_service = "Decidim::SmsGatewayService"
 
   # Change these lines to set your preferred locales
   if Rails.env.production?
