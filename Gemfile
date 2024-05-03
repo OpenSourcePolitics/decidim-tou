@@ -17,6 +17,7 @@ gem "decidim-templates", "~> #{DECIDIM_VERSION}.0"
 gem "decidim-budgets_booth", github: "Pipeline-to-Power/decidim-module-ptp", branch: "main"
 gem "decidim-cache_cleaner"
 gem "decidim-decidim_awesome"
+gem "decidim-emitter", git: "https://github.com/OpenSourcePolitics/decidim-module-emitter.git"
 gem "decidim-extended_socio_demographic_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module-extended_socio_demographic_authorization_handler.git",
                                                                 branch: DECIDIM_BRANCH
 gem "decidim-extra_user_fields", git: "https://github.com/OpenSourcePolitics/decidim-module-extra_user_fields.git", branch: "temp/twilio-compatibility-0.27"
