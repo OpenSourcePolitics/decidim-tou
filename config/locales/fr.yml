@@ -15,6 +15,10 @@ fr:
       participatory_space_private_user_csv_import:
         file: importer un fichier d'utilisateurs
   decidim:
+    half_signup:
+      quick_auth:
+        sms_verification:
+          text_message: Bonjour, %{verification} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
     admin:
       actions:
         add: Add
@@ -240,4 +244,4 @@ fr:
       time_unit: seconds
       title: Thank you for your participation on %{organization_name}
   sms_verification_workflow:
-    message: Bonjour, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
+    message: Bonsoir, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
