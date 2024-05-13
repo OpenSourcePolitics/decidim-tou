@@ -244,4 +244,4 @@ fr:
       time_unit: seconds
       title: Thank you for your participation on %{organization_name}
   sms_verification_workflow:
-    message: Bonsoir, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
+    message: Bonjour, %{code} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
