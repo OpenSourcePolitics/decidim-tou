@@ -7,6 +7,14 @@ GIT
       decidim-core (~> 0.27.0)
 
 GIT
+  remote: https://github.com/OpenSourcePolitics/decidim-module-cleaner.git
+  revision: 88f3903ab218a45a14d9389354076b73d4aed53b
+  branch: rc/3.1.1
+  specs:
+    decidim-cleaner (3.1.1)
+      decidim-core (~> 0.27.0)
+
+GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-emitter.git
   revision: 020d33def3ec574162e040d9ce3ab9d38f3826df
   specs:
