@@ -13,7 +13,7 @@ module Decidim
       @url = "https://ssl.etoilediese.fr/envoi/sms/envoi.php"
       @username = ENV.fetch("SMS_GATEWAY_USERNAME", nil)
       @password = ENV.fetch("SMS_GATEWAY_PASSWORD", nil)
-      @message = I18n.t("sms_verification_workflow.message", code: code)
+      @message = sms_message
       @type = "sms"
     end
 
@@ -25,6 +25,13 @@ module Decidim
       https.request(request)
 
       true
+    end
+
+    # Ensure '@code' is not a full i18n keys rather than a verification code.
+    def sms_message
+      return code if code.to_s.length > Decidim::HalfSignup.auth_code_length
+
+      I18n.t("sms_verification_workflow.message", code: code)
     end
   end
 end

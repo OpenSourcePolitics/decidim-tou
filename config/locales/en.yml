@@ -106,6 +106,10 @@ en:
       user_answers_serializer:
         email: Email
         name: Name
+    half_signup:
+      quick_auth:
+        sms_verification:
+          text_message: 'Hello, here is the code to authenticate yourself on the jeparticipe.toulouse.fr platform: %{verification}'
     initiatives:
       admin:
         initiatives:
@@ -121,6 +125,9 @@ en:
             active_initiatives: Active initiatives
             see_all_initiatives: See all initiatives
     meetings:
+      application_helper:
+        filter_scope_values:
+          all: All
       directory:
         meetings:
           index:
@@ -142,6 +149,9 @@ en:
           text: What is FranceConnect ?
         forgot_password:
           ok_text: Warning, this password is the one of your local account and in no case the one of the account you use through FranceConnect. It will only be used when you log in with your email address rather than via FranceConnect.
+    participatory_processes:
+      show:
+        local_area: Organization area
     proposals:
       collaborative_drafts:
         edit:
