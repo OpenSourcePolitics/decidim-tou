@@ -144,4 +144,5 @@ ignore_unused:
   - decidim.forms.user_answers_serializer.{email,name}
   - decidim.assemblies.show.{active,future,past}_*
   - decidim.participatory_processes.show.local_area
+  - decidim.half_signup.quick_auth.sms_verification.text_message
 
