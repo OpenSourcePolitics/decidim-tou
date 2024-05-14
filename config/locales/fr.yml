@@ -125,7 +125,7 @@ fr:
     meetings:
       application_helper:
         filter_scope_values:
-          all: All
+          all: Tous
       directory:
         meetings:
           index:
