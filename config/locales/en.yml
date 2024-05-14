@@ -106,6 +106,10 @@ en:
       user_answers_serializer:
         email: Email
         name: Name
+    half_signup:
+      quick_auth:
+        sms_verification:
+          text_message: 'Hello, here is the code to authenticate yourself on the jeparticipe.toulouse.fr platform: %{verification}'
     initiatives:
       admin:
         initiatives:

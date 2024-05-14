@@ -143,4 +143,5 @@ ignore_unused:
   - activemodel.attributes.participatory_space_private_user_csv_import.file
   - decidim.forms.user_answers_serializer.{email,name}
   - decidim.assemblies.show.{active,future,past}_*
+  - decidim.half_signup.quick_auth.sms_verification.text_message
 
