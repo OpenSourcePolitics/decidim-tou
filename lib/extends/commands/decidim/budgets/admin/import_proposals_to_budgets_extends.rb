@@ -14,14 +14,9 @@ module ImportProposalsToBudgetsExtends
 
     def proposals
       return all_proposals if selected_scope_id.blank?
-      
+
       children = Decidim::Scope.find(selected_scope_id).children
       children.present? ? all_proposals.where(decidim_scope_id: children.ids.push(selected_scope_id)) : all_proposals.where(decidim_scope_id: selected_scope_id)
-        children = Decidim::Scope.find(selected_scope_id).children
-        children.present? ? all_proposals.where(decidim_scope_id: children.ids.push(selected_scope_id)) : all_proposals.where(decidim_scope_id: selected_scope_id)
-      else
-        all_proposals
-      end
     end
   end
 end
