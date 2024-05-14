@@ -107,7 +107,7 @@ jobs:
       - uses: nanasess/setup-chromedriver@v2
       - run:  bundle exec rake "test:run[exclude, spec/system/**/*_spec.rb, ${{ matrix.slice }}]"
         name: RSpec
-      #- run: ./.github/upload_coverage.sh decidim-app $GITHUB_EVENT_PATH
+      # - run: ./.github/upload_coverage.sh decidim-app $GITHUB_EVENT_PATH
       #  name: Upload coverage
       - uses: actions/upload-artifact@v3
         if: always()
@@ -173,7 +173,7 @@ jobs:
       - uses: nanasess/setup-chromedriver@v2
       - run:  bundle exec rake "test:run[include, spec/system/**/*_spec.rb, ${{ matrix.slice }}]"
         name: RSpec
-      #- run: ./.github/upload_coverage.sh decidim-app $GITHUB_EVENT_PATH
+      # - run: ./.github/upload_coverage.sh decidim-app $GITHUB_EVENT_PATH
       #  name: Upload coverage
       - uses: actions/upload-artifact@v3
         if: always()
