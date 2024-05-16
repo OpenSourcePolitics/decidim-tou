@@ -18,7 +18,7 @@ namespace :decidim_app do
       puts "Missing migrations :
 #{migrations}"
       puts "Applying missing migrations..."
-      system("bundle exec rake db:migrate")
+      system("bundle exec rake decidim:db:migrate")
     else
       puts "All migrations are up"
     end
@@ -33,8 +33,8 @@ namespace :decidim_app do
     # You can add your own customizations here
     desc "Install decidim-app"
     task install: :environment do
-      puts "Running db:migrate"
-      Rake::Task["db:migrate"].invoke
+      puts "Running decidim:db:migrate"
+      Rake::Task["decidim:db:migrate"].invoke
     end
 
     # This task is used to upgrade your decidim-app to the latest version
@@ -42,8 +42,8 @@ namespace :decidim_app do
     # You can add your own customizations here
     desc "Upgrade decidim-app"
     task upgrade: :environment do
-      puts "Running db:migrate"
-      Rake::Task["db:migrate"].invoke
+      puts "Running decidim:db:migrate"
+      Rake::Task["decidim:db:migrate"].invoke
       puts "Running decidim:repair:url_in_content"
       Rake::Task["decidim:repair:url_in_content"].invoke
       puts "Running decidim:repair:translations"
