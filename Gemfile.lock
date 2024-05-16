@@ -58,7 +58,7 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-half_sign_up.git
-  revision: 4e7c10caebf46566ca2ac536074bad1bf3a9b082
+  revision: 5d7db7919e9a58ad2623137d6758565ac4739064
   branch: feature/half_signup_and_budgets_booth
   specs:
     decidim-half_signup (0.27.0)
@@ -730,7 +730,7 @@ GEM
     mime-types-data (3.2024.0507)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    minitest (5.22.3)
+    minitest (5.23.0)
     mixlib-cli (2.1.8)
     mixlib-config (3.0.27)
       tomlrb
