@@ -70,5 +70,23 @@ namespace :decidim do
         end
       end
     end
+
+    desc "Fix birth_date in user extended_data"
+    task birth_date: :environment do
+      Decidim::User.find_each do |user|
+        date_of_birth = user.extended_data&.fetch("date_of_birth", "")
+        next if date_of_birth.blank?
+
+        begin
+          birth_date = Date.parse(date_of_birth).strftime("%Y-%m-%d")
+        rescue ArgumentError
+          next
+        end
+        if date_of_birth != birth_date
+          user.extended_data["date_of_birth"] = birth_date
+          user.save!
+        end
+      end
+    end
   end
 end
