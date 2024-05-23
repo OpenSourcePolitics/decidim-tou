@@ -14,7 +14,7 @@ RUN apt-get update && \
 
 COPY Gemfile* ./
 RUN bundle config set --local without 'development test' && \
-    bundle install -j"$(nproc)" \
+    bundle install -j"$(nproc)"
 RUN bundle config set build.rgeo-proj4 --with-proj-dir="/usr/bin/"
 
 COPY package* ./
