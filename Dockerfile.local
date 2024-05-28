@@ -7,7 +7,7 @@ ENV RAILS_ENV=production \
 WORKDIR /app
 
 RUN apt-get update -q && \
-    apt-get install -yq libpq-dev curl git libicu-dev build-essential openssl && \
+    apt-get install -yq libpq-dev curl git libicu-dev build-essential openssl libproj-dev proj-bin && \
     curl https://deb.nodesource.com/setup_16.x | bash && \
     apt-get install -y nodejs && \
     apt-get clean && \
@@ -18,6 +18,7 @@ RUN apt-get update -q && \
 COPY Gemfile Gemfile.lock ./
 RUN bundle config set --local without 'development test' && \
     bundle install -j"$(nproc)"
+RUN bundle config set build.rgeo-proj4 --with-proj-dir="/usr/bin/"
 
 COPY package.json yarn.lock ./
 COPY packages packages
