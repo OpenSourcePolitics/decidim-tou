@@ -88,5 +88,20 @@ namespace :decidim do
         end
       end
     end
+
+    desc "Fix gender in user extended_data"
+    task gender: :environment do
+      # If user has extended_data with a gender different than : null, "", "female", "male", "other"
+      # then we move the value to empty string and store the previous value
+      Decidim::User.find_each do |user|
+        gender = user.extended_data&.fetch("gender", "")
+        next if gender.blank?
+        next if %w(female male other).include?(gender)
+
+        user.extended_data["gender-legacy"] = user.extended_data["gender"]
+        user.extended_data["gender"] = ""
+        user.save!
+      end
+    end
   end
 end
