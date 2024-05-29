@@ -1478,8 +1478,8 @@ ActiveRecord::Schema.define(version: 2024_05_21_130556) do
     t.float "latitude"
     t.float "longitude"
     t.boolean "display_linked_assemblies", default: false
-    t.bigint "decidim_participatory_process_type_id"
     t.text "emitter_name"
+    t.bigint "decidim_participatory_process_type_id"
     t.index ["decidim_area_id"], name: "index_decidim_participatory_processes_on_decidim_area_id"
     t.index ["decidim_organization_id", "slug"], name: "index_unique_process_slug_and_organization", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_processes_on_decidim_organization_id"
