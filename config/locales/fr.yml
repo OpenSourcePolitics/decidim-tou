@@ -110,6 +110,8 @@ fr:
         name: Nom
     half_signup:
       quick_auth:
+        sms:
+          enter_phone: Veuillez renseigner votre numéro de téléphone
         sms_verification:
           text_message: Bonjour, %{verification} est le code pour vous authentifier sur la plateforme jeparticipe.toulouse.fr
     initiatives:

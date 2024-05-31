@@ -109,6 +109,7 @@ ignore_missing:
  - decidim.account.show.*
  - layouts.decidim.user_menu.profile
  - decidim.participatory_processes.admin.participatory_processes.form.*
+ - decidim.half_signup.quick_auth.sms.enter_phone
 
 # Consider these keys used:
 ignore_unused:
@@ -145,4 +146,5 @@ ignore_unused:
   - decidim.assemblies.show.{active,future,past}_*
   - decidim.participatory_processes.show.local_area
   - decidim.half_signup.quick_auth.sms_verification.text_message
+  - decidim.half_signup.quick_auth.sms.enter_phone
 
