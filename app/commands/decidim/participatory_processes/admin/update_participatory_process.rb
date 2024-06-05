@@ -54,6 +54,7 @@ module Decidim
         end
 
         def attributes
+          byebug
           {
             title: form.title,
             subtitle: form.subtitle,
@@ -80,9 +81,13 @@ module Decidim
             participatory_process_type: form.participatory_process_type,
             show_metrics: form.show_metrics,
             show_statistics: form.show_statistics,
-            announcement: form.announcement
+            announcement: form.announcement,
+            emitter_name: form.emitter_name,
+            address: form.address,
+            latitude: form.latitude,
+            longitude: form.longitude
           }.merge(
-            attachment_attributes(:hero_image, :banner_image)
+            attachment_attributes(:hero_image, :banner_image, :emitter)
           )
         end
 

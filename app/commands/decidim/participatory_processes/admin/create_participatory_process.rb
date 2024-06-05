@@ -92,7 +92,12 @@ module Decidim
             participatory_process_type: form.participatory_process_type,
             show_metrics: form.show_metrics,
             show_statistics: form.show_statistics,
-            announcement: form.announcement
+            announcement: form.announcement,
+            emitter: form.emitter,
+            emitter_name: form.emitter_name,
+            address: form.address,
+            latitude: form.latitude,
+            longitude: form.longitude
           }
         end
 
