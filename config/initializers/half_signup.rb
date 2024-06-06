@@ -12,5 +12,5 @@ Decidim::HalfSignup.configure do |config|
   config.default_countries = [:fr]
   # change ':us' to the country/countries you want to be shown at the top(the first option will be selected by default).
 
-  config.skip_csrf = ENV.fetch("HALF_SIGNUP_SKIP_CSRF", "false") === "true"
+  config.skip_csrf = ENV.fetch("HALF_SIGNUP_SKIP_CSRF", "false") == "true"
 end
