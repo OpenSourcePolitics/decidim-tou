@@ -54,7 +54,6 @@ module Decidim
         end
 
         def attributes
-          byebug
           {
             title: form.title,
             subtitle: form.subtitle,
