@@ -8,6 +8,8 @@ module Decidim
     attr_reader :mobile_phone_number, :code
 
     def initialize(mobile_phone_number, code)
+      Rails.logger.debug { "#{mobile_phone_number} - #{code}" }
+
       @mobile_phone_number = mobile_phone_number
       @code = code
       @url = "https://ssl.etoilediese.fr/envoi/sms/envoi.php"
