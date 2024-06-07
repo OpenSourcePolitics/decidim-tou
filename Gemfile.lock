@@ -59,8 +59,8 @@ GIT
 
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-half_sign_up.git
-  revision: ec3e362acc054ea47f43ba1cc497cca69841bfaa
-  branch: fix/authenticity_token
+  revision: 661bfe02e51d1cd4f16df1eb483d932494d5df1f
+  branch: feature/half_signup_and_budgets_booth
   specs:
     decidim-half_signup (0.27.0)
       countries (~> 5.1, >= 5.1.2)
