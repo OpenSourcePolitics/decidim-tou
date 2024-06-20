@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "net/http/post/multipart"
-require 'tempfile'
+require "tempfile"
 require "decidim_app/k8s/configuration_exporter"
 require "decidim_app/k8s/organization_exporter"
 require "decidim_app/k8s/manager"
@@ -131,14 +131,13 @@ namespace :decidim_app do
       password = Rails.application.secrets.dig(:decidim, :sms_gateway, :password)
 
       url = URI(api_url)
-      p "#{url}"
       request = Net::HTTP::Post::Multipart.new(url, {
-        u: username,
-        p: password,
-        f: "sms",
-        c: "Reminder",
-        file: UploadIO.new(file, "text/csv", filename)
-      })
+                                                 u: username,
+                                                 p: password,
+                                                 f: "sms",
+                                                 c: "Reminder",
+                                                 file: UploadIO.new(file, "text/csv", filename)
+                                               })
 
       response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |https| # pay attention to use_ssl if you need it
         https.request(request)

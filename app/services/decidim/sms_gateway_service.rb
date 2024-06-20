@@ -42,8 +42,8 @@ module Decidim
       value = Rails.application.secrets.dig(:decidim, :sms_gateway, key.to_sym)
       if required && value.blank?
         Rails.logger.error "Decidim::SmsGatewayService is missing a configuration value for :#{key}, " \
-                             "please check Rails.application.secrets.dig(:decidim, :sms_gateway, :#{key}) " \
-                             "or environment variable SMS_GATEWAY_#{key.to_s.upcase}"
+                           "please check Rails.application.secrets.dig(:decidim, :sms_gateway, :#{key}) " \
+                           "or environment variable SMS_GATEWAY_#{key.to_s.upcase}"
       end
       value
     end
