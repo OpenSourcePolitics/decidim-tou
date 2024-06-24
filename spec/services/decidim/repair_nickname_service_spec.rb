@@ -17,6 +17,8 @@ describe Decidim::RepairNicknameService do
 
       before do
         invalid.nickname = "Décidim"
+        invalid.phone_number = "0123456789"
+        invalid.phone_country = "fr"
         invalid.save!(validate: false)
       end
 
