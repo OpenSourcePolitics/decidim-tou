@@ -316,6 +316,10 @@ describe "Proposals", type: :system do
       let(:proposal) { proposals.first }
 
       before do
+        author = proposal.creator_author
+        author.phone_number = "0123456789"
+        author.phone_country = "fr"
+        author.save!(validate: false)
         Decidim::DestroyAccount.call(proposal.creator_author, Decidim::DeleteAccountForm.from_params({}))
       end
 
