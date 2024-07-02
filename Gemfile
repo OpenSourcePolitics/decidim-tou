@@ -14,7 +14,6 @@ gem "decidim-initiatives", "~> #{DECIDIM_VERSION}.0"
 gem "decidim-templates", "~> #{DECIDIM_VERSION}.0"
 
 # External Decidim gems
-gem "decidim-budgets_booth", github: "Pipeline-to-Power/decidim-module-ptp", branch: "main"
 gem "decidim-cache_cleaner"
 gem "decidim-cleaner", git: "https://github.com/OpenSourcePolitics/decidim-module-cleaner.git", branch: "rc/3.1.1"
 gem "decidim-decidim_awesome"
@@ -31,6 +30,8 @@ gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePo
 gem "decidim-spam_detection"
 gem "decidim-survey_multiple_answers", git: "https://github.com/alecslupu-pfa/decidim-module-survey_multiple_answers"
 gem "decidim-term_customizer", git: "https://github.com/OpenSourcePolitics/decidim-module-term_customizer.git", branch: "fix/email_with_precompile"
+
+gem "decidim-budgets_booth", github: "Pipeline-to-Power/decidim-module-ptp", branch: "main"
 
 # Omniauth gems
 gem "omniauth-france_connect", git: "https://github.com/OpenSourcePolitics/omniauth-france_connect"
