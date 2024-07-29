@@ -103,6 +103,8 @@ en:
           email_subject: Failed verification attempt against a managed participant
           notification_title: The participant <a href="%{resource_path}">%{resource_title}</a> has tried to verify themself with the data of the managed participant <a href="%{managed_user_path}">%{managed_user_name}</a>.
     forms:
+      current_image: Current image
+      default_image: Default image
       user_answers_serializer:
         email: Email
         name: Name
@@ -223,6 +225,7 @@ en:
       links:
         forgot_your_password: Forgot your password
         sign_in_with_france_connect: Sign in with france connect
+  explanation: Guidance for %{attribute}
   faker:
     address:
       country_code:
