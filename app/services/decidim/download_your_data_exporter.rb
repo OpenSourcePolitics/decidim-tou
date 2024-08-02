@@ -8,7 +8,6 @@ module Decidim
   #
   # In fact, the 7z file wraps a ZIP file which finally contains the data files.
   class DownloadYourDataExporter
-
     DEFAULT_EXPORT_FORMAT = "CSV"
     ZIP_FILE_NAME = "download-your-data.zip"
 
@@ -26,9 +25,7 @@ module Decidim
     end
 
     def export
-      #Rails.logger.debug "EXPORTDATA export_format variable is #{@export_format}"
       tmpdir = Dir.mktmpdir("temporary-download-your-data-dir")
-      #Rails.logger.debug "EXPORTDATA tmpdir variable is #{tmpdir}"
       user_data, user_attachments = data_and_attachments_for_user
       save_user_data(tmpdir, user_data)
       save_user_attachments(tmpdir, user_attachments)
