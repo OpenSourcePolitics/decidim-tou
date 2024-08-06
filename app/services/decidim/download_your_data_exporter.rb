@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "decidim/seven_zip_wrapper"
+require 'fileutils'
 
 module Decidim
   # Public: Generates a 7z(seven zip) file with data files ready to be persisted
