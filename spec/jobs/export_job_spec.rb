@@ -15,7 +15,9 @@ module Decidim
       let(:collection) { [proposal] } # Use an array with the instance_double
       let(:export_manifest) do
         instance_double(
-          Decidim::ComponentExportManifest,
+          # rubocop:disable RSpec/VerifiedDoubleReference
+          "Decidim::ComponentExportManifest",
+          # rubocop:enable RSpec/VerifiedDoubleReference
           name: :proposals,
           collection: ->(_component, _user, _resource_id) { collection },
           serializer: Decidim::Proposals::ProposalSerializer
