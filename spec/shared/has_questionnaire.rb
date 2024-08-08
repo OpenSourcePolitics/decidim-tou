@@ -108,8 +108,9 @@ shared_examples_for "has questionnaire" do
 
       fill_in question.body["en"], with: "My first answer"
       find(".logo-wrapper a").click
-      confirm = page.driver.browser.switch_to.alert
-      confirm.dismiss
+      wait = Selenium::WebDriver::Wait.new ignore: Selenium::WebDriver::Error::NoSuchAlertError
+      alert = wait.until { page.driver.browser.switch_to.alert }
+      alert.dismiss
 
       expect(page).to have_current_path questionnaire_public_path
     end
