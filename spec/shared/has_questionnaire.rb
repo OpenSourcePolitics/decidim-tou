@@ -105,11 +105,12 @@ shared_examples_for "has questionnaire" do
 
     it "requires confirmation when exiting mid-answering" do
       visit questionnaire_public_path
+
       fill_in question.body["en"], with: "My first answer"
-      find(".logo-wrapper a").click
-      wait = Selenium::WebDriver::Wait.new ignore: Selenium::WebDriver::Error::NoSuchAlertError, timeout: 10
-      alert = wait.until { page.driver.browser.switch_to.alert }
-      alert.dismiss
+
+      dismiss_page_unload do
+        page.find(".logo-wrapper a").click
+      end
 
       expect(page).to have_current_path questionnaire_public_path
     end
