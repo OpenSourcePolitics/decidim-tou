@@ -107,10 +107,9 @@ shared_examples_for "has questionnaire" do
       visit questionnaire_public_path
 
       fill_in question.body["en"], with: "My first answer"
-
-      dismiss_page_unload do
-        find("a.process-nav__link", match: :first).click
-      end
+      find(".logo-wrapper a").click
+      confirm = page.driver.browser.switch_to.alert
+      confirm.dismiss
 
       expect(page).to have_current_path questionnaire_public_path
     end
