@@ -56,6 +56,8 @@ module DevelopmentApp
       require "extends/models/decidim/budgets/project_extend"
       require "extends/commands/decidim/budgets/admin/import_proposals_to_budgets_extends"
       require "extends/helpers/decidim/meetings/directory/application_helper_extends"
+      require "extends/comments/comment_serializer_extends"
+      require "extends/comments/comment_vote_serializer_extends"
 
       Decidim::GraphiQL::Rails.config.tap do |config|
         config.initial_query = "{\n  deployment {\n    version\n    branch\n    remote\n    upToDate\n    currentCommit\n    latestCommit\n    locallyModified\n  }\n}".html_safe
