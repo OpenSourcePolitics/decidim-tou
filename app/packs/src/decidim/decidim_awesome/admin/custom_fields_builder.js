@@ -12,7 +12,7 @@ $(() => {
             key: key,
             config: {
                 i18n: {
-                    locale: "en-US",
+                    locale: "fr-FR",
                     location: "https://decidim.storage.opensourcepolitics.eu/osp-cdn/form_builder/1.1.0"
                 },
                 formData: $(`input[name="config[proposal_custom_fields][${key}]"]`).val(),
