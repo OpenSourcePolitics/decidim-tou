@@ -70,6 +70,8 @@ fr:
       osp_authorization_workflow:
         name: Procédure d'autorisation
     budgets:
+      order_reminder:
+        text_message: Votre vote pour mes idées pour mon quartier n'est pas terminé. Pour le terminer, rendez-vous sur %{organization_host}
       projects:
         count:
           projects_count:

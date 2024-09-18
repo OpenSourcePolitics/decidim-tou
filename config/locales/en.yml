@@ -68,6 +68,8 @@ en:
       osp_authorization_workflow:
         name: Authorization procedure
     budgets:
+      order_reminder:
+        text_message: Your vote for my ideas for my neighborhood is not over. To finish it, go to %{organization_host} to confirm it
       projects:
         count:
           projects_count:
