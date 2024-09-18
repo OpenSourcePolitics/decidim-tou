@@ -107,6 +107,8 @@ fr:
           email_subject: Un utilisateur a tenté de se faire vérifier avec les données d'un utilisateur représenté
           notification_title: Le participant <a href="%{resource_path}">%{resource_title}</a> a tenté de se faire vérifier avec les données de l'utilisateur représenté <a href="%{managed_user_path}">%{managed_user_name}</a>.
     forms:
+      current_image: Image actuelle
+      default_image: Image par défaut
       user_answers_serializer:
         email: Email
         name: Nom
@@ -229,6 +231,7 @@ fr:
       links:
         forgot_your_password: Mot de passe oublié ?
         sign_in_with_france_connect: FranceConnect
+  explanation: Explication pour %{attribute}
   faker:
     address:
       country_code:
