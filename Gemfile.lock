@@ -88,14 +88,6 @@ GIT
       decidim-core (~> 0.27.0)
 
 GIT
-  remote: https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler
-  revision: a3e77fb29e9a19793b3ff8b5d2273d41fac0919b
-  branch: release/0.27-stable
-  specs:
-    decidim-phone_authorization_handler (1.0.0)
-      decidim-core (~> 0.27)
-
-GIT
   remote: https://github.com/OpenSourcePolitics/omniauth-france_connect
   revision: 14a53ad31928c8a83742360cfbdb90938d0a057e
   specs:
@@ -1139,7 +1131,6 @@ DEPENDENCIES
   decidim-homepage_interactive_map!
   decidim-initiatives (~> 0.27.0)
   decidim-ludens!
-  decidim-phone_authorization_handler!
   decidim-spam_detection
   decidim-survey_multiple_answers!
   decidim-templates (~> 0.27.0)
