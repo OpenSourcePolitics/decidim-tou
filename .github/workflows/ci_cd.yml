@@ -8,6 +8,7 @@ env:
   RUBY_VERSION: 3.0.6
   RAILS_ENV: test
   NODE_VERSION: 16.9.1
+  CHROME_VERSION: 126.0.6478.182
   RUBYOPT: '-W:no-deprecated'
   # Set locales available for i18n tasks
   ENFORCED_LOCALES: "en,fr,ca,es"
