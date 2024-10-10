@@ -8,6 +8,7 @@ env:
   RUBY_VERSION: 3.0.6
   RAILS_ENV: test
   NODE_VERSION: 16.9.1
+  CHROME_VERSION: 126.0.6478.182
   RUBYOPT: '-W:no-deprecated'
   # Set locales available for i18n tasks
   ENFORCED_LOCALES: "en,fr,ca,es"
@@ -87,6 +88,12 @@ jobs:
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
+      - run: |
+          sudo apt install libu2f-udev
+          wget --no-verbose -O /tmp/chrome.deb https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${{env.CHROME_VERSION}}-1_amd64.deb
+          sudo dpkg -i /tmp/chrome.deb
+          rm /tmp/chrome.deb
+        name: Install Chrome version ${{ env.CHROME_VERSION }}
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -153,6 +160,12 @@ jobs:
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
+      - run: |
+          sudo apt install libu2f-udev
+          wget --no-verbose -O /tmp/chrome.deb https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${{env.CHROME_VERSION}}-1_amd64.deb
+          sudo dpkg -i /tmp/chrome.deb
+          rm /tmp/chrome.deb
+        name: Install Chrome version ${{ env.CHROME_VERSION }}
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
