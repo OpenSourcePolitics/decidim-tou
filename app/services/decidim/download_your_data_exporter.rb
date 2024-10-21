@@ -73,7 +73,8 @@ module Decidim
 
           blobs = attachment.is_a?(ActiveStorage::Attached::One) ? [attachment.blob] : attachment.blobs
           blobs.each do |blob|
-            Dir.mkdir(File.join(tmpdir, entity.parameterize))
+            dir_path = File.join(tmpdir, entity.parameterize)
+            Dir.mkdir(dir_path) unless Dir.exist?(dir_path)
             file_name = File.join(tmpdir, entity.parameterize, blob.filename.to_s)
             blob.open do |blob_file|
               File.write(file_name, blob_file.read.force_encoding("UTF-8"))
