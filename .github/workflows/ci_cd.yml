@@ -17,7 +17,7 @@ env:
 jobs:
   todo:
     name: TODO
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
         with:
@@ -26,7 +26,7 @@ jobs:
         uses: "alstr/todo-to-issue-action@v4"
   lint:
     name: Lint code
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: "!startsWith(github.head_ref, 'chore/l10n')"
     timeout-minutes: 60
     steps:
@@ -40,7 +40,7 @@ jobs:
           node_version: ${{ env.NODE_VERSION }}
   zeitwerk:
     name: Check for Zeitwerk errors
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: "!startsWith(github.head_ref, 'chore/l10n')"
     timeout-minutes: 60
     steps:
@@ -60,7 +60,7 @@ jobs:
       matrix:
         slice: [ "0-2", "1-2" ]
     name: Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgres:11
@@ -134,7 +134,7 @@ jobs:
       matrix:
         slice: [ "0-4", "1-4", "2-4", "3-4" ]
     name: System tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgres:11
@@ -204,7 +204,7 @@ jobs:
           path: ./tmp/assets_manifest.json
   test_build:
     name: Test build docker image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgres:11
@@ -237,7 +237,7 @@ jobs:
     if: "github.ref == 'refs/heads/develop'"
     name: Build and push image to Registry
     needs: [ lint, zeitwerk, tests, system_tests, test_build ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: OpenSourcePolitics/build-and-push-images-action@master
         with:
@@ -250,7 +250,7 @@ jobs:
     name: Generate release
     needs: [lint, tests, system_tests, test_build]
     if: "github.ref == 'refs/heads/master'"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - uses: mathieudutour/github-tag-action@v6.1
